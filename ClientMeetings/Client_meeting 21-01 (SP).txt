@@ -6,7 +6,7 @@
 
 
 -um lugar especifico dentro do parque ou na rua, (ex.um ID=34 na rua da constituição)
--cada parque tem o seu preço
+-cada lugar tem o seu preço
 
 -o valor do sub aluguer é independente do valor da reserva, pode ser qualquer valor
 -não há limites para o número de lugares que alguem pode alugar

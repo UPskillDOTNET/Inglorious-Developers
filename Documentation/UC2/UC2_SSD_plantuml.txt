@@ -1,0 +1,22 @@
+@startuml
+autonumber
+actor "Administrador" as ADMIN
+
+activate ADMIN
+ADMIN -> ":Plataforma" : registar lugar estacionamento
+activate ":Plataforma"
+":Plataforma" --> ADMIN : solicita dados organização \n(designacaoUnica, andar, preco, parqueEstacionamento)\n 
+deactivate ":Plataforma"
+
+ADMIN -> ":Plataforma" : introduz os dados solicitados
+activate ":Plataforma"
+":Plataforma" --> ADMIN : apresenta dados e solicita confirmação
+deactivate ":Plataforma"
+
+ADMIN -> ":Plataforma" : confirma
+activate ":Plataforma"
+":Plataforma" --> ADMIN : operação bem sucedida
+deactivate ":Plataforma"
+
+deactivate ADMIN
+@enduml
