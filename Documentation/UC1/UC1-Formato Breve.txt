@@ -1,0 +1,3 @@
+Formato Breve
+
+O administrador acede à plataforma, pretendendo registar um parque de estacionamento. A plataforma questiona qual a operação que o administrador pretende efetuar (Registar, Consultar ou Editar). O administrador solicita registar. A plataforma questiona qual o tipo de parque de estacionamento, nomeadamente se é público ou privado. O administrador seleciona parque de estacionamento privado. A plataforma solicita o preenchimento dos seguintes dados: identificação do parque, localização, capacidade máxima e dono do parque. O administrador introduz os dados solicitados. A plataforma apresenta os dados ao administrador, pedindo que os confirme. O administrador confirma os dados. A plataforma regista os dados e informa o administrador do sucesso da operação.
