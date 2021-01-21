@@ -1,0 +1,73 @@
+-1 web API vendida aos clientes configurável -- funciona de forma diferente para cada um
+-tem que ter um módulo que defina as regras de negócio daquele parque
+-tem que ser tudo configurável
+
+(-dropdown list que assuma variaveis gerais de negócio? - questao Joao)
+
+
+-um lugar especifico dentro do parque ou na rua, (ex.um ID=34 na rua da constituição)
+-cada parque tem o seu preço
+
+-o valor do sub aluguer é independente do valor da reserva, pode ser qualquer valor
+-não há limites para o número de lugares que alguem pode alugar
+
+-O sub aluguer é feito a users registados na aplicação, as duas partes têm que estar registadas na aplicação
+
+-um super-utilizador
+
+-QR code relaciona o user à vaga
+
+-métodos de pagamento: colocar os que conseguirmos implementar
+
+-quando faço a reserva defino o meu método de pagamento
+-na proxima reserva o user pode definir novo metodo de pagamento
+
+
+-cancelamento da reserva nao tem reembolso - escrever na janela da reserva que esta não poderá ser cancelada depois
+-o user ao cancelar fica com crédito para usar noutra data, (voucher? credito user?)
+
+-a empresa da app nunca paga à cabeça aos clientes que têm parques
+-o dono do parque/rua nao sabe quem é o user da aplicação que fez a reserva
+
+
+
+
+-app em varias linguas
+-surge ao cliente na moeda depende 
+
+
+
+
+-Consumir web api nossas e publicas - facebook, google, qr code, metodos de pagamento
+-Pagamento pode ser antecipadamente ou em utilização
+-O pagamento pode ser para o credito que poderá ter adição, tambem, através dos cancelamentos
+
+
+
+
+
+1ª iteração
+
+-só web api's que suportem todos os clientes: privado e público
+Se é publico nao há sistema privado de lugares
+-completamente proprietária do estacionamento
+Se é privada 
+-pode haver lugares bloqueados por outros clientes
+
+2ª iteração
+
+-web api com sistema de reserva com todos os parques contratualizados
+
+3ª iteração
+
+-será o front-end para o cliente e user
+
+
+
+
+USER
+email
+credito
+nome
+método de pagamento
+NIF para emitir faturas
