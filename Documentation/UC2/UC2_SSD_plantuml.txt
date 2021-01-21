@@ -1,22 +1,27 @@
 @startuml
 autonumber
-actor "Administrador" as ADMIN
+actor "Administrator" as ADMIN
 
 activate ADMIN
-ADMIN -> ":Plataforma" : registar lugar estacionamento
-activate ":Plataforma"
-":Plataforma" --> ADMIN : solicita dados organização \n(designacaoUnica, andar, preco, parqueEstacionamento)\n 
-deactivate ":Plataforma"
+ADMIN -> ":Plataform" : access Platform
+activate ":Plataform"
+":Plataform" --> ADMIN : asks the admin if he wants to Create, Read, Edit or Delete 
+deactivate ":Plataform"
 
-ADMIN -> ":Plataforma" : introduz os dados solicitados
-activate ":Plataforma"
-":Plataforma" --> ADMIN : apresenta dados e solicita confirmação
-deactivate ":Plataforma"
+ADMIN -> ":Plataform" : choses Create
+activate ":Plataform"
+":Plataform" --> ADMIN : asks for Parking Space attributes \n(designacaoUnica, andar, preco, parqueEstacionamento)\n 
+deactivate ":Plataform"
 
-ADMIN -> ":Plataforma" : confirma
-activate ":Plataforma"
-":Plataforma" --> ADMIN : operação bem sucedida
-deactivate ":Plataforma"
+ADMIN -> ":Plataform" : inserts the asked info
+activate ":Plataform"
+":Plataform" --> ADMIN : shows the info and asks for confirmation
+deactivate ":Plataform"
+
+ADMIN -> ":Plataform" : confirms
+activate ":Plataform"
+":Plataform" --> ADMIN : successful operation
+deactivate ":Plataform"
 
 deactivate ADMIN
 @enduml
