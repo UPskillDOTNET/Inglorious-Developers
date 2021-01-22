@@ -1,0 +1,32 @@
+@startuml
+autonumber
+actor "httpClient" as httpClient
+
+activate httpClient
+httpClient -> ":Plataforma" : Acede à plataforma e autentica-se nela
+activate ":Plataforma"
+":Plataforma" --> httpClient : Questiona o httpClient se pretende Registar, Consultar ou Editar
+deactivate ":Plataforma"
+
+httpClient -> ":Plataforma" : Solicita registar parque de estacionamento
+activate ":Plataforma"
+":Plataforma" --> httpClient : Questiona qual o tipo de parque de estacionamento, nomeadamente se é público ou privado 
+deactivate ":Plataforma"
+
+httpClient -> ":Plataforma" : Seleciona parque de estacionamento privado
+activate ":Plataforma"
+":Plataforma" --> httpClient : Solicita o preenchimento dos seguintes dados:\n identificação do parque, localização, capacidade máxima e dono do parque
+deactivate ":Plataforma"
+
+httpClient -> ":Plataforma" : Introduz os dados solicitados
+activate ":Plataforma"
+":Plataforma" --> httpClient : Apresenta os dados ao httpClient, pedindo que os confirme
+deactivate ":Plataforma"
+
+httpClient -> ":Plataforma" : Confirma os dados
+activate ":Plataforma"
+":Plataforma" --> httpClient : Regista os dados e informa o httpClient do sucesso da operação
+deactivate ":Plataforma"
+
+deactivate httpClient
+@enduml
