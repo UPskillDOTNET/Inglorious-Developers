@@ -1,0 +1,11 @@
+@startuml
+usecase UC1 as "UC1 - Registar Parque de Estacionamento"
+usecase UC2 as "UC2 - Registar Lugar de Estacionamento"
+usecase UC3 as "UC3 - Registar Reserva do Lugar de Estacionamento"
+actor "HTTP Client" as HTTPClient
+
+left to right direction
+HTTPClient -->(UC1)
+HTTPClient -->(UC2)
+HTTPClient -->(UC3)
+@enduml
