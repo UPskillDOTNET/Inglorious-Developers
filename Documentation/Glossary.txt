@@ -1,0 +1,25 @@
+Glossário
+
+Web API central: API responsável por consumir as API's dos Parques e as API's públicas.
+
+Web app: Aplicação usada pelo cliente e utilizadores.
+
+Parque privado: Tipo de parque de estacionamento, sendo propriedade duma empresa particular.
+
+Parque público: Tipo de parque de  estacionamento, sendo responsabilidade do município.
+ 
+Lugar de Estacionamento: Zona delimitada e identificada para estacionamento.
+
+Reserva: Ação pelo utilizador, de modo a ter um lugar de estacionamento num determinado período de tempo, num determinado parque de estacionamento.
+
+Subaluguer: Ação dependente de uma reserva efectuada. Permite a utilização do espaço ou dependência por um outro utilizador durante um período de tempo definido (nunca superior ao período de tempo da reserva original).
+
+QR-Code: Código de barras bidimensional, que a câmara do telemóvel é capaz de reconhecer e extrair dados contidos. 
+
+Método de Pagamento: Meio utilizado para proceder a um pagamento de forma a multiplicar as possibilidades e com objetivo deste ser bem sucedido.
+
+Pré-Pagamento: Pagamento antecipado correspondente à reserva.
+
+Pay-As-You-Use: Pagamento efetuado no momento de utilização do serviço.
+
+Município: Circunscrição territorial em que uma vereação exerce a sua jurisdição.

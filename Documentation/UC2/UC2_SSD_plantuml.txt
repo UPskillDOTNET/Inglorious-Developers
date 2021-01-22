@@ -1,22 +1,33 @@
 @startuml
 autonumber
-actor "Administrador" as ADMIN
+actor "httpClient" as CLIENT
 
-activate ADMIN
-ADMIN -> ":Plataforma" : registar lugar estacionamento
-activate ":Plataforma"
-":Plataforma" --> ADMIN : solicita dados organização \n(designacaoUnica, andar, preco, parqueEstacionamento)\n 
-deactivate ":Plataforma"
+activate CLIENT
+CLIENT -> ":Platform" : asks to be authenticated in the Platform
+activate ":Platform"
+":Platform" --> CLIENT : confirms httpClient authentication
+deactivate ":Platform"
 
-ADMIN -> ":Plataforma" : introduz os dados solicitados
-activate ":Plataforma"
-":Plataforma" --> ADMIN : apresenta dados e solicita confirmação
-deactivate ":Plataforma"
+CLIENT -> ":Platform" : access Platform
+activate ":Platform"
 
-ADMIN -> ":Plataforma" : confirma
-activate ":Plataforma"
-":Plataforma" --> ADMIN : operação bem sucedida
-deactivate ":Plataforma"
+":Platform" --> CLIENT : asks the admin if he wants to Create, Read, Edit or Delete 
+deactivate ":Platform"
 
-deactivate ADMIN
+CLIENT -> ":Platform" : choses Create
+activate ":Platform"
+":Platform" --> CLIENT : asks for Parking Space attributes \n(designacaoUnica, andar, preco, parqueEstacionamento)\n 
+deactivate ":Platform"
+
+CLIENT -> ":Platform" : inserts the asked info
+activate ":Platform"
+":Platform" --> CLIENT : shows the info and asks for confirmation
+deactivate ":Platform"
+
+CLIENT -> ":Platform" : confirms
+activate ":Platform"
+":Platform" --> CLIENT : successful operation
+deactivate ":Platform"
+
+deactivate CLIENT
 @enduml
