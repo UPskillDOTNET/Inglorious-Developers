@@ -1,23 +1,31 @@
 @startuml
-usecase UC1 as "UC1 - Gerir Parques de Estacionamento"
-actor "Prestador do Serviço" as Prestador
+usecase UC1 as "UC1 - Parking Spot Management"
+actor "Administrator" as ADMIN
 
-usecase UC2 as "UC2 - Gerir Lugares de Estacionamento"
-actor "Prestador do Serviço" as Prestador
+usecase UC2 as "UC2 - User Registration"
+actor "Non-User" as NR_USR
 
-usecase UC3 as "UC3 - Registar Utilizador"
-actor "Utilizador Não Registado" as NR_USR
+usecase UC3 as "UC3 - Reservation Management"
+actor "User" as USR
 
-usecase UC4 as "UC4 - Reservar Lugar de Estacionamento"
-actor "Cliente Registado" as USR
+usecase UC4 as"UC4 -  Sublet Management"
+actor "User" as USR
 
-usecase UC5 as "UC5 - Efetuar Sub-Aluguer"
-actor "Cliente Registado" as USR
+usecase UC5 as "UC5 - Available Parking Spots Consultation"
+actor "User" as USR
+
+usecase UC6 as "UC6 - Payment Process"
+actor "User" as USR
+
+usecase UC7 as "UC7 - User Management"
+actor "User" as USR
 
 left to right direction
-Prestador -->(UC1)
-Prestador -->(UC2)
-NR_USR -->(UC3)
+ADMIN -->(UC1)
+NR_USR -->(UC2)
+USR -->(UC3)
 USR -->(UC4)
 USR -->(UC5)
+USR -->(UC6)
+USR -->(UC7)
 @enduml
