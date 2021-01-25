@@ -1,0 +1,31 @@
+@startuml
+autonumber
+actor "User" as USR
+
+activate USR
+USR -> ":Platform" : asks to be authenticated in the Platform
+activate ":Platform"
+":Platform" --> USR : confirms user authentication
+deactivate ":Platform"
+
+USR -> ":Platform" : access Platform to check the available parking spots
+activate ":Platform"
+":Platform" --> USR : asks the start and end date
+deactivate ":Platform"
+
+USR -> ":Platform" : inserts the required info
+activate ":Platform"
+
+":Platform" --> USR : shows the list of available parking spots
+deactivate ":Platform"
+
+USR -> ":Platform" : checks the list
+activate ":Platform"
+
+":Platform" --> USR : successful operation
+deactivate ":Platform"
+
+deactivate ":Platform"
+
+deactivate USR
+@enduml
