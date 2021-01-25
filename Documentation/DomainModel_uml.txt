@@ -1,0 +1,69 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide methods
+left to right direction
+
+class Platform{
+}
+
+class CentralAPI{
+  -List ParkAPI
+}
+
+class PublicAPI{
+}
+
+class Admin {
+  -Integer ID
+  -string email
+  -string name
+}
+
+class User {
+  -String name	
+  -String nif
+  -String email
+  -Decimal credit
+}
+
+class ParkingLot{
+  -Integer ID
+  -String Name
+  -String CompanyName
+  -Bool Type
+  -String Location
+  -Integer Capacity
+  -List ParkingSpot
+}
+
+class ParkingSpot {
+  -String ID
+  -Decimal PriceHour
+  -String Floor
+}
+
+class Reservation {
+  -String ID;
+  -DateTime StartDate
+  -Integer Hours
+  -DateTime EndTime
+  -String ParkingSpotID
+  -Integer ParkingLotID
+}
+
+
+Platform "1" -- "1" CentralAPI : has >
+
+CentralAPI "1" -- "1..*" PublicAPI : consumes >
+CentralAPI "1" -- "1..*" User : is used >
+CentralAPI "1" -- "1...*" ParkingLot : has >
+CentralAPI "1" -- "1...*" Admin : is managed >
+
+
+ParkingLot "1" -- "1..*" Admin : is managed >
+ParkingLot "1" -- "1...*" ParkingSpot : has >
+
+ParkingSpot "1" -- "1...*" Reservation : has >
+
+User "1" -- "1...*" Reservation : makes >
+@enduml
