@@ -1,0 +1,33 @@
+@startuml
+autonumber
+actor "admin" as ADMIN
+
+activate ADMIN
+ADMIN -> ":Platform" : asks to be authenticated in the Platform
+activate ":Platform"
+":Platform" --> ADMIN : confirms admin authentication
+deactivate ":Platform"
+
+ADMIN -> ":Platform" : access Platform
+activate ":Platform"
+
+":Platform" --> ADMIN : asks the admin if he wants to Create, Read, Edit or Delete
+deactivate ":Platform"
+
+ADMIN -> ":Platform" : choses Create
+activate ":Platform"
+":Platform" --> ADMIN : asks for Parking Space attributes \n(ID, floor, price, parkingLotID)\n
+deactivate ":Platform"
+
+ADMIN -> ":Platform" : inserts the asked info
+activate ":Platform"
+":Platform" --> ADMIN : shows the info and asks for confirmation
+deactivate ":Platform"
+
+ADMIN -> ":Platform" : confirms
+activate ":Platform"
+":Platform" --> ADMIN : successful operation
+deactivate ":Platform"
+
+deactivate ADMIN
+@enduml

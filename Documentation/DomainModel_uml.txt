@@ -67,3 +67,7 @@ ParkingSpot "1" -- "1...*" Reservation : has >
 
 User "1" -- "1...*" Reservation : makes >
 @enduml
+
+
+
+
