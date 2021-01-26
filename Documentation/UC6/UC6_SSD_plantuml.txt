@@ -1,0 +1,22 @@
+@startuml
+autonumber
+actor "user" as USER
+
+activate USER
+USER -> ":Platform" : informs the platform he wants to pay
+activate ":Platform"
+":Platform" --> USER : shows him the full price and asks how he intends to pay
+deactivate ":Platform"
+
+USER -> ":Platform" : choses a payment method
+activate ":Platform"
+":Platform" --> USER : confirms the payment method and asks for user details
+deactivate ":Platform"
+
+USER -> ":Platform" : inserts his data
+activate ":Platform"
+":Platform" --> USER :  confirms the payment and the success of the operation
+deactivate ":Platform"
+
+deactivate USER
+@enduml

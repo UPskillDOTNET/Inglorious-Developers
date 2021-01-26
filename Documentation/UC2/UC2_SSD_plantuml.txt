@@ -1,0 +1,23 @@
+@startuml
+autonumber
+actor "non-user" as NOUSER
+
+activate NOUSER
+NOUSER -> ":Platform" : asks to be registered in the Platform
+activate ":Platform"
+":Platform" --> NOUSER : asks for Name, NIF and email
+deactivate ":Platform"
+
+NOUSER -> ":Platform" : inserts the requested data
+activate ":Platform"
+
+":Platform" --> NOUSER : shows the data and asks for confirmation
+deactivate ":Platform"
+
+NOUSER -> ":Platform" : confirms the data
+activate ":Platform"
+":Platform" --> NOUSER :  saves the data and informs that the operation was successful
+deactivate ":Platform"
+
+deactivate NOUSER
+@enduml

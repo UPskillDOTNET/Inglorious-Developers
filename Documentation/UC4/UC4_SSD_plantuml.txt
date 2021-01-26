@@ -1,0 +1,33 @@
+@startuml
+autonumber
+actor "user" as USER
+
+activate USER
+USER -> ":Platform" : asks to be authenticated in the Platform
+activate ":Platform"
+":Platform" --> USER : confirms user authentication
+deactivate ":Platform"
+
+USER -> ":Platform" : access Platform
+activate ":Platform"
+
+":Platform" --> USER : asks what action the user intends to perform (Register, Consult, Edit, Delete)
+deactivate ":Platform"
+
+USER -> ":Platform" : chooses to register a sublet
+activate ":Platform"
+":Platform" --> USER :  asks to fill the required data (ID. priceHours, floor)
+deactivate ":Platform"
+
+USER -> ":Platform" : inputs the requested data
+activate ":Platform"
+":Platform" --> USER :  shows the data and asks for confirmation
+deactivate ":Platform"
+
+USER -> ":Platform" : confirms
+activate ":Platform"
+":Platform" --> USER :  saves the data and informs that the operation was successful
+deactivate ":Platform"
+
+deactivate USER
+@enduml
