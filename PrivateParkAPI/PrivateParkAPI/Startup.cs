@@ -34,7 +34,7 @@ namespace PrivateParkAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<PrivateParkContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddControllers();
+            
             // For Identity  
             services.AddIdentity<ApiUser, IdentityRole>()
                 .AddEntityFrameworkStores<PrivateParkContext>()
@@ -62,6 +62,7 @@ namespace PrivateParkAPI
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
                 };
             });
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

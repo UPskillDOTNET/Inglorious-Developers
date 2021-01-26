@@ -10,7 +10,7 @@ using PrivateParkAPI.Models;
 
 namespace PrivateParkAPI.Controllers
 {
-    [Route("api/PrivateReservations")]
+    [Route("api/reservations")]
     [ApiController]
     public class ReservationsController : ControllerBase
     {
@@ -25,7 +25,7 @@ namespace PrivateParkAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
         {
-            return await _context.Reservations.Include(p => p.ParkingSpot).ToListAsync();
+            return await _context.Reservations.Include(p => p.ParkingSpot).ThenInclude(r =>r.ParkingLot).ToListAsync();
         }
 
         // GET: api/Reservations/5
