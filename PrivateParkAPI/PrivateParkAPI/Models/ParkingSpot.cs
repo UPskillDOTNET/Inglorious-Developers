@@ -11,6 +11,8 @@ namespace PrivateParkAPI.Models
         public decimal priceHour { get; set; }
         public int floor { get; set; }
 
+        public int parkingLotID { get; set; }
+
         public ParkingLot ParkingLot { get; set; }
 
     }
