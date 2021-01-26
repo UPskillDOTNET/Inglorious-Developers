@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@ namespace PrivateParkAPI.Models
 {
     public class ParkingLot
     {
+        [Key]
         public int parkingLotID { get; set; }
         public string name { get; set; }
         public string companyOwner { get; set; }

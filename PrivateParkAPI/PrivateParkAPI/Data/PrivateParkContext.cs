@@ -4,10 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PrivateParkAPI.Models;
+using PrivateParkAPI.Authentication;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 
 namespace PrivateParkAPI.Data
 {
-    public class PrivateParkContext : DbContext
+    public class PrivateParkContext : IdentityDbContext<ApiUser>
     {
         public PrivateParkContext(DbContextOptions<PrivateParkContext> options) : base(options)
         {
