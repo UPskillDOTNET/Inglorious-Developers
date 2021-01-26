@@ -20,11 +20,11 @@ namespace PrivateParkAPI.Data
             // Look for any destinations.
             var parkingLots = new ParkingLot[]
             {
-                    new ParkingLot{name="Parque de Estacionamento do Palácio", companyOwner="NorteShopping", location="Rua Professor Henrique de Barros", capacity=35, openingTime= DateTime.Parse("2021-07-26 08:30:00"), closingTime= DateTime.Parse("2021-02-22 19:00:00")},
-                    new ParkingLot{name="Parque de Estacionamento do Silo Auto", companyOwner="Arrábida Shopping", location="Avenida dos Estados Unidos da América", capacity=142, openingTime= DateTime.Parse("2021-09-12 12:00:00"), closingTime= DateTime.Parse("2021-22 19:00:00")},
-                    new ParkingLot{name="Parque de Estacionamento de S.Roque", companyOwner="Dolce Vita", location="Rua Francisco Lopes Ferraz", capacity=213, openingTime= DateTime.Parse("2021-02-22 10:00:00"), closingTime= DateTime.Parse("2021-02-22 19:00:00")},
-                    new ParkingLot{name="Parque de Estacionamento Alfândega", companyOwner="Alameda Shooping", location="Avenida da Liberdade", capacity=489, openingTime= DateTime.Parse("2021-04-22 07:00:00"), closingTime= DateTime.Parse("2021-02-22 19:00:00")},
-                    new ParkingLot{name="Parque de Estacionamento Trindade", companyOwner="Espaço Guimarães", location="Rua de Ceuta", capacity=218, openingTime= DateTime.Parse("2021-02-23 11:00:00"), closingTime= DateTime.Parse("2021-02-22 19:00:00")},
+                    new ParkingLot{name="Parque de Estacionamento do Palácio",companyOwner="NorteShopping",location="Rua Professor Henrique de Barros",capacity=35,openingTime= DateTime.Parse("2021-07-26 08:30:00"),closingTime= DateTime.Parse("2021-02-22 19:00:00")},
+                    new ParkingLot{name="Parque de Estacionamento do Silo Auto",companyOwner="Arrábida Shopping",location="Avenida dos Estados Unidos da América",capacity=142,openingTime= DateTime.Parse("2021-09-12 12:00:00"),closingTime= DateTime.Parse("2021-22 19:00:00")},
+                    new ParkingLot{name="Parque de Estacionamento de S.Roque",companyOwner="Dolce Vita",location="Rua Francisco Lopes Ferraz",capacity=213,openingTime= DateTime.Parse("2021-02-22 10:00:00"),closingTime= DateTime.Parse("2021-02-22 19:00:00")},
+                    new ParkingLot{name="Parque de Estacionamento Alfândega",companyOwner="Alameda Shooping",location="Avenida da Liberdade",capacity=489,openingTime= DateTime.Parse("2021-04-22 07:00:00"),closingTime= DateTime.Parse("2021-02-22 19:00:00")},
+                    new ParkingLot{name="Parque de Estacionamento Trindade",companyOwner="Espaço Guimarães",location="Rua de Ceuta",capacity=218,openingTime= DateTime.Parse("2021-02-23 11:00:00"),closingTime= DateTime.Parse("2021-02-22 19:00:00")},
             };
             foreach (ParkingLot p in parkingLots)
             {
@@ -40,11 +40,11 @@ namespace PrivateParkAPI.Data
 
             var parkingSpots = new ParkingSpot[]
             {
-                    new ParkingSpot{parkingSpotID="2D",priceHour=0.250m, parkingLotID=2},
-                    new ParkingSpot{parkingSpotID="6W",priceHour=0.5m, parkingLotID=1},
-                    new ParkingSpot{parkingSpotID="1A",priceHour=0.9m, parkingLotID=1},
-                    new ParkingSpot{parkingSpotID="3F",priceHour=1.00m, parkingLotID=2},
-                    new ParkingSpot{parkingSpotID="8T",priceHour=0.25m, parkingLotID=3},
+                    new ParkingSpot{parkingSpotID="2D",priceHour=0.250m,floor=1,parkingLotID=2},
+                    new ParkingSpot{parkingSpotID="6W",priceHour=0.5m,floor=2,parkingLotID=1},
+                    new ParkingSpot{parkingSpotID="1A",priceHour=0.9m,floor=1,parkingLotID=1},
+                    new ParkingSpot{parkingSpotID="3F",priceHour=1.00m,floor=1,parkingLotID=2},
+                    new ParkingSpot{parkingSpotID="8T",priceHour=0.25m,floor=3,parkingLotID=3},
             };
             foreach (ParkingSpot s in parkingSpots)
             {
