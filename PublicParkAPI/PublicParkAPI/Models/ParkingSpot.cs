@@ -10,6 +10,8 @@ namespace PublicParkAPI.Models
         public string parkingSpotID { get; set; }
         public decimal priceHour { get; set; }
 
+        public int ParkingLotID { get; set; }
+
         public ParkingLot ParkingLot { get; set; }
     }
 }
