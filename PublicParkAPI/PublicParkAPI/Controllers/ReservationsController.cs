@@ -10,7 +10,7 @@ using PublicParkAPI.Models;
 
 namespace PublicParkAPI.Controllers
 {
-    [Route("PublicReservations")]
+    [Route("api/reservations")]
     [ApiController]
     public class ReservationsController : ControllerBase
     {
