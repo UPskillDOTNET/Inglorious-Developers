@@ -44,7 +44,7 @@ namespace PublicParkAPI.Controllers
             return parkingSpot;
         }
 
-        //Get: Avaiable Spots
+        //Get: Available Spots
         [Route("~/api/parkingspots/freeSpots")]
         public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingFreeSpots()
         {
@@ -59,7 +59,7 @@ namespace PublicParkAPI.Controllers
             return parkingSpots;
         }
 
-        //Get: Avaiable Specific Spots
+        //Get: Available Specific Spots
         [Route("~/api/parkingspots/freeSpots/{entryHour}/{leaveHour}")]
         public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingSpecificFreeSpots(DateTime entryHour , DateTime leaveHour)
         {
@@ -77,6 +77,24 @@ namespace PublicParkAPI.Controllers
             }
             return parkingSpots;
         }
+
+        //Get: Available Parking Spots by price
+        [Route("~/api/parkingspots/freeSpots/{price}")]
+
+        public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingPriceFreeSpots(Decimal price) {
+            if (price < 0) {
+                return BadRequest();
+            }
+            var reservation = await _context.Reservations.Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+            var parkingSpots = await _context.ParkingSpots.Where(p => p.priceHour <= price).Include(p => p.ParkingLot).ToListAsync();
+
+
+            foreach (var r in reservation) {
+                parkingSpots.Remove(r.ParkingSpot);
+            }
+            return parkingSpots;
+        }
+
 
         // PUT: api/ParkingSpots/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
