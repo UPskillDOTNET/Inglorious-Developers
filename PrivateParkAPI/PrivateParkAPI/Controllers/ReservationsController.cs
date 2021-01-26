@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,8 @@ using PrivateParkAPI.Models;
 
 namespace PrivateParkAPI.Controllers
 {
-    [Route("api/PrivateReservations")]
+    [Authorize]
+    [Route("api/reservations")]
     [ApiController]
     public class ReservationsController : ControllerBase
     {
@@ -25,7 +27,7 @@ namespace PrivateParkAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
         {
-            return await _context.Reservations.Include(p => p.ParkingSpot).ToListAsync();
+            return await _context.Reservations.Include(p => p.ParkingSpot).ThenInclude(r =>r.ParkingLot).ToListAsync();
         }
 
         // GET: api/Reservations/5

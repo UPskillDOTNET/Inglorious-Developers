@@ -20,11 +20,11 @@ namespace PrivateParkAPI.Data
             // Look for any destinations.
             var parkingLots = new ParkingLot[]
             {
-                    new ParkingLot{name="Parque de Estacionamento do Palácio",companyOwner="NorteShopping",location="Rua Professor Henrique de Barros",capacity=35,openingTime= DateTime.Parse("2021-07-26 08:30:00"),closingTime= DateTime.Parse("2021-02-22 19:00:00")},
-                    new ParkingLot{name="Parque de Estacionamento do Silo Auto",companyOwner="Arrábida Shopping",location="Avenida dos Estados Unidos da América",capacity=142,openingTime= DateTime.Parse("2021-09-12 12:00:00"),closingTime= DateTime.Parse("2021-22 19:00:00")},
-                    new ParkingLot{name="Parque de Estacionamento de S.Roque",companyOwner="Dolce Vita",location="Rua Francisco Lopes Ferraz",capacity=213,openingTime= DateTime.Parse("2021-02-22 10:00:00"),closingTime= DateTime.Parse("2021-02-22 19:00:00")},
-                    new ParkingLot{name="Parque de Estacionamento Alfândega",companyOwner="Alameda Shooping",location="Avenida da Liberdade",capacity=489,openingTime= DateTime.Parse("2021-04-22 07:00:00"),closingTime= DateTime.Parse("2021-02-22 19:00:00")},
-                    new ParkingLot{name="Parque de Estacionamento Trindade",companyOwner="Espaço Guimarães",location="Rua de Ceuta",capacity=218,openingTime= DateTime.Parse("2021-02-23 11:00:00"),closingTime= DateTime.Parse("2021-02-22 19:00:00")},
+                    new ParkingLot{name="Parque da República", companyOwner="NorteShopping",location="Avenida da República",capacity=125,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
+                    new ParkingLot{name="Parque Brito Capelo",companyOwner="InRio",location="Rua Brito Capelo",capacity=250,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
+                    new ParkingLot{name="Parque da Liberdade", companyOwner="CasinoEstoril",location="Avenida da Liberdade",capacity=423,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
+                    new ParkingLot{name="Parque dos Congregados", companyOwner="EuSeiLa",location="Rua dos Congregados",capacity=588,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
+                    new ParkingLot{name="Parque Carlos Alberto", companyOwner="Upskill",location="Praça Carlos Alberto",capacity=365,openingTime= DateTime.Parse("2020-02-22 12:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
             };
             foreach (ParkingLot p in parkingLots)
             {
@@ -40,11 +40,11 @@ namespace PrivateParkAPI.Data
 
             var parkingSpots = new ParkingSpot[]
             {
-                    new ParkingSpot{parkingSpotID="2D",priceHour=0.250m,floor=1,parkingLotID=2},
-                    new ParkingSpot{parkingSpotID="6W",priceHour=0.5m,floor=2,parkingLotID=1},
-                    new ParkingSpot{parkingSpotID="1A",priceHour=0.9m,floor=1,parkingLotID=1},
-                    new ParkingSpot{parkingSpotID="3F",priceHour=1.00m,floor=1,parkingLotID=2},
-                    new ParkingSpot{parkingSpotID="8T",priceHour=0.25m,floor=3,parkingLotID=3},
+                    new ParkingSpot{parkingSpotID="A1",priceHour=0.250m, floor=1, parkingLotID=1},
+                    new ParkingSpot{parkingSpotID="E1",priceHour=0.5m, floor=2, parkingLotID=2},
+                    new ParkingSpot{parkingSpotID="I1",priceHour=0.9m, floor=1, parkingLotID=2},
+                    new ParkingSpot{parkingSpotID="O1",priceHour=1.00m, parkingLotID=3},
+                    new ParkingSpot{parkingSpotID="A3",priceHour=0.25m, parkingLotID=1},
             };
             foreach (ParkingSpot s in parkingSpots)
             {
@@ -54,14 +54,14 @@ namespace PrivateParkAPI.Data
 
             var reservations = new Reservation[]
             {
-                    new Reservation{startTime= DateTime.Parse("2021-03-22 07:00:00"),hours=1,endTime= DateTime.Parse("2021-03-25 08:00:00"),parkingSpotID="A1",parkingLotID=1},
-                    new Reservation{startTime= DateTime.Parse("2021-04-11 09:00:00"),hours=2,endTime= DateTime.Parse("2021-08-22 09:00:00"),parkingSpotID="E1",parkingLotID=2},
-                    new Reservation{startTime= DateTime.Parse("2021-09-22 07:00:00"),hours=12,endTime= DateTime.Parse("2021-10-21 19:00:00"),parkingSpotID="I1",parkingLotID=3},
-                    new Reservation{startTime= DateTime.Parse("2021-08-22 07:00:00"),hours=3,endTime= DateTime.Parse("2021-10-12 10:00:00"),parkingSpotID="O1",parkingLotID=4},
-                    new Reservation{startTime= DateTime.Parse("2021-10-21 09:00:00"),hours=1,endTime= DateTime.Parse("2021-10-27 08:00:00"),parkingSpotID="A3",parkingLotID=1},
-                    new Reservation{startTime= DateTime.Parse("2021-08-23 13:00:00"),hours=1,endTime= DateTime.Parse("2021-08-29 19:00:00"),parkingSpotID="A1",parkingLotID=1},
-                    new Reservation{startTime= DateTime.Parse("2021-10-22 18:00:00"),hours=1,endTime= DateTime.Parse("2021-10-22 15:00:00"),parkingSpotID="A1",parkingLotID=1},
-                    new Reservation{startTime= DateTime.Parse("2021-06-23 19:00:00"),hours=1,endTime= DateTime.Parse("2021-06-24 19:00:00"),parkingSpotID="I1",parkingLotID=2},
+                    new Reservation{startTime= DateTime.Parse("2021-05-22 07:00:00"),hours=1,endTime= DateTime.Parse("2021-05-22 08:00:00"),parkingSpotID="A1",},
+                    new Reservation{startTime= DateTime.Parse("2021-08-22 07:00:00"),hours=2,endTime= DateTime.Parse("2021-08-22 09:00:00"),parkingSpotID="E1",},
+                    new Reservation{startTime= DateTime.Parse("2021-09-22 07:00:00"),hours=12,endTime= DateTime.Parse("2021-09-22 19:00:00"),parkingSpotID="I1"},
+                    new Reservation{startTime= DateTime.Parse("2021-10-22 07:00:00"),hours=3,endTime= DateTime.Parse("2021-10-22 10:00:00"),parkingSpotID="O1",},
+                    new Reservation{startTime= DateTime.Parse("2021-09-22 07:00:00"),hours=1,endTime= DateTime.Parse("2021-09-22 08:00:00"),parkingSpotID="A3",},
+                    new Reservation{startTime= DateTime.Parse("2021-08-22 12:00:00"),hours=1,endTime= DateTime.Parse("2021-08-22 13:00:00"),parkingSpotID="A1",},
+                    new Reservation{startTime= DateTime.Parse("2021-07-22 14:00:00"),hours=1,endTime= DateTime.Parse("2021-07-22 15:00:00"),parkingSpotID="A1",},
+                    new Reservation{startTime= DateTime.Parse("2021-06-22 18:00:00"),hours=1,endTime= DateTime.Parse("2021-06-22 19:00:00"),parkingSpotID="I1",},
 
             };
             foreach (Reservation r in reservations)

@@ -18,11 +18,6 @@ namespace PrivateParkAPI.Models
 
         [ForeignKey("ParkingSpot")]
         public string parkingSpotID { get; set; }
-
-        [ForeignKey("ParkingSpot")]
-        public int parkingLotID { get; set; }
-
         public ParkingSpot ParkingSpot { get; set; }
-        public ParkingLot ParkingLot { get; set; }
     }
 }
