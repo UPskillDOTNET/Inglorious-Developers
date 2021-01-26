@@ -13,8 +13,6 @@ namespace PublicParkAPI.Models
         public string location { get; set; }
         public int capacity { get; set; }
         public DateTime openingTime { get; set; }
-        public DateTime closingTime { get; set; }
-
-        public List<ParkingSpot> ParkingSpots { get; set; }
+        public DateTime closingTime { get; set; }        
     }
 }

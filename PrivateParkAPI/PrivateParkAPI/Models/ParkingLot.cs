@@ -17,7 +17,5 @@ namespace PrivateParkAPI.Models
         public DateTime openingTime { get; set; }
         public DateTime closingTime { get; set; }
 
-
-        public List<ParkingSpot> ParkingSpots { get; set; }
     }
 }

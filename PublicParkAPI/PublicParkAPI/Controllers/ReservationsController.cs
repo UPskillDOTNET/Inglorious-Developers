@@ -25,7 +25,7 @@ namespace PublicParkAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
         {
-            return await _context.Reservations.Include(s => s.ParkingSpot).ToListAsync();
+            return await _context.Reservations.Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
         }
 
         // GET: api/Reservations/5
