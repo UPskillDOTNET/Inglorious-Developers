@@ -12,7 +12,7 @@ using PublicParkAPI.Models;
 namespace PublicParkAPI.Controllers
 {
     [Authorize]
-    [Route("api/publicSpots")]
+    [Route("api/parkingspots")]
     [ApiController]
     public class ParkingSpotsController : ControllerBase
     {
@@ -42,6 +42,40 @@ namespace PublicParkAPI.Controllers
             }
 
             return parkingSpot;
+        }
+
+        //Get: Avaiable Spots
+        [Route("~/api/parkingspots/freeSpots")]
+        public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingFreeSpots()
+        {
+            
+            var reservation = await _context.Reservations.Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+            var parkingSpots = await _context.ParkingSpots.Include(p => p.ParkingLot).ToListAsync();
+
+            foreach (var r in reservation)
+            {
+                parkingSpots.Remove(r.ParkingSpot);            
+            }
+            return parkingSpots;
+        }
+
+        //Get: Avaiable Specific Spots
+        [Route("~/api/parkingspots/freeSpots/{entryHour}/{leaveHour}")]
+        public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingSpecificFreeSpots(DateTime entryHour , DateTime leaveHour)
+        {
+            if (entryHour > leaveHour)
+            {
+                return BadRequest();
+            }
+            var reservation = await _context.Reservations.Where(r => r.startTime <= leaveHour && r.endTime >= entryHour).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+            var parkingSpots = await _context.ParkingSpots.Include(p => p.ParkingLot).ToListAsync();
+    
+
+            foreach (var r in reservation)
+            {
+                parkingSpots.Remove(r.ParkingSpot);
+            }
+            return parkingSpots;
         }
 
         // PUT: api/ParkingSpots/5
