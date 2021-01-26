@@ -19,10 +19,11 @@ namespace PublicParkAPI.Data {
             // Look for any destinations.
             var parkingLots = new ParkingLot[]
             {
-                    new ParkingLot{name="Avenida da República", municipality="Vila Nova de Gaia",location="Avenida da República",capacity=125,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
-                    new ParkingLot{name="Rua Brito Capelo", municipality="Matosinhos",location="Rua Brito Capelo",capacity=250,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
-                    new ParkingLot{name="Avenida da Liberdade", municipality="Lisboa",location="Avenida da Liberdade",capacity=423,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
-                    new ParkingLot{name="Rua dos Congregados", municipality="Braga",location="Rua dos Congregados",capacity=588,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
+                    new ParkingLot{name="Parque da República", municipality="Vila Nova de Gaia",location="Avenida da República",capacity=125,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
+                    new ParkingLot{name="Parque Brito Capelo", municipality="Matosinhos",location="Rua Brito Capelo",capacity=250,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
+                    new ParkingLot{name="Parque da Liberdade", municipality="Lisboa",location="Avenida da Liberdade",capacity=423,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
+                    new ParkingLot{name="Parque dos Congregados", municipality="Braga",location="Rua dos Congregados",capacity=588,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
+                    new ParkingLot{name="Parque Carlos Alberto", municipality="Porto",location="Praça Carlos Alberto",capacity=365,openingTime= DateTime.Parse("2020-02-22 12:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
             };
             foreach (ParkingLot p in parkingLots)
             {
