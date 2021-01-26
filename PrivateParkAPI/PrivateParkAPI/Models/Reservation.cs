@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PrivateParkAPI.Models
 {
@@ -19,7 +19,7 @@ namespace PrivateParkAPI.Models
         [ForeignKey("ParkingSpot")]
         public string parkingSpotID { get; set; }
 
-        [ForeignKey("ParkingLot")]
+        [ForeignKey("ParkingSpot")]
         public int parkingLotID { get; set; }
 
         public ParkingSpot ParkingSpot { get; set; }

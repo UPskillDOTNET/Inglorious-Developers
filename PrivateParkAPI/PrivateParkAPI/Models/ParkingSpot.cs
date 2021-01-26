@@ -16,7 +16,6 @@ namespace PrivateParkAPI.Models
 
         [ForeignKey("ParkingLot")]
         public int parkingLotID { get; set; }
-
         public ParkingLot ParkingLot { get; set; }
 
     }
