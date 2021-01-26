@@ -27,14 +27,14 @@ namespace PublicParkAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingSpots()
         {
-            return await _context.ParkingSpots.ToListAsync();
+            return await _context.ParkingSpots.Include(p => p.ParkingLot).ToListAsync();
         }
 
         // GET: api/ParkingSpots/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ParkingSpot>> GetParkingSpot(string id)
         {
-            var parkingSpot = await _context.ParkingSpots.FindAsync(id);
+            var parkingSpot = await _context.ParkingSpots.Include(p => p.ParkingLot).FirstOrDefaultAsync(s => s.parkingSpotID == id);
 
             if (parkingSpot == null)
             {

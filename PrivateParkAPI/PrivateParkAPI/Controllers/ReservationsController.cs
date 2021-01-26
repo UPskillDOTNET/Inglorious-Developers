@@ -25,14 +25,14 @@ namespace PrivateParkAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
         {
-            return await _context.Reservations.Include(p => p.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+            return await _context.Reservations.Include(p => p.ParkingSpot).ToListAsync();
         }
 
         // GET: api/Reservations/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Reservation>> GetReservation(string id)
         {
-            var reservation = await _context.Reservations.FindAsync(id);
+            var reservation = await _context.Reservations.Include(s => s.ParkingSpot).ThenInclude(p => p.ParkingLot).FirstOrDefaultAsync(r => r.reservationID == id);
 
             if (reservation == null)
             {
