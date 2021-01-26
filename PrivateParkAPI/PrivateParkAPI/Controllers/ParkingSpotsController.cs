@@ -12,47 +12,47 @@ namespace PrivateParkAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ReservationsController : ControllerBase
+    public class ParkingSpotsController : ControllerBase
     {
         private readonly PrivateParkContext _context;
 
-        public ReservationsController(PrivateParkContext context)
+        public ParkingSpotsController(PrivateParkContext context)
         {
             _context = context;
         }
 
-        // GET: api/Reservations
+        // GET: api/ParkingSpots
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
+        public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingSpots()
         {
-            return await _context.Reservations.Include(p => p.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+            return await _context.ParkingSpots.Include(p => p.ParkingLot).ToListAsync();
         }
 
-        // GET: api/Reservations/5
+        // GET: api/ParkingSpots/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Reservation>> GetReservation(string id)
+        public async Task<ActionResult<ParkingSpot>> GetParkingSpot(string id)
         {
-            var reservation = await _context.Reservations.FindAsync(id);
+            var parkingSpot = await _context.ParkingSpots.FindAsync(id);
 
-            if (reservation == null)
+            if (parkingSpot == null)
             {
                 return NotFound();
             }
 
-            return reservation;
+            return parkingSpot;
         }
 
-        // PUT: api/Reservations/5
+        // PUT: api/ParkingSpots/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutReservation(string id, Reservation reservation)
+        public async Task<IActionResult> PutParkingSpot(string id, ParkingSpot parkingSpot)
         {
-            if (id != reservation.reservationID)
+            if (id != parkingSpot.parkingSpotID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(reservation).State = EntityState.Modified;
+            _context.Entry(parkingSpot).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace PrivateParkAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ReservationExists(id))
+                if (!ParkingSpotExists(id))
                 {
                     return NotFound();
                 }
@@ -73,19 +73,19 @@ namespace PrivateParkAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Reservations
+        // POST: api/ParkingSpots
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Reservation>> PostReservation(Reservation reservation)
+        public async Task<ActionResult<ParkingSpot>> PostParkingSpot(ParkingSpot parkingSpot)
         {
-            _context.Reservations.Add(reservation);
+            _context.ParkingSpots.Add(parkingSpot);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (ReservationExists(reservation.reservationID))
+                if (ParkingSpotExists(parkingSpot.parkingSpotID))
                 {
                     return Conflict();
                 }
@@ -95,28 +95,28 @@ namespace PrivateParkAPI.Controllers
                 }
             }
 
-            return CreatedAtAction("GetReservation", new { id = reservation.reservationID }, reservation);
+            return CreatedAtAction("GetParkingSpot", new { id = parkingSpot.parkingSpotID }, parkingSpot);
         }
 
-        // DELETE: api/Reservations/5
+        // DELETE: api/ParkingSpots/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteReservation(string id)
+        public async Task<IActionResult> DeleteParkingSpot(string id)
         {
-            var reservation = await _context.Reservations.FindAsync(id);
-            if (reservation == null)
+            var parkingSpot = await _context.ParkingSpots.FindAsync(id);
+            if (parkingSpot == null)
             {
                 return NotFound();
             }
 
-            _context.Reservations.Remove(reservation);
+            _context.ParkingSpots.Remove(parkingSpot);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool ReservationExists(string id)
+        private bool ParkingSpotExists(string id)
         {
-            return _context.Reservations.Any(e => e.reservationID == id);
+            return _context.ParkingSpots.Any(e => e.parkingSpotID == id);
         }
     }
 }
