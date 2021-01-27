@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace PrivateParkAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/authenticate")]
     [ApiController]
     public class AuthenticateController : ControllerBase
     {
