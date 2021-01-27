@@ -15,14 +15,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"GeoZone was created.\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Global GeoZone Variable defined.\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.globals.set(\"IDGeoZone\", jsonData.geoZoneID);\r",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -63,8 +56,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Delete Request sucessfully done - GeoZone was deleted.\", function () {\r",
-									"    pm.response.to.have.status(404);\r",
+									"pm.test(\"Login user successful.\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									""
 								],
@@ -174,6 +167,18 @@
 									"pm.test(\"Var made\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.globals.set(\"parkingspotid\", jsonData.ParkingSpotID);\r",
+									"});\r",
+									"pm.test(\"Var pricehour created\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.globals.set(\"pricehour\", jsonData.priceHour);\r",
+									"});\r",
+									"pm.test(\"Var entryHour created\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.globals.set(\"entryHour\", jsonData.entryHour);\r",
+									"});\r",
+									"pm.test(\"Var leaveHour created\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.globals.set(\"leaveHour\", jsonData.leaveHour);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -489,6 +494,181 @@
 								"api",
 								"parkingspots",
 								"A9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllFreeSpots",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"All Parking Spots were Found\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiJkOTZhYTVhZi1jODA1LTRlMDgtYTdiOC02YTg5OGM0MTE3ZTMiLCJleHAiOjE2MTE4MDMwNTYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.zf584BEI31STqaGS4siCk-6mvsATJoKabp1tA04kwP0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44350/api/parkingspots/freeSpots/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44350",
+							"path": [
+								"api",
+								"parkingspots",
+								"freeSpots",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllFreeSpotsByPrice",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"All Parking Spots were Found\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiJkOTZhYTVhZi1jODA1LTRlMDgtYTdiOC02YTg5OGM0MTE3ZTMiLCJleHAiOjE2MTE4MDMwNTYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.zf584BEI31STqaGS4siCk-6mvsATJoKabp1tA04kwP0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44350/api/parkingspots/freeSpots/{{pricehour}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44350",
+							"path": [
+								"api",
+								"parkingspots",
+								"freeSpots",
+								"{{pricehour}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllFreeSpotsBySpecificHour",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"All Parking Spots were Found\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiJkOTZhYTVhZi1jODA1LTRlMDgtYTdiOC02YTg5OGM0MTE3ZTMiLCJleHAiOjE2MTE4MDMwNTYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.zf584BEI31STqaGS4siCk-6mvsATJoKabp1tA04kwP0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44350/api/parkingspots/freeSpots/2021-07-22T14:00:00/2021-07-22T16:00:00",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44350",
+							"path": [
+								"api",
+								"parkingspots",
+								"freeSpots",
+								"2021-07-22T14:00:00",
+								"2021-07-22T16:00:00"
 							]
 						}
 					},
