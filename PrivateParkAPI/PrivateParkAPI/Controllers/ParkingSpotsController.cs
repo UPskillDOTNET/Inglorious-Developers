@@ -78,6 +78,26 @@ namespace PrivateParkAPI.Controllers
             return parkingSpots;
         }
 
+        //Get: Available Parking Spots by price
+        [Route("~/api/parkingspots/freeSpots/{price}")]
+
+        public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingPriceFreeSpots(Decimal price)
+        {
+            if (price < 0)
+            {
+                return BadRequest();
+            }
+            var reservation = await _context.Reservations.Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+            var parkingSpots = await _context.ParkingSpots.Where(p => p.priceHour <= price).Include(p => p.ParkingLot).ToListAsync();
+
+
+            foreach (var r in reservation)
+            {
+                parkingSpots.Remove(r.ParkingSpot);
+            }
+            return parkingSpots;
+        }
+
         // PUT: api/ParkingSpots/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
