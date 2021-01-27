@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PrivateParkAPI.Data;
 using PrivateParkAPI.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PrivateParkAPI.Controllers
 {
@@ -27,7 +25,7 @@ namespace PrivateParkAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
         {
-            return await _context.Reservations.Include(p => p.ParkingSpot).ThenInclude(r =>r.ParkingLot).ToListAsync();
+            return await _context.Reservations.Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
         }
 
         // GET: api/Reservations/5

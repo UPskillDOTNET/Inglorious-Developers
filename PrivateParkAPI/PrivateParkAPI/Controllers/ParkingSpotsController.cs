@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PrivateParkAPI.Data;
 using PrivateParkAPI.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PrivateParkAPI.Controllers
 {
@@ -44,7 +43,7 @@ namespace PrivateParkAPI.Controllers
             return parkingSpot;
         }
 
-        //Get: Avaiable Spots
+        //Get: Available Spots
         [Route("~/api/parkingspots/freeSpots")]
         public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingFreeSpots()
         {
@@ -59,7 +58,7 @@ namespace PrivateParkAPI.Controllers
             return parkingSpots;
         }
 
-        //Get: Avaiable Specific Spots
+        //Get: Available Specific Spots
         [Route("~/api/parkingspots/freeSpots/{entryHour}/{leaveHour}")]
         public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingSpecificFreeSpots(DateTime entryHour, DateTime leaveHour)
         {
@@ -97,6 +96,7 @@ namespace PrivateParkAPI.Controllers
             }
             return parkingSpots;
         }
+
 
         // PUT: api/ParkingSpots/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

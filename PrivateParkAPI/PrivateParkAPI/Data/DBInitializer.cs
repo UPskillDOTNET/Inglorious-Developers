@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using PrivateParkAPI.Models;
+using System;
 using System.Linq;
-using System.Threading.Tasks;
-using PrivateParkAPI.Models;
 
 namespace PrivateParkAPI.Data
 {

@@ -1,22 +1,14 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
-using System;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using PrivateParkAPI.Data;
-using Microsoft.AspNetCore.Identity;
-using PrivateParkAPI.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using PrivateParkAPI.Authentication;
+using PrivateParkAPI.Data;
 using System.Text;
 
 namespace PrivateParkAPI
@@ -34,9 +26,9 @@ namespace PrivateParkAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<PrivateParkContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
+
             // For Identity  
-            services.AddIdentity<ApiUser, IdentityRole>()
+            services.AddIdentity<apiUser, IdentityRole>()
                 .AddEntityFrameworkStores<PrivateParkContext>()
                 .AddDefaultTokenProviders();
 
@@ -62,6 +54,7 @@ namespace PrivateParkAPI
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
                 };
             });
+
             services.AddControllers();
         }
 
@@ -77,6 +70,7 @@ namespace PrivateParkAPI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

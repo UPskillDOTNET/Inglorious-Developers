@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrivateParkAPI", "PrivateParkAPI\PrivateParkAPI.csproj", "{23D8EB92-E9BC-43D6-8A2A-A37DD07F1582}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrivateParkAPI", "PrivateParkAPI\PrivateParkAPI.csproj", "{EA6EFAAE-8578-411F-9C92-3742080E1791}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{23D8EB92-E9BC-43D6-8A2A-A37DD07F1582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23D8EB92-E9BC-43D6-8A2A-A37DD07F1582}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23D8EB92-E9BC-43D6-8A2A-A37DD07F1582}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23D8EB92-E9BC-43D6-8A2A-A37DD07F1582}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA6EFAAE-8578-411F-9C92-3742080E1791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA6EFAAE-8578-411F-9C92-3742080E1791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA6EFAAE-8578-411F-9C92-3742080E1791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA6EFAAE-8578-411F-9C92-3742080E1791}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B18613B5-25FB-4F7A-AE54-F5C7F5EBA65E}
+		SolutionGuid = {C6F2A59D-F150-4290-95E2-7C57DB1CB166}
 	EndGlobalSection
 EndGlobal
