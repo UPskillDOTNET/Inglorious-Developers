@@ -24,7 +24,13 @@ namespace PrivateParkAPI.Controllers
 
         // GET: api/ParkingSpots
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingSpots()
+        public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetnotPrivateParkingSpots()
+        {
+            return await _context.ParkingSpots.Include(p => p.ParkingLot).Where(p => p.isPrivate == false).ToListAsync();
+        }
+
+        [Route("~/api/parkingspots/all")]
+        public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetAllParkingSpots()
         {
             return await _context.ParkingSpots.Include(p => p.ParkingLot).ToListAsync();
         }

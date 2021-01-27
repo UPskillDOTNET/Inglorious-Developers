@@ -38,11 +38,11 @@ namespace PrivateParkAPI.Data
 
             var parkingSpots = new ParkingSpot[]
             {
-                    new ParkingSpot{parkingSpotID="A1",priceHour=0.250m, floor=1, parkingLotID=1},
-                    new ParkingSpot{parkingSpotID="E1",priceHour=0.5m, floor=2, parkingLotID=2},
-                    new ParkingSpot{parkingSpotID="I1",priceHour=0.9m, floor=1, parkingLotID=2},
-                    new ParkingSpot{parkingSpotID="O1",priceHour=1.00m, parkingLotID=3},
-                    new ParkingSpot{parkingSpotID="A3",priceHour=0.25m, parkingLotID=1},
+                    new ParkingSpot{parkingSpotID="A1",priceHour=0.250m,isPrivate=true, floor=1, parkingLotID=1},
+                    new ParkingSpot{parkingSpotID="E1",priceHour=0.5m,isPrivate=false, floor=2, parkingLotID=2},
+                    new ParkingSpot{parkingSpotID="I1",priceHour=0.9m,isPrivate=true, floor=1, parkingLotID=2},
+                    new ParkingSpot{parkingSpotID="O1",priceHour=1.00m,isPrivate=false, parkingLotID=3},
+                    new ParkingSpot{parkingSpotID="A3",priceHour=0.25m,isPrivate=false, parkingLotID=1},
             };
             foreach (ParkingSpot s in parkingSpots)
             {
