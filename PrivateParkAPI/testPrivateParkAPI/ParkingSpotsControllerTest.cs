@@ -335,7 +335,7 @@ namespace testPrivateParkAPI
         }
 
         [Fact]
-        public async Task DeleteNotExistingCountry_ShouldReturnNotFound()
+        public async Task DeleteNotExistingParkingSpot_ShouldReturnNotFound()
         {
             // Arrange
             var TestContext = TodoContextMocker.GetPrivateParkContext("deleteParkingNotFound");
@@ -350,7 +350,7 @@ namespace testPrivateParkAPI
         }
 
         [Fact]
-        public async Task DeleteExistingCountryAsync_ShouldReturnOkResult()
+        public async Task DeleteExistingParkingSpotAsync_ShouldReturnOkResult()
         {
             // Arrange
             var TestContext = TodoContextMocker.GetPrivateParkContext("deleteParkingOK");
@@ -365,7 +365,7 @@ namespace testPrivateParkAPI
         }
 
         [Fact]
-        public async Task DeleteExistingCountryAsync_ShouldRemovetheCountryAsync()
+        public async Task DeleteExistingParkingSpotAsync_ShouldRemovetheParkingSpotAsync()
         {
             // Arrange
             var TestContext = TodoContextMocker.GetPrivateParkContext("deletedParkIsDeleted");
