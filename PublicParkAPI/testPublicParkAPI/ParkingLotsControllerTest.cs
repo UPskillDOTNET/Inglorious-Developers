@@ -203,7 +203,7 @@ namespace testPublicParkAPI
         }
 
         [Fact]
-        public async Task DeleteRecomendation_ShouldDeleteRecomendation()
+        public async Task DeleteParkingLot_ShouldDeleteParkingLot()
         {
             // Arrange
             Thread.Sleep(1500);
@@ -218,7 +218,7 @@ namespace testPublicParkAPI
         }
 
         [Fact]
-        public async Task DeleteNotExistRecomendation_ShouldReturnNotFound()
+        public async Task DeleteNotExistParkingLot_ShouldReturnNotFound()
         {
             // Arrange
             Thread.Sleep(1600);
