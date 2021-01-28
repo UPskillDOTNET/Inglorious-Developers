@@ -51,7 +51,7 @@ namespace testPublicParkAPI
         [Fact]
         public async Task GetParkingSpotAsync_ShouldReturnParkingSpot()
         {
-            Thread.Sleep(300);
+            Thread.Sleep(3000);
             // Arrange
             var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             var testContext = TodoContextMocker.GetPublicParkContext(dbName);
