@@ -82,8 +82,14 @@ namespace PrivateParkAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+            
             var parkingspot = await _context.ParkingSpots.Where(p => p.parkingSpotID == reservation.parkingSpotID).FirstOrDefaultAsync();
-
+           
+            if (parkingspot.isPrivate == true)
+            {
+                return Conflict(); 
+            }
+            
             reservation = new Reservation {
                 reservationID = reservation.reservationID,
                 startTime = reservation.startTime,
@@ -93,6 +99,7 @@ namespace PrivateParkAPI.Controllers
                 parkingSpotID = reservation.parkingSpotID };
 
             _context.Reservations.Add(reservation);
+            
             try
             {
                 await _context.SaveChangesAsync();
