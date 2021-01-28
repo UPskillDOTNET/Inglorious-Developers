@@ -33,6 +33,19 @@ namespace testPrivateParkAPI
         }
 
         [Fact]
+        public async Task GetReservationByID_ShouldReturnNotFound()
+        {
+            Thread.Sleep(4000);
+            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            var TestContext = TodoContextMocker.GetPrivateParkContext(dbName);
+            var theController = new ReservationsController(TestContext);
+
+            var result = await theController.GetReservation("1");
+
+            Assert.IsType<NotFoundResult>(result.Result);
+        }
+
+        [Fact]
         public async Task GetReservationAsync_ShouldReturnNotFound()
         {
             Thread.Sleep(300);
@@ -48,63 +61,49 @@ namespace testPrivateParkAPI
             Assert.IsType<NotFoundResult>(response.Result);
         }
 
-        //[Fact]
-        //public async Task PostReservation_ShouldCreateNewReservation()
-        //{
-        //    Thread.Sleep(800);
-        //    var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-        //    var TestContext = TodoContextMocker.GetPrivateParkContext(dbName);
-        //    var theController = new ReservationsController(TestContext);
+        [Fact]
+        public async Task PostReservation_ShouldCreateNewReservation()
+        {
+            Thread.Sleep(1500);
+            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            var TestContext = TodoContextMocker.GetPrivateParkContext(dbName);
+            var theController = new ReservationsController(TestContext);
 
-        //    var newReservation = new Reservation
-        //    {
-        //        reservationID = "1",
-        //        startTime = DateTime.Parse("2021-05-21 08:00:00"),
-        //        hours = 3,
-        //        endTime = DateTime.Parse("2021-05-23 19:00:00"),
-        //        parkingSpotID = "A1"
-        //    };
-        //    var result = await theController.PostReservation(newReservation);
-        //    var getResult = await theController.GetReservation("1");
+            var newReservation = new Reservation
+            {
+                reservationID = "1",
+                startTime = DateTime.Parse("2021-05-21 08:00:00"),
+                hours = 3,
+                endTime = DateTime.Parse("2021-05-23 19:00:00"),
+                parkingSpotID = "A1"
+            };
+            var result = await theController.PostReservation(newReservation);
+            var getResult = await theController.GetReservation("1");
 
-        //    var items = Assert.IsType<Reservation>(getResult.Value);
-        //    Assert.Equal(2, items.hours);
-        //    Assert.IsType<CreatedAtActionResult>(result.Result);
-        //}
 
-        //[Fact]
-        //public async Task GetReservationByID_ShouldReturnReservationByID()
-        //{
-        //    //Arrange
-        //    Thread.Sleep(2000);
-        //    var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-        //    var TestContext = TodoContextMocker.GetPrivateParkContext(dbName);
-        //    var theController = new ReservationsController(TestContext);
+            var items = Assert.IsType<Reservation>(getResult.Value);
+            Assert.Equal(3, items.hours);
+            Assert.IsType<CreatedAtActionResult>(result.Result);
+        }
 
-        //    //Act
-        //    var result = await theController.GetReservation("123ABC");
+        [Fact]
+        public async Task GetReservationByID_ShouldReturnReservationByID()
+        {
+            //Arrange
+            Thread.Sleep(2000);
+            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            var TestContext = TodoContextMocker.GetPrivateParkContext(dbName);
+            var theController = new ReservationsController(TestContext);
 
-        //    //Assert
-        //    var items = Assert.IsType<Reservation>(result.Value);
-        //    Assert.Equal(DateTime.Parse("2021-05-22 07:00:00"), items.startTime);
-        //}
+            //Act
+            var result = await theController.GetReservation("ABC1");
 
-        //[Fact]
-        //public async Task GetReservationAsync_ShouldReturnReservation()
-        //{
-        //    Thread.Sleep(1000);
-        //    // Arrange
-        //    var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-        //    var testContext = TodoContextMocker.GetPrivateParkContext(dbName);
-        //    var theController = new ReservationsController(testContext);
-        //    var testCod = "123ABC";
 
-        //    // Act
-        //    var response = await theController.GetReservation(testCod);
+            //Assert
+            var items = Assert.IsType<Reservation>(result.Value);
+            Assert.Equal(DateTime.Parse("2021-05-22 07:00:00"), items.startTime);
+        }
 
-        //    //Assert     
-        //    Assert.IsType<Reservation>(response.Value);
-        //}
 
         [Fact]
         public async Task PostNoStartTImeIDReservationAsync_ShouldReturnBadRequest()
@@ -130,43 +129,21 @@ namespace testPrivateParkAPI
             Assert.IsType<BadRequestObjectResult>(response.Result);
         }
 
-        //[Fact]
-        //public async Task GetReservationAsync_ShouldReturnTheRightItemAsync()
-        //{
-        //    Thread.Sleep(800);
-        //    // Arrange
-        //    var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-        //    var testContext = TodoContextMocker.GetPrivateParkContext(dbName);
-        //    var theController = new ReservationsController(testContext);
-        //    var testCod = "C1";
+        [Fact]
+        public async Task DeleteReservation_ShouldDeleteReservation()
+        {
+            Thread.Sleep(200);
+            // Arrange
+            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            var TestContext = TodoContextMocker.GetPrivateParkContext(dbName);
+            var theController = new ReservationsController(TestContext);
 
-        //    // Act
-        //    var result = await theController.GetReservation(testCod);
-        //    var reservationItem = result.Value;
+            // Act
+            var result = await theController.DeleteReservation("1");
 
-        //    //Assert     
-        //    Assert.IsType<Reservation>(reservationItem);
-        //    Assert.Equal(testCod, reservationItem.reservationID);
-        //}
-
-        //[Fact]
-        //public async Task DeleteReservation_ShouldDeleteReservation()
-        //{
-
-        //    Thread.Sleep(3000);
-        //    // Arrange
-        //    var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-        //    var TestContext = TodoContextMocker.GetPrivateParkContext(dbName);
-        //    var theController = new ReservationsController(TestContext);
-        //    var testCod= "123ABC";
-
-        //    // Act
-        //    var result = await theController.DeleteReservation(testCod);
-        //    var response = await theController.GetReservation(testCod);
-
-        //    //Assert 
-        //    Assert.IsType<NotFoundResult>(response.Result);
-        //}
+            //Assert 
+            Assert.IsType<NotFoundResult>(result);
+        }
 
         [Fact]
         public async Task DeleteNotExistReservation_ShouldReturnNotFound()
@@ -208,6 +185,152 @@ namespace testPrivateParkAPI
 
             // Assert
             Assert.IsType<BadRequestObjectResult>(response.Result);
+        }
+
+        [Fact]
+        public async Task PutNoExistingReservationAsync_ShouldReturnNotFound()
+        {
+            Thread.Sleep(3000);
+            // Arrange
+            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            var testContext = TodoContextMocker.GetPrivateParkContext(dbName);
+            var theController = new ReservationsController(testContext);
+            var testCod = "AAA";
+
+            var theNonReservation = new Reservation
+            {
+                reservationID = testCod,
+                startTime = DateTime.Parse("2022-05-22 07:00:00"),
+                hours = 2,
+                endTime = DateTime.Parse("2022-05-22 09:00:00"),
+                parkingSpotID = "Z1"
+            };
+
+            // Act
+            var response = await theController.PutReservation(testCod, theNonReservation);
+
+            // Assert
+            Assert.IsType<NotFoundResult>(response);
+        }
+
+        [Fact]
+        public async Task PutNoParkingSpotID_ShouldReturnBadRequestResult()
+        {
+            Thread.Sleep(3500);
+            // Arrange
+            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            var testContext = TodoContextMocker.GetPrivateParkContext(dbName);
+            var theController = new ReservationsController(testContext);
+            var testCod = "ABC8";
+
+            var noParkingSpotID = new Reservation
+            {
+                reservationID = testCod,
+                startTime = DateTime.Parse("2021-03-22 09:00:00"),
+                hours = 2,
+                endTime = DateTime.Parse("2021-03-27 09:00:00")
+            };
+
+            var c = await testContext.FindAsync<Reservation>(testCod);
+            testContext.Entry(c).State = EntityState.Detached;
+
+            theController.ModelState.AddModelError("parkingSpotID", "Required");
+
+            // Act
+            var response = await theController.PutReservation(testCod, noParkingSpotID);
+
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(response);
+        }
+
+        [Fact]
+        public async Task PutNoStartTimeReservation_ShouldReturnBadRequest()
+        {
+            Thread.Sleep(3500);
+            // Arrange
+            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            var testContext = TodoContextMocker.GetPrivateParkContext(dbName);
+            var theController = new ReservationsController(testContext);
+            var testCod = "ABC1";
+
+            var noStartTimeReservation = new Reservation
+            {
+                reservationID = testCod,
+                hours = 2,
+                endTime = DateTime.Parse("2021-03-21 19:00:00"),
+                parkingSpotID = "A1"
+            };
+
+            var c = await testContext.FindAsync<Reservation>(testCod);
+            testContext.Entry(c).State = EntityState.Detached;
+
+            theController.ModelState.AddModelError("startTime", "Required");
+
+            // Act
+            var response = await theController.PutReservation(testCod, noStartTimeReservation);
+
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(response);
+        }
+
+        [Fact]
+        public async Task PutNoEndTimeReservation_ShouldReturnBadRequest()
+        {
+            Thread.Sleep(3500);
+            // Arrange
+            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            var testContext = TodoContextMocker.GetPrivateParkContext(dbName);
+            var theController = new ReservationsController(testContext);
+            var testCod = "ABC1";
+
+            var noEndTimeReservation = new Reservation
+            {
+                reservationID = testCod,
+                startTime = DateTime.Parse("2021-03-22 13:00:00"),
+                hours = 2
+            };
+
+            var c = await testContext.FindAsync<Reservation>(testCod);
+            testContext.Entry(c).State = EntityState.Detached;
+
+            theController.ModelState.AddModelError("endTime", "Required");
+
+            // Act
+            var response = await theController.PutReservation(testCod, noEndTimeReservation);
+
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(response);
+        }
+
+        [Fact]
+        public async Task PutReservation_ShouldReturnCreatedResponse()
+        {
+            Thread.Sleep(3500);
+            // Arrange
+            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            var testContext = TodoContextMocker.GetPrivateParkContext(dbName);
+            var theController = new ReservationsController(testContext);
+            var testCod = "ABC1";
+            var theReservation = new Reservation
+            {
+                reservationID = testCod,
+                startTime = DateTime.Parse("2021-03-21 09:00:00"),
+                hours = 3,
+                endTime = DateTime.Parse("2021-04-21 19:00:00"),
+                parkingSpotID = "E4"
+            };
+
+            var c = await testContext.FindAsync<Reservation>(testCod);
+            testContext.Entry(c).State = EntityState.Detached;
+
+            // Act
+            var response = await theController.PutReservation(testCod, theReservation);
+            var getResult = await theController.GetReservation(theReservation.reservationID);
+
+            // Assert
+            var items = Assert.IsType<Reservation>(getResult.Value);
+            Assert.Equal("E4", items.parkingSpotID);
+            Assert.IsType<NoContentResult>(response);
         }
     }
 }
