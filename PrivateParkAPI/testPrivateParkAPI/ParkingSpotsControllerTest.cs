@@ -29,7 +29,32 @@ namespace testPrivateParkAPI
             var items = Assert.IsType<List<ParkingSpot>>(result.Value);
             Assert.Equal(3, items.Count);
         }
+        [Fact]
+        public async Task GetAllAvailableAsync_ShouldReturnAllAvailableAsync()
+        {
 
+            // Arrange 
+            var TestContext = TodoContextMocker.GetPrivateParkContext("GetAllAvailableParkingSpots");
+            var theController = new ParkingSpotsController(TestContext);
+            // Act
+            var result = await theController.GetParkingFreeSpots();
+            //Assert
+            var items = Assert.IsType<List<ParkingSpot>>(result.Value);
+            Assert.Equal(4, items.Count);
+        }
+        [Fact]
+        public async Task GetAllAvailableinHourAsync_ShouldReturnAllAvailableInHourAsync()
+        {
+
+            // Arrange 
+            var TestContext = TodoContextMocker.GetPrivateParkContext("GetAllinHourParkingSpots");
+            var theController = new ParkingSpotsController(TestContext);
+            // Act
+            var result = await theController.GetParkingSpecificFreeSpots(DateTime.Parse("2021 - 08 - 22 07:00:00"),DateTime.Parse("2021 - 09 - 22 19:00:00"));
+            //Assert
+            var items = Assert.IsType<List<ParkingSpot>>(result.Value);
+            Assert.Equal(1, items.Count);
+        }
         [Fact]
         public async Task GetAllAsync_ShouldReturnAllAsync()
         {
@@ -227,7 +252,7 @@ namespace testPrivateParkAPI
         public async Task PutNofloorAsync_ShouldReturnBadRequest()
         {
             // Arrange
-            var TestContext = TodoContextMocker.GetPrivateParkContext("postParkingBadRequest");
+            var TestContext = TodoContextMocker.GetPrivateParkContext("putParkingBadRequest");
             var theController = new ParkingSpotsController(TestContext);
 
             var parkingID = "E1";
@@ -252,107 +277,109 @@ namespace testPrivateParkAPI
             Assert.IsType<BadRequestResult>(response);
         }
 
-        //        [Fact]
-        //        public async Task PutBadNoGeoAreaCountryAsync_ShouldReturnBadRequest()
-        //        {
-        //            // Arrange
-        //            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-        //            var testContext = MockerOMSContext.GetTheOMSContext(dbName);
-        //            var theController = new CountryController(testContext);
+        [Fact]
+        public async Task PutNoPriceAsync_ShouldReturnBadRequest()
+        {
+            // Arrange
+            var TestContext = TodoContextMocker.GetPrivateParkContext("putParkingBadRequest2");
+            var theController = new ParkingSpotsController(TestContext);
 
-        //            var testCod = "C1";
-        //            var noNameCountry = new Country
-        //            {
-        //                CountryCode = testCod,
-        //                Name = "Updated Name"
-        //            };
+            var parkingID = "A1";
+            var parking = new ParkingSpot
+            {
+                parkingSpotID = "A1",
+                floor = 1,
+                isPrivate = true,
+                parkingLotID = 1
 
-        //            var c = await testContext.FindAsync<Country>(testCod); //To Avoid tracking error
-        //            testContext.Entry(c).State = EntityState.Detached;
+            };
 
-        //            theController.ModelState.AddModelError("GeoAreaCod", "Required");
+            var c = await TestContext.FindAsync<ParkingSpot>(parkingID); //To Avoid tracking error
+            TestContext.Entry(c).State = EntityState.Detached;
 
-        //            // Act
-        //            var response = await theController.PutCountry(testCod, noNameCountry);
+            theController.ModelState.AddModelError("priceHour", "Required");
 
-        //            // Assert
-        //            Assert.IsType<BadRequestResult>(response);
-        //        }
+            // Act
+            var response = await theController.PutParkingSpot(parkingID, parking);
 
-        //        [Fact]
-        //        public async Task PutCountry_ShouldReturnCreatedResponse()
-        //        {
-        //            // Arrange
-        //            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-        //            var testContext = MockerOMSContext.GetTheOMSContext(dbName);
-        //            var theController = new CountryController(testContext);
-        //            var testCod = "C1";
-        //            var theCountry = new Country
-        //            {
-        //                CountryCode = testCod,
-        //                Name = "Updated Country",
-        //                GeoAreaCod = "Z1"
-        //            };
+            // Assert
+            Assert.IsType<BadRequestResult>(response);
+        }
 
-        //            var c = await testContext.FindAsync<Country>(testCod); //To Avoid tracking error
-        //            testContext.Entry(c).State = EntityState.Detached;
 
-        //            // Act
-        //            var response = await theController.PutCountry(testCod, theCountry);
+        [Fact]
+        public async Task PutParkingSpot_ShouldReturnCreatedResponse()
+        {
+            // Arrange
+            var TestContext = TodoContextMocker.GetPrivateParkContext("putParkingisParking");
+            var theController = new ParkingSpotsController(TestContext);
+            var parkingID = "E1";
+            var parking = new ParkingSpot
+            {
+                parkingSpotID = "E1",
+                priceHour = 1.75M,
+                floor = 1,
+                isPrivate = true,
+                parkingLotID = 1
 
-        //            // Assert
-        //            Assert.IsType<CreatedAtActionResult>(response);
-        //        }
+            };
 
-        //        [Fact]
-        //        public async Task DeleteNotExistingCountry_ShouldReturnNotFound()
-        //        {
-        //            // Arrange
-        //            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-        //            var testContext = MockerOMSContext.GetTheOMSContext(dbName);
-        //            var theController = new CountryController(testContext);
-        //            var testCod = "NoExCod";
+            var c = await TestContext.FindAsync<ParkingSpot>(parkingID); //To Avoid tracking error
+            TestContext.Entry(c).State = EntityState.Detached;
 
-        //            // Act
-        //            var result = await theController.DeleteCountry(testCod);
+            // Act
+            var response = await theController.PutParkingSpot(parkingID, parking);
 
-        //            // Assert
-        //            Assert.IsType<NotFoundResult>(result);
-        //        }
+            // Assert
+            Assert.IsType<NoContentResult>(response);
+        }
 
-        //        [Fact]
-        //        public async Task DeleteExistingCountryAsync_ShouldReturnOkResult()
-        //        {
-        //            // Arrange
-        //            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-        //            var testContext = MockerOMSContext.GetTheOMSContext(dbName);
-        //            var theController = new CountryController(testContext);
-        //            var testCod = "C1";
+        [Fact]
+        public async Task DeleteNotExistingCountry_ShouldReturnNotFound()
+        {
+            // Arrange
+            var TestContext = TodoContextMocker.GetPrivateParkContext("deleteParkingNotFound");
+            var theController = new ParkingSpotsController(TestContext);
+            var parkingID = "E7";
 
-        //            // Act
-        //            var response = await theController.DeleteCountry(testCod);
+            // Act
+            var result = await theController.DeleteParkingSpot(parkingID);
 
-        //            // Assert
-        //            Assert.IsType<NoContentResult>(response);
-        //        }
+            // Assert
+            Assert.IsType<NotFoundResult>(result);
+        }
 
-        //        [Fact]
-        //        public async Task DeleteExistingCountryAsync_ShouldRemovetheCountryAsync()
-        //        {
-        //            // Arrange
-        //            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-        //            var testContext = MockerOMSContext.GetTheOMSContext(dbName);
-        //            var theController = new CountryController(testContext);
-        //            var testCod = "C1";
+        [Fact]
+        public async Task DeleteExistingCountryAsync_ShouldReturnOkResult()
+        {
+            // Arrange
+            var TestContext = TodoContextMocker.GetPrivateParkContext("deleteParkingOK");
+            var theController = new ParkingSpotsController(TestContext);
+            var parkingID = "E1";
 
-        //            // Act
-        //            var result = await theController.DeleteCountry(testCod);
+            // Act
+            var response = await theController.DeleteParkingSpot(parkingID);
 
-        //            var isTheItemThere = await theController.GetCountry(testCod);
+            // Assert
+            Assert.IsType<NoContentResult>(response);
+        }
 
-        //            // Assert
-        //            Assert.IsType<NotFoundResult>(isTheItemThere.Result);
-        //        }
+        [Fact]
+        public async Task DeleteExistingCountryAsync_ShouldRemovetheCountryAsync()
+        {
+            // Arrange
+            var TestContext = TodoContextMocker.GetPrivateParkContext("deletedParkIsDeleted");
+            var theController = new ParkingSpotsController(TestContext);
+            var parkingID = "A1";
+
+            // Act
+            var response = await theController.DeleteParkingSpot(parkingID);
+
+            var notExists = await theController.GetParkingSpot(parkingID);
+
+            // Assert
+            Assert.IsType<NotFoundResult>(notExists.Result);
+        }
     }
 }
 
