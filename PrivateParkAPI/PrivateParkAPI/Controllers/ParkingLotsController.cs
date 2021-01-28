@@ -49,7 +49,7 @@ namespace PrivateParkAPI.Controllers
         {
             if (!ModelState.IsValid || !id.Equals(parkingLot.parkingLotID))
             {
-                return BadRequest(ModelState);
+                return BadRequest();
             }
 
             _context.Entry(parkingLot).State = EntityState.Modified;

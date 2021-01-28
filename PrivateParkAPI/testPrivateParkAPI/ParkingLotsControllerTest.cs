@@ -149,7 +149,7 @@ namespace testPrivateParkAPI
             var getResult = await theController.PutParkingLot(1, newParkingLot);
 
             //Assert
-            Assert.IsType<BadRequestObjectResult>(getResult);
+            Assert.IsType<BadRequestResult>(getResult);
         }
 
         [Fact]
