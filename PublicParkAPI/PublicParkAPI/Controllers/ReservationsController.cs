@@ -47,9 +47,12 @@ namespace PublicParkAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutReservation(string id, Reservation reservation)
         {
-            if (id != reservation.reservationID)
-            {
-                return BadRequest();
+            //if (id != reservation.reservationID)
+            //{
+            //    return BadRequest();
+            //}
+            if (!ModelState.IsValid || !id.Equals(reservation.reservationID)) {
+                return BadRequest(ModelState);
             }
 
             _context.Entry(reservation).State = EntityState.Modified;
