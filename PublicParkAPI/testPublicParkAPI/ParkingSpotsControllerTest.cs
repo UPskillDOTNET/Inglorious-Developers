@@ -233,8 +233,112 @@ namespace testPublicParkAPI
 
         }
 
+        [Fact]
+        public async Task PutNoParkingLotIDParkingSpot_ShouldReturnBadRequest()
+        {
+            Thread.Sleep(300);
+            // Arrange
+            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            var testContext = TodoContextMocker.GetPublicParkContext(dbName);
+            var theController = new ParkingSpotsController(testContext);
+            var testCod = "A1";
 
+            var noPriceParkingSpot = new ParkingSpot
+            {
+                parkingSpotID = testCod,
+                priceHour = 0.9m,
+            };
 
+            var c = await testContext.FindAsync<ParkingSpot>(testCod);
+            testContext.Entry(c).State = EntityState.Detached;
+
+            theController.ModelState.AddModelError("priceHour", "Required");
+
+            // Act
+            var response = await theController.PutParkingSpot(testCod, noPriceParkingSpot);
+
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(response);
+        }
+
+        [Fact]
+        public async Task PutParkingSpot_ShouldReturnCreatedResponse()
+        {
+            Thread.Sleep(1000);
+            // Arrange
+            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            var testContext = TodoContextMocker.GetPublicParkContext(dbName);
+            var theController = new ParkingSpotsController(testContext);
+            var testCod = "A1";
+            var theParkingSpot = new ParkingSpot
+            {
+                parkingSpotID = testCod,
+                priceHour = 30m,
+                ParkingLotID = 2
+            };
+
+            var c = await testContext.FindAsync<ParkingSpot>(testCod);
+            testContext.Entry(c).State = EntityState.Detached;
+
+            // Act
+            var response = await theController.PutParkingSpot(testCod, theParkingSpot);
+            var getResult = await theController.GetParkingSpot(theParkingSpot.parkingSpotID);
+
+            // Assert
+            var items = Assert.IsType<ParkingSpot>(getResult.Value);
+            Assert.Equal(30m, items.priceHour);
+            Assert.IsType<NoContentResult>(response);
+        }
+
+        [Fact]
+        public async Task DeleteNotExistingParkingSpot_ShouldReturnNotFound()
+        {
+            Thread.Sleep(300);
+            // Arrange
+            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            var testContext = TodoContextMocker.GetPublicParkContext(dbName);
+            var theController = new ParkingSpotsController(testContext);
+            var testCod = "NoExCod";
+
+            // Act
+            var result = await theController.DeleteParkingSpot(testCod);
+
+            // Assert
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public async Task DeleteExistingParkingSpot_ShouldRemovetheCountryAsync()
+        {
+            // Arrange
+            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            var testContext = TodoContextMocker.GetPublicParkContext(dbName);
+            var theController = new ParkingSpotsController(testContext);
+            var testCod = "A1";
+
+            // Act
+            var result = await theController.DeleteParkingSpot(testCod);
+
+            var isTheItemThere = await theController.GetParkingSpot(testCod);
+
+            // Assert
+            Assert.IsType<NotFoundResult>(isTheItemThere.Result);
+        }
+        //[Fact]
+        //public async Task DeleteNotExistingCountry_ShouldReturnNotFound()
+        //{
+        //    // Arrange
+        //    var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+        //    var testContext = MockerOMSContext.GetTheOMSContext(dbName);
+        //    var theController = new CountryController(testContext);
+        //    var testCod = "NoExCod";
+
+        //    // Act
+        //    var result = await theController.DeleteCountry(testCod);
+
+        //    // Assert
+        //    Assert.IsType<NotFoundResult>(result);
+        //}
     }
 }
 
