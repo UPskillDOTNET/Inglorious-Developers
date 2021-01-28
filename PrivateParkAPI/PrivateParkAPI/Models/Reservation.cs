@@ -11,8 +11,8 @@ namespace PrivateParkAPI.Models
         [Required]
         public DateTime startTime { get; set; }
         [Required]
-        [MinLength(1)]
         public int hours { get; set; }
+        public decimal finalPrice { get; set; }
         public DateTime endTime { get; set; }
 
         [ForeignKey("ParkingSpot")]
