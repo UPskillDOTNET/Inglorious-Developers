@@ -101,7 +101,7 @@ namespace testPrivateParkAPI
 
             //Assert
             var items = Assert.IsType<Reservation>(result.Value);
-            Assert.Equal(DateTime.Parse("2021-08-22 07:00:00e"), items.startTime);
+            Assert.Equal(DateTime.Parse("2021-08-22 07:00:00"), items.startTime);
         }
 
 
