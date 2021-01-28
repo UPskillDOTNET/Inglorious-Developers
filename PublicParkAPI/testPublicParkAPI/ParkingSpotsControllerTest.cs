@@ -16,7 +16,7 @@ namespace testPublicParkAPI
     public class ParkingSpotsControllerTest
     {
         [Fact]
-        public async Task GetAllParkingSpotsAsync_ShouldReturnAllCountriesAsync()
+        public async Task GetAllParkingSpotsAsync_ShouldReturnAllParkingSpotsAsync()
         {
             // Arrange
             var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
@@ -106,6 +106,7 @@ namespace testPublicParkAPI
             // Assert
             Assert.IsType<BadRequestObjectResult>(response.Result);
         }
+
         [Fact]
         public async Task PostNoParkingLotIDParkingSpotAsync_ShouldReturnBadRequest()
         {
@@ -116,7 +117,7 @@ namespace testPublicParkAPI
             var theController = new ParkingSpotsController(testContext);
             var noParkingLotID = new ParkingSpot
             {
-                parkingSpotID = "T1",
+                parkingSpotID = "TEste",
                 priceHour = 5
             };
 
@@ -128,6 +129,91 @@ namespace testPublicParkAPI
             // Assert
             Assert.IsType<BadRequestObjectResult>(response.Result);
         }
+
+        [Fact]
+        public async Task PostParkingSpotAsync_ShouldReturnCreatedResponse()
+        {
+            Thread.Sleep(300);
+            // Arrange
+            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            var testContext = TodoContextMocker.GetPublicParkContext(dbName);
+            var theController = new ParkingSpotsController(testContext);
+            var theNewParkingSpot = new ParkingSpot
+            {
+                parkingSpotID = "T13",
+                priceHour = 0.9m,
+                ParkingLotID = 2
+            };
+
+            // Act
+            var response = await theController.PostParkingSpot(theNewParkingSpot);
+
+            // Assert
+            Assert.IsType<CreatedAtActionResult>(response.Result);
+        }
+
+        [Fact]
+        public async Task PostParkingSpotAsync_ShouldCreateAnCountryAsync()
+        {
+            // Arrange
+            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            var testContext = TodoContextMocker.GetPublicParkContext(dbName);
+            var theController = new ParkingSpotsController(testContext);
+            var thenewParkingSpot = new ParkingSpot
+            {
+                parkingSpotID = "T132",
+                priceHour = 0.9m,
+                ParkingLotID = 2
+            };
+
+            // Act
+            var response = await theController.PostParkingSpot(thenewParkingSpot);
+            var result = response.Result as CreatedAtActionResult;
+
+            // Assert
+            Assert.NotNull(response);
+            Assert.IsNotType<BadRequestObjectResult>(result);
+            Assert.IsType<ParkingSpot>(result.Value);
+
+            var theParkingSpot = result.Value as ParkingSpot;
+            Assert.Equal("T132", theParkingSpot.parkingSpotID);
+        }
+
+        [Fact]
+        public async Task PutNoExistingParkingSpotAsync_ShouldReturnNotFound()
+        {
+            // Arrange
+            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            var testContext = TodoContextMocker.GetPublicParkContext(dbName);
+            var theController = new ParkingSpotsController(testContext);
+            var testCod = "NoExCod";
+
+            var theNonParkingSpot = new ParkingSpot
+            {
+                parkingSpotID = testCod,
+                priceHour = 0.9m,
+                ParkingLotID = 2
+            };
+
+            // Act
+            var response = await theController.PutParkingSpot(testCod, theNonParkingSpot);
+
+            // Assert
+            Assert.IsType<NotFoundResult>(response);
+        }
+
+        //[Fact]
+        //public async Task PutBadNoNameParkingSpot_ShouldReturnBadRequest()
+        //{
+        //    // Arrange
+        //    var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+        //    var testContext = TodoContextMocker.GetPublicParkContext(dbName);
+        //    var theController = new ParkingSpotsController(testContext);
+        //    var testCod = "NoExCod";
+
+        //}
+
+
 
     }
 }
