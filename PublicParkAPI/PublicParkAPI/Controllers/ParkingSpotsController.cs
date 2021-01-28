@@ -132,7 +132,13 @@ namespace PublicParkAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<ParkingSpot>> PostParkingSpot(ParkingSpot parkingSpot)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             _context.ParkingSpots.Add(parkingSpot);
+
             try
             {
                 await _context.SaveChangesAsync();
