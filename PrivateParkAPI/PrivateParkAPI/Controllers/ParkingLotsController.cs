@@ -47,9 +47,9 @@ namespace PrivateParkAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutParkingLot(int id, ParkingLot parkingLot)
         {
-            if (id != parkingLot.parkingLotID)
+            if (!ModelState.IsValid || !id.Equals(parkingLot.parkingLotID))
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
 
             _context.Entry(parkingLot).State = EntityState.Modified;
@@ -78,6 +78,11 @@ namespace PrivateParkAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<ParkingLot>> PostParkingLot(ParkingLot parkingLot)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             _context.ParkingLots.Add(parkingLot);
             await _context.SaveChangesAsync();
 
