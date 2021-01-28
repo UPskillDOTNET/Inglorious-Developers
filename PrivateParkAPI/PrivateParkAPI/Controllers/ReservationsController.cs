@@ -78,6 +78,11 @@ namespace PrivateParkAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Reservation>> PostReservation(Reservation reservation)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             _context.Reservations.Add(reservation);
             try
             {
