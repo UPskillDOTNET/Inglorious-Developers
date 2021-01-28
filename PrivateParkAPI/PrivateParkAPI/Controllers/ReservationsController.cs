@@ -47,7 +47,7 @@ namespace PrivateParkAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutReservation(string id, Reservation reservation)
         {
-            if (id != reservation.reservationID)
+            if (id != reservation.reservationID || !ModelState.IsValid)
             {
                 return BadRequest();
             }
@@ -69,7 +69,7 @@ namespace PrivateParkAPI.Controllers
                     throw;
                 }
             }
-
+         
             return NoContent();
         }
 

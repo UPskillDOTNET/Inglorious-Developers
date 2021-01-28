@@ -109,7 +109,7 @@ namespace PrivateParkAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutParkingSpot(string id, ParkingSpot parkingSpot)
         {
-            if (id != parkingSpot.parkingSpotID)
+            if (id != parkingSpot.parkingSpotID || !ModelState.IsValid)
             {
                 return BadRequest();
             }
@@ -131,10 +131,7 @@ namespace PrivateParkAPI.Controllers
                     throw;
                 }
             }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
+          
             return NoContent();
         }
 
