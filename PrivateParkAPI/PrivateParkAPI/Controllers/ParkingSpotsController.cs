@@ -131,7 +131,10 @@ namespace PrivateParkAPI.Controllers
                     throw;
                 }
             }
-
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             return NoContent();
         }
 
