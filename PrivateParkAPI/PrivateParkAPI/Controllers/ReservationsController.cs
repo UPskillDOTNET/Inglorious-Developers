@@ -47,9 +47,9 @@ namespace PrivateParkAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutReservation(string id, Reservation reservation)
         {
-            if (id != reservation.reservationID)
+            if (!ModelState.IsValid || !id.Equals(reservation.reservationID))
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
 
             _context.Entry(reservation).State = EntityState.Modified;

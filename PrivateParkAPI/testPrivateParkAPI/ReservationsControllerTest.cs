@@ -64,7 +64,7 @@ namespace testPrivateParkAPI
         [Fact]
         public async Task PostReservation_ShouldCreateNewReservation()
         {
-            Thread.Sleep(1500);
+            Thread.Sleep(2500);
             var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             var TestContext = TodoContextMocker.GetPrivateParkContext(dbName);
             var theController = new ReservationsController(TestContext);
@@ -96,12 +96,12 @@ namespace testPrivateParkAPI
             var theController = new ReservationsController(TestContext);
 
             //Act
-            var result = await theController.GetReservation("ABC1");
+            var result = await theController.GetReservation("ABC2");
 
 
             //Assert
             var items = Assert.IsType<Reservation>(result.Value);
-            Assert.Equal(DateTime.Parse("2021-05-22 07:00:00"), items.startTime);
+            Assert.Equal(DateTime.Parse("2021-08-22 07:00:00e"), items.startTime);
         }
 
 
@@ -216,7 +216,7 @@ namespace testPrivateParkAPI
         [Fact]
         public async Task PutNoParkingSpotID_ShouldReturnBadRequestResult()
         {
-            Thread.Sleep(3500);
+            Thread.Sleep(2000);
             // Arrange
             var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             var testContext = TodoContextMocker.GetPrivateParkContext(dbName);
@@ -246,12 +246,12 @@ namespace testPrivateParkAPI
         [Fact]
         public async Task PutNoStartTimeReservation_ShouldReturnBadRequest()
         {
-            Thread.Sleep(3500);
+            Thread.Sleep(2000);
             // Arrange
             var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             var testContext = TodoContextMocker.GetPrivateParkContext(dbName);
             var theController = new ReservationsController(testContext);
-            var testCod = "ABC1";
+            var testCod = "ABC8";
 
             var noStartTimeReservation = new Reservation
             {
@@ -276,12 +276,12 @@ namespace testPrivateParkAPI
         [Fact]
         public async Task PutNoEndTimeReservation_ShouldReturnBadRequest()
         {
-            Thread.Sleep(3500);
+            Thread.Sleep(2000);
             // Arrange
             var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             var testContext = TodoContextMocker.GetPrivateParkContext(dbName);
             var theController = new ReservationsController(testContext);
-            var testCod = "ABC1";
+            var testCod = "ABC8";
 
             var noEndTimeReservation = new Reservation
             {
@@ -310,7 +310,7 @@ namespace testPrivateParkAPI
             var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             var testContext = TodoContextMocker.GetPrivateParkContext(dbName);
             var theController = new ReservationsController(testContext);
-            var testCod = "ABC1";
+            var testCod = "ABC8";
             var theReservation = new Reservation
             {
                 reservationID = testCod,
