@@ -7,7 +7,6 @@ namespace PrivateParkAPI.Models
     public class Reservation
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string reservationID { get; set; }
         public DateTime startTime { get; set; }
         public int hours { get; set; }
