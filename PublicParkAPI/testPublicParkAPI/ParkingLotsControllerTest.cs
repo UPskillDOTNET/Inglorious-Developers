@@ -51,12 +51,12 @@ namespace testPublicParkAPI
         public async Task GetParkingLotByID_ShouldReturnNotFound()
         {
             // Arrange
-            Thread.Sleep(1000);
+            Thread.Sleep(4000);
             var TestContext = TodoContextMocker.GetPublicParkContext("NotFoundParkingLotByID");
             var theController = new ParkingLotsController(TestContext);
 
             // Act
-            var result = await theController.GetParkingLot(0);
+            var result = await theController.GetParkingLot(1000);
 
             //Assert
             Assert.IsType<NotFoundResult>(result.Result);
