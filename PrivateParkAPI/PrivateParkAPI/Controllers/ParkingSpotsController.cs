@@ -157,6 +157,10 @@ namespace PrivateParkAPI.Controllers
                 }
             }
 
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             return CreatedAtAction("GetParkingSpot", new { id = parkingSpot.parkingSpotID }, parkingSpot);
         }
 

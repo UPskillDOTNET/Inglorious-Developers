@@ -7,9 +7,10 @@ namespace PrivateParkAPI.Models
     {
         [Key]
         public string parkingSpotID { get; set; }
+        [Required]
         public decimal priceHour { get; set; }
 #nullable enable
-        public int floor { get; set; }
+        public int? floor { get; set; }
 #nullable disable
         public bool isPrivate { get; set; }
         [ForeignKey("ParkingLot")]

@@ -36,14 +36,14 @@ namespace testProject
             dbContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "O1", priceHour = 1.00m, isPrivate = false, parkingLotID = 3 });
             dbContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "A3", priceHour = 0.25m, isPrivate = false, parkingLotID = 1 });
 
-            dbContext.Reservations.Add(new Reservation { startTime = DateTime.Parse("2021-05-22 07:00:00"), hours = 1, endTime = DateTime.Parse("2021-05-22 08:00:00"), parkingSpotID = "A1", });
-            dbContext.Reservations.Add(new Reservation { startTime = DateTime.Parse("2021-08-22 07:00:00"), hours = 2, endTime = DateTime.Parse("2021-08-22 09:00:00"), parkingSpotID = "E1", });
-            dbContext.Reservations.Add(new Reservation { startTime = DateTime.Parse("2021-09-22 07:00:00"), hours = 12, endTime = DateTime.Parse("2021-09-22 19:00:00"), parkingSpotID = "I1" });
-            dbContext.Reservations.Add(new Reservation { startTime = DateTime.Parse("2021-10-22 07:00:00"), hours = 3, endTime = DateTime.Parse("2021-10-22 10:00:00"), parkingSpotID = "O1", });
-            dbContext.Reservations.Add(new Reservation { startTime = DateTime.Parse("2021-09-22 07:00:00"), hours = 1, endTime = DateTime.Parse("2021-09-22 08:00:00"), parkingSpotID = "A3", });
-            dbContext.Reservations.Add(new Reservation { startTime = DateTime.Parse("2021-08-22 12:00:00"), hours = 1, endTime = DateTime.Parse("2021-08-22 13:00:00"), parkingSpotID = "A1", });
-            dbContext.Reservations.Add(new Reservation { startTime = DateTime.Parse("2021-07-22 14:00:00"), hours = 1, endTime = DateTime.Parse("2021-07-22 15:00:00"), parkingSpotID = "A1", });
-            dbContext.Reservations.Add(new Reservation { startTime = DateTime.Parse("2021-06-22 18:00:00"), hours = 1, endTime = DateTime.Parse("2021-06-22 19:00:00"), parkingSpotID = "I1", });
+            dbContext.Reservations.Add(new Reservation { reservationID = "ABC1",startTime = DateTime.Parse("2021-05-22 07:00:00"), hours = 1, endTime = DateTime.Parse("2021-05-22 08:00:00"), parkingSpotID = "A1", });
+            dbContext.Reservations.Add(new Reservation { reservationID = "ABC2", startTime = DateTime.Parse("2021-08-22 07:00:00"), hours = 2, endTime = DateTime.Parse("2021-08-22 09:00:00"), parkingSpotID = "E1", });
+            dbContext.Reservations.Add(new Reservation { reservationID = "ABC3", startTime = DateTime.Parse("2021-09-22 07:00:00"), hours = 12, endTime = DateTime.Parse("2021-09-22 19:00:00"), parkingSpotID = "I1" });
+            dbContext.Reservations.Add(new Reservation { reservationID = "ABC4", startTime = DateTime.Parse("2021-10-22 07:00:00"), hours = 3, endTime = DateTime.Parse("2021-10-22 10:00:00"), parkingSpotID = "O1", });
+            dbContext.Reservations.Add(new Reservation { reservationID = "ABC5", startTime = DateTime.Parse("2021-09-22 07:00:00"), hours = 1, endTime = DateTime.Parse("2021-09-22 08:00:00"), parkingSpotID = "A3", });
+            dbContext.Reservations.Add(new Reservation { reservationID = "ABC6", startTime = DateTime.Parse("2021-08-22 12:00:00"), hours = 1, endTime = DateTime.Parse("2021-08-22 13:00:00"), parkingSpotID = "A1", });
+            dbContext.Reservations.Add(new Reservation { reservationID = "ABC7", startTime = DateTime.Parse("2021-07-22 14:00:00"), hours = 1, endTime = DateTime.Parse("2021-07-22 15:00:00"), parkingSpotID = "A1", });
+            dbContext.Reservations.Add(new Reservation { reservationID = "ABC8", startTime = DateTime.Parse("2021-06-22 18:00:00"), hours = 1, endTime = DateTime.Parse("2021-06-22 19:00:00"), parkingSpotID = "I1", });
             dbContext.SaveChanges();
         }
     }
