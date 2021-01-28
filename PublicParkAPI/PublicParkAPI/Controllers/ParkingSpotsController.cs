@@ -101,9 +101,9 @@ namespace PublicParkAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutParkingSpot(string id, ParkingSpot parkingSpot)
         {
-            if (id != parkingSpot.parkingSpotID)
+            if (!ModelState.IsValid || !id.Equals(parkingSpot.parkingSpotID))
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
 
             _context.Entry(parkingSpot).State = EntityState.Modified;
