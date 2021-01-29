@@ -127,6 +127,7 @@ namespace testPrivateParkAPI
             {
                 parkingSpotID = "A5",
                 floor = 1,
+                isCovered = false,
                 isPrivate = true,
                 parkingLotID = 1
             };
@@ -151,6 +152,7 @@ namespace testPrivateParkAPI
                 parkingSpotID = "A5",
                 priceHour = 1.30M,
                 floor = 1,
+                isCovered = false,
                 isPrivate = true,
                
             };
@@ -175,6 +177,7 @@ namespace testPrivateParkAPI
                 parkingSpotID = "A5",
                 priceHour = 1.30M,
                 floor = 1,
+                isCovered = false,
                 isPrivate = true,
                 parkingLotID = 1
 
@@ -203,6 +206,7 @@ namespace testPrivateParkAPI
                 parkingSpotID = "A6",
                 priceHour = 1.50M,
                 floor = 0,
+                isCovered = false,
                 isPrivate = false,
                 parkingLotID = 2
 
@@ -234,6 +238,7 @@ namespace testPrivateParkAPI
                 parkingSpotID = "A36",
                 priceHour = 1.50M,
                 floor = 0,
+                isCovered = true,
                 isPrivate = false,
                 parkingLotID = 2
 
@@ -260,6 +265,7 @@ namespace testPrivateParkAPI
             {
                parkingSpotID = "E1",
                priceHour = 1.50M,
+               isCovered = true,
                isPrivate = true,
                parkingLotID =1
                
@@ -289,6 +295,7 @@ namespace testPrivateParkAPI
             {
                 parkingSpotID = "A1",
                 floor = 1,
+                isCovered = false,
                 isPrivate = true,
                 parkingLotID = 1
 
@@ -319,6 +326,7 @@ namespace testPrivateParkAPI
                 parkingSpotID = "E1",
                 priceHour = 1.75M,
                 floor = 1,
+                isCovered = true,
                 isPrivate = true,
                 parkingLotID = 1
 

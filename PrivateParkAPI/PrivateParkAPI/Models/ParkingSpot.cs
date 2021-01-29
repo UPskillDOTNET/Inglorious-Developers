@@ -10,6 +10,9 @@ namespace PrivateParkAPI.Models
         [Required]
         [Range(0.01,99.9)]
         public decimal priceHour { get; set; }
+#nullable disable
+        [Required]
+        public bool isCovered { get; set; }
 #nullable enable
         [Range(-5,9)]
         public int? floor { get; set; }
