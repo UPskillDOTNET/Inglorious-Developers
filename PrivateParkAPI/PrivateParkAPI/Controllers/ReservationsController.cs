@@ -56,7 +56,7 @@ namespace PrivateParkAPI.Controllers
 
             if (parkingspot.isPrivate == true)
             {
-                return Conflict();
+                return Conflict("You can't make a reservation on a private parking spot");
             }
 
             reservation = new Reservation
@@ -68,6 +68,7 @@ namespace PrivateParkAPI.Controllers
                 finalPrice = reservation.hours * parkingspot.priceHour,
                 parkingSpotID = reservation.parkingSpotID
             };
+
             _context.Entry(reservation).State = EntityState.Modified;
 
             try
@@ -103,7 +104,7 @@ namespace PrivateParkAPI.Controllers
            
             if (parkingspot.isPrivate == true)
             {
-                return Conflict(); 
+                return Conflict("You can't make a reservation on a private parking spot"); 
             }
             
             reservation = new Reservation {
