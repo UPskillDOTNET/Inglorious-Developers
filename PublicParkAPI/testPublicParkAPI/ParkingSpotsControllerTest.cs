@@ -269,7 +269,7 @@ namespace testPublicParkAPI
             var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             var testContext = TodoContextMocker.GetPublicParkContext(dbName);
             var theController = new ParkingSpotsController(testContext);
-            var testCod = "A1";
+            var testCod = "O1";
             var theParkingSpot = new ParkingSpot
             {
                 parkingSpotID = testCod,

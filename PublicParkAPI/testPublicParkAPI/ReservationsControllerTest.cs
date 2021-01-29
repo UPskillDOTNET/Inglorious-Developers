@@ -49,7 +49,7 @@ namespace testPublicParkAPI {
             var result = await theController.GetReservation("ABC4");
 
             var items = Assert.IsType<Reservation>(result.Value);
-            Assert.Equal(DateTime.Parse("22/05/2021 07:00:00"), items.startTime);
+            Assert.Equal(DateTime.Parse("2021-05-22 07:00:00"), items.startTime);
         }
 
         [Fact]
@@ -63,7 +63,6 @@ namespace testPublicParkAPI {
                 reservationID = "1",
                 startTime = DateTime.Parse("2022-05-22 07:00:00"),
                 hours = 2,
-                endTime = DateTime.Parse("2022-05-22 09:00:00"),
                 parkingSpotID = "A1"
             };
             var result = await theController.PostReservation(newReservation);
@@ -86,7 +85,6 @@ namespace testPublicParkAPI {
                 reservationID = "2",
                 startTime = DateTime.Parse("2022-05-22 07:00:00"),
                 hours = 2,
-                endTime = DateTime.Parse("2022-05-22 09:00:00"),
                 parkingSpotID = "Z1"
             };
 
@@ -109,7 +107,6 @@ namespace testPublicParkAPI {
             var noParkingLotID = new Reservation {
                 reservationID = "2",
                 hours = 2,
-                endTime = DateTime.Parse("2022-05-22 09:00:00"),
                 parkingSpotID = "Z1"
             };
 
@@ -122,28 +119,6 @@ namespace testPublicParkAPI {
             Assert.IsType<BadRequestObjectResult>(response.Result);
         }
 
-        [Fact]
-        public async Task PostNoEndTImeIDReservationAsync_ShouldReturnBadRequest() {
-            Thread.Sleep(300);
-            // Arrange
-            var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-            var testContext = TodoContextMocker.GetPublicParkContext(dbName);
-            var theController = new ReservationsController(testContext);
-            var noParkingLotID = new Reservation {
-                reservationID = "2",
-                startTime = DateTime.Parse("2022-05-22 07:00:00"),
-                hours = 2,
-                parkingSpotID = "Z1"
-            };
-
-            theController.ModelState.AddModelError("endTime", "Required");
-
-            // Act
-            var response = await theController.PostReservation(noParkingLotID);
-
-            // Assert
-            Assert.IsType<BadRequestObjectResult>(response.Result);
-        }
 
         [Fact]
         public async Task PutNoExistingReservationAsync_ShouldReturnNotFound() {
@@ -158,8 +133,7 @@ namespace testPublicParkAPI {
                 reservationID = testCod,
                 startTime = DateTime.Parse("2022-05-22 07:00:00"),
                 hours = 2,
-                endTime = DateTime.Parse("2022-05-22 09:00:00"),
-                parkingSpotID = "Z1"
+                parkingSpotID = "E1"
             };
 
             // Act
