@@ -1,7 +1,7 @@
 @startuml
 skinparam classAttributeIconSize 0
 hide methods
-left to right direction
+top to bottom direction
 
 class Platform{
 
