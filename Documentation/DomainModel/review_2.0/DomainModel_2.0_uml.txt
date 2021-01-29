@@ -1,0 +1,104 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide methods
+left to right direction
+
+class Platform{
+
+}
+
+class CentralAPI{
+  -List ParkAPI
+}
+
+class AuthenticationAPI{
+}
+
+class PaymentAPI{
+}
+
+class QRcodeAPI{
+}
+
+
+class Admin {
+  -Integer ID
+  -string email
+  -string name
+}
+
+class User {
+  -String userID
+  -String name	
+  -String nif
+  -String email
+  -Decimal credit
+}
+
+class ParkingLot{
+  -Integer parkingLotID
+  -String name
+  -String companyOwner
+  -String location
+  -Integer capacity
+  -DateTime openingTime
+  -DateTime closingTime
+}
+
+class ParkingSpot {
+  -String parkingSpotID
+  -Decimal priceHour
+  -String floor*
+  -Bool isPrivate*
+  -Bool isCovered*
+  -Integer parkingLotID
+}
+
+class Reservation {
+  -String reservationID
+  -DateTime startTime
+  -Integer hours
+  -Decimal finalPrice
+  -DateTime endTime
+  -String parkingSpotID
+}
+
+class SubLet {
+  -string subLetID
+  -string reservationID
+  -integer letHours
+  -decimal letPrice
+  -string userID
+  -string userID*
+  -DateTime startTime
+  -DateTime endTime
+}
+
+Platform "1" -- "1" CentralAPI : connects >
+
+CentralAPI "1" -- "1..*" AuthenticationAPI : consumes >
+CentralAPI "1" -- "1..*" User : has >
+CentralAPI "1" -- "1...*" ParkingLot : has >
+CentralAPI "1" -- "1...*" Admin : is managed >
+CentralAPI "1" -- "1...*" PaymentAPI : consumes >
+
+ParkingLot "1" -- "1..*" Admin : is managed >
+ParkingLot "1" -- "1...*" ParkingSpot : has >
+
+ParkingSpot "1" -- "1...*" Reservation : has >
+
+Reservation "1" -- "1...*" PaymentAPI : uses >
+Reservation "1" -- "1...*" SubLet : can have >
+Reservation "1" -- "1..*" QRcodeAPI : has >
+
+QRcodeAPI "1" -- "1" User : sent by email >
+
+SubLet "1" -- "1...*" PaymentAPI : uses >
+
+User "1" -- "1..*" User: sublets >
+User "1" -- "1..*" SubLet: has >
+User "1" -- "1..*" Platform : uses >
+User "1" -- "1..*" AuthenticationAPI : authenticates >
+User "1" -- "1..*" PaymentAPI : uses >
+User "1" -- "1..*" Reservation : makes >
+@enduml
