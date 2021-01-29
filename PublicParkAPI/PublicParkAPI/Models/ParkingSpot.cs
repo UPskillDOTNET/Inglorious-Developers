@@ -9,8 +9,10 @@ namespace PublicParkAPI.Models
 {
     public class ParkingSpot
     {
+        [Key]
         public string parkingSpotID { get; set; }
-       
+        [Required]
+        [Range(0.01, 99.9)]
         public decimal priceHour { get; set; }
 
         [ForeignKey("ParkingSpot")]

@@ -11,7 +11,9 @@ namespace PublicParkAPI.Models
     {
         [Key]
         public string reservationID { get; set; }
+        [Required]
         public DateTime startTime { get; set; }
+        [Required]
         public int hours { get; set; }
         public decimal finalPrice { get; set; }
         public DateTime endTime { get; set; }
