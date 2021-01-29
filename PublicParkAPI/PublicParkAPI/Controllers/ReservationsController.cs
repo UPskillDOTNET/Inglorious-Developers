@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using PublicParkAPI.Models;
 
 namespace PublicParkAPI.Controllers
 {
+    [Authorize]
     [Route("api/reservations")]
     [ApiController]
     public class ReservationsController : ControllerBase
