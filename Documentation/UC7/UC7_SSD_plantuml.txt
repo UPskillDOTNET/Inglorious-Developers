@@ -1,0 +1,33 @@
+@startuml
+autonumber
+actor "user" as USER
+
+activate USER
+USER -> ":Platform" : asks to be authenticated in the Platform
+activate ":Platform"
+":Platform" --> USER : confirms user authentication
+deactivate ":Platform"
+
+USER -> ":Platform" : access platform to check user dashboard
+activate ":Platform"
+":Platform" --> USER : asks the user if he wants to Read, Edit or Delete
+deactivate ":Platform"
+
+USER -> ":Platform" : chooses to read, edit or delete his profile
+activate ":Platform"
+":Platform" --> USER : asks the user about his details (Name, NIF, and email)
+deactivate ":Platform"
+
+USER -> ":Platform" : inserts the request data
+activate ":Platform"
+":Platform" --> USER : shows the data and asking him to confirm it
+deactivate ":Platform"
+
+
+USER -> ":Platform" : confirms it
+activate ":Platform"
+":Platform" --> USER :  saves the data and informs that the operation was successful
+deactivate ":Platform"
+
+deactivate USER
+@enduml
