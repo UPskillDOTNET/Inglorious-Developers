@@ -1,0 +1,27 @@
+Glossary
+
+CENTRAL WEB API	API: responsible for consuming Parks API and Public APIs.
+
+CRUD: Create, Read, Update and Delete.
+
+MUNICIPALITY: Territorial district in which a council exercises its jurisdiction.
+
+PARKING SPOT: Delimited and defined area used to park a car.
+
+PAY-AS-YOU-USE: The principle or practice of paying for goods and services at the time of purchase, rather than relying on credit.
+
+PAYMENT METHOD: Ways in which customers pay for their subscription services. A customer can choose a payment method based on your company’s list of preferred payment methods.
+
+PREPAID: Pay or arrange to pay beforehand or before due. It’s related to the reservation service.
+
+PRIVATE PARK: Car park category owned by a company.
+
+PUBLIC PARK: Car park category owned by the municipality.
+
+QR-CODE: Machine-readable code consisting of an array of black and white squares, typically used for storing URLs or other information for reading by the camera on a smartphone.
+
+RESERVATION: Operation done by the user in order to get a parking space in a limited period of time in a specific Parking Lot.
+
+SUBLET: Operation that depends on an existing Reservation. It allows the user to transfer his right of using the space to another user for a limited period of time (never exceeding the period of time of the original reservation).
+
+WEB APP: Application used by users and the client.
