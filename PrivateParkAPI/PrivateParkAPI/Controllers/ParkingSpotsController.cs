@@ -103,6 +103,20 @@ namespace PrivateParkAPI.Controllers
             return parkingSpots;
         }
 
+        //Get: Available Covered Parking Spots 
+        [Route("~/api/parkingspots/freeSpots/isCovered")]
+
+        public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingCoveredFreeSpots(Boolean isCovered) {
+
+            var reservation = await _context.Reservations.Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+            var parkingSpots = await _context.ParkingSpots.Where(c => c.isCovered == true).Include(p => p.ParkingLot).ToListAsync();
+
+
+            foreach (var r in reservation) {
+                parkingSpots.Remove(r.ParkingSpot);
+            }
+            return parkingSpots;
+        }
 
         // PUT: api/ParkingSpots/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
