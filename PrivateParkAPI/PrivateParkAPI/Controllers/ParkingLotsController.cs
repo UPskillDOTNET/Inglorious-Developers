@@ -36,7 +36,7 @@ namespace PrivateParkAPI.Controllers
 
             if (parkingLot == null)
             {
-                return NotFound();
+                return NotFound("Parking Lot does not Exist");
             }
 
             return parkingLot;
@@ -62,7 +62,7 @@ namespace PrivateParkAPI.Controllers
             {
                 if (!ParkingLotExists(id))
                 {
-                    return NotFound();
+                    return NotFound("Can't Update a Parking Lot that does not Exist");
                 }
                 else
                 {
@@ -96,7 +96,7 @@ namespace PrivateParkAPI.Controllers
             var parkingLot = await _context.ParkingLots.FindAsync(id);
             if (parkingLot == null)
             {
-                return NotFound();
+                return NotFound("Can't Delete a Parking Lot that does not Exist");
             }
 
             _context.ParkingLots.Remove(parkingLot);

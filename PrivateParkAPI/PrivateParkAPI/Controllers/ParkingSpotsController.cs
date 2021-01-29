@@ -43,7 +43,7 @@ namespace PrivateParkAPI.Controllers
 
             if (parkingSpot == null)
             {
-                return NotFound();
+                return NotFound("Parking Spot does not Exist");
             }
 
             return parkingSpot;
@@ -70,7 +70,7 @@ namespace PrivateParkAPI.Controllers
         {
             if (entryHour > leaveHour)
             {
-                return BadRequest();
+                return BadRequest("Can't leave before you enter");
             }
             var reservation = await _context.Reservations.Where(r => r.startTime <= leaveHour && r.endTime >= entryHour).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
             var parkingSpots = await _context.ParkingSpots.Include(p => p.ParkingLot).ToListAsync();
@@ -88,9 +88,9 @@ namespace PrivateParkAPI.Controllers
 
         public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingPriceFreeSpots(Decimal price)
         {
-            if (price < 0)
+            if (price <= 0)
             {
-                return BadRequest();
+                return BadRequest("We dont sell stuff for free");
             }
             var reservation = await _context.Reservations.Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
             var parkingSpots = await _context.ParkingSpots.Where(p => p.priceHour <= price).Include(p => p.ParkingLot).ToListAsync();
@@ -124,7 +124,7 @@ namespace PrivateParkAPI.Controllers
             {
                 if (!ParkingSpotExists(id))
                 {
-                    return NotFound();
+                    return NotFound("Can't Update a Parking Spot that does not Exist");
                 }
                 else
                 {
@@ -149,7 +149,7 @@ namespace PrivateParkAPI.Controllers
             {
                 if (ParkingSpotExists(parkingSpot.parkingSpotID))
                 {
-                    return Conflict();
+                    return Conflict("Parking Spot already Exist");
                 }
                 else
                 {
@@ -171,7 +171,7 @@ namespace PrivateParkAPI.Controllers
             var parkingSpot = await _context.ParkingSpots.FindAsync(id);
             if (parkingSpot == null)
             {
-                return NotFound();
+                return NotFound("Can't Delete a Parking Spot that does not Exist");
             }
 
             _context.ParkingSpots.Remove(parkingSpot);

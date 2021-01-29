@@ -36,7 +36,7 @@ namespace PrivateParkAPI.Controllers
 
             if (reservation == null)
             {
-                return NotFound();
+                return NotFound("Reservation does not Exist");
             }
 
             return reservation;
@@ -56,7 +56,7 @@ namespace PrivateParkAPI.Controllers
 
             if (parkingspot.isPrivate == true)
             {
-                return Conflict("You can't make a reservation on a private parking spot");
+                return Conflict("Can't make a reservation on a private parking spot");
             }
 
             reservation = new Reservation
@@ -79,7 +79,7 @@ namespace PrivateParkAPI.Controllers
             {
                 if (!ReservationExists(id))
                 {
-                    return NotFound();
+                    return NotFound("Can't Update a Reservation that does not Exist");
                 }
                 else
                 {
@@ -104,7 +104,7 @@ namespace PrivateParkAPI.Controllers
            
             if (parkingspot.isPrivate == true)
             {
-                return Conflict("You can't make a reservation on a private parking spot"); 
+                return Conflict("Can't make a reservation on a private parking spot"); 
             }
             
             reservation = new Reservation {
@@ -125,7 +125,7 @@ namespace PrivateParkAPI.Controllers
             {
                 if (ReservationExists(reservation.reservationID))
                 {
-                    return Conflict();
+                    return Conflict("Reservation already Exist!");
                 }
                 else
                 {
@@ -143,7 +143,7 @@ namespace PrivateParkAPI.Controllers
             var reservation = await _context.Reservations.FindAsync(id);
             if (reservation == null)
             {
-                return NotFound();
+                return NotFound("Can't delete a Reservation that does not Exist");
             }
 
             _context.Reservations.Remove(reservation);

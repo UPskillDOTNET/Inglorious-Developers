@@ -59,7 +59,7 @@ namespace testPrivateParkAPI
             var result = await theController.GetParkingLot(0);
 
             //Assert
-            Assert.IsType<NotFoundResult>(result.Result);
+            Assert.IsType<NotFoundObjectResult>(result.Result);
         }
 
         [Fact]
@@ -122,7 +122,7 @@ namespace testPrivateParkAPI
             var getResult = await theController.GetParkingLot(newParkingLot.parkingLotID);
 
             //Assert
-            Assert.IsType<NotFoundResult>(getResult.Result);
+            Assert.IsType<NotFoundObjectResult>(getResult.Result);
         }
 
         [Fact]
@@ -232,7 +232,7 @@ namespace testPrivateParkAPI
             var result = await theController.DeleteParkingLot(10);
 
             //Assert
-            Assert.IsType<NotFoundResult>(result);
+            Assert.IsType<NotFoundObjectResult>(result);
         }
     }
 }

@@ -42,7 +42,7 @@ namespace testPrivateParkAPI
 
             var result = await theController.GetReservation("1");
 
-            Assert.IsType<NotFoundResult>(result.Result);
+            Assert.IsType<NotFoundObjectResult>(result.Result);
         }
 
         [Fact]
@@ -58,7 +58,7 @@ namespace testPrivateParkAPI
             var response = await theController.GetReservation("1");
 
             //Assert
-            Assert.IsType<NotFoundResult>(response.Result);
+            Assert.IsType<NotFoundObjectResult>(response.Result);
         }
 
         [Fact]
@@ -140,7 +140,7 @@ namespace testPrivateParkAPI
             var result = await theController.DeleteReservation("1");
 
             //Assert 
-            Assert.IsType<NotFoundResult>(result);
+            Assert.IsType<NotFoundObjectResult>(result);
         }
 
         [Fact]
@@ -157,7 +157,7 @@ namespace testPrivateParkAPI
             var result = await theController.DeleteReservation(testCod);
 
             // Assert
-            Assert.IsType<NotFoundResult>(result);
+            Assert.IsType<NotFoundObjectResult>(result);
         }
 
 
@@ -184,7 +184,7 @@ namespace testPrivateParkAPI
             var response = await theController.PutReservation(testCod, theNonReservation);
 
             // Assert
-            Assert.IsType<NotFoundResult>(response);
+            Assert.IsType<NotFoundObjectResult>(response);
         }
 
         [Fact]
