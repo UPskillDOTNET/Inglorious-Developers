@@ -55,6 +55,20 @@ namespace PublicParkAPI.Controllers
                 return BadRequest(ModelState);
             }
 
+            var parkingspot = await _context.ParkingSpots.Where(p => p.parkingSpotID == reservation.parkingSpotID).FirstOrDefaultAsync();
+
+            reservation = new Reservation
+            {
+                reservationID = reservation.reservationID,
+                startTime = reservation.startTime,
+                hours = reservation.hours,
+                endTime = reservation.startTime.AddHours(reservation.hours),
+                finalPrice = reservation.hours * parkingspot.priceHour,
+                parkingSpotID = reservation.parkingSpotID
+            };
+
+
+
             _context.Entry(reservation).State = EntityState.Modified;
 
             try
@@ -84,6 +98,19 @@ namespace PublicParkAPI.Controllers
             if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
+
+            var parkingspot = await _context.ParkingSpots.Where(p => p.parkingSpotID == reservation.parkingSpotID).FirstOrDefaultAsync();
+
+            reservation = new Reservation
+            {
+                reservationID = reservation.reservationID,
+                startTime = reservation.startTime,
+                hours = reservation.hours,
+                endTime = reservation.startTime.AddHours(reservation.hours),
+                finalPrice = reservation.hours * parkingspot.priceHour,
+                parkingSpotID = reservation.parkingSpotID
+            };
+
             _context.Reservations.Add(reservation);
             try
             {

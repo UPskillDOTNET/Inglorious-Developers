@@ -13,6 +13,7 @@ namespace PublicParkAPI.Models
         public string reservationID { get; set; }
         public DateTime startTime { get; set; }
         public int hours { get; set; }
+        public decimal finalPrice { get; set; }
         public DateTime endTime { get; set; }
 
         [ForeignKey("ParkingSpot")]
