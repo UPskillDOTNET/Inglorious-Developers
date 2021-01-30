@@ -1,0 +1,85 @@
+Fully Dressed
+
+Name: Parking Spot Management
+
+Primary Actor: Administrator
+
+Stakeholders and interests:
+•	Administrator: Ability to manage parking spots and relate them to future reservations. 
+•	Parking Lot:  Have the Parking spaces full list with their info updated.
+
+Preconditions: 
+•	The Parking Lot to which the Parking Place belongs must exist in the database whether it is public or private.
+
+Postconditions:
+•	The Parking Lot is updated, according to the Parking Spots that were added by the Administrator.
+
+Main Success Scenario: 
+1. The administrator starts the authentication process.
+2. The Platform allows the administrator to be authenticated.
+3. The administrator accesses the platform.
+4. The platform asks what action the administrator intends to perform (Register, Consult, Edit, Delete).
+5. The administrator chooses to register a parking space.
+6. The platform asks the administrator to fill the required data (single designation, floor, price, parking lot name).
+7. The administrator inputs the requested data.
+8. The platform shows the data to the administrator, asking him to confirm it.
+9. The administrator confirms. 
+10.The platform saves the data and informs the administrator that the operation was successful.
+
+
+Extensions (alternative scenarios):
+*a.
+1. The Administrator can’t authenticate on the platform.
+2. The use case ends.
+
+*b.
+1. The administrator asks for the cancelation of the registration of the parking space.
+2. The use case ends.
+
+5a. The administrator chooses Consult, Edit, Delete but there are no registered parking spots
+1. The platform asks if the Administrator wishes to Consult, Edit or Delete a parking spot.
+2. The Administrator chooses an option.
+3. The platform asks which parking spot the administrator is interested in.
+4. The Administrator inserts the id of the parking spot to be searched.
+5. The platform informs the administrator that the parking spot does not exist.
+6. The use case ends. Starts again on step 1.
+
+5b. The administrator just wants to consult the data
+1. The administrator chooses Consult.
+2. The platform shows the list of the registered parking spots.
+3. The administrator selects a parking spot.
+4. The platform shows the selected parking spot info. 
+5. The use case ends.
+
+5c. The administrator wants to edit a registered parking spot.
+1. The administrator asks to edit a specific parking spot.
+2. The platform shows the list of all the parking spots that were registered.
+3. The administrator picks one of the parking spots of the list.
+4. The platform shows the chosen parking spot info.
+5. The administrator edits the info as it wishes.
+6. The platform confirms the edited info.
+7. The administrator confirms.
+8. The platform registers the info and the operation is successful.
+9. The use case ends.
+
+5d. The administrator wants to delete a parking spot
+1. The administrator selects Delete.
+2. The platform shows the list of all the parking spots that were registered.
+3. The administrator selects a parking spot.
+4. The platform shows the selected parking spot info and asks the administrator to confirm the action.
+5. The administrator confirms he wants to delete that parking spot.
+6. The platform deletes the selected parking spot info.
+7. The use case ends.
+
+8a. The platform detects that the parking spot Unique Designation already exists.
+1. The platform alerts the administrator to that fact.
+2. The administrator does not change the entered Unique Designation.
+3. The use case ends.
+
+Special Requirements: N/A
+
+Variations in Technology and Data: N/A
+
+Frequency of Occurrence: Whenever a parking place needs to be registered.
+
+Miscellaneous: 

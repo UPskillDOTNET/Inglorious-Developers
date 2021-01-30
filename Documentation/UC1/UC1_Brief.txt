@@ -1,0 +1,7 @@
+The administrator accesses the platform and authenticates in it.
+The platform asks what action the administrator intends to perform (Register, Consult, Edit, Delete).
+The administrator chooses to register a parking space. The platform asks the administrator to fill the required data (single designation, floor, price, parking lot name).
+The administrator inputs the requested data.
+The platform shows the data to the administrator asking him to confirm it.
+The administrator confirms.
+The platform saves the data and informs the administrator that the operation was successful.
