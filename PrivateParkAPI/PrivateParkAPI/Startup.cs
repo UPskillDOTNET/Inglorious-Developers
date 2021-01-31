@@ -9,6 +9,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using PrivateParkAPI.Authentication;
 using PrivateParkAPI.Data;
+using PrivateParkAPI.Repositories.IRepository;
+using PrivateParkAPI.Repositories.Repository;
+using PrivateParkAPI.Services.IServices;
+using PrivateParkAPI.Services.Services;
 using System.Text;
 
 namespace PrivateParkAPI
@@ -26,6 +30,12 @@ namespace PrivateParkAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<PrivateParkContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddTransient<IParkingSpotRepository, ParkingSpotRepository>();
+         
+
+            services.AddTransient<IParkingSpotService, ParkingSpotService>();
+            
 
             // For Identity  
             services.AddIdentity<apiUser, IdentityRole>()
