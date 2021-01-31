@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PrivateParkAPI.DTO;
 using PrivateParkAPI.Models;
 using PrivateParkAPI.Services.IServices;
 using System;
@@ -19,9 +20,10 @@ namespace PrivateParkAPI.Controllers
             _parkingSpotService = parkingSpotService;
         }
 
-        public async Task<IEnumerable<ParkingSpot>> GetProductById()
+        [HttpGet]
+        public  Task<IEnumerable<ParkingSpotDTO>> GetAllNotPrive()
         {
-            return await _parkingSpotService.GetAllnotPrivate();
+            return  _parkingSpotService.GetAllnotPrivate();
         }
 
        

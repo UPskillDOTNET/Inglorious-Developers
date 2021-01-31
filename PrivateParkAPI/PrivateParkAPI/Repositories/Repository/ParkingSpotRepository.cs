@@ -6,6 +6,7 @@ using PrivateParkAPI.Repositories.IRepository;
 using PrivateParkAPI.Data;
 using PrivateParkAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using PrivateParkAPI.DTO;
 
 namespace PrivateParkAPI.Repositories.Repository
 {

@@ -1,3 +1,4 @@
+
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -9,12 +10,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using PrivateParkAPI.Authentication;
-using PrivateParkAPI.Contracts;
 using PrivateParkAPI.Data;
+using PrivateParkAPI.DTO;
 using PrivateParkAPI.Repositories.IRepository;
 using PrivateParkAPI.Repositories.Repository;
 using PrivateParkAPI.Services.IServices;
 using PrivateParkAPI.Services.Services;
+using System.Reflection;
 using System.Text;
 
 namespace PrivateParkAPI
@@ -34,10 +36,10 @@ namespace PrivateParkAPI
             services.AddDbContext<PrivateParkContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddTransient<IParkingSpotRepository, ParkingSpotRepository>();
-         
+
 
             services.AddTransient<IParkingSpotService, ParkingSpotService>();
-            
+
 
             // For Identity  
             services.AddIdentity<apiUser, IdentityRole>()
@@ -68,9 +70,8 @@ namespace PrivateParkAPI
             });
 
             services.AddControllers();
-            services.AddScoped<IParkingSpotRepository, ParkingSpotRepository>();
-            services.AddAutoMapper(Assembly.GetAssembly(typeof(Profile))); //If you have other mapping profiles defined, that profiles will be loaded too.
-
+            services.AddAutoMapper(typeof(Maps));
+            /*services.AddAutoMapper(Assembly.GetAssembly(typeof(Profile)));*/ //If you have other mapping profiles defined, that profiles will be loaded too.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

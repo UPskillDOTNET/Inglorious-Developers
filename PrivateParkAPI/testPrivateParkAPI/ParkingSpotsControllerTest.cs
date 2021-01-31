@@ -53,7 +53,9 @@ namespace testPrivateParkAPI
             var result = await theController.GetParkingSpecificFreeSpots(DateTime.Parse("2021 - 08 - 22 07:00:00"),DateTime.Parse("2021 - 09 - 22 19:00:00"));
             //Assert
             var items = Assert.IsType<List<ParkingSpot>>(result.Value);
+#pragma warning disable xUnit2013 // Do not use equality check to check for collection size.
             Assert.Equal(1, items.Count);
+#pragma warning restore xUnit2013 // Do not use equality check to check for collection size.
         }
         [Fact]
         public async Task GetAllAsync_ShouldReturnAllAsync()
