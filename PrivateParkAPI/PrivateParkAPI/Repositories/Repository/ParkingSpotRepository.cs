@@ -15,31 +15,24 @@ namespace PrivateParkAPI.Repositories.Repository
         public ParkingSpotRepository(PrivateParkContext privateParkContext) : base(privateParkContext)
         {
         }
-        public async Task<IEnumerable<ParkingSpot>> GetnotPrivateParkingSpots()
+        public async Task<IEnumerable<ParkingSpot>> GetnotPrivateParkingSpots() 
         {
             
             return await GetAll().Where(p=>p.isPrivate == false).Include(p=>p.ParkingLot).ToListAsync();
         }
 
-        //[Route("~/api/parkingspots/all")]
-        //public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetAllParkingSpots()
-        //{
-        //    return await _context.ParkingSpots.Include(p => p.ParkingLot).ToListAsync();
-        //}
 
-        //// GET: api/ParkingSpots/5
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<ParkingSpot>> GetParkingSpot(string id)
-        //{
-        //    var parkingSpot = await _context.ParkingSpots.Include(p => p.ParkingLot).FirstOrDefaultAsync(s => s.parkingSpotID == id);
+        public async Task<IEnumerable<ParkingSpot>> GetAllParkingSpots()
+        {
+            return await GetAll().Include(p => p.ParkingLot).ToListAsync();
+        }
 
-        //    if (parkingSpot == null)
-        //    {
-        //        return NotFound("Parking Spot does not Exist");
-        //    }
-
-        //    return parkingSpot;
-        //}
+        // GET: api/ParkingSpots/5
+        
+        public async Task<ParkingSpot> GetParkingSpot(string id)
+        {
+            return await GetAll().Include(p => p.ParkingLot).FirstOrDefaultAsync(s => s.parkingSpotID == id);
+        }
 
         ////Get: Available Spots
         //[Route("~/api/parkingspots/freeSpots")]

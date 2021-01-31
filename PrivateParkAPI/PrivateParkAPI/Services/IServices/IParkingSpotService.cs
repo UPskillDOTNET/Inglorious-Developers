@@ -10,7 +10,9 @@ namespace PrivateParkAPI.Services.IServices
     public interface IParkingSpotService
     {
         Task<IEnumerable<ParkingSpotDTO>> GetAllnotPrivate();
+        Task<IEnumerable<ParkingSpotDTO>> GetAllParkingSpots();
         Task<IEnumerable<ParkingSpotDTO>> GetFreeParkingSpots();
+        Task<ParkingSpotDTO> GetParkingSpot(string id);
 
 
     }

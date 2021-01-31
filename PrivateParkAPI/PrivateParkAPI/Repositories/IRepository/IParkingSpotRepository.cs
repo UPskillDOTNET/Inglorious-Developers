@@ -10,12 +10,8 @@ namespace PrivateParkAPI.Repositories.IRepository
     public interface IParkingSpotRepository: IBaseRepository<ParkingSpot>
     {
         Task<IEnumerable<ParkingSpot>> GetnotPrivateParkingSpots();
-        //Task<List<ParkingSpotDTO>> GetAllParkingSpots();
-        //Task<List<ParkingSpotDTO>> GetParkingFreeSpots();
-        //Task<List<ParkingSpotDTO>> GetParkingSpecificFreeSpots();
-        //Task<List<ParkingSpotDTO>> GetParkingPriceFreeSpots();
-        //Task<List<ParkingSpotDTO>> GetParkingCoveredFreeSpots();
-        //Task <ParkingSpotDTO> GetParkingSpot();
+        Task<IEnumerable<ParkingSpot>> GetAllParkingSpots();
+        Task<ParkingSpot> GetParkingSpot(string ID);
         //Task<ParkingSpotDTO> PutParkingSpot();
         //Task<ParkingSpotDTO> PostParkingSpot();
         //Task<ParkingSpotDTO> DeleteParkingSpot();
