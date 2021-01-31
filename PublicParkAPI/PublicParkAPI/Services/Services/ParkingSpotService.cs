@@ -42,7 +42,10 @@ namespace PublicParkAPI.Services.Services
         public async Task<IEnumerable<ParkingSpotDTO>> GetFreeParkingSpots()
         {
             var reservations = await _reservationRepository.GetSpecificReservation();
+            Console.WriteLine(reservations);
             var parkingSpots = await _parkingSpotRepository.GetParkingSpots();
+            Console.WriteLine(parkingSpots);
+            Console.WriteLine("batata");
 
             var res = from p in parkingSpots where !(from r in reservations where r.parkingSpotID == p.parkingSpotID && (r.startTime <= DateTime.Now && r.endTime >= DateTime.Now) select r.parkingSpotID).Contains(p.parkingSpotID) select p;
             var parkingSpotsDTO = _mapper.Map<List<ParkingSpot>, List<ParkingSpotDTO>>(res.ToList());

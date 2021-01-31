@@ -39,7 +39,8 @@ namespace PublicParkAPI.Controllers
             return _parkingSpotService.GetParkingSpot(id);
         }
 
-        [Route("/freeSpots")]
+        [HttpGet]
+        [Route("~/api/test/freeSpots")]
         public Task<IEnumerable<ParkingSpotDTO>> GetFreeParkingSpots()
         {
             return _parkingSpotService.GetFreeParkingSpots();
