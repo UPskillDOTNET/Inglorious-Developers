@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Models;
 using PrivateParkAPI.Repositories.IRepository;
@@ -54,17 +56,17 @@ namespace PrivateParkAPI.Services.Services
             return parkingSpotsDTO;
         }
 
-        public async Task<HttpStatusCode> PutParkingSpot(string id, ParkingSpotDTO parkingSpotDTO)
+        public async Task<ActionResult<ParkingSpotDTO>> PutParkingSpot(string id, ParkingSpotDTO parkingSpotDTO)
         {
             var parkingSpot = _mapper.Map<ParkingSpotDTO, ParkingSpot>(parkingSpotDTO);
 
 
             await _parkingSpotRepository.PutParkingSpot(id, parkingSpot);
 
-            return HttpStatusCode.NoContent;
-
-
+            return parkingSpotDTO;
+            
         }
 
+      
     }
 }

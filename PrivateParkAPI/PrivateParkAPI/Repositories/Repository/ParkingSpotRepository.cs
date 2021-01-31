@@ -8,6 +8,7 @@ using PrivateParkAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using PrivateParkAPI.DTO;
 using System.Net;
+using Microsoft.AspNetCore.Mvc;
 
 namespace PrivateParkAPI.Repositories.Repository
 {
@@ -109,11 +110,11 @@ namespace PrivateParkAPI.Repositories.Repository
         // PUT: api/ParkingSpots/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
  
-        public async Task<HttpStatusCode> PutParkingSpot(string id, ParkingSpot parkingSpot)
+        public async Task<ActionResult<ParkingSpot>>PutParkingSpot(string id, ParkingSpot parkingSpot)
         {
              await UpdateAsync(parkingSpot);
             
-            return  HttpStatusCode.NotFound;
+            return  parkingSpot;
         }
 
         //// POST: api/ParkingSpots

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Models;
 
@@ -13,7 +14,7 @@ namespace PrivateParkAPI.Repositories.IRepository
         Task<IEnumerable<ParkingSpot>> GetnotPrivateParkingSpots();
         Task<IEnumerable<ParkingSpot>> GetAllParkingSpots();
         Task<ParkingSpot> GetParkingSpot(string ID);
-        Task<HttpStatusCode> PutParkingSpot(string id, ParkingSpot parkingSpot);
+        Task<ActionResult<ParkingSpot>> PutParkingSpot(string id, ParkingSpot parkingSpot);
         //Task<ParkingSpotDTO> PostParkingSpot();
         //Task<ParkingSpotDTO> DeleteParkingSpot();
         //bool ParkingSpotExists();
