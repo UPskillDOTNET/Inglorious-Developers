@@ -7,6 +7,7 @@ using PrivateParkAPI.Data;
 using PrivateParkAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using PrivateParkAPI.DTO;
+using System.Net;
 
 namespace PrivateParkAPI.Repositories.Repository
 {
@@ -105,36 +106,15 @@ namespace PrivateParkAPI.Repositories.Repository
         //    return parkingSpots;
         //}
 
-        //// PUT: api/ParkingSpots/5
-        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutParkingSpot(string id, ParkingSpot parkingSpot)
-        //{
-        //    if (id != parkingSpot.parkingSpotID || !ModelState.IsValid)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    _context.Entry(parkingSpot).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!ParkingSpotExists(id))
-        //        {
-        //            return NotFound("Can't Update a Parking Spot that does not Exist");
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
+        // PUT: api/ParkingSpots/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+ 
+        public async Task<HttpStatusCode> PutParkingSpot(string id, ParkingSpot parkingSpot)
+        {
+             await UpdateAsync(parkingSpot);
+            
+            return  HttpStatusCode.NotFound;
+        }
 
         //// POST: api/ParkingSpots
         //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -179,6 +159,11 @@ namespace PrivateParkAPI.Repositories.Repository
         //    await _context.SaveChangesAsync();
 
         //    return NoContent();
+        //}
+
+        //private bool ParkingSpotExists(string id)
+        //{
+        //    return GetAll().FirstOrDefaultAsync(e => e.parkingSpotID == id);
         //}
     }
 }

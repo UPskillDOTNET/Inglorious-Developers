@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using PrivateParkAPI.DTO;
@@ -52,5 +53,18 @@ namespace PrivateParkAPI.Services.Services
            var parkingSpotsDTO = _mapper.Map<ParkingSpot , ParkingSpotDTO>(parkingSpot);
             return parkingSpotsDTO;
         }
+
+        public async Task<HttpStatusCode> PutParkingSpot(string id, ParkingSpotDTO parkingSpotDTO)
+        {
+            var parkingSpot = _mapper.Map<ParkingSpotDTO, ParkingSpot>(parkingSpotDTO);
+
+
+            await _parkingSpotRepository.PutParkingSpot(id, parkingSpot);
+
+            return HttpStatusCode.NoContent;
+
+
+        }
+
     }
 }
