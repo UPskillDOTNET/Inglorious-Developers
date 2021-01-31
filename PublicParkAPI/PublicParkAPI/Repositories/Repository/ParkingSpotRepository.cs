@@ -24,18 +24,16 @@ namespace PublicParkAPI.Repositories
         }
 
 
-        public Task<ParkingSpot> GetParkingSpot(string id)
+        public async Task<ParkingSpot> GetParkingSpot(string id)
         {
-            var parkingSpot = GetAll().Include(p => p.ParkingLot).FirstOrDefaultAsync(s => s.parkingSpotID == id);
-            return parkingSpot;
+            return await GetAll().Include(p => p.ParkingLot).FirstOrDefaultAsync(s => s.parkingSpotID == id);
+
         }
 
-        //public IEnumerable<ParkingSpot> GetParkingFreeSpots()
-        //{
-        //    var parkingSpots = _context.ParkingSpots.Include(p => p.ParkingLot).Where(p => !_context.Reservations.Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).Any(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now)).ToList();
-        //    var res = from p in _context.ParkingSpots where !(from r in _context.Reservations where r.parkingSpotID == p.parkingSpotID && (r.startTime <= DateTime.Now && r.endTime >= DateTime.Now) select r.parkingSpotID).Contains(p.parkingSpotID) select p;
-        //    return parkingSpots;
-        //}
+        public async Task<IEnumerable<ParkingSpot>> GetFreeParkingSpots()
+        {
+            return await GetAll().Include(p => p.ParkingLot).ToListAsync();
+        }
 
         //public IEnumerable<ParkingSpot> GetParkingSpecificFreeSpots(DateTime entryHour, DateTime leaveHour)
         //{

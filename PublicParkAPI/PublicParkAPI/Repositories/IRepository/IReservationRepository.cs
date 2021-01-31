@@ -9,7 +9,8 @@ namespace PublicParkAPI.Contracts
 {
     public interface IReservationRepository : IBaseRepository<Reservation>
     {
-        //Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservations();
+        Task<IEnumerable<Reservation>> GetReservations();
+        Task<IEnumerable<Reservation>> GetSpecificReservation();
         //Task<ActionResult<ReservationDTO>> GetReservation(string id);
         //Task<IActionResult> PutReservation(string id, ReservationDTO reservation);
         //Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservation);

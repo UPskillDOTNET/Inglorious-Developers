@@ -13,11 +13,13 @@ namespace PublicParkAPI.Services.Services
     {
 
         private readonly IParkingSpotRepository _parkingSpotRepository;
+        private readonly IReservationRepository _reservationRepository;
         private readonly IMapper _mapper;
 
-        public ParkingSpotService(IParkingSpotRepository parkingSpotRepository, IMapper mapper)
+        public ParkingSpotService(IParkingSpotRepository parkingSpotRepository, IMapper mapper, IReservationRepository reservationSpotRepository)
         {
             _parkingSpotRepository = parkingSpotRepository;
+            _reservationRepository = reservationSpotRepository;
             _mapper = mapper;
         }
 
@@ -35,6 +37,16 @@ namespace PublicParkAPI.Services.Services
             var parkingSpot = await _parkingSpotRepository.GetParkingSpot(id);
             var parkingSpotDTO =  _mapper.Map<ParkingSpot, ParkingSpotDTO>(parkingSpot);
             return parkingSpotDTO;
+        }
+
+        public async Task<IEnumerable<ParkingSpotDTO>> GetFreeParkingSpots()
+        {
+            var reservations = await _reservationRepository.GetSpecificReservation();
+            var parkingSpots = await _parkingSpotRepository.GetParkingSpots();
+
+            var res = from p in parkingSpots where !(from r in reservations where r.parkingSpotID == p.parkingSpotID && (r.startTime <= DateTime.Now && r.endTime >= DateTime.Now) select r.parkingSpotID).Contains(p.parkingSpotID) select p;
+            var parkingSpotsDTO = _mapper.Map<List<ParkingSpot>, List<ParkingSpotDTO>>(res.ToList());
+            return parkingSpotsDTO;
         }
     }
 }

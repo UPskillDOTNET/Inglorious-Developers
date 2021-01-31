@@ -12,7 +12,7 @@ namespace PublicParkAPI.Contracts
     {
         Task<IEnumerable<ParkingSpot>> GetParkingSpots();
         Task<ParkingSpot> GetParkingSpot(string id);
-        //Task<IEnumerable<ParkingSpotDTO>> GetParkingFreeSpots();
+        Task<IEnumerable<ParkingSpot>> GetFreeParkingSpots();
         //Task<IEnumerable<ParkingSpotDTO>> GetParkingSpecificFreeSpots(DateTime entryHour, DateTime leaveHour);
         //Task<IEnumerable<ParkingSpotDTO>> GetParkingPriceFreeSpots(decimal price);
         //Task<ParkingSpotDTO> PutParkingSpot(ParkingSpot parkingSpot);

@@ -19,6 +19,7 @@ using PublicParkAPI.Mappings;
 using PublicParkAPI.Repositories;
 using PublicParkAPI.Repositories.Repository;
 using PublicParkAPI.Services;
+using PublicParkAPI.Services.IServices;
 using PublicParkAPI.Services.Services;
 using System;
 using System.Collections.Generic;
@@ -43,9 +44,12 @@ namespace PublicParkAPI
             services.AddDbContext<PublicParkContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddTransient<IParkingSpotRepository, ParkingSpotRepository>();
+            services.AddTransient<IReservationRepository, ReservationRepository>();
+            //services.AddTransient<IParkingSpotRepository, ParkingSpotRepository>();
 
 
             services.AddTransient<IParkingSpotService, ParkingSpotService>();
+            services.AddTransient<IReservationService, ReservationService>();
             // For Identity  
             services.AddIdentity<apiUser, IdentityRole>()
                 .AddEntityFrameworkStores<PublicParkContext>()
