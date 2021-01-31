@@ -11,7 +11,7 @@ namespace PublicParkAPI.Contracts
     public interface IParkingSpotRepository : IBaseRepository<ParkingSpot>
     {
         Task<IEnumerable<ParkingSpot>> GetParkingSpots();
-        //Task<ParkingSpotDTO> GetParkingSpot(string id);
+        Task<ParkingSpot> GetParkingSpot(string id);
         //Task<IEnumerable<ParkingSpotDTO>> GetParkingFreeSpots();
         //Task<IEnumerable<ParkingSpotDTO>> GetParkingSpecificFreeSpots(DateTime entryHour, DateTime leaveHour);
         //Task<IEnumerable<ParkingSpotDTO>> GetParkingPriceFreeSpots(decimal price);

@@ -33,11 +33,11 @@ namespace PublicParkAPI.Controllers
             return _parkingSpotService.GetParkingSpots();
         }
 
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<ParkingSpot>> GetParkingSpot(string id)
-        //{
-        //    return Ok(_spotRepository.GetParkingSpot(id));
-        //}
+        [HttpGet("{id}")]
+        public Task<ParkingSpotDTO> GetParkingSpot(string id)
+        {
+            return _parkingSpotService.GetParkingSpot(id);
+        }
 
         //[Route("/freeSpots")]
         //public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingFreeSpots()

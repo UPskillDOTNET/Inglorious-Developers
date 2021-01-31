@@ -21,12 +21,20 @@ namespace PublicParkAPI.Services.Services
             _mapper = mapper;
         }
 
+
         public async Task<IEnumerable<ParkingSpotDTO>> GetParkingSpots()
         {
             var parkingSpots = await _parkingSpotRepository.GetParkingSpots();
             var parkingSpotsDTO = _mapper.Map<List<ParkingSpot>, List<ParkingSpotDTO>>(parkingSpots.ToList());
             return parkingSpotsDTO;
 
+        }
+
+        public async Task<ParkingSpotDTO> GetParkingSpot(string id)
+        {
+            var parkingSpot = await _parkingSpotRepository.GetParkingSpot(id);
+            var parkingSpotDTO =  _mapper.Map<ParkingSpot, ParkingSpotDTO>(parkingSpot);
+            return parkingSpotDTO;
         }
     }
 }

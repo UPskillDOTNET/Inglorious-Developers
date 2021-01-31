@@ -9,5 +9,6 @@ namespace PublicParkAPI.Services
     public interface IParkingSpotService
     {
         Task<IEnumerable<ParkingSpotDTO>> GetParkingSpots();
+        Task<ParkingSpotDTO> GetParkingSpot(string id);
     }
 }

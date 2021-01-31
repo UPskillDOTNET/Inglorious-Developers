@@ -24,11 +24,11 @@ namespace PublicParkAPI.Repositories
         }
 
 
-        //public ParkingSpot GetParkingSpot(string id)
-        //{
-        //    var parkingSpot = _context.ParkingSpots.Include(p => p.ParkingLot).FirstOrDefaultAsync(s => s.parkingSpotID == id);
-        //    return parkingSpot.Result;
-        //}
+        public Task<ParkingSpot> GetParkingSpot(string id)
+        {
+            var parkingSpot = GetAll().Include(p => p.ParkingLot).FirstOrDefaultAsync(s => s.parkingSpotID == id);
+            return parkingSpot;
+        }
 
         //public IEnumerable<ParkingSpot> GetParkingFreeSpots()
         //{
