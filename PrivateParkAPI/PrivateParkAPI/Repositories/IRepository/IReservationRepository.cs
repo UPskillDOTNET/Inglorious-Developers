@@ -10,6 +10,7 @@ namespace PrivateParkAPI.Repositories.IRepository
     public interface IReservationRepository: IBaseRepository<Reservation>
     {
         Task<IEnumerable<Reservation>> GetReservations();
+        Task<IEnumerable<Reservation>> GetSpecificReservation();
         //Task<List<ReservationDTO>> GetAllReservations();
         //Task<List<ReservationDTO>> GetParkingFreeSpots();
         //Task<List<ReservationDTO>> GetParkingSpecificFreeSpots();

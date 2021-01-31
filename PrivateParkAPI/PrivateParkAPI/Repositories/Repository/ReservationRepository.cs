@@ -21,6 +21,10 @@ namespace PrivateParkAPI.Repositories.Repository
             return await GetAll().ToListAsync();
         }
 
+        public async Task<IEnumerable<Reservation>> GetSpecificReservation()
+        {
+            return await GetAll().Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+        }
 
         //[Authorize]
         //[Route("api/reservations")]

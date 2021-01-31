@@ -53,7 +53,7 @@ namespace PrivateParkAPI.Repositories.Repository
         {
             if (entity == null)
             {
-                throw new ArgumentNullException($"{nameof(AddAsync)} entity must not be null");
+                throw new ArgumentNullException($"{nameof(UpdateAsync)} entity must not be null");
             }
 
             try
@@ -73,7 +73,7 @@ namespace PrivateParkAPI.Repositories.Repository
         {
             if (entity == null)
             {
-                throw new ArgumentNullException($"{nameof(AddAsync)} entity must not be null");
+                throw new ArgumentNullException($"{nameof(DeleteAsync)} entity must not be null");
             }
 
             try
