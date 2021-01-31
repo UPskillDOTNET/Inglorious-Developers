@@ -2,6 +2,7 @@
 using AutoMapper;
 using PublicParkAPI.Models;
 using PublicParkAPI.Data;
+using PublicParkAPI.DTO;
 
 namespace PublicParkAPI.Mappings
 {

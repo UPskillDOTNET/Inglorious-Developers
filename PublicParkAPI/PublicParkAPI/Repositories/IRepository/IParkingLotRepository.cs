@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PublicParkAPI.Contracts
 {
-    public interface IParkingLotRepository : IRepositoryBase<ParkingLot>
+    public interface IParkingLotRepository : IBaseRepository<ParkingLot>
     {
         IEnumerable<ParkingLot> GetParkingLots();
         ParkingLot GetParkingLot(int id);

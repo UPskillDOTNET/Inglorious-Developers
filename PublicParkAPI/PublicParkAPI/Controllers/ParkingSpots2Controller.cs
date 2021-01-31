@@ -9,40 +9,41 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PublicParkAPI.Contracts;
 using PublicParkAPI.Data;
+using PublicParkAPI.DTO;
 using PublicParkAPI.Models;
+using PublicParkAPI.Services;
 
 namespace PublicParkAPI.Controllers
 {
     [Route("api/testes")]
     public class ParkingSpots2Controller : Controller
     {
-        private readonly IParkingSpotRepository _spotRepository;
-        private readonly IMapper _mapper;
+        private readonly IParkingSpotService _parkingSpotService;
 
-        public ParkingSpots2Controller(IParkingSpotRepository spotRepository, IMapper mapper)
+        public ParkingSpots2Controller(IParkingSpotService parkingSpotService)
         {
-            _spotRepository = spotRepository;
-            _mapper = mapper;
+            _parkingSpotService = parkingSpotService;
         }
+
 
         // GET: api/ParkingSpots
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingSpots()
+        public Task<IEnumerable<ParkingSpotDTO>> GetParkingSpots()
         {
-            return Ok(_spotRepository.GetParkingSpots());
+            return _parkingSpotService.GetParkingSpots();
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ParkingSpot>> GetParkingSpot(string id)
-        {
-            return Ok(_spotRepository.GetParkingSpot(id));
-        }
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<ParkingSpot>> GetParkingSpot(string id)
+        //{
+        //    return Ok(_spotRepository.GetParkingSpot(id));
+        //}
 
-        [Route("/freeSpots")]
-        public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingFreeSpots()
-        {
-            return Ok(_spotRepository.GetParkingFreeSpots());
-        }
+        //[Route("/freeSpots")]
+        //public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingFreeSpots()
+        //{
+        //    return Ok(_spotRepository.GetParkingFreeSpots());
+        //}
 
 
 

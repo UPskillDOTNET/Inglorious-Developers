@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +13,13 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PublicParkAPI.Authentication;
+using PublicParkAPI.Contracts;
 using PublicParkAPI.Data;
+using PublicParkAPI.Mappings;
+using PublicParkAPI.Repositories;
+using PublicParkAPI.Repositories.Repository;
+using PublicParkAPI.Services;
+using PublicParkAPI.Services.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +41,11 @@ namespace PublicParkAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<PublicParkContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddTransient<IParkingSpotRepository, ParkingSpotRepository>();
 
+
+            services.AddTransient<IParkingSpotService, ParkingSpotService>();
             // For Identity  
             services.AddIdentity<apiUser, IdentityRole>()
                 .AddEntityFrameworkStores<PublicParkContext>()
@@ -64,6 +75,11 @@ namespace PublicParkAPI
             });
 
             services.AddControllers();
+            services.AddControllersWithViews()
+    .AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
+            services.AddAutoMapper(typeof(Maps));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
