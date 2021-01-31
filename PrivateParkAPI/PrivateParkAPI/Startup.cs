@@ -36,10 +36,10 @@ namespace PrivateParkAPI
             services.AddDbContext<PrivateParkContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddTransient<IParkingSpotRepository, ParkingSpotRepository>();
-
+            services.AddTransient<IReservationRepository, ReservationRepository>();
 
             services.AddTransient<IParkingSpotService, ParkingSpotService>();
-
+            services.AddTransient<IReservationService, ReservationService>();
 
             // For Identity  
             services.AddIdentity<apiUser, IdentityRole>()
