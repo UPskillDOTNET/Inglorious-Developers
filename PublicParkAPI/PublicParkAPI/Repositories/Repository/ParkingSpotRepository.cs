@@ -30,9 +30,10 @@ namespace PublicParkAPI.Repositories
 
         }
 
-        public async Task<IEnumerable<ParkingSpot>> GetFreeParkingSpots()
+        public async Task<ActionResult<ParkingSpot>> PutParkingSpot(string id, ParkingSpot parkingSpot)
         {
-            return await GetAll().Include(p => p.ParkingLot).ToListAsync();
+            await UpdateAsync(parkingSpot);
+            return parkingSpot;
         }
 
         //public IEnumerable<ParkingSpot> GetParkingSpecificFreeSpots(DateTime entryHour, DateTime leaveHour)

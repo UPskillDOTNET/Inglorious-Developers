@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -46,8 +47,12 @@ namespace PublicParkAPI.Controllers
             return _parkingSpotService.GetFreeParkingSpots();
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutParkingSpot(ParkingSpotDTO parkingSpotDTO)
+        {
+            await _parkingSpotService.PutParkingSpot(parkingSpotDTO.parkingSpotID, parkingSpotDTO);
 
-
-
+            return NoContent();
+        }
     }
 }

@@ -43,12 +43,12 @@ namespace PublicParkAPI
         {
             services.AddDbContext<PublicParkContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddTransient<IParkingLotRepository, ParkingLotRepository>();
             services.AddTransient<IParkingSpotRepository, ParkingSpotRepository>();
             services.AddTransient<IReservationRepository, ReservationRepository>();
-            //services.AddTransient<IParkingSpotRepository, ParkingSpotRepository>();
-
-
+     
             services.AddTransient<IParkingSpotService, ParkingSpotService>();
+            services.AddTransient<IParkingLotService, ParkingLotService>();
             services.AddTransient<IReservationService, ReservationService>();
             // For Identity  
             services.AddIdentity<apiUser, IdentityRole>()
@@ -79,10 +79,6 @@ namespace PublicParkAPI
             });
 
             services.AddControllers();
-            services.AddControllersWithViews()
-    .AddNewtonsoftJson(options =>
-    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-);
             services.AddAutoMapper(typeof(Maps));
         }
 

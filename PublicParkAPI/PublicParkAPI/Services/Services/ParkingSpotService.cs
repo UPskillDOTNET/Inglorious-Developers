@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using PublicParkAPI.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace PublicParkAPI.Services.Services
 {
@@ -42,14 +43,18 @@ namespace PublicParkAPI.Services.Services
         public async Task<IEnumerable<ParkingSpotDTO>> GetFreeParkingSpots()
         {
             var reservations = await _reservationRepository.GetSpecificReservation();
-            Console.WriteLine(reservations);
             var parkingSpots = await _parkingSpotRepository.GetParkingSpots();
-            Console.WriteLine(parkingSpots);
-            Console.WriteLine("batata");
-
+     
             var res = from p in parkingSpots where !(from r in reservations where r.parkingSpotID == p.parkingSpotID && (r.startTime <= DateTime.Now && r.endTime >= DateTime.Now) select r.parkingSpotID).Contains(p.parkingSpotID) select p;
             var parkingSpotsDTO = _mapper.Map<List<ParkingSpot>, List<ParkingSpotDTO>>(res.ToList());
             return parkingSpotsDTO;
+        }
+
+        public async Task<ActionResult<ParkingSpotDTO>> PutParkingSpot(string id, ParkingSpotDTO parkingSpotDTO)
+        {
+            var parkingSpot = _mapper.Map<ParkingSpotDTO, ParkingSpot>(parkingSpotDTO);
+            await _parkingSpotRepository.PutParkingSpot(id, parkingSpot);
+            return parkingSpotDTO;
         }
     }
 }
