@@ -36,20 +36,7 @@ namespace PrivateParkAPI.Repositories.Repository
             return await GetAll().Include(p => p.ParkingLot).FirstOrDefaultAsync(s => s.parkingSpotID == id);
         }
 
-        ////Get: Available Spots
-        //[Route("~/api/parkingspots/freeSpots")]
-        //public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingFreeSpots()
-        //{
-
-        //    var reservation = await _context.Reservations.Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
-        //    var parkingSpots = await _context.ParkingSpots.Include(p => p.ParkingLot).ToListAsync();
-
-        //    foreach (var r in reservation)
-        //    {
-        //        parkingSpots.Remove(r.ParkingSpot);
-        //    }
-        //    return parkingSpots;
-        //}
+       
 
         ////Get: Available Specific Spots
         //[Route("~/api/parkingspots/freeSpots/{entryHour}/{leaveHour}")]
@@ -119,52 +106,28 @@ namespace PrivateParkAPI.Repositories.Repository
 
         //// POST: api/ParkingSpots
         //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPost]
-        //public async Task<ActionResult<ParkingSpot>> PostParkingSpot(ParkingSpot parkingSpot)
-        //{
-        //    _context.ParkingSpots.Add(parkingSpot);
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateException)
-        //    {
-        //        if (ParkingSpotExists(parkingSpot.parkingSpotID))
-        //        {
-        //            return Conflict("Parking Spot already Exist");
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
+        [HttpPost]
+        public async Task<ActionResult<ParkingSpot>> PostParkingSpot(ParkingSpot parkingSpot)
+        {
+           
+            await AddAsync(parkingSpot);
 
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-        //    return CreatedAtAction("GetParkingSpot", new { id = parkingSpot.parkingSpotID }, parkingSpot);
-        //}
+            return parkingSpot;
+        }
 
-        //// DELETE: api/ParkingSpots/5
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteParkingSpot(string id)
-        //{
-        //    var parkingSpot = await _context.ParkingSpots.FindAsync(id);
-        //    if (parkingSpot == null)
-        //    {
-        //        return NotFound("Can't Delete a Parking Spot that does not Exist");
-        //    }
 
-        //    _context.ParkingSpots.Remove(parkingSpot);
-        //    await _context.SaveChangesAsync();
 
-        //    return NoContent();
-        //}
+        // DELETE: api/ParkingSpots/5
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ParkingSpot>> DeleteParkingSpot(string id)
+        {
+            var parkingSpot = GetAll().First(s => s.parkingSpotID == id);
+           
+            await DeleteAsync(parkingSpot);
 
-        //private bool ParkingSpotExists(string id)
-        //{
-        //    return GetAll().FirstOrDefaultAsync(e => e.parkingSpotID == id);
-        //}
+            return parkingSpot;
+        }
+
+       
     }
 }

@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PrivateParkAPI.DTO;
-using PrivateParkAPI.Models;
 using PrivateParkAPI.Services.IServices;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace PrivateParkAPI.Controllers
@@ -47,7 +44,7 @@ namespace PrivateParkAPI.Controllers
         public Task<ParkingSpotDTO> GetParkingSpot(string id)
         {
             var parkingSpots = _parkingSpotService.GetParkingSpot(id);
-         
+
             return parkingSpots;
         }
 
@@ -59,5 +56,61 @@ namespace PrivateParkAPI.Controllers
 
             return NoContent();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> PostParkingSpot(ParkingSpotDTO parkingSpotDTO)
+        {
+            var id = parkingSpotDTO.parkingSpotID;
+            
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                await _parkingSpotService.PostParkingSpot(parkingSpotDTO);
+            }
+            
+            catch (Exception)
+            {
+                if (ParkingSpotExists(id))
+                {
+                    return Conflict("Parking Spot already Exist");
+                }
+                else
+                {
+                    throw;
+                }
+
+            }
+            return CreatedAtAction("GetParkingSpot", new { id = parkingSpotDTO.parkingSpotID }, parkingSpotDTO);
+        }
+
+        [HttpDelete("{id}")]
+
+        public async Task<IActionResult> DeleteParkingSpot(string id)
+        {
+
+            await _parkingSpotService.DeleteParkingSpot(id);
+
+            return NotFound();
+        }
+
+        public bool ParkingSpotExists(string id)
+        {
+            var parkingspot =  _parkingSpotService.GetParkingSpot(id);
+           
+            if (parkingspot != null) 
+            {
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
     }
 }
