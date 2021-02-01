@@ -54,5 +54,36 @@ namespace PublicParkAPI.Controllers
 
             return NoContent();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> PostParkingSpot([FromBody]ParkingSpotDTO parkingSpotDTO)
+        {
+            var id = parkingSpotDTO.parkingSpotID;
+            await _parkingSpotService.PostParkingSpot(parkingSpotDTO);
+            return CreatedAtAction("Parking Spot Created", new { id = parkingSpotDTO.parkingSpotID }, parkingSpotDTO);
+        }
+
+        [HttpDelete("{id}")]
+
+        public async Task<IActionResult> DeleteParkingSpot(string id)
+        {
+            await _parkingSpotService.DeleteParkingSpot(id);
+            return NotFound();
+        }
+
+        public bool ParkingSpotExists(string id)
+        {
+            var parkingspot = _parkingSpotService.GetParkingSpot(id);
+            if (parkingspot != null)
+            {
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
     }
 }

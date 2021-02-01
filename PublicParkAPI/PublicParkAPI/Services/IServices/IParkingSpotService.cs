@@ -13,5 +13,7 @@ namespace PublicParkAPI.Services
         Task<ParkingSpotDTO> GetParkingSpot(string id);
         Task<IEnumerable<ParkingSpotDTO>> GetFreeParkingSpots();
         Task<ActionResult<ParkingSpotDTO>> PutParkingSpot(string id, ParkingSpotDTO parkingSpotDTO);
+        Task<ActionResult<ParkingSpotDTO>> PostParkingSpot(ParkingSpotDTO parkingSpotDTO);
+        Task<ActionResult<ParkingSpotDTO>> DeleteParkingSpot(string id);
     }
 }
