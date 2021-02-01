@@ -30,6 +30,11 @@ namespace PublicParkAPI.Repositories
 
         }
 
+        public async Task<IEnumerable<ParkingSpot>> GetCheaperParkingSpots(decimal price)
+        {
+            return await GetAll().Where(p => p.priceHour <= price).Include(p => p.ParkingLot).ToListAsync();
+        }
+
         public async Task<ActionResult<ParkingSpot>> PutParkingSpot(string id, ParkingSpot parkingSpot)
         {
             await UpdateAsync(parkingSpot);
@@ -48,6 +53,7 @@ namespace PublicParkAPI.Repositories
             await DeleteAsync(parkingSpot);
             return parkingSpot;
         }
+
     }
 }
 

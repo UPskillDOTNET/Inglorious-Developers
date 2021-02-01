@@ -54,25 +54,13 @@ namespace PublicParkAPI.Controllers
             return _parkingSpotService.GetParkingSpecificFreeSpots(entryHour, leaveHour);
         }
 
-        ////Get: Available Parking Spots by price
-        //[Route("~/api/testes/parkingspots/freeSpots/{price}")]
+        //Get: Available Parking Spots by price
+        [Route("~/api/testes/parkingspots/freeSpots/{price}")]
 
-        //public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingPriceFreeSpots(Decimal price)
-        //{
-        //    if (price < 0)
-        //    {
-        //        return BadRequest();
-        //    }
-        //    var reservation = await _context.Reservations.Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
-        //    var parkingSpots = await _context.ParkingSpots.Where(p => p.priceHour <= price).Include(p => p.ParkingLot).ToListAsync();
-
-
-        //    foreach (var r in reservation)
-        //    {
-        //        parkingSpots.Remove(r.ParkingSpot);
-        //    }
-        //    return parkingSpots;
-        //}
+        public Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetParkingPriceFreeSpots(Decimal price)
+        {
+            return _parkingSpotService.GetParkingPriceFreeSpots(price);
+        }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutParkingSpot([FromBody]ParkingSpotDTO parkingSpotDTO)

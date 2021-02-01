@@ -17,6 +17,6 @@ namespace PublicParkAPI.Services
         Task<ActionResult<ParkingSpotDTO>> PostParkingSpot(ParkingSpotDTO parkingSpotDTO);
         Task<ActionResult<ParkingSpotDTO>> DeleteParkingSpot(string id);
         Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetParkingSpecificFreeSpots(DateTime entryHour, DateTime leaveHour);
-
+        Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetParkingPriceFreeSpots(decimal price);
     }
 }
