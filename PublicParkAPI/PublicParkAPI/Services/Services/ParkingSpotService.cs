@@ -50,6 +50,21 @@ namespace PublicParkAPI.Services.Services
             return parkingSpotsDTO;
         }
 
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetParkingSpecificFreeSpots(DateTime entryHour, DateTime leaveHour)
+        {
+            var reservations = await _reservationRepository.GetSpecificReservationByDates(leaveHour,entryHour);
+            var parkingSpots = await _parkingSpotRepository.GetParkingSpots();
+            var res = parkingSpots.ToList();
+
+            foreach (var r in reservations)
+            {
+                res.Remove(r.ParkingSpot);
+            }
+
+            var parkingSpotsDTO = _mapper.Map<List<ParkingSpot>, List<ParkingSpotDTO>>(res);
+            return parkingSpotsDTO;
+        }
+
         public async Task<ActionResult<ParkingSpotDTO>> PutParkingSpot(string id, ParkingSpotDTO parkingSpotDTO)
         {
             var parkingSpot = _mapper.Map<ParkingSpotDTO, ParkingSpot>(parkingSpotDTO);
@@ -71,5 +86,6 @@ namespace PublicParkAPI.Services.Services
             await _parkingSpotRepository.DeleteParkingSpot(id);
             return parkingSpotsDTO;
         }
+
     }
 }

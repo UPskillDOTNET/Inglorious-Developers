@@ -44,6 +44,7 @@ namespace PublicParkAPI.Data {
                     new ParkingSpot{parkingSpotID="I1",priceHour=0.9m, ParkingLotID=2},
                     new ParkingSpot{parkingSpotID="O1",priceHour=1.00m, ParkingLotID=3},
                     new ParkingSpot{parkingSpotID="A3",priceHour=0.25m, ParkingLotID=1},
+                    new ParkingSpot{parkingSpotID="I5",priceHour=0.25m, ParkingLotID=1},
             };
             foreach (ParkingSpot s in parkingSpots)
             {
@@ -61,6 +62,7 @@ namespace PublicParkAPI.Data {
                     new Reservation{reservationID="ABC9",startTime= DateTime.Parse("2021-08-22 12:00:00"),hours=1,endTime= DateTime.Parse("2021-08-22 13:00:00"),parkingSpotID="A1",},
                     new Reservation{reservationID="ABC10",startTime= DateTime.Parse("2021-07-22 14:00:00"),hours=1,endTime= DateTime.Parse("2021-07-22 15:00:00"),parkingSpotID="A1",},
                     new Reservation{reservationID="ABC11",startTime= DateTime.Parse("2021-06-22 18:00:00"),hours=1,endTime= DateTime.Parse("2021-06-22 19:00:00"),parkingSpotID="I1",},
+                    new Reservation{reservationID="ABC30",startTime= DateTime.Parse("2021-02-01 01:00:00"),hours=22,endTime= DateTime.Parse("2021-02-01 23:00:00"),parkingSpotID="I5",}
 
             };
             foreach (Reservation r in reservations)
