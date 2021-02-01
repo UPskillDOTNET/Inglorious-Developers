@@ -48,7 +48,7 @@ namespace PublicParkAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutParkingSpot(ParkingSpotDTO parkingSpotDTO)
+        public async Task<IActionResult> PutParkingSpot([FromBody]ParkingSpotDTO parkingSpotDTO)
         {
             await _parkingSpotService.PutParkingSpot(parkingSpotDTO.parkingSpotID, parkingSpotDTO);
 
