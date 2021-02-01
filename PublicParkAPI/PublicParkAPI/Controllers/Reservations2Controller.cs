@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using PublicParkAPI.Data;
 using PublicParkAPI.DTO;
 using PublicParkAPI.Models;
+using PublicParkAPI.Services;
 using PublicParkAPI.Services.IServices;
 
 namespace PublicParkAPI.Controllers
@@ -19,10 +20,12 @@ namespace PublicParkAPI.Controllers
     public class Reservations2Controller : ControllerBase
     {
         private readonly IReservationService _reservationService;
+        private readonly IParkingSpotService _parkingSpotService;
 
-        public Reservations2Controller(IReservationService reservationService)
+        public Reservations2Controller(IReservationService reservationService, IParkingSpotService parkingSpotService)
         {
             _reservationService = reservationService;
+            _parkingSpotService = parkingSpotService;
         }
 
         //Get All Resevations
@@ -41,10 +44,20 @@ namespace PublicParkAPI.Controllers
 
         //Put Reservation
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutReservation([FromBody]ReservationDTO reservationDTO)
+        public async Task<IActionResult> PutReservation(string id, [FromBody]ReservationDTO reservationDTO)
         {
-            await _reservationService.PutReservation(reservationDTO.reservationID, reservationDTO);
-
+            try
+            {
+                await _reservationService.PutReservation(reservationDTO.reservationID, reservationDTO);                
+            }
+            catch (Exception)
+            {
+                if (await ReservationExists(id) == false)
+                {
+                    return NotFound("The Reservation was not found");
+                }
+                throw;
+            }
             return NoContent();
         }
 
@@ -53,16 +66,61 @@ namespace PublicParkAPI.Controllers
         public async Task<IActionResult> PostReservation([FromBody]ReservationDTO reservationDTO)
         {
             var id = reservationDTO.reservationID;
-            await _reservationService.PostReservation(reservationDTO);
-            return CreatedAtAction("PostReservation", reservationDTO);
+            var TheController = new ParkingSpots2Controller(_parkingSpotService);            
+
+            if (await TheController.ParkingSpotExists(reservationDTO.parkingSpotID) == false)
+            {
+                return BadRequest("ParkingSpot doens't exist.");
+            }
+
+            try
+            {
+                await _reservationService.PostReservation(reservationDTO);
+            }
+            catch (Exception)
+            {
+                if (await ReservationExists(id) == true)
+                {
+                    return Conflict("The Reservations already exist");
+                }
+                throw;
+            }
+            return CreatedAtAction("PostReservation", new { id = reservationDTO.reservationID }, reservationDTO);
         }
 
         //Delete Reservation
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteReservation(string id)
         {
-            await _reservationService.DeleteReservation(id);
-            return Ok();
+            try
+            {
+                await _reservationService.DeleteReservation(id);
+            }
+            catch (Exception)
+            {
+                if (await ReservationExists(id) == false)
+                {
+                    return Conflict("The Reservation doesn't exist");
+                }
+                throw;
+            }
+            return NotFound();
+        }
+
+        //Reservation exists
+        public async Task<bool> ReservationExists(string id)
+        {
+            var reservation = await _reservationService.GetReservation(id);
+
+            if (reservation != null)
+            {
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

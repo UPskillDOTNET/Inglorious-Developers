@@ -97,6 +97,10 @@ namespace PublicParkAPI.Services.Services
             await _parkingSpotRepository.DeleteParkingSpot(id);
             return parkingSpotsDTO;
         }
+        public async Task<ParkingSpot> GetSpecificParkingSpot(ReservationDTO reservationDTO)
+        {
+            return await _parkingSpotRepository.GetSpecificParkingSpot(reservationDTO);
+        }
 
     }
 }

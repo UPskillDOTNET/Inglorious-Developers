@@ -26,6 +26,10 @@ namespace PublicParkAPI.Controllers
             _parkingSpotService = parkingSpotService;
         }
 
+       public ParkingSpots2Controller()
+        {
+
+        }
 
         // GET: api/ParkingSpots
         [HttpGet]
