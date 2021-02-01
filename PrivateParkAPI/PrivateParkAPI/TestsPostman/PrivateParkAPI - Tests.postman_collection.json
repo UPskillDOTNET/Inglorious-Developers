@@ -118,16 +118,6 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiIyZjdkZTEyZS02NmE3LTQxNTMtYjYwZi0wODFmM2I2Y2U1ODgiLCJleHAiOjE2MTE4MzM3MDYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.xIrfYbRNLP1ynbkbbxB7hsRDBVl3cl56yK5U16yvkWs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -186,21 +176,11 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiIyZjdkZTEyZS02NmE3LTQxNTMtYjYwZi0wODFmM2I2Y2U1ODgiLCJleHAiOjE2MTE4MzM3MDYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.xIrfYbRNLP1ynbkbbxB7hsRDBVl3cl56yK5U16yvkWs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"parkingSpotID\": \"A9\",\r\n        \"priceHour\": 0.80,\r\n        \"floor\": 0,\r\n        \"isPrivate\": false,\r\n        \"parkingLotID\": 1,\r\n        \"parkingLot\": null\r\n        }",
+							"raw": "{\r\n        \"parkingSpotID\": \"A9\",\r\n        \"priceHour\": 0.80,\r\n        \"isCovered\": true,\r\n        \"floor\": 0,\r\n        \"isPrivate\": false,\r\n        \"parkingLotID\": 1,\r\n        \"parkingLot\": null\r\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -242,16 +222,6 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiIyZjdkZTEyZS02NmE3LTQxNTMtYjYwZi0wODFmM2I2Y2U1ODgiLCJleHAiOjE2MTE4MzM3MDYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.xIrfYbRNLP1ynbkbbxB7hsRDBVl3cl56yK5U16yvkWs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -295,16 +265,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiIyZjdkZTEyZS02NmE3LTQxNTMtYjYwZi0wODFmM2I2Y2U1ODgiLCJleHAiOjE2MTE4MzM3MDYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.xIrfYbRNLP1ynbkbbxB7hsRDBVl3cl56yK5U16yvkWs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -352,16 +312,6 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiIyZjdkZTEyZS02NmE3LTQxNTMtYjYwZi0wODFmM2I2Y2U1ODgiLCJleHAiOjE2MTE4MzM3MDYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.xIrfYbRNLP1ynbkbbxB7hsRDBVl3cl56yK5U16yvkWs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -405,16 +355,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiIyZjdkZTEyZS02NmE3LTQxNTMtYjYwZi0wODFmM2I2Y2U1ODgiLCJleHAiOjE2MTE4MzM3MDYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.xIrfYbRNLP1ynbkbbxB7hsRDBVl3cl56yK5U16yvkWs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -462,16 +402,6 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiIyZjdkZTEyZS02NmE3LTQxNTMtYjYwZi0wODFmM2I2Y2U1ODgiLCJleHAiOjE2MTE4MzM3MDYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.xIrfYbRNLP1ynbkbbxB7hsRDBVl3cl56yK5U16yvkWs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -519,16 +449,6 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiIyZjdkZTEyZS02NmE3LTQxNTMtYjYwZi0wODFmM2I2Y2U1ODgiLCJleHAiOjE2MTE4MzM3MDYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.xIrfYbRNLP1ynbkbbxB7hsRDBVl3cl56yK5U16yvkWs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -577,16 +497,6 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiIyZjdkZTEyZS02NmE3LTQxNTMtYjYwZi0wODFmM2I2Y2U1ODgiLCJleHAiOjE2MTE4MzM3MDYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.xIrfYbRNLP1ynbkbbxB7hsRDBVl3cl56yK5U16yvkWs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -616,6 +526,54 @@
 					"response": []
 				},
 				{
+					"name": "GetAllCoveredFreeSpots",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"All Parking Spots were Found\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44353/api/parkingspots/freeSpots/isCovered",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44353",
+							"path": [
+								"api",
+								"parkingspots",
+								"freeSpots",
+								"isCovered"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GetAllFreeSpotsBySpecificHour",
 					"event": [
 						{
@@ -635,16 +593,535 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiIyZjdkZTEyZS02NmE3LTQxNTMtYjYwZi0wODFmM2I2Y2U1ODgiLCJleHAiOjE2MTE4MzM3MDYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.xIrfYbRNLP1ynbkbbxB7hsRDBVl3cl56yK5U16yvkWs",
-									"type": "string"
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
+						"url": {
+							"raw": "https://localhost:44353/api/parkingspots/freeSpots/2021-07-22T14:00:00/2021-07-22T16:00:00",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44353",
+							"path": [
+								"api",
+								"parkingspots",
+								"freeSpots",
+								"2021-07-22T14:00:00",
+								"2021-07-22T16:00:00"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ParkingSpotWithServices",
+			"item": [
+				{
+					"name": "GetAllParkingSpots",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"All Parking Spots were Found\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44353/api/test",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44353",
+							"path": [
+								"api",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create ParkingSpot",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"ParkingSpot was Added\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"pm.test(\"Var made\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.globals.set(\"parkingspotid\", jsonData.ParkingSpotID);\r",
+									"});\r",
+									"pm.test(\"Var pricehour created\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.globals.set(\"pricehour\", jsonData.priceHour);\r",
+									"});\r",
+									"pm.test(\"Var entryHour created\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.globals.set(\"entryHour\", jsonData.entryHour);\r",
+									"});\r",
+									"pm.test(\"Var leaveHour created\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.globals.set(\"leaveHour\", jsonData.leaveHour);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"parkingSpotID\": \"A9\",\r\n        \"priceHour\": 0.80,\r\n        \"isCovered\": true,\r\n        \"floor\": 0,\r\n        \"isPrivate\": false,\r\n        \"parkingLotID\": 1,\r\n        \"parkingLot\": null\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44353/api/parkingspots",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44353",
+							"path": [
+								"api",
+								"parkingspots"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetParkingSpotByID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Parking Spot was Found\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44353/api/parkingspots/A9",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44353",
+							"path": [
+								"api",
+								"parkingspots",
+								"A9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateParkingSpot",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Parking Spot was updated\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"parkingSpotID\": \"A9\",\r\n        \"priceHour\": 0.10,\r\n        \"floor\": 3,\r\n        \"isPrivate\": false,\r\n        \"parkingLotID\": 1,\r\n        \"parkingLot\": null\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44353/api/parkingspots/A9",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44353",
+							"path": [
+								"api",
+								"parkingspots",
+								"A9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUpdatedParkingSpotByID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Virus was Found\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44353/api/parkingspots/A9",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44353",
+							"path": [
+								"api",
+								"parkingspots",
+								"A9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteParkingSpotByID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Parking Spot Deleted\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44353/api/parkingspots/A9",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44353",
+							"path": [
+								"api",
+								"parkingspots",
+								"A9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetDeletedParkingSpotByID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Parking spot was not Found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44353/api/parkingspots/A9",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44353",
+							"path": [
+								"api",
+								"parkingspots",
+								"A9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllFreeSpots",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"All Parking Spots were Found\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44353/api/parkingspots/freeSpots/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44353",
+							"path": [
+								"api",
+								"parkingspots",
+								"freeSpots",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllFreeSpotsByPrice",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"All Parking Spots were Found\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44353/api/parkingspots/freeSpots/{{pricehour}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44353",
+							"path": [
+								"api",
+								"parkingspots",
+								"freeSpots",
+								"{{pricehour}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllCoveredFreeSpots",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"All Parking Spots were Found\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44353/api/parkingspots/freeSpots/isCovered",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44353",
+							"path": [
+								"api",
+								"parkingspots",
+								"freeSpots",
+								"isCovered"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllFreeSpotsBySpecificHour",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"All Parking Spots were Found\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -699,16 +1176,6 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiIyZjdkZTEyZS02NmE3LTQxNTMtYjYwZi0wODFmM2I2Y2U1ODgiLCJleHAiOjE2MTE4MzM3MDYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.xIrfYbRNLP1ynbkbbxB7hsRDBVl3cl56yK5U16yvkWs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -721,7 +1188,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44353/api/reservations",
+							"raw": "https://localhost:44353/api/Reservations",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -729,7 +1196,7 @@
 							"port": "44353",
 							"path": [
 								"api",
-								"reservations"
+								"Reservations"
 							]
 						}
 					},
@@ -755,21 +1222,11 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiIyZjdkZTEyZS02NmE3LTQxNTMtYjYwZi0wODFmM2I2Y2U1ODgiLCJleHAiOjE2MTE4MzM3MDYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.xIrfYbRNLP1ynbkbbxB7hsRDBVl3cl56yK5U16yvkWs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"reservationID\": \"1\",\r\n        \"startTime\": \"2021-09-26T16:00:00\",\r\n        \"hours\": 2,\r\n        \"endTime\": \"2021-09-26T18:00:00\",\r\n        \"parkingSpotID\": \"A1\",\r\n        \"parkingSpot\": null\r\n    }",
+							"raw": "    {\r\n        \"reservationID\": \"1\",\r\n        \"startTime\": \"2021-09-26T16:00:00\",\r\n        \"parkingSpotID\": \"E1\",\r\n        \"parkingSpot\": null\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -777,7 +1234,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44353/api/Reservations",
+							"raw": "https://localhost:44353/api/reservationtest",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -785,7 +1242,7 @@
 							"port": "44353",
 							"path": [
 								"api",
-								"Reservations"
+								"reservationtest"
 							]
 						}
 					},
@@ -811,16 +1268,6 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiIyZjdkZTEyZS02NmE3LTQxNTMtYjYwZi0wODFmM2I2Y2U1ODgiLCJleHAiOjE2MTE4MzM3MDYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.xIrfYbRNLP1ynbkbbxB7hsRDBVl3cl56yK5U16yvkWs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -864,21 +1311,11 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiIyZjdkZTEyZS02NmE3LTQxNTMtYjYwZi0wODFmM2I2Y2U1ODgiLCJleHAiOjE2MTE4MzM3MDYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.xIrfYbRNLP1ynbkbbxB7hsRDBVl3cl56yK5U16yvkWs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"reservationID\": \"1\",\r\n    \"startTime\": \"2021-09-26T18:00:00\",\r\n    \"hours\": 3,\r\n    \"endTime\": \"2021-09-26T21:00:00\",\r\n    \"parkingSpotID\": \"A1\",\r\n    \"parkingSpot\": {\r\n        \"parkingSpotID\": \"A1\",\r\n        \"priceHour\": 0.25,\r\n        \"parkingLotID\": 1,\r\n        \"parkingLot\": {\r\n            \"parkingLotID\": 1,\r\n            \"name\": \"Parque da República\",\r\n            \"municipality\": \"Vila Nova de Gaia\",\r\n            \"location\": \"Avenida da República\",\r\n            \"capacity\": 125,\r\n            \"openingTime\": \"2020-02-22T07:00:00\",\r\n            \"closingTime\": \"2999-02-22T19:00:00\"\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n    \"reservationID\": \"1\",\r\n    \"startTime\": \"2021-09-26T16:00:00\",\r\n    \"hours\": 4,\r\n    \"finalPrice\": 1.00,\r\n    \"endTime\": \"2021-09-26T18:00:00\",\r\n    \"parkingSpotID\": \"E1\",\r\n    \"parkingSpot\": null\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -921,16 +1358,6 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiIyZjdkZTEyZS02NmE3LTQxNTMtYjYwZi0wODFmM2I2Y2U1ODgiLCJleHAiOjE2MTE4MzM3MDYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.xIrfYbRNLP1ynbkbbxB7hsRDBVl3cl56yK5U16yvkWs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -974,16 +1401,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiIyZjdkZTEyZS02NmE3LTQxNTMtYjYwZi0wODFmM2I2Y2U1ODgiLCJleHAiOjE2MTE4MzM3MDYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.xIrfYbRNLP1ynbkbbxB7hsRDBVl3cl56yK5U16yvkWs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -1031,16 +1448,6 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiIyZjdkZTEyZS02NmE3LTQxNTMtYjYwZi0wODFmM2I2Y2U1ODgiLCJleHAiOjE2MTE4MzM3MDYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.xIrfYbRNLP1ynbkbbxB7hsRDBVl3cl56yK5U16yvkWs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -1069,6 +1476,360 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "ReservationWithServices",
+			"item": [
+				{
+					"name": "GetAllReservations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"All Reservation were Found\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44353/api/reservationtest",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44353",
+							"path": [
+								"api",
+								"reservationtest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Reservation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Reservation was Added\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"pm.test(\"Var made\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.globals.set(\"reservationID\", jsonData.reservationID);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"reservationID\": \"1\",\r\n        \"startTime\": \"2021-09-26T16:00:00\",\r\n        \"parkingSpotID\": \"E1\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44353/api/reservationtest",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44353",
+							"path": [
+								"api",
+								"reservationtest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetReservationByID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Reservation was Found\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44353/api/reservationtest/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44353",
+							"path": [
+								"api",
+								"reservationtest",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateReservation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Reservation was updated\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"reservationID\": \"1\",\r\n        \"startTime\": \"2021-09-26T16:00:00\",\r\n        \"hours\": 3,\r\n        \"parkingSpotID\": \"E1\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44353/api/reservationtest/{{reservationID}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44353",
+							"path": [
+								"api",
+								"reservationtest",
+								"{{reservationID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUpdatedReservationByID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Updated reservation was Found\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44353/api/reservations/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44353",
+							"path": [
+								"api",
+								"reservations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteReservationByID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Reservation Deleted\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44353/api/reservations/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44353",
+							"path": [
+								"api",
+								"reservations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetDeletedReservationByID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Reservation was not Found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44353/api/reservations/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44353",
+							"path": [
+								"api",
+								"reservations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiam9pYWRvbW9udGUiLCJqdGkiOiI5YjI4NWU2My01OTc2LTQ5M2QtYmU3YS05ZmQ1NWQyZTM5MDMiLCJleHAiOjE2MTIyMDAwMTIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTk5MjEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.-OrJGKpLHcspLfwqqSiKYaMuGiH-5FcvBHR11B9orbA",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
