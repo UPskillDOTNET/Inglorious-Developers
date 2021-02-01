@@ -26,6 +26,90 @@ namespace PrivateParkAPI.Controllers
             return _parkingLotService.GetParkingLots();
         }
 
+        // GET: api/testesParkingLots/5
+        [HttpGet("{id}")]
+        public Task<ParkingLotDTO> GetParkingLot(int id)
+        {
+            return _parkingLotService.GetParkingLot(id);
+        }
+
+        // PUT: api/testesParkingLot/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutParkingLot(int id, ParkingLotDTO parkingLotDTO)
+        {
+            try
+            {
+                await _parkingLotService.PutParkingLot(id, parkingLotDTO);
+            }
+            catch (Exception)
+            {
+                if (await ParkingLotExists(id) == false)
+                {
+                    return NotFound("Parking Lot not found.");
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
+
+        // POST: api/testesParkingLot
+        [HttpPost]
+        public async Task<IActionResult> PostParkingLot(ParkingLotDTO parkingLotDTO)
+        {
+            var id = parkingLotDTO.parkingLotID;
+
+            try
+            {
+                await _parkingLotService.PostParkingLot(parkingLotDTO);
+            }
+
+            catch (Exception)
+            {
+                if (await ParkingLotExists(id))
+                {
+                    return Conflict("Parking Lot already exists.");
+                }
+                else
+                {
+                    throw;
+                }
+
+            }
+            return CreatedAtAction("GetParkingLot", new { id = parkingLotDTO.parkingLotID }, parkingLotDTO);
+        }
+
+        //// DELETE: api/ParkingLots/5
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteParkingLot(int id)
+        //{
+        //    if (await ParkingLotExists(id) == false)
+        //    {
+        //        return NotFound("Parking Lot does not exist.");
+        //    }
+        //    else
+        //    {
+        //        await _parkingLotService.DeleteParkingLot(id);
+        //    }
+        //    return Ok();
+        //}
+
+        private async Task<bool> ParkingLotExists(int id)
+        {
+            var parkingLot = await _parkingLotService.GetParkingLot(id);
+
+            if (parkingLot != null)
+            {
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
     }
 }
