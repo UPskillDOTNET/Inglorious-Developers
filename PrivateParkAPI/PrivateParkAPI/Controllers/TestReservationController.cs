@@ -61,5 +61,12 @@ namespace PrivateParkAPI.Controllers
 
             return NoContent();
         }
+
+        //Delete Reservation
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteReservation(string id) {
+            await _reservationService.DeleteReservation(id);
+            return Ok();
+        }
     }
 }

@@ -56,6 +56,12 @@ namespace PrivateParkAPI.Services.Services
             reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
             return reservationDTO;
         }
+        public async Task<ReservationDTO> DeleteReservation(string id) {
+            var reservation = await _reservationRepository.GetReservation(id);
+            var reservationDTO = _mapper.Map<Reservation, ReservationDTO>(reservation);
+            await _reservationRepository.DeleteReservation(id);
+            return reservationDTO;
+        }
     }
 }
 

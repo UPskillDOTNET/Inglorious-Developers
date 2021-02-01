@@ -16,7 +16,7 @@ namespace PrivateParkAPI.Repositories.Repository
         public ReservationRepository(PrivateParkContext privateParkContext) : base(privateParkContext)
         {
         }
-
+        // GET: api/Reservations
         public async Task<IEnumerable<Reservation>> GetReservations() {
             return await GetAll().ToListAsync();
         }
@@ -36,18 +36,23 @@ namespace PrivateParkAPI.Repositories.Repository
         }
 
         // POST: api/ParkingSpots
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         public async Task<ActionResult<Reservation>> PostReservation(Reservation reservation) {
             await AddAsync(reservation);
             return reservation;
         }
 
         // PUT: api/ParkingSpots/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         public async Task<ActionResult<Reservation>> PutReservation(string id, Reservation reservation) {
 
             GetAll().Where(r => r.reservationID == id).Include(s => s.ParkingSpot);
             await UpdateAsync(reservation);
+            return reservation;
+        }
+
+        // DELETE: api/ParkingSpots/5
+        public async Task<ActionResult<Reservation>> DeleteReservation(string id) {
+            var reservation = GetAll().FirstOrDefault(r => r.reservationID == id);
+            await DeleteAsync(reservation);
             return reservation;
         }
     }
