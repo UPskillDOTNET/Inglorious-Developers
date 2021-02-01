@@ -13,10 +13,10 @@ namespace PrivateParkAPI.Repositories.IRepository
     {
         Task<IEnumerable<ParkingSpot>> GetnotPrivateParkingSpots();
         Task<IEnumerable<ParkingSpot>> GetAllParkingSpots();
+        Task<IEnumerable<ParkingSpot>> GetParkingSpotbyPrice(decimal priceHour);
         Task<ParkingSpot> GetParkingSpot(string ID);
         Task<ActionResult<ParkingSpot>> PutParkingSpot(string id, ParkingSpot parkingSpot);
         Task<ActionResult<ParkingSpot>> PostParkingSpot(ParkingSpot parkingSpot);
-
         Task<ActionResult<ParkingSpot>> DeleteParkingSpot(string id);
 
        

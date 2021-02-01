@@ -36,6 +36,10 @@ namespace PrivateParkAPI.Repositories.Repository
             return await GetAll().Include(p => p.ParkingLot).FirstOrDefaultAsync(s => s.parkingSpotID == id);
         }
 
+        public async Task<IEnumerable<ParkingSpot>> GetParkingSpotbyPrice(decimal priceHour)
+        {
+            return await GetAll().Where(p => p.priceHour <= priceHour).Where(p=>p.isPrivate == false).Include(p => p.ParkingLot).ToListAsync();
+        }
        
 
         ////Get: Available Specific Spots

@@ -42,6 +42,30 @@ namespace PrivateParkAPI.Controllers
         }
 
 
+        [HttpGet]
+        [Route("~/api/test/freeSpots/{startDate}/{endDate}")]
+        public async Task<IActionResult> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate)
+        {
+            if (startDate>endDate)
+            {
+                return BadRequest("DumbBitch you cant leave before you enter");
+            }
+            var parkingSpots = await _parkingSpotService.GetFreeParkingSpotsByDate(startDate, endDate);
+            return Ok(parkingSpots); 
+        }
+
+        [Route("~/api/test/freeSpots/{priceHour}")]
+        public async Task<IActionResult> GetFreeParkingSpotsbyPrice(decimal priceHour)
+        {
+            if (priceHour < 0)
+            {
+                return BadRequest("Não Somos A SantaCasa da Mesericordia");
+            }
+            var parkingSpots = await _parkingSpotService.GetFreeParkingSpotsbyPrice(priceHour);
+            return Ok(parkingSpots);
+        }
+
+
         [HttpGet("{id}")]
         public Task<ParkingSpotDTO> GetParkingSpot(string id)
         {
@@ -50,10 +74,15 @@ namespace PrivateParkAPI.Controllers
             return parkingSpots;
         }
 
-        [HttpPut("{id}")]
 
+        [HttpPut("{id}")]
         public async Task<IActionResult> PutParkingSpot(string id, ParkingSpotDTO parkingSpotDTO)
         {
+            if (id != parkingSpotDTO.parkingSpotID)
+            {
+                return BadRequest();
+            }
+
             try
             {
                 await _parkingSpotService.PutParkingSpot(id, parkingSpotDTO);
@@ -62,7 +91,7 @@ namespace PrivateParkAPI.Controllers
             {
                 if (await ParkingSpotExists(id) == false)
                 {
-                    return Conflict("Can't Update a non-Existing parking spot");
+                    return NotFound("The parkingSpot you were trying to update could not be found");
                 }
                 else
                 {
@@ -76,8 +105,7 @@ namespace PrivateParkAPI.Controllers
         public async Task<IActionResult> PostParkingSpot(ParkingSpotDTO parkingSpotDTO)
         {
             var id = parkingSpotDTO.parkingSpotID;
-            
-          
+
             try
             {
                 await _parkingSpotService.PostParkingSpot(parkingSpotDTO);

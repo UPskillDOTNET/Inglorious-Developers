@@ -14,6 +14,8 @@ namespace PrivateParkAPI.Services.IServices
         Task<IEnumerable<ParkingSpotDTO>> GetAllnotPrivate();
         Task<IEnumerable<ParkingSpotDTO>> GetAllParkingSpots();
         Task<IEnumerable<ParkingSpotDTO>> GetFreeParkingSpots();
+        Task<IEnumerable<ParkingSpotDTO>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate);
+        Task<IEnumerable<ParkingSpotDTO>> GetFreeParkingSpotsbyPrice(decimal priceHour);
         Task<ParkingSpotDTO> GetParkingSpot(string id);
         Task <ActionResult<ParkingSpotDTO>> PutParkingSpot(string id, ParkingSpotDTO parkingSpotDTO);
         Task<ActionResult<ParkingSpotDTO>> PostParkingSpot( ParkingSpotDTO parkingSpotDTO);
