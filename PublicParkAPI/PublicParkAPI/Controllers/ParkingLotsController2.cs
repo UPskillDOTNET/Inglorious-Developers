@@ -66,26 +66,8 @@ namespace PublicParkAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> PostParkingLot([FromBody] ParkingLotDTO parkingLotDTO)
         {
-            var id = parkingLotDTO.parkingLotID;
-
-            try
-            {
-                await _parkingLotService.PostParkingLot(parkingLotDTO);
-            }
-
-            catch (Exception)
-            {
-                if (await ParkingLotExists(id))
-                {
-                    return Conflict("Parking Spot already exists.");
-                }
-                else
-                {
-                    throw;
-                }
-
-            }
-            return CreatedAtAction("GetParkingSpot", new { id = parkingLotDTO.parkingLotID }, parkingLotDTO);
+            await _parkingLotService.PostParkingLot(parkingLotDTO);
+            return Ok();
         }
 
         // DELETE: api/ParkingLots/5
