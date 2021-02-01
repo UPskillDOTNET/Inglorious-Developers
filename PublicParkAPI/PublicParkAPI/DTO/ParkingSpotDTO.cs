@@ -17,7 +17,6 @@ namespace PublicParkAPI.DTO
         [Required]
         public int ParkingLotID { get; set; }
 
-        //[Required]
-        //public ParkingLot ParkingLot { get; set; }
+        public ParkingLot ParkingLot { get; set; }
     }
 }
