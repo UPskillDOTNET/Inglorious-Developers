@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace PrivateParkAPI.Controllers
 {
@@ -15,6 +16,7 @@ namespace PrivateParkAPI.Controllers
     public class TestParkingSpotController : Controller
     {
         private readonly IParkingSpotService _parkingSpotService;
+        [ActivatorUtilitiesConstructor]
         public TestParkingSpotController(IParkingSpotService parkingSpotService)
         {
             _parkingSpotService = parkingSpotService;
