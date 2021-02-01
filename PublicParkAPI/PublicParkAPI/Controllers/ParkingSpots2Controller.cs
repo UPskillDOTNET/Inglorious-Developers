@@ -63,31 +63,84 @@ namespace PublicParkAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutParkingSpot([FromBody]ParkingSpotDTO parkingSpotDTO)
+        public async Task<IActionResult> PutParkingSpot(string id, [FromBody]ParkingSpotDTO parkingSpotDTO)
         {
-            await _parkingSpotService.PutParkingSpot(parkingSpotDTO.parkingSpotID, parkingSpotDTO);
-
+            try
+            {
+                await _parkingSpotService.PutParkingSpot(id, parkingSpotDTO);
+            }
+            catch (Exception)
+            {
+                if (await ParkingSpotExists(id) == false)
+                {
+                    return NotFound("Parking Spot not found.");
+                }
+                else
+                {
+                    throw;
+                }
+            }
             return NoContent();
         }
 
         [HttpPost]
         public async Task<IActionResult> PostParkingSpot([FromBody]ParkingSpotDTO parkingSpotDTO)
         {
+
             var id = parkingSpotDTO.parkingSpotID;
-            await _parkingSpotService.PostParkingSpot(parkingSpotDTO);
-            return CreatedAtAction("PostParkingSpot", parkingSpotDTO);
+
+            try
+            {
+                await _parkingSpotService.PostParkingSpot(parkingSpotDTO);
+            }
+
+            catch (Exception)
+            {
+                if (await ParkingSpotExists(id))
+                {
+                    return Conflict("Parking Spot already exists.");
+                }
+                else
+                {
+                    throw;
+                }
+
+            }
+            return CreatedAtAction("GetParkingSpot", new { id = parkingSpotDTO.parkingSpotID }, parkingSpotDTO);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteParkingSpot(string id)
         {
-            await _parkingSpotService.DeleteParkingSpot(id);
+            //try
+            //{
+            //    await _parkingSpotService.DeleteParkingSpot(id);
+            //}
+            //catch (InvalidOperationException)
+            //{
+            //    if (await ParkingSpotExists(id) == false)
+            //    {
+            //        return NotFound("ParkingSpot does not exist.");
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
+            //return Ok();
+            if (await ParkingSpotExists(id) == false) {
+                return NotFound("ParkingSpot does not exist.");
+            } else
+            {
+                await _parkingSpotService.DeleteParkingSpot(id);
+            }
             return Ok();
         }
 
-        public bool ParkingSpotExists(string id)
+        public async Task<bool> ParkingSpotExists(string id)
         {
-            var parkingspot = _parkingSpotService.GetParkingSpot(id);
+            var parkingspot = await _parkingSpotService.GetParkingSpot(id);
+
             if (parkingspot != null)
             {
 
