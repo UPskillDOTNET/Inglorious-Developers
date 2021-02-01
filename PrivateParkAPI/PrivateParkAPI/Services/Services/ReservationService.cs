@@ -36,6 +36,16 @@ namespace PrivateParkAPI.Services.Services
             var reservationsDTO = _mapper.Map<Reservation, ReservationDTO>(reservation);
             return reservationsDTO;
         }
+        public async Task<ReservationDTO> PostReservation(ReservationDTO reservationDTO) {
+            var parkingSpot = await _parkingSpotRepository.GetSpecificParkingSpot(reservationDTO);
+            reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
+            reservationDTO.finalPrice = reservationDTO.hours * parkingSpot.priceHour;
+            var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);
+            await _reservationRepository.PostReservation(reservation);
+
+
+            return reservationDTO;
+        }
     }
 }
 

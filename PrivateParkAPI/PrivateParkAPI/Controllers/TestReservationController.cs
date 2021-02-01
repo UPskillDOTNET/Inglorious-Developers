@@ -45,5 +45,13 @@ namespace PrivateParkAPI.Controllers
                 return false;
             }
         }
+
+        //Post Resevation
+        [HttpPost]
+        public async Task<IActionResult> PostReservation([FromBody] ReservationDTO reservationDTO) {
+            var id = reservationDTO.reservationID;
+            await _reservationService.PostReservation(reservationDTO);
+            return CreatedAtAction("PostReservation", reservationDTO);
+        }
     }
 }

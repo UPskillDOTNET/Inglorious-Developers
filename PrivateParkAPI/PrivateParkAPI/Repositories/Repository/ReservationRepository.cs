@@ -26,10 +26,20 @@ namespace PrivateParkAPI.Repositories.Repository
             return await GetAll().Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
         }
 
+        public async Task<IEnumerable<Reservation>> GetSpecificReservationByDates(DateTime leaveHour, DateTime entryHour) {
+            return await GetAll().Where(r => r.startTime <= leaveHour && r.endTime >= entryHour).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+        }
+
         // GET: api/Reservation/5
         public async Task<Reservation> GetReservation(string id) {
             return await GetAll().Include(p => p.ParkingSpot).FirstOrDefaultAsync(s => s.reservationID == id);
         }
 
+        // POST: api/ParkingSpots
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        public async Task<ActionResult<Reservation>> PostReservation(Reservation reservation) {
+            await AddAsync(reservation);
+            return reservation;
+        }
     }
 }

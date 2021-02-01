@@ -16,9 +16,8 @@ namespace PrivateParkAPI.Repositories.IRepository
         Task<ParkingSpot> GetParkingSpot(string ID);
         Task<ActionResult<ParkingSpot>> PutParkingSpot(string id, ParkingSpot parkingSpot);
         Task<ActionResult<ParkingSpot>> PostParkingSpot(ParkingSpot parkingSpot);
-
+        Task<ParkingSpot> GetSpecificParkingSpot(ReservationDTO reservationDTO);
         Task<ActionResult<ParkingSpot>> DeleteParkingSpot(string id);
 
-       
     }
 }
