@@ -14,10 +14,12 @@ namespace PrivateParkAPI.Controllers
     public class TestReservationController : Controller
     {
         private readonly IReservationService _reservationService;
+        private readonly IParkingSpotService _parkingSpotService;
 
-        public TestReservationController(IReservationService reservationService)
+        public TestReservationController(IReservationService reservationService, IParkingSpotService parkingSpotService)
         {
             _reservationService = reservationService;
+            _parkingSpotService = parkingSpotService;
         }
 
         [HttpGet]
@@ -26,6 +28,22 @@ namespace PrivateParkAPI.Controllers
             return  _reservationService.GetReservations();
         }
 
-       
+        [HttpGet("{id}")]
+        public Task<ReservationDTO> GetReservation(string id) {
+            var reservation = _reservationService.GetReservation(id);
+
+            return reservation;
+        }
+
+        public bool ReservationExists(string id) {
+            var reservation = _reservationService.GetReservation(id);
+
+            if (reservation != null) {
+
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 }

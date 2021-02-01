@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Models;
 using PrivateParkAPI.Repositories.IRepository;
@@ -14,13 +15,14 @@ namespace PrivateParkAPI.Services.Services
     public class ReservationService : IReservationService
     {
         private readonly IReservationRepository _reservationRepository;
+        private readonly IParkingSpotRepository _parkingSpotRepository;
         private readonly IMapper _mapper;
-        public ReservationService(IReservationRepository reservationRepository, IMapper mapper)
+        public ReservationService(IReservationRepository reservationRepository, IParkingSpotRepository parkingSpotRepository, IMapper mapper)
         {
             _reservationRepository = reservationRepository;
+            _parkingSpotRepository = parkingSpotRepository;
             _mapper = mapper;
         }
-
         
         public async Task<IEnumerable<ReservationDTO>> GetReservations()
         {
@@ -28,5 +30,13 @@ namespace PrivateParkAPI.Services.Services
             var reservationsDTO = _mapper.Map<List<Reservation>, List<ReservationDTO>>(reservations.ToList());
             return reservationsDTO;
         }
+
+        public async Task<ReservationDTO> GetReservation(string id) {
+            var reservation = await _reservationRepository.GetReservation(id);
+            var reservationsDTO = _mapper.Map<Reservation, ReservationDTO>(reservation);
+            return reservationsDTO;
+        }
     }
 }
+
+
