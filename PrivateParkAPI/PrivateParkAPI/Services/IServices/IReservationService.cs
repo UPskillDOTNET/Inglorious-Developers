@@ -15,5 +15,6 @@ namespace PrivateParkAPI.Services.IServices
         Task<ReservationDTO> PostReservation(ReservationDTO reservationDTO);
         Task<ReservationDTO> PutReservation(string id, ReservationDTO reservationDTO);
         Task<ReservationDTO> DeleteReservation(string id);
+
     }
 }

@@ -89,6 +89,9 @@ namespace PrivateParkAPI.Services.Services
 
         }
 
+        public async Task<ParkingSpot> GetSpecificParkingSpot(ReservationDTO reservationDTO) {
+            return await _parkingSpotRepository.GetSpecificParkingSpot(reservationDTO);
+        }
 
     }
 }

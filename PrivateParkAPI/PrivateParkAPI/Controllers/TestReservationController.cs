@@ -35,8 +35,59 @@ namespace PrivateParkAPI.Controllers
             return reservation;
         }
 
-        public bool ReservationExists(string id) {
-            var reservation = _reservationService.GetReservation(id);
+        //Post Resevation
+        [HttpPost]
+        public async Task<IActionResult> PostReservation([FromBody] ReservationDTO reservationDTO) {
+            var id = reservationDTO.reservationID;
+            var TheController = new TestParkingSpotController(_parkingSpotService);
+
+            if (await TheController.ParkingSpotExists(reservationDTO.parkingSpotID) == false) {
+                return BadRequest("ParkingSpot doens't exist.");
+            }
+            try 
+            {
+                await _reservationService.PostReservation(reservationDTO);
+            } catch (Exception) {
+                if (await ReservationExists(id) == true) {
+                    return Conflict("The Reservations already exist");
+                }
+                throw;
+            }
+            return CreatedAtAction("PostReservation", new { id = reservationDTO.reservationID }, reservationDTO);
+        }
+
+
+        //Put Reservation
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutReservation(string id, [FromBody] ReservationDTO reservationDTO) {
+            try {
+                await _reservationService.PutReservation(reservationDTO.reservationID, reservationDTO);
+            } catch (Exception) {
+                if (await ReservationExists(id) == false) {
+                    return NotFound("The Reservation does not exist.");
+                }
+                throw;
+            }
+            return NoContent();
+        }
+
+        //Delete Reservation
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteReservation(string id) {
+            try {
+                await _reservationService.DeleteReservation(id);
+            } catch (Exception) {
+                if (await ReservationExists(id) == false) {
+                    return Conflict("Can't delete an non-existing Reservation");
+                } else {
+                    throw;
+                }
+            }
+            return NotFound();
+        }
+
+        public async Task<bool>ReservationExists(string id) {
+            var reservation = await _reservationService.GetReservation(id);
 
             if (reservation != null) {
 
@@ -44,29 +95,6 @@ namespace PrivateParkAPI.Controllers
             } else {
                 return false;
             }
-        }
-
-        //Post Resevation
-        [HttpPost]
-        public async Task<IActionResult> PostReservation([FromBody] ReservationDTO reservationDTO) {
-            var id = reservationDTO.reservationID;
-            await _reservationService.PostReservation(reservationDTO);
-            return CreatedAtAction("PostReservation", reservationDTO);
-        }
-
-        //Put Reservation
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutReservation([FromBody] ReservationDTO reservationDTO) {
-            await _reservationService.PutReservation(reservationDTO.reservationID, reservationDTO);
-
-            return NoContent();
-        }
-
-        //Delete Reservation
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteReservation(string id) {
-            await _reservationService.DeleteReservation(id);
-            return Ok();
         }
     }
 }

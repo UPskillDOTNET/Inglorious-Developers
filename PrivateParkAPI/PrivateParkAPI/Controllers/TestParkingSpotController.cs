@@ -15,10 +15,13 @@ namespace PrivateParkAPI.Controllers
     public class TestParkingSpotController : Controller
     {
         private readonly IParkingSpotService _parkingSpotService;
-
         public TestParkingSpotController(IParkingSpotService parkingSpotService)
         {
             _parkingSpotService = parkingSpotService;
+        }
+        
+        public TestParkingSpotController() {
+
         }
 
         [HttpGet]
