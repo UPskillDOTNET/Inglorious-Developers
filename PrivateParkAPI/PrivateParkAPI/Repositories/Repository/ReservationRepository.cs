@@ -41,5 +41,14 @@ namespace PrivateParkAPI.Repositories.Repository
             await AddAsync(reservation);
             return reservation;
         }
+
+        // PUT: api/ParkingSpots/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        public async Task<ActionResult<Reservation>> PutReservation(string id, Reservation reservation) {
+
+            GetAll().Where(r => r.reservationID == id).Include(s => s.ParkingSpot);
+            await UpdateAsync(reservation);
+            return reservation;
+        }
     }
 }

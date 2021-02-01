@@ -14,5 +14,6 @@ namespace PrivateParkAPI.Repositories.IRepository
         Task<IEnumerable<Reservation>> GetSpecificReservation();
         Task<Reservation> GetReservation(string ID);
         Task<ActionResult<Reservation>> PostReservation(Reservation reservation);
+        Task<ActionResult<Reservation>> PutReservation(string id, Reservation reservation);
     }
 }

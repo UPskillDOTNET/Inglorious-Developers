@@ -53,5 +53,13 @@ namespace PrivateParkAPI.Controllers
             await _reservationService.PostReservation(reservationDTO);
             return CreatedAtAction("PostReservation", reservationDTO);
         }
+
+        //Put Reservation
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutReservation([FromBody] ReservationDTO reservationDTO) {
+            await _reservationService.PutReservation(reservationDTO.reservationID, reservationDTO);
+
+            return NoContent();
+        }
     }
 }
