@@ -119,7 +119,10 @@ namespace PrivateParkAPI.Repositories.Repository
             return parkingSpot;
         }
 
+        public async Task<ParkingSpot> GetSpecificParkingSpot(ReservationDTO reservationDTO) {
+            return await GetAll().Include(p => p.ParkingLot).FirstOrDefaultAsync(s => s.parkingSpotID == reservationDTO.parkingSpotID);
 
+        }
 
         // DELETE: api/ParkingSpots/5
         [HttpDelete("{id}")]
