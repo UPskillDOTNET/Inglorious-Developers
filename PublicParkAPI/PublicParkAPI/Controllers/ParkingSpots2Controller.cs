@@ -56,7 +56,6 @@ namespace PublicParkAPI.Controllers
 
         //Get: Available Parking Spots by price
         [Route("~/api/testes/parkingspots/freeSpots/{price}")]
-
         public Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetParkingPriceFreeSpots(Decimal price)
         {
             return _parkingSpotService.GetParkingPriceFreeSpots(price);
@@ -112,22 +111,7 @@ namespace PublicParkAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteParkingSpot(string id)
         {
-            //try
-            //{
-            //    await _parkingSpotService.DeleteParkingSpot(id);
-            //}
-            //catch (InvalidOperationException)
-            //{
-            //    if (await ParkingSpotExists(id) == false)
-            //    {
-            //        return NotFound("ParkingSpot does not exist.");
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
-            //}
-            //return Ok();
+     
             if (await ParkingSpotExists(id) == false) {
                 return NotFound("ParkingSpot does not exist.");
             } else
