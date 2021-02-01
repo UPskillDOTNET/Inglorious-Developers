@@ -11,10 +11,12 @@ namespace PrivateParkAPI.Repositories.IRepository
     public interface IReservationRepository: IBaseRepository<Reservation>
     {
         Task<IEnumerable<Reservation>> GetReservations();
-        Task<IEnumerable<Reservation>> GetSpecificReservation();
+        Task<IEnumerable<Reservation>> GetReservationDateTimeNow();
+        Task<IEnumerable<Reservation>> GetSpecificReservation(DateTime startDate, DateTime endDate);
         Task<Reservation> GetReservation(string ID);
         Task<ActionResult<Reservation>> PostReservation(Reservation reservation);
         Task<ActionResult<Reservation>> PutReservation(string id, Reservation reservation);
         Task<ActionResult<Reservation>> DeleteReservation(string id);
+
     }
 }
