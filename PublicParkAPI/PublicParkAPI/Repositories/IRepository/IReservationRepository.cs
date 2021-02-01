@@ -12,10 +12,10 @@ namespace PublicParkAPI.Contracts
         Task<IEnumerable<Reservation>> GetReservations();
         Task<IEnumerable<Reservation>> GetSpecificReservation();
         Task<IEnumerable<Reservation>> GetSpecificReservationByDates(DateTime leaveHour, DateTime entryHour);
-        //Task<ActionResult<ReservationDTO>> GetReservation(string id);
-        //Task<IActionResult> PutReservation(string id, ReservationDTO reservation);
-        //Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservation);
-        //Task<IActionResult> DeleteReservation(string id);
+        Task<Reservation> GetReservation(string id);
+        Task<ActionResult<Reservation>> PutReservation(string id, Reservation reservation);
+        Task<ActionResult<Reservation>> PostReservation(Reservation reservation);
+        Task<ActionResult<Reservation>> DeleteReservation(string id);
         //bool ReservationExists(string id);
     }
 }

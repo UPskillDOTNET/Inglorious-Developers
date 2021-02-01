@@ -16,6 +16,7 @@ namespace PublicParkAPI.Contracts
         Task<ActionResult<ParkingSpot>> PutParkingSpot(string id, ParkingSpot parkingSpot);
         Task<ActionResult<ParkingSpot>> PostParkingSpot(ParkingSpot parkingSpot);
         Task<ActionResult<ParkingSpot>> DeleteParkingSpot(string id);
+        Task<ParkingSpot> GetSpecificParkingSpot(ReservationDTO reservationDTO);
         //bool ParkingSpotExists(string id);
     }
 }

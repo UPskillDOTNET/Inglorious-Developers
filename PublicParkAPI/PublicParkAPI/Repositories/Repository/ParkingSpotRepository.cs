@@ -30,6 +30,11 @@ namespace PublicParkAPI.Repositories
 
         }
 
+        public async Task<ParkingSpot> GetSpecificParkingSpot(ReservationDTO reservationDTO)
+        {
+            return await GetAll().Include(p => p.ParkingLot).FirstOrDefaultAsync(s => s.parkingSpotID == reservationDTO.parkingSpotID);
+
+        }
         public async Task<IEnumerable<ParkingSpot>> GetCheaperParkingSpots(decimal price)
         {
             return await GetAll().Where(p => p.priceHour <= price).Include(p => p.ParkingLot).ToListAsync();
@@ -53,7 +58,6 @@ namespace PublicParkAPI.Repositories
             await DeleteAsync(parkingSpot);
             return parkingSpot;
         }
-
     }
 }
 
