@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Services.IServices;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Threading.Tasks;
 
 namespace PrivateParkAPI.Controllers
@@ -52,8 +54,21 @@ namespace PrivateParkAPI.Controllers
 
         public async Task<IActionResult> PutParkingSpot(string id, ParkingSpotDTO parkingSpotDTO)
         {
-            await _parkingSpotService.PutParkingSpot(id, parkingSpotDTO);
-
+            try
+            {
+                await _parkingSpotService.PutParkingSpot(id, parkingSpotDTO);
+            }
+            catch (Exception)
+            {
+                if (await ParkingSpotExists(id) == false)
+                {
+                    return Conflict("Can't Update a non-Existing parking spot");
+                }
+                else
+                {
+                    throw;
+                }
+            }
             return NoContent();
         }
 
@@ -62,10 +77,7 @@ namespace PrivateParkAPI.Controllers
         {
             var id = parkingSpotDTO.parkingSpotID;
             
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+          
             try
             {
                 await _parkingSpotService.PostParkingSpot(parkingSpotDTO);
@@ -73,9 +85,9 @@ namespace PrivateParkAPI.Controllers
             
             catch (Exception)
             {
-                if (ParkingSpotExists(id))
+                if (await ParkingSpotExists(id))
                 {
-                    return Conflict("Parking Spot already Exist");
+                    return Conflict("ParkingSpot already exist");
                 }
                 else
                 {
@@ -90,15 +102,27 @@ namespace PrivateParkAPI.Controllers
 
         public async Task<IActionResult> DeleteParkingSpot(string id)
         {
-
-            await _parkingSpotService.DeleteParkingSpot(id);
-
+            try
+            {
+                await _parkingSpotService.DeleteParkingSpot(id);
+            }
+            catch (InvalidOperationException)
+            {
+                if (await ParkingSpotExists(id) == false)
+                {
+                    return Conflict("Can't delete an non-existing ParkingSpot");
+                }
+                else
+                {
+                    throw;
+                }
+            }
             return NotFound();
         }
 
-        public bool ParkingSpotExists(string id)
+        public async Task<bool> ParkingSpotExists(string id)
         {
-            var parkingspot =  _parkingSpotService.GetParkingSpot(id);
+            var parkingspot = await  _parkingSpotService.GetParkingSpot(id);
            
             if (parkingspot != null) 
             {
