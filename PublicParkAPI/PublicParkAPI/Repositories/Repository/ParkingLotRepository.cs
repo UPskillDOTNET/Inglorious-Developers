@@ -38,14 +38,5 @@ namespace PublicParkAPI.Repositories
             await AddAsync(parkingLot);
             return parkingLot;
         }
-
-        public async Task<ActionResult<ParkingLot>> DeleteParkingLot(int id)
-        {
-            var parkingLot = GetAll().FirstOrDefault(l => l.parkingLotID == id);
-            await DeleteAsync(parkingLot);
-            return parkingLot;
-        }
-
-
     }
 }

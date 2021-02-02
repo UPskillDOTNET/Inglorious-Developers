@@ -37,17 +37,17 @@ namespace PublicParkAPI.Services.Services
             return reservationDTO;
         }
 
-        public async Task<ReservationDTO> PutReservation(string id, ReservationDTO reservationDTO)
-        {
-            var parkingSpot = await _parkingSpotRepository.GetSpecificParkingSpot(reservationDTO);
-            reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
-            reservationDTO.finalPrice = reservationDTO.hours * parkingSpot.priceHour;
-            var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);
-            await _reservationRepository.PutReservation(id, reservation);
+        //public async Task<ReservationDTO> PutReservation(string id, ReservationDTO reservationDTO)
+        //{
+        //    var parkingSpot = await _parkingSpotRepository.GetSpecificParkingSpot(reservationDTO);
+        //    reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
+        //    reservationDTO.finalPrice = reservationDTO.hours * parkingSpot.priceHour;
+        //    var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);
+        //    await _reservationRepository.PutReservation(id, reservation);
 
-            reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
-            return reservationDTO;
-        }
+        //    reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
+        //    return reservationDTO;
+        //}
 
         public async Task<ReservationDTO> PostReservation(ReservationDTO reservationDTO)
         {
@@ -58,14 +58,6 @@ namespace PublicParkAPI.Services.Services
             await _reservationRepository.PostReservation(reservation);
 
             
-            return reservationDTO;
-        }
-
-        public async Task<ReservationDTO> DeleteReservation(string id)
-        {
-            var reservation = await _reservationRepository.GetReservation(id);
-            var reservationDTO = _mapper.Map<Reservation, ReservationDTO>(reservation);
-            await _reservationRepository.DeleteReservation(id);
             return reservationDTO;
         }
     }

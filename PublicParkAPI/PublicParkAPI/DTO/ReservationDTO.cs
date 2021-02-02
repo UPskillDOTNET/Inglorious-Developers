@@ -17,6 +17,8 @@ namespace PublicParkAPI.DTO
 
         public decimal finalPrice { get; set; }
 
+        public bool isCancelled { get; set; }
+
         public DateTime endTime { get; set; }
 
         public string parkingSpotID { get; set; }

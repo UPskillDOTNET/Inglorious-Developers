@@ -49,15 +49,5 @@ namespace PublicParkAPI.Services.Services
             await _parkingLotRepository.PostParkingLot(parkingLot);
             return parkingLotDTO;
         }
-
-        public async Task<ActionResult<ParkingLotDTO>> DeleteParkingLot(int id)
-        {
-            var parkingLot = await _parkingLotRepository.GetParkingLot(id);
-            var parkingLotDTO = _mapper.Map<ParkingLot, ParkingLotDTO>(parkingLot);
-            await _parkingLotRepository.DeleteParkingLot(id);
-            return parkingLotDTO;
-        }
-
-
     }
 }

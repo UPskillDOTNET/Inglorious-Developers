@@ -13,6 +13,5 @@ namespace PublicParkAPI.Contracts
         Task<ParkingLot> GetParkingLot(int id);
         Task<ActionResult<ParkingLot>> PutParkingLot(int id, ParkingLot parkingLot);
         Task<ActionResult<ParkingLot>> PostParkingLot(ParkingLot parkingLot);
-        Task<ActionResult<ParkingLot>> DeleteParkingLot(int id);
     }
 }
