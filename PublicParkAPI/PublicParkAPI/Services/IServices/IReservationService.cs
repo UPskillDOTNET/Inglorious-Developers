@@ -1,4 +1,6 @@
-﻿using PublicParkAPI.DTO;
+﻿using Microsoft.AspNetCore.Mvc;
+using PublicParkAPI.DTO;
+using PublicParkAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ namespace PublicParkAPI.Services.IServices
         Task<IEnumerable<ReservationDTO>> GetReservations();
         Task<ReservationDTO> GetReservation(string id);
         //Task<ReservationDTO> PutReservation(string id, ReservationDTO reservationDTO);
-        //Task<ReservationDTO> PatchReservation(string id);
+        Task<ActionResult<Reservation>> PatchReservation(string id);
         Task<ReservationDTO> PostReservation(ReservationDTO reservationDTO);
     }
 }

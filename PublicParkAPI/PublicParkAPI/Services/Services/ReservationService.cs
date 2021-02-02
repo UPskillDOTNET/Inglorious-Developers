@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using PublicParkAPI.Contracts;
 using PublicParkAPI.DTO;
 using PublicParkAPI.Models;
@@ -37,19 +38,23 @@ namespace PublicParkAPI.Services.Services
             return reservationDTO;
         }
 
-        //public async Task<ReservationDTO> PutReservation(string id, ReservationDTO reservationDTO)
-        //{
-        //    var parkingSpot = await _parkingSpotRepository.GetSpecificParkingSpot(reservationDTO);
-        //    reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
-        //    reservationDTO.finalPrice = reservationDTO.hours * parkingSpot.priceHour;
-        //    var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);
-        //    await _reservationRepository.PutReservation(id, reservation);
+        public async Task<ActionResult<Reservation>> PatchReservation(string id)
+        {           
+            return await _reservationRepository.PatchReservation(id);            
+        }
+//public async Task<ReservationDTO> PutReservation(string id, ReservationDTO reservationDTO)
+//{
+//    var parkingSpot = await _parkingSpotRepository.GetSpecificParkingSpot(reservationDTO);
+//    reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
+//    reservationDTO.finalPrice = reservationDTO.hours * parkingSpot.priceHour;
+//    var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);
+//    await _reservationRepository.PutReservation(id, reservation);
 
-        //    reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
-        //    return reservationDTO;
-        //}
+//    reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
+//    return reservationDTO;
+//}
 
-        public async Task<ReservationDTO> PostReservation(ReservationDTO reservationDTO)
+public async Task<ReservationDTO> PostReservation(ReservationDTO reservationDTO)
         {
             var parkingSpot = await _parkingSpotRepository.GetSpecificParkingSpot(reservationDTO);
             reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);

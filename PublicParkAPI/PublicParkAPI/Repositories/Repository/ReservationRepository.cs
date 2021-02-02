@@ -45,6 +45,16 @@ namespace PublicParkAPI.Repositories
         //    return reservation;
         //}
 
+        public async Task<ActionResult<Reservation>> PatchReservation(string id)
+        {
+            var x = GetAll().Include(s => s.ParkingSpot).ThenInclude(p => p.ParkingLot)
+                .FirstOrDefaultAsync(r => r.reservationID == id)
+                .Result;
+            x.isCancelled = true;
+            await UpdateAsync(x);
+            return x;
+        }
+
         public async Task<ActionResult<Reservation>> PostReservation(Reservation reservation)
         {
             await AddAsync(reservation);

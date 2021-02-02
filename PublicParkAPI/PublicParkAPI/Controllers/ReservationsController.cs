@@ -66,24 +66,10 @@ namespace PublicParkAPI.Controllers
         //}
 
         [HttpPatch("{id}")]
-        public IActionResult PatchReservation(string id, [FromBody] JsonPatchDocument<Reservation> patchEntity)
+        public IActionResult PatchReservation(string id)
         {
-            var reservation = _reservationRepository.GetReservation(id).Result;
-          
-            if (reservation == null)
-            {
-                return NotFound();
-            }
-
-            if (reservation.isCancelled == true)
-            {
-                return BadRequest("This reservations is already cancelled");
-            }
-
-            reservation.isCancelled = true;
-            //patchEntity.ApplyTo(reservation, ModelState);
-            _reservationRepository.UpdateAsync(reservation);
-            return Ok(reservation);
+            _reservationService.PatchReservation(id);
+            return Ok("Reservation Cancelled");
         }
         
 
