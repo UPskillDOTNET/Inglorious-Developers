@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
+using FluentValidation.Results;
 using PrivateParkAPI.DTO;
 
 namespace PrivateParkAPI.Utils
@@ -14,7 +15,6 @@ namespace PrivateParkAPI.Utils
             RuleFor(ParkingSpotDTO => ParkingSpotDTO.priceHour).GreaterThan(0).LessThan(100);
             RuleFor(ParkingSpotDTO => ParkingSpotDTO.isPrivate).NotEmpty();
         }
-
     }
     
     

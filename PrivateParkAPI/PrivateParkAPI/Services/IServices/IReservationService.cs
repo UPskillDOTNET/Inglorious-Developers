@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Models;
@@ -15,6 +16,9 @@ namespace PrivateParkAPI.Services.IServices
         Task<ReservationDTO> PostReservation(ReservationDTO reservationDTO);
         Task<ReservationDTO> PutReservation(string id, ReservationDTO reservationDTO);
         Task<ReservationDTO> DeleteReservation(string id);
+        ValidationResult Validate(ReservationDTO reservationDTO);
+
+
 
     }
 }

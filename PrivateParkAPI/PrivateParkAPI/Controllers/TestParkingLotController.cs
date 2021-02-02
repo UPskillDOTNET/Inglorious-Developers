@@ -61,6 +61,12 @@ namespace PrivateParkAPI.Controllers
         {
             var id = parkingLotDTO.parkingLotID;
 
+            var Results = _parkingLotService.Validate(parkingLotDTO);
+
+            if (!Results.IsValid)
+            {
+                return BadRequest("Can't update " + Results);
+            }
             try
             {
                 await _parkingLotService.PostParkingLot(parkingLotDTO);

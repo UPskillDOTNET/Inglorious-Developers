@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using FluentValidation.Results;
 
 namespace PrivateParkAPI.Services.IServices
 {
@@ -17,7 +18,7 @@ namespace PrivateParkAPI.Services.IServices
         Task<ActionResult<ParkingLotDTO>> PutParkingLot(int id, ParkingLotDTO parkingLotDTO);
 
         Task<ActionResult<ParkingLotDTO>> PostParkingLot(ParkingLotDTO parkingLotDTO);
-
+        ValidationResult Validate(ParkingLotDTO parkingLotDTO);
         //Task<ActionResult<ParkingLotDTO>> DeleteParkingLot(int id);
     }
 }

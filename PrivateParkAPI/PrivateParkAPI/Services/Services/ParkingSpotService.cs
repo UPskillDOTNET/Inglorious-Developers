@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Models;
 using PrivateParkAPI.Repositories.IRepository;
 using PrivateParkAPI.Services.IServices;
+using PrivateParkAPI.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -109,5 +111,13 @@ namespace PrivateParkAPI.Services.Services
             return await _parkingSpotRepository.GetSpecificParkingSpot(reservationDTO);
         }
 
+        public ValidationResult Validate(ParkingSpotDTO parkingSpotDTO)
+        {
+            ParkingSpotValidator validationRules = new ParkingSpotValidator();
+
+            ValidationResult Results = validationRules.Validate(parkingSpotDTO);
+
+            return Results;
+        }
     }
 }

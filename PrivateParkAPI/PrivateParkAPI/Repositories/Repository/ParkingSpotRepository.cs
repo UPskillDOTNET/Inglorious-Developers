@@ -40,63 +40,6 @@ namespace PrivateParkAPI.Repositories.Repository
         {
             return await GetAll().Where(p => p.priceHour <= priceHour).Where(p=>p.isPrivate == false).Include(p => p.ParkingLot).ToListAsync();
         }
-       
-
-        ////Get: Available Specific Spots
-        //[Route("~/api/parkingspots/freeSpots/{entryHour}/{leaveHour}")]
-        //public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingSpecificFreeSpots(DateTime entryHour, DateTime leaveHour)
-        //{
-        //    if (entryHour > leaveHour)
-        //    {
-        //        return BadRequest("Can't leave before you enter");
-        //    }
-        //    var reservation = await _context.Reservations.Where(r => r.startTime <= leaveHour && r.endTime >= entryHour).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
-        //    var parkingSpots = await _context.ParkingSpots.Include(p => p.ParkingLot).ToListAsync();
-
-
-        //    foreach (var r in reservation)
-        //    {
-        //        parkingSpots.Remove(r.ParkingSpot);
-        //    }
-        //    return parkingSpots;
-        //}
-
-        ////Get: Available Parking Spots by price
-        //[Route("~/api/parkingspots/freeSpots/{price}")]
-
-        //public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingPriceFreeSpots(Decimal price)
-        //{
-        //    if (price <= 0)
-        //    {
-        //        return BadRequest("We dont sell stuff for free");
-        //    }
-        //    var reservation = await _context.Reservations.Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
-        //    var parkingSpots = await _context.ParkingSpots.Where(p => p.priceHour <= price).Include(p => p.ParkingLot).ToListAsync();
-
-
-        //    foreach (var r in reservation)
-        //    {
-        //        parkingSpots.Remove(r.ParkingSpot);
-        //    }
-        //    return parkingSpots;
-        //}
-
-        ////Get: Available Covered Parking Spots 
-        //[Route("~/api/parkingspots/freeSpots/isCovered")]
-
-        //public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingCoveredFreeSpots(Boolean isCovered)
-        //{
-
-        //    var reservation = await _context.Reservations.Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
-        //    var parkingSpots = await _context.ParkingSpots.Where(c => c.isCovered == true).Include(p => p.ParkingLot).ToListAsync();
-
-
-        //    foreach (var r in reservation)
-        //    {
-        //        parkingSpots.Remove(r.ParkingSpot);
-        //    }
-        //    return parkingSpots;
-        //}
 
         // PUT: api/ParkingSpots/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

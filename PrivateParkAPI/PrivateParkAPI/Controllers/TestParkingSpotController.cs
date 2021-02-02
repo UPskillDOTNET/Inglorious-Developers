@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
+﻿using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Services.IServices;
+using PrivateParkAPI.Utils;
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
+
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace PrivateParkAPI.Controllers
 {
@@ -16,16 +15,13 @@ namespace PrivateParkAPI.Controllers
     public class TestParkingSpotController : Controller
     {
         private readonly IParkingSpotService _parkingSpotService;
-        [ActivatorUtilitiesConstructor]
+    
         public TestParkingSpotController(IParkingSpotService parkingSpotService)
         {
             _parkingSpotService = parkingSpotService;
         }
         
-        public TestParkingSpotController() {
-
-        }
-
+      
         //Get not Private ParkingSpots
         [HttpGet]
         public Task<IEnumerable<ParkingSpotDTO>> GetAllNotPrive()
@@ -87,6 +83,13 @@ namespace PrivateParkAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutParkingSpot(string id, ParkingSpotDTO parkingSpotDTO)
         {
+            var Results = _parkingSpotService.Validate(parkingSpotDTO);
+
+            if (!Results.IsValid)
+            {
+                return BadRequest("Can't update " + Results);
+            }
+
             if (id != parkingSpotDTO.parkingSpotID)
             {
                 return BadRequest();
@@ -115,11 +118,17 @@ namespace PrivateParkAPI.Controllers
         {
             var id = parkingSpotDTO.parkingSpotID;
 
+            var Results = _parkingSpotService.Validate(parkingSpotDTO);
+
+            if (!Results.IsValid)
+            {
+                return BadRequest("Can't create " + Results);
+            }
+
             try
             {
                 await _parkingSpotService.PostParkingSpot(parkingSpotDTO);
             }
-            
             catch (Exception)
             {
                 if (await ParkingSpotExists(id))
@@ -130,7 +139,6 @@ namespace PrivateParkAPI.Controllers
                 {
                     throw;
                 }
-
             }
             return CreatedAtAction("GetParkingSpot", new { id = parkingSpotDTO.parkingSpotID }, parkingSpotDTO);
         }

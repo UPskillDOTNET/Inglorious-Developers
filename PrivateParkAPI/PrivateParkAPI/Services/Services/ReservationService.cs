@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Models;
 using PrivateParkAPI.Repositories.IRepository;
 using PrivateParkAPI.Services.IServices;
-
+using PrivateParkAPI.Utils;
 
 namespace PrivateParkAPI.Services.Services
 {
@@ -61,6 +62,15 @@ namespace PrivateParkAPI.Services.Services
             var reservationDTO = _mapper.Map<Reservation, ReservationDTO>(reservation);
             await _reservationRepository.DeleteReservation(id);
             return reservationDTO;
+        }
+
+        public ValidationResult Validate(ReservationDTO reservationDTO)
+        {
+            ReservationValidator validationRules = new ReservationValidator();
+
+            ValidationResult Results = validationRules.Validate(reservationDTO);
+
+            return Results;
         }
     }
 }

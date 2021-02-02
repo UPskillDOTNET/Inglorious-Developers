@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Models;
@@ -21,5 +22,6 @@ namespace PrivateParkAPI.Services.IServices
         Task<ActionResult<ParkingSpotDTO>> PostParkingSpot( ParkingSpotDTO parkingSpotDTO);
         Task<ActionResult<ParkingSpotDTO>> DeleteParkingSpot(string id);
         Task<ParkingSpot> GetSpecificParkingSpot(ReservationDTO reservationDTO);
+        ValidationResult Validate(ParkingSpotDTO parkingSpotDTO);
     }
 }

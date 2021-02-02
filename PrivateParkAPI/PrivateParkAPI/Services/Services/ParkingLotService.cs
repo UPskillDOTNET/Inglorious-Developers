@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Models;
 using PrivateParkAPI.Repositories.IRepository;
 using PrivateParkAPI.Services.IServices;
+using PrivateParkAPI.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,12 +53,13 @@ namespace PrivateParkAPI.Services.Services
             return parkingLotDTO;
         }
 
-        //public async Task<ActionResult<ParkingLotDTO>> DeleteParkingLot(int id)
-        //{
-        //    var parkingLot = await _parkingLotRepository.GetParkingLot(id);
-        //    var parkingLotDTO = _mapper.Map<ParkingLotDTO, ParkingLot>(parkingLot);
-        //    await _parkingLotRepository.DeleteParkingLot(id);
-        //    return parkingLotDTO;
-        //}
+        public ValidationResult Validate(ParkingLotDTO parkingLotDTO)
+        {
+            ParkingLotValidator validationRules = new ParkingLotValidator();
+
+            ValidationResult Results = validationRules.Validate(parkingLotDTO);
+
+            return Results;
+        }
     }
 }
