@@ -62,6 +62,8 @@ namespace PublicParkAPI.Controllers
             return NoContent();
         }
 
+
+
         // POST: api/testesParkingLot
         [HttpPost]
         public async Task<IActionResult> PostParkingLot([FromBody] ParkingLotDTO parkingLotDTO)

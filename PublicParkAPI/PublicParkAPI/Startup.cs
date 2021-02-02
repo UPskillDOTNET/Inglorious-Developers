@@ -78,7 +78,7 @@ namespace PublicParkAPI
                 };
             });
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddAutoMapper(typeof(Maps));
             services.AddMvc(options =>
             {

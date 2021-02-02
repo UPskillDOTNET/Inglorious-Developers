@@ -4,13 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PublicParkAPI.Data;
 using PublicParkAPI.Models;
 
 namespace PublicParkAPI.Controllers
-{   [Authorize]
+{   //[Authorize]
     [Route("api/publicLots")]
     [ApiController]
     public class ParkingLotsController : ControllerBase
@@ -72,6 +73,21 @@ namespace PublicParkAPI.Controllers
             }
 
             return NoContent();
+        }
+
+        [HttpPatch("{id}")]
+        public IActionResult PatchPakingLot(int id, [FromBody] JsonPatchDocument<ParkingLot> patchEntity)
+        {
+            var entity = _context.ParkingLots.FirstOrDefault(parkingLot => parkingLot.parkingLotID == id);
+
+            if (entity == null)
+            {
+                return NotFound();
+            }
+
+            patchEntity.ApplyTo(entity, ModelState); // Must have Microsoft.AspNetCore.Mvc.NewtonsoftJson installed
+            _context.SaveChanges();
+            return Ok(entity);
         }
 
         // POST: api/ParkingLots
