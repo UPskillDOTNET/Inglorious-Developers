@@ -4,127 +4,87 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PublicParkAPI.Data;
+using PublicParkAPI.DTO;
 using PublicParkAPI.Models;
+using PublicParkAPI.Services.IServices;
 
 namespace PublicParkAPI.Controllers
-{   //[Authorize]
-    [Route("api/publicLots")]
+{
+
+    [Route("api/testesParkingLots")]
     [ApiController]
     public class ParkingLotsController : ControllerBase
     {
-        private readonly PublicParkContext _context;
+        private readonly IParkingLotService _parkingLotService;
 
-        public ParkingLotsController(PublicParkContext context)
+        public ParkingLotsController(IParkingLotService parkingLotService)
         {
-            _context = context;
+            _parkingLotService = parkingLotService;
         }
 
-        // GET: api/ParkingLots
+        // GET: api/testesParkingLot
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ParkingLot>>> GetParkingLots()
+        public Task<IEnumerable<ParkingLotDTO>> GetParkingLots()
         {
-            return await _context.ParkingLots.ToListAsync();
+            return _parkingLotService.GetParkingLots();
+
         }
 
-        // GET: api/ParkingLots/5
+        // GET: api/testesParkingLots/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ParkingLot>> GetParkingLot(int id)
+        public Task<ParkingLotDTO> GetParkingLot(int id)
         {
-            var parkingLot = await _context.ParkingLots.FindAsync(id);
-
-            if (parkingLot == null)
-            {
-                return NotFound();
-            }
-
-            return parkingLot;
+            return _parkingLotService.GetParkingLot(id);
         }
 
-        // PUT: api/ParkingLots/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // PUT: api/testesParkingLot/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutParkingLot(int id, ParkingLot parkingLot)
+        public async Task<IActionResult> PutParkingLot(int id, [FromBody] ParkingLotDTO parkingLotDTO)
         {
-            if (!ModelState.IsValid || !id.Equals(parkingLot.parkingLotID))
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(parkingLot).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                await _parkingLotService.PutParkingLot(id, parkingLotDTO);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception)
             {
-                if (!ParkingLotExists(id))
+                if (await ParkingLotExists(id) == false)
                 {
-                    return NotFound();
+                    return NotFound("Parking Spot not found.");
                 }
                 else
                 {
                     throw;
                 }
             }
-
             return NoContent();
         }
 
-        [HttpPatch("{id}")]
-        public IActionResult PatchPakingLot(int id, [FromBody] JsonPatchDocument<ParkingLot> patchEntity)
-        {
-            var entity = _context.ParkingLots.FirstOrDefault(parkingLot => parkingLot.parkingLotID == id);
 
-            if (entity == null)
-            {
-                return NotFound();
-            }
 
-            patchEntity.ApplyTo(entity, ModelState); // Must have Microsoft.AspNetCore.Mvc.NewtonsoftJson installed
-            _context.SaveChanges();
-            return Ok(entity);
-        }
-
-        // POST: api/ParkingLots
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // POST: api/testesParkingLot
         [HttpPost]
-        public async Task<ActionResult<ParkingLot>> PostParkingLot(ParkingLot parkingLot)
+        public async Task<IActionResult> PostParkingLot([FromBody] ParkingLotDTO parkingLotDTO)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            _context.ParkingLots.Add(parkingLot);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetParkingLot), new { id = parkingLot.parkingLotID }, parkingLot);
+            await _parkingLotService.PostParkingLot(parkingLotDTO);
+            return Ok();
         }
 
-        // DELETE: api/ParkingLots/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteParkingLot(int id)
+        private async Task<bool> ParkingLotExists(int id)
         {
-            var parkingLot = await _context.ParkingLots.FindAsync(id);
-            if (parkingLot == null)
+            var parkingLot = await _parkingLotService.GetParkingLot(id);
+
+            if (parkingLot != null)
             {
-                return NotFound();
+
+                return true;
             }
-
-            _context.ParkingLots.Remove(parkingLot);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool ParkingLotExists(int id)
-        {
-            return _context.ParkingLots.Any(e => e.parkingLotID == id);
+            else
+            {
+                return false;
+            }
         }
     }
 }
