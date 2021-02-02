@@ -1,0 +1,27 @@
+Sprint #3
+
+User Stories:
+
+• As a non-user, I want to be able to make an account, so that I can become a user.
+
+• As a non-user, I want to be able to make an account using an external service (Google, Facebook, Twitter), so that I can become a user.
+
+• As a user, I want to be able to authenticate using an external service (Google, Facebook, Twitter), so that I can login in the app.
+
+• As a user, I want to be able to access a dashboard and change my details, so that I can update my profile and login elements.
+
+• As a user, I want to be able to delete my account, so that I leave the app.
+
+• As a user, I want to be able to consult all the reservation history, so that I can check the active, completed and cancelled reservations.
+
+• As a user, I want to be able to create a parking spot sublet, so that I am able to rent it to another user when needed.
+
+• As a user, I want to be able to create a parking spot sublet, so that I am able to rent it to another user when needed.
+
+• As a user, I want to be able to make payments, so that I can pay for a reservation.
+
+• As a user, I want to have a virtual wallet with credit, so that I can pay through it.
+
+• As a user, I want to access my virtual wallet, so that I check my credit.
+
+• As a user, I want to be able to make a deposit in my virtual wallet, so that I can update my credit.
