@@ -1,113 +1,127 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PrivateParkAPI.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using PrivateParkAPI.DTO;
 using PrivateParkAPI.Models;
+using PrivateParkAPI.Services.IServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace PrivateParkAPI.Controllers
 {
-    [Authorize]
     [Route("api/parkinglots")]
     [ApiController]
-    public class ParkingLotsController : ControllerBase
+    public class ParkingLotsController : Controller
     {
-        private readonly PrivateParkContext _context;
+        private readonly IParkingLotService _parkingLotService;
 
-        public ParkingLotsController(PrivateParkContext context)
+        public ParkingLotsController(IParkingLotService parkingLotService)
         {
-            _context = context;
+            _parkingLotService = parkingLotService;
         }
 
-        // GET: api/ParkingLots
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ParkingLot>>> GetParkingLots()
+        public Task<IEnumerable<ParkingLotDTO>> GetParkingLots()
         {
-            return await _context.ParkingLots.ToListAsync();
+            return _parkingLotService.GetParkingLots();
         }
 
-        // GET: api/ParkingLots/5
+        // GET: api/testesParkingLots/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ParkingLot>> GetParkingLot(int id)
+        public async Task<ActionResult<ParkingLotDTO>> GetParkingLot(int id)
         {
-            var parkingLot = await _context.ParkingLots.FindAsync(id);
+            var parkingLot = await _parkingLotService.GetParkingLot(id);
 
-            if (parkingLot == null)
+            if (parkingLot.Value == null)
             {
-                return NotFound("Parking Lot does not Exist");
+                return NotFound();
             }
-
             return parkingLot;
         }
 
-        // PUT: api/ParkingLots/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // PUT: api/testesParkingLot/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutParkingLot(int id, ParkingLot parkingLot)
+        public async Task<IActionResult> PutParkingLot(int id, ParkingLotDTO parkingLotDTO)
         {
-            if (!ModelState.IsValid || !id.Equals(parkingLot.parkingLotID))
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(parkingLot).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                await _parkingLotService.PutParkingLot(id, parkingLotDTO);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception)
             {
-                if (!ParkingLotExists(id))
+                if (await ParkingLotExists(id) == false)
                 {
-                    return NotFound("Can't Update a Parking Lot that does not Exist");
+                    return NotFound("Parking Lot not found.");
                 }
                 else
                 {
                     throw;
                 }
             }
-
             return NoContent();
         }
 
-        // POST: api/ParkingLots
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // POST: api/testesParkingLot
         [HttpPost]
-        public async Task<ActionResult<ParkingLot>> PostParkingLot(ParkingLot parkingLot)
+        public async Task<IActionResult> PostParkingLot(ParkingLotDTO parkingLotDTO)
         {
-            if (!ModelState.IsValid)
+            var id = parkingLotDTO.parkingLotID;
+
+            var Results = _parkingLotService.Validate(parkingLotDTO);
+
+            if (!Results.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest("Can't update " + Results);
+            }
+            try
+            {
+                await _parkingLotService.PostParkingLot(parkingLotDTO);
             }
 
-            _context.ParkingLots.Add(parkingLot);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetParkingLot", new { id = parkingLot.parkingLotID }, parkingLot);
-        }
-
-        // DELETE: api/ParkingLots/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteParkingLot(int id)
-        {
-            var parkingLot = await _context.ParkingLots.FindAsync(id);
-            if (parkingLot == null)
+            catch (Exception)
             {
-                return NotFound("Can't Delete a Parking Lot that does not Exist");
+                if (await ParkingLotExists(id))
+                {
+                    return Conflict("Parking Lot already exists.");
+                }
+                else
+                {
+                    throw;
+                }
+
             }
-
-            _context.ParkingLots.Remove(parkingLot);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return CreatedAtAction("GetParkingLot", new { id = parkingLotDTO.parkingLotID }, parkingLotDTO);
         }
 
-        private bool ParkingLotExists(int id)
+        //// DELETE: api/ParkingLots/5
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteParkingLot(int id)
+        //{
+        //    if (await ParkingLotExists(id) == false)
+        //    {
+        //        return NotFound("Parking Lot does not exist.");
+        //    }
+        //    else
+        //    {
+        //        await _parkingLotService.DeleteParkingLot(id);
+        //    }
+        //    return Ok();
+        //}
+
+        private async Task<bool> ParkingLotExists(int id)
         {
-            return _context.ParkingLots.Any(e => e.parkingLotID == id);
+            var parkingLot = await _parkingLotService.GetParkingLot(id);
+
+            if (parkingLot != null)
+            {
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
+
     }
 }
