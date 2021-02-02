@@ -31,6 +31,11 @@ namespace PrivateParkAPI.Services.Services
             var reservationsDTO = _mapper.Map<List<Reservation>, List<ReservationDTO>>(reservations.ToList());
             return reservationsDTO;
         }
+        public async Task<IEnumerable<ReservationDTO>> GetReservationsNotCancelled() {
+            var reservations = await _reservationRepository.GetReservationsNotCancelled();
+            var reservationsDTO = _mapper.Map<List<Reservation>, List<ReservationDTO>>(reservations.ToList());
+            return reservationsDTO;
+        }
 
         public async Task<ReservationDTO> GetReservation(string id) {
             var reservation = await _reservationRepository.GetReservation(id);
@@ -47,22 +52,22 @@ namespace PrivateParkAPI.Services.Services
             return reservationDTO;
         }
 
-        public async Task<ReservationDTO> PutReservation(string id, ReservationDTO reservationDTO) {
-            var parkingSpot = await _parkingSpotRepository.GetSpecificParkingSpot(reservationDTO);
-            reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
-            reservationDTO.finalPrice = reservationDTO.hours * parkingSpot.priceHour;
-            var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);
-            await _reservationRepository.PutReservation(id, reservation);
+        //public async Task<ReservationDTO> PutReservation(string id, ReservationDTO reservationDTO) {
+        //    var parkingSpot = await _parkingSpotRepository.GetSpecificParkingSpot(reservationDTO);
+        //    reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
+        //    reservationDTO.finalPrice = reservationDTO.hours * parkingSpot.priceHour;
+        //    var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);
+        //    await _reservationRepository.PutReservation(id, reservation);
 
-            reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
-            return reservationDTO;
-        }
-        public async Task<ReservationDTO> DeleteReservation(string id) {
-            var reservation = await _reservationRepository.GetReservation(id);
-            var reservationDTO = _mapper.Map<Reservation, ReservationDTO>(reservation);
-            await _reservationRepository.DeleteReservation(id);
-            return reservationDTO;
-        }
+        //    reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
+        //    return reservationDTO;
+        //}
+        //public async Task<ReservationDTO> DeleteReservation(string id) {
+        //    var reservation = await _reservationRepository.GetReservation(id);
+        //    var reservationDTO = _mapper.Map<Reservation, ReservationDTO>(reservation);
+        //    await _reservationRepository.DeleteReservation(id);
+        //    return reservationDTO;
+        //}
 
         public ValidationResult Validate(ReservationDTO reservationDTO)
         {

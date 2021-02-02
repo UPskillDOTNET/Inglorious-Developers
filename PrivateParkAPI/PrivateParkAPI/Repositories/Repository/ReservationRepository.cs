@@ -21,9 +21,15 @@ namespace PrivateParkAPI.Repositories.Repository
             return await GetAll().ToListAsync();
         }
 
-        public async Task<IEnumerable<Reservation>> GetReservationDateTimeNow()
+        // GET: api/reservationtest/notCancelled
+        public async Task<IEnumerable<Reservation>> GetReservationsNotCancelled() 
         {
-            return await GetAll().Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+            return await GetAll().Where(r => r.isCancelled == false).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Reservation>> GetReservationDateTimeNow() 
+        {
+            return await GetAll().Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now && r.isCancelled == false).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
         }
 
         public async Task<IEnumerable<Reservation>> GetSpecificReservation(DateTime startDate, DateTime endDate)
@@ -49,21 +55,21 @@ namespace PrivateParkAPI.Repositories.Repository
             return reservation;
         }
 
-        // PUT: api/ParkingSpots/5
-        public async Task<ActionResult<Reservation>> PutReservation(string id, Reservation reservation)
-        {
+        //// PUT: api/ParkingSpots/5
+        //public async Task<ActionResult<Reservation>> PutReservation(string id, Reservation reservation)
+        //{
 
-            GetAll().Where(r => r.reservationID == id).Include(s => s.ParkingSpot);
-            await UpdateAsync(reservation);
-            return reservation;
-        }
+        //    GetAll().Where(r => r.reservationID == id).Include(s => s.ParkingSpot);
+        //    await UpdateAsync(reservation);
+        //    return reservation;
+        //}
 
-        // DELETE: api/ParkingSpots/5
-        public async Task<ActionResult<Reservation>> DeleteReservation(string id)
-        {
-            var reservation = GetAll().FirstOrDefault(r => r.reservationID == id);
-            await DeleteAsync(reservation);
-            return reservation;
-        }
+        //// DELETE: api/ParkingSpots/5
+        //public async Task<ActionResult<Reservation>> DeleteReservation(string id)
+        //{
+        //    var reservation = GetAll().FirstOrDefault(r => r.reservationID == id);
+        //    await DeleteAsync(reservation);
+        //    return reservation;
+        //}
     }
 }

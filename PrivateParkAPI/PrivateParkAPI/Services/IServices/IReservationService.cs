@@ -13,12 +13,10 @@ namespace PrivateParkAPI.Services.IServices
     {
         Task<IEnumerable<ReservationDTO>> GetReservations();
         Task<ReservationDTO> GetReservation(string id);
+        Task<IEnumerable<ReservationDTO>> GetReservationsNotCancelled();
         Task<ReservationDTO> PostReservation(ReservationDTO reservationDTO);
-        Task<ReservationDTO> PutReservation(string id, ReservationDTO reservationDTO);
-        Task<ReservationDTO> DeleteReservation(string id);
+        //Task<ReservationDTO> PutReservation(string id, ReservationDTO reservationDTO);
+        //Task<ReservationDTO> DeleteReservation(string id);
         ValidationResult Validate(ReservationDTO reservationDTO);
-
-
-
     }
 }

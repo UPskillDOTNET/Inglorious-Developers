@@ -2,12 +2,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PrivateParkAPI.Models
-{
-    public class Reservation
-    {
+namespace PrivateParkAPI.Models {
+    public class Reservation {
         [Key]
         public string reservationID { get; set; }
+        [Required]
+        public bool isCancelled { get; set; }
         [Required]
         public DateTime startTime { get; set; }
         [Required]
@@ -18,9 +18,5 @@ namespace PrivateParkAPI.Models
         [ForeignKey("ParkingSpot")]
         public string parkingSpotID { get; set; }
         public ParkingSpot ParkingSpot { get; set; }
-
-       
-
-       
     }
 }
