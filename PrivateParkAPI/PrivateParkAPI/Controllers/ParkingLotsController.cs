@@ -28,9 +28,15 @@ namespace PrivateParkAPI.Controllers
 
         // GET: api/testesParkingLots/5
         [HttpGet("{id}")]
-        public Task<ParkingLotDTO> GetParkingLot(int id)
+        public async Task<ActionResult<ParkingLotDTO>> GetParkingLot(int id)
         {
-            return _parkingLotService.GetParkingLot(id);
+            var parkingLot = await _parkingLotService.GetParkingLot(id);
+
+            if (parkingLot.Value == null)
+            {
+                return NotFound();
+            }
+            return parkingLot;
         }
 
         // PUT: api/testesParkingLot/5

@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Models;
 using PrivateParkAPI.Repositories.IRepository;
 using PrivateParkAPI.Services.IServices;
 using PrivateParkAPI.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +17,7 @@ namespace PrivateParkAPI.Services.Services
     {
         private readonly IParkingLotRepository _parkingLotRepository;
         private readonly IMapper _mapper;
-        
+
         public ParkingLotService(IParkingLotRepository parkingLotRepository, IMapper mapper)
         {
             _parkingLotRepository = parkingLotRepository;
@@ -32,7 +32,7 @@ namespace PrivateParkAPI.Services.Services
             return parkingLotDTO;
         }
 
-        public async Task<ParkingLotDTO> GetParkingLot(int id)
+        public async Task<ActionResult<ParkingLotDTO>> GetParkingLot(int id)
         {
             var parkingLot = await _parkingLotRepository.GetParkingLot(id);
             var parkingLotDTO = _mapper.Map<ParkingLot, ParkingLotDTO>(parkingLot);

@@ -11,8 +11,8 @@ namespace PrivateParkAPI.Utils
     {
         public ParkingLotValidator()
         {
-            RuleFor(ParkingLotDTO => ParkingLotDTO.name).MinimumLength(3).MinimumLength(24);
-            RuleFor(ParkingLotDTO => ParkingLotDTO.companyOwner).MinimumLength(3).MinimumLength(24);
+            RuleFor(ParkingLotDTO => ParkingLotDTO.name).MinimumLength(3).MaximumLength(24);
+            RuleFor(ParkingLotDTO => ParkingLotDTO.companyOwner).MinimumLength(3).MaximumLength(24);
             RuleFor(ParkingLotDTO => ParkingLotDTO.location).MinimumLength(3);
             RuleFor(ParkingLotDTO => ParkingLotDTO.capacity).NotEmpty();
             RuleFor(ParkingLotDTO => ParkingLotDTO.openingTime).NotEmpty();
@@ -22,11 +22,6 @@ namespace PrivateParkAPI.Utils
 
 
 
-        // name 
-        // companyOwner 
-        // location 
-        // capacity
-        //openingTime 
-        //closingTime 
+      
     }
 }

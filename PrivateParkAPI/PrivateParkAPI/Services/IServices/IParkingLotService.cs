@@ -13,7 +13,7 @@ namespace PrivateParkAPI.Services.IServices
     {
         Task<IEnumerable<ParkingLotDTO>> GetParkingLots();
 
-        Task<ParkingLotDTO> GetParkingLot(int id);
+        Task<ActionResult<ParkingLotDTO>> GetParkingLot(int id);
 
         Task<ActionResult<ParkingLotDTO>> PutParkingLot(int id, ParkingLotDTO parkingLotDTO);
 
