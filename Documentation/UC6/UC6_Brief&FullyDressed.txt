@@ -1,0 +1,70 @@
+Brief:
+
+After choosing a parking spot and making a reservation the user proceeds to pay. He informs the platform he wants to pay.
+The platform shows him the full price and asks how he intends to pay. The user choses a payment method.
+The platform confirms the payment method and asks for user details. The user inserts his data.
+The platform confirms the payment and the successful reservation process.
+
+
+Fully-Dressed:
+
+Name: Payment Processing
+
+Primary Actor: User
+
+Stakeholders and interests:
+
+User: 
+• Wants purchase and fast service with minimal effort.
+• Wants to pay a parking spot reservation on the platform.
+
+Platform:  
+• Wants to accurately receive the payment in the platform.
+
+Preconditions: There is a previous reservation of a parking spot. 
+
+Postconditions:
+• The payment approvals are recorded.
+• QR-Code is generated.
+
+Main Success Scenario: 
+1. The user informs the platform he wants to pay.
+2. The platform shows him the full price and asks how he intends to pay.
+3. The user chooses a payment method.
+4. The platform confirms the payment method and asks for user details.
+5. The user inserts his payment details.
+6. The platform shows the data to the user asking him to confirm it.
+9. The user confirms.
+10. The platform confirms the payment and the successful reservation process.
+
+Extensions (alternative scenarios):
+
+*a. At any time, systems fail:
+1. To support recovery and correct accounting, ensure all transactions and events can be recovered from any step of the scenario.
+
+*b.
+1. The user cancels the payment.
+2. The use case ends.
+
+*c. 
+1. The user inserts non-valid data.
+2. The platform warns him about it and allows the user to change the data.
+3. The user does not change the data.
+4. The use case ends.
+
+*d.
+1. The payment is refused.
+2. The platform requests the user to inserts new payment details.
+3. The user inserts his data.
+4. The platform shows the data to the user asking him to confirm it.
+5. The user confirms.
+6. The platform confirms the payment and the successful reservation process.
+
+Special Requirements:
+• Display international currencies and languages depending on the user’s nationality.
+
+Variations in Technology and Data: N/A
+
+Frequency of Occurrence: Whenever a user wants to make a payment.
+
+Miscellaneous: N/A
