@@ -220,7 +220,7 @@ namespace testPublicParkAPI
         [Fact]
         public async Task PutNoExistingParkingSpotAsync_ShouldReturnNotFound()
         {
-            Thread.Sleep(10000);
+            Thread.Sleep(300);
             // Arrange
             var TestContext = TodoContextMocker.GetPublicParkContext("PutNotParkingSpotReturnNotFound");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
@@ -242,13 +242,13 @@ namespace testPublicParkAPI
             var response = await theController.PutParkingSpot(testCod, theNonParkingSpot);
 
             // Assert
-            Assert.IsType<NotFoundResult>(response);
+            Assert.IsType<NotFoundObjectResult>(response);
         }
 
         [Fact]
         public async Task PutNoPriceParkingSpot_ShouldReturnBadRequestResult()
         {
-            Thread.Sleep(300);
+            Thread.Sleep(400);
             // Arrange
             var TestContext = TodoContextMocker.GetPublicParkContext("PutNoPriceParkingSpotReturnBadRequest");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
@@ -273,62 +273,65 @@ namespace testPublicParkAPI
 
         }
 
-        //[Fact]
-        //public async Task PutNoParkingLotIDParkingSpot_ShouldReturnBadRequest()
-        //{
-        //    Thread.Sleep(300);
-        //    // Arrange
-        //    var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-        //    var testContext = TodoContextMocker.GetPublicParkContext(dbName);
-        //    var theController = new ParkingSpotsController(testContext);
-        //    var testCod = "A1";
+        [Fact]
+        public async Task PutNoParkingLotIDParkingSpot_ShouldReturnBadRequest()
+        {
+            Thread.Sleep(300);
+            // Arrange
+            var TestContext = TodoContextMocker.GetPublicParkContext("PutNoParkingLotIDParkingSpotReturnBadRequest");
+            var parkingSpotRepository = new ParkingSpotRepository(TestContext);
+            var reservationRepository = new ReservationRepository(TestContext);
+            var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
+            var mapper = config.CreateMapper();
+            var parkingSpotService = new ParkingSpotService(parkingSpotRepository, mapper, reservationRepository);
+            var theController = new ParkingSpotsController(parkingSpotService);
+            var testCod = "A1";
 
-        //    var noPriceParkingSpot = new ParkingSpot
-        //    {
-        //        parkingSpotID = testCod,
-        //        priceHour = 0.9m,
-        //    };
+            var noPriceParkingSpot = new ParkingSpotDTO
+            {
+                parkingSpotID = testCod,
+                priceHour = 0.9m,
+            };
 
-        //    var c = await testContext.FindAsync<ParkingSpot>(testCod);
-        //    testContext.Entry(c).State = EntityState.Detached;
+            // Act
+            var response = await theController.PutParkingSpot(testCod, noPriceParkingSpot);
 
-        //    theController.ModelState.AddModelError("priceHour", "Required");
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(response);
+        }
 
-        //    // Act
-        //    var response = await theController.PutParkingSpot(testCod, noPriceParkingSpot);
+        [Fact]
+        public async Task PutParkingSpot_ShouldReturnNoContentResult()
+        {
+            //Thread.Sleep(1600);
+            // Arrange
+            var TestContext = TodoContextMocker.GetPublicParkContext("PutParkingSpotReturnNoContentResult");
+            var parkingSpotRepository = new ParkingSpotRepository(TestContext);
+            var reservationRepository = new ReservationRepository(TestContext);
+            var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
+            var mapper = config.CreateMapper();
+            var parkingSpotService = new ParkingSpotService(parkingSpotRepository, mapper, reservationRepository);
+            var theController = new ParkingSpotsController(parkingSpotService);
+            var testCod = "O1";
+            var theParkingSpot = new ParkingSpotDTO
+            {
+                parkingSpotID = testCod,
+                priceHour = 0.30m,
+                ParkingLotID = 2
+            };
 
-        //    // Assert
-        //    Assert.IsType<BadRequestObjectResult>(response);
-        //}
+            var c = await TestContext.FindAsync<ParkingSpot>(testCod); //To Avoid tracking error
+            TestContext.Entry(c).State = EntityState.Detached;
 
-        //[Fact]
-        //public async Task PutParkingSpot_ShouldReturnCreatedResponse()
-        //{
-        //    Thread.Sleep(1000);
-        //    // Arrange
-        //    var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-        //    var testContext = TodoContextMocker.GetPublicParkContext(dbName);
-        //    var theController = new ParkingSpotsController(testContext);
-        //    var testCod = "O1";
-        //    var theParkingSpot = new ParkingSpot
-        //    {
-        //        parkingSpotID = testCod,
-        //        priceHour = 30m,
-        //        ParkingLotID = 2
-        //    };
+            // Act
+            var response = await theController.PutParkingSpot(testCod, theParkingSpot);
+            var getResult = await theController.GetParkingSpot(theParkingSpot.parkingSpotID);
 
-        //    var c = await testContext.FindAsync<ParkingSpot>(testCod);
-        //    testContext.Entry(c).State = EntityState.Detached;
-
-        //    // Act
-        //    var response = await theController.PutParkingSpot(testCod, theParkingSpot);
-        //    var getResult = await theController.GetParkingSpot(theParkingSpot.parkingSpotID);
-
-        //    // Assert
-        //    var items = Assert.IsType<ParkingSpot>(getResult.Value);
-        //    Assert.Equal(30m, items.priceHour);
-        //    Assert.IsType<NoContentResult>(response);
-        //}
+            // Assert
+            var items = Assert.IsType<ParkingSpotDTO>(getResult.Value);
+            Assert.Equal(0.30m, items.priceHour);
+            Assert.IsType<NoContentResult>(response);
+        }
 
         //[Fact]
         //public async Task DeleteNotExistingParkingSpot_ShouldReturnNotFound()

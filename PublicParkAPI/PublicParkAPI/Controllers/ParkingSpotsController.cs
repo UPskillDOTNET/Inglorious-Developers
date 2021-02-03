@@ -72,6 +72,11 @@ namespace PublicParkAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutParkingSpot(string id, [FromBody] ParkingSpotDTO parkingSpotDTO)
         {
+            var Results = _parkingSpotService.Validate(parkingSpotDTO);
+            if (!Results.IsValid)
+            {
+                return BadRequest("Can't create" + Results);
+            }
             try
             {
                 await _parkingSpotService.PutParkingSpot(id, parkingSpotDTO);
@@ -140,7 +145,7 @@ namespace PublicParkAPI.Controllers
         {
             var parkingspot = await _parkingSpotService.GetParkingSpot(id);
 
-            if (parkingspot != null)
+            if (parkingspot.Value != null)
             {
 
                 return true;
