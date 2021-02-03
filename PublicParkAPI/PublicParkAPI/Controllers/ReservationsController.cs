@@ -23,62 +23,44 @@ namespace PublicParkAPI.Controllers
     {
         private readonly IReservationService _reservationService;
         private readonly IParkingSpotService _parkingSpotService;
-        private readonly IReservationRepository _reservationRepository;
 
-        public ReservationsController(IReservationService reservationService, IParkingSpotService parkingSpotService, IReservationRepository reservationRepository)
+        public ReservationsController(IReservationService reservationService, IParkingSpotService parkingSpotService)
         {
             _reservationService = reservationService;
             _parkingSpotService = parkingSpotService;
-            _reservationRepository = reservationRepository;
         }
 
-        //Get All Resevations
         [HttpGet]
-        public Task<IEnumerable<ReservationDTO>> GetReservations()
+        public Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservations()
         {
             return _reservationService.GetReservations();
         }
 
-        //Get Resevation By ID
         [HttpGet("{id}")]
-        public Task<ReservationDTO> GetReservation(string id)
+        public async Task<ActionResult<ReservationDTO>> GetReservation(string id)
         {
-            return _reservationService.GetReservation(id);
+            var reservation = await _reservationService.GetReservation(id);
+
+            if (reservation.Value == null)
+            {
+                return NotFound(reservation);
+            }
+            return reservation;
         }
 
-        //// Needs to be a patch, isCancelled from false to true
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutReservation(string id, [FromBody]ReservationDTO reservationDTO)
-        //{
-        //    try
-        //    {
-        //        await _reservationService.PutReservation(reservationDTO.reservationID, reservationDTO);                
-        //    }
-        //    catch (Exception)
-        //    {
-        //        if (await ReservationExists(id) == false)
-        //        {
-        //            return NotFound("The Reservation was not found");
-        //        }
-        //        throw;
-        //    }
-        //    return NoContent();
-        //}
-
-        [HttpPatch("{id}")]
-        public IActionResult PatchReservation(string id)
+        [Route("~/api/reservations/notCancelled")]
+        public async Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservationsNotCancelled()
         {
-            _reservationService.PatchReservation(id);
-            return Ok("Reservation Cancelled");
+            return await _reservationService.GetReservationsNotCancelled();
         }
-        
 
-        //Post Resevation
         [HttpPost]
-        public async Task<IActionResult> PostReservation([FromBody]ReservationDTO reservationDTO)
+        public async Task<IActionResult> PostReservation([FromBody] ReservationDTO reservationDTO)
         {
+            var Results = _reservationService.Validate(reservationDTO);
             var id = reservationDTO.reservationID;
-            var TheController = new ParkingSpotsController(_parkingSpotService);            
+            var TheController = new ParkingSpotsController(_parkingSpotService);
+            var parkingSpot = await _parkingSpotService.Find(reservationDTO.parkingSpotID);
 
             if (await TheController.ParkingSpotExists(reservationDTO.parkingSpotID) == false)
             {
@@ -100,6 +82,13 @@ namespace PublicParkAPI.Controllers
             return CreatedAtAction("PostReservation", new { id = reservationDTO.reservationID }, reservationDTO);
         }
 
+        [HttpPatch("{id}")]
+        public IActionResult PatchReservation(string id)
+        {
+            _reservationService.PatchReservation(id);
+            return Ok("Reservation Cancelled");
+        }
+        
         //Reservation exists
         public async Task<bool> ReservationExists(string id)
         {

@@ -28,9 +28,9 @@ namespace PublicParkAPI.Controllers
 
         // GET: api/ParkingSpots
         [HttpGet]
-        public Task<IEnumerable<ParkingSpotDTO>> GetParkingSpots()
+        public Task<IEnumerable<ParkingSpotDTO>> GetAllParkingSpots()
         {
-            return _parkingSpotService.GetParkingSpots();
+            return _parkingSpotService.GetAllParkingSpots();
         }
 
         [HttpGet("{id}")]
@@ -49,9 +49,9 @@ namespace PublicParkAPI.Controllers
 
         //Get: Available Specific Spots
         [Route("~/api/parkingSpots/freeSpots/{entryHour}/{leaveHour}")]
-        public Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetParkingSpecificFreeSpots(DateTime entryHour, DateTime leaveHour)
+        public Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(DateTime entryHour, DateTime leaveHour)
         {
-            return _parkingSpotService.GetParkingSpecificFreeSpots(entryHour, leaveHour);
+            return _parkingSpotService.GetFreeParkingSpotsByDate(entryHour, leaveHour);
         }
 
         //Get: Available Parking Spots by price

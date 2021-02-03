@@ -29,6 +29,18 @@ namespace PublicParkAPI.Repositories.Repository
             }
         }
 
+        public async Task<TEntity> Find(string id)
+        {
+           try
+            {
+                return await publicParkContext.Set<TEntity>().FindAsync(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+            }
+        }
+
         public async Task<TEntity> AddAsync(TEntity entity)
         {
             if (entity == null)
@@ -88,5 +100,6 @@ namespace PublicParkAPI.Repositories.Repository
                 throw new Exception($"{nameof(entity)} could not be updated: {ex.Message}");
             }
         }
+
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using PublicParkAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using FluentValidation.Results;
 
 namespace PublicParkAPI.Services.Services
 {
@@ -24,36 +25,47 @@ namespace PublicParkAPI.Services.Services
             _mapper = mapper;
         }
 
-
-        public async Task<IEnumerable<ParkingSpotDTO>> GetParkingSpots()
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots()
         {
-            var parkingSpots = await _parkingSpotRepository.GetParkingSpots();
+            var parkingSpots = await _parkingSpotRepository.GetAllParkingSpots();
             var parkingSpotsDTO = _mapper.Map<List<ParkingSpot>, List<ParkingSpotDTO>>(parkingSpots.ToList());
             return parkingSpotsDTO;
 
         }
 
-        public async Task<ParkingSpotDTO> GetParkingSpot(string id)
+        public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpot(string id)
         {
             var parkingSpot = await _parkingSpotRepository.GetParkingSpot(id);
             var parkingSpotDTO =  _mapper.Map<ParkingSpot, ParkingSpotDTO>(parkingSpot);
             return parkingSpotDTO;
         }
 
-        public async Task<IEnumerable<ParkingSpotDTO>> GetFreeParkingSpots()
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpots()
         {
-            var reservations = await _reservationRepository.GetSpecificReservation();
-            var parkingSpots = await _parkingSpotRepository.GetParkingSpots();
+            var reservations = await _reservationRepository.GetReservationDateTimeNow();
+            var parkingSpots = await _parkingSpotRepository.GetAllParkingSpots();
      
-            var res = from p in parkingSpots where !(from r in reservations where r.parkingSpotID == p.parkingSpotID && (r.startTime <= DateTime.Now && r.endTime >= DateTime.Now) select r.parkingSpotID).Contains(p.parkingSpotID) select p;
+            var res = from p in parkingSpots where !(from r in reservations where r.parkingSpotID == p.parkingSpotID select r.parkingSpotID).Contains(p.parkingSpotID) select p;
             var parkingSpotsDTO = _mapper.Map<List<ParkingSpot>, List<ParkingSpotDTO>>(res.ToList());
             return parkingSpotsDTO;
         }
 
-        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetParkingSpecificFreeSpots(DateTime entryHour, DateTime leaveHour)
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetParkingPriceFreeSpots(decimal price)
         {
-            var reservations = await _reservationRepository.GetSpecificReservationByDates(leaveHour,entryHour);
-            var parkingSpots = await _parkingSpotRepository.GetParkingSpots();
+            var reservations = await _reservationRepository.GetReservationDateTimeNow();
+            var parkingSpots = await _parkingSpotRepository.GetCheaperParkingSpots(price);
+
+            var res = from p in parkingSpots where !(from r in reservations where r.parkingSpotID == p.parkingSpotID && (r.startTime <= DateTime.Now && r.endTime >= DateTime.Now) select r.parkingSpotID).Contains(p.parkingSpotID) select p;
+
+            var parkingSpotsDTO = _mapper.Map<List<ParkingSpot>, List<ParkingSpotDTO>>(res.ToList());
+            return parkingSpotsDTO;
+
+        }
+
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate)
+        {
+            var reservations = await _reservationRepository.GetSpecificReservation(endDate, startDate);
+            var parkingSpots = await _parkingSpotRepository.GetAllParkingSpots();
             var res = parkingSpots.ToList();
 
             foreach (var r in reservations)
@@ -65,17 +77,6 @@ namespace PublicParkAPI.Services.Services
             return parkingSpotsDTO;
         }
 
-        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetParkingPriceFreeSpots(decimal price)
-        {
-            var reservations = await _reservationRepository.GetSpecificReservation();
-            var parkingSpots = await _parkingSpotRepository.GetCheaperParkingSpots(price);
-
-            var res = from p in parkingSpots where !(from r in reservations where r.parkingSpotID == p.parkingSpotID && (r.startTime <= DateTime.Now && r.endTime >= DateTime.Now) select r.parkingSpotID).Contains(p.parkingSpotID) select p;
-
-            var parkingSpotsDTO = _mapper.Map<List<ParkingSpot>, List<ParkingSpotDTO>>(res.ToList());
-            return parkingSpotsDTO;
-
-        }
         public async Task<ActionResult<ParkingSpotDTO>> PutParkingSpot(string id, ParkingSpotDTO parkingSpotDTO)
         {
             var parkingSpot = _mapper.Map<ParkingSpotDTO, ParkingSpot>(parkingSpotDTO);
@@ -97,10 +98,22 @@ namespace PublicParkAPI.Services.Services
             await _parkingSpotRepository.DeleteParkingSpot(id);
             return parkingSpotsDTO;
         }
-        public async Task<ParkingSpot> GetSpecificParkingSpot(ReservationDTO reservationDTO)
+
+        public async Task<ParkingSpotDTO> Find(string id)
         {
-            return await _parkingSpotRepository.GetSpecificParkingSpot(reservationDTO);
+            var parkingspot = await _parkingSpotRepository.FindParkingSpot(id);
+            var parkingSpots = _mapper.Map<ParkingSpot, ParkingSpotDTO>(parkingspot);
+            return parkingSpotsDTO;
         }
 
+        public Task<bool> FindParkingSpotAny(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValidationResult Validate(ParkingSpotDTO parkingSpotDTO)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

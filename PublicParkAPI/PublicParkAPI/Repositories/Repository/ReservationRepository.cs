@@ -22,30 +22,33 @@ namespace PublicParkAPI.Repositories
             return await GetAll().ToListAsync();
         }
 
+        public async Task<IEnumerable<Reservation>> GetReservationsNotCancelled()
+        {
+            return await GetAll().Where(r => r.isCancelled == false).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Reservation>> GetReservationDateTimeNow()
+        {
+            return await GetAll().Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now).Where(r => r.isCancelled == true).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Reservation>> GetSpecificReservation(DateTime startDate, DateTime endDate)
+        {
+            return await GetAll().Where(r => (r.startTime >=  startDate && r.endTime <= endDate) || (r.startTime <= endDate && r.endTime >= startDate)).Where(r =>r.isCancelled == true).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+        }
+
         public async Task<Reservation> GetReservation(string id)
         {
             return await GetAll().Include(s => s.ParkingSpot).ThenInclude(p => p.ParkingLot).FirstOrDefaultAsync(r => r.reservationID == id);
         }
 
-        public async Task<IEnumerable<Reservation>> GetSpecificReservation()
+        public async Task<Reservation> PostReservation(Reservation reservation)
         {
-            return await GetAll().Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+            await AddAsync(reservation);
+            return reservation;
         }
 
-        public async Task<IEnumerable<Reservation>> GetSpecificReservationByDates(DateTime leaveHour, DateTime entryHour)
-        {
-            return await GetAll().Where(r => r.startTime <= leaveHour && r.endTime >= entryHour).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
-        }
-
-        //public async Task<ActionResult<Reservation>> PutReservation(string id, Reservation reservation)
-        //{
-
-        //    GetAll().Where(r => r.reservationID == id).Include(s => s.ParkingSpot);
-        //    await UpdateAsync(reservation);
-        //    return reservation;
-        //}
-
-        public async Task<ActionResult<Reservation>> PatchReservation(string id)
+        public async Task<Reservation> PatchReservation(string id)
         {
             var x = GetAll().Include(s => s.ParkingSpot).ThenInclude(p => p.ParkingLot)
                 .FirstOrDefaultAsync(r => r.reservationID == id)
@@ -55,10 +58,5 @@ namespace PublicParkAPI.Repositories
             return x;
         }
 
-        public async Task<ActionResult<Reservation>> PostReservation(Reservation reservation)
-        {
-            await AddAsync(reservation);
-            return reservation;
-        }
     }
 }

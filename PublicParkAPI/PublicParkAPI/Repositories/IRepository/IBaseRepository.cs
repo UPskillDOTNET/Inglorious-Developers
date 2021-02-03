@@ -9,6 +9,8 @@ namespace PublicParkAPI.Contracts
     {
         IQueryable<TEntity> GetAll();
 
+        Task<TEntity> Find(string id);
+
         Task<TEntity> AddAsync(TEntity entity);
 
         Task<TEntity> UpdateAsync(TEntity entity);

@@ -10,11 +10,11 @@ namespace PublicParkAPI.Contracts
     public interface IReservationRepository : IBaseRepository<Reservation>
     {
         Task<IEnumerable<Reservation>> GetReservations();
-        Task<IEnumerable<Reservation>> GetSpecificReservation();
-        Task<IEnumerable<Reservation>> GetSpecificReservationByDates(DateTime leaveHour, DateTime entryHour);
+        Task<IEnumerable<Reservation>> GetReservationDateTimeNow();
+        Task<IEnumerable<Reservation>> GetReservationsNotCancelled();
+        Task<IEnumerable<Reservation>> GetSpecificReservation(DateTime leaveHour, DateTime entryHour);
         Task<Reservation> GetReservation(string id);
-        //Task<ActionResult<Reservation>> PutReservation(string id, Reservation reservation);
-        Task<ActionResult<Reservation>> PatchReservation(string id);
-        Task<ActionResult<Reservation>> PostReservation(Reservation reservation);
+        Task<Reservation> PatchReservation(string id);
+        Task<Reservation> PostReservation(Reservation reservation);
     }
 }

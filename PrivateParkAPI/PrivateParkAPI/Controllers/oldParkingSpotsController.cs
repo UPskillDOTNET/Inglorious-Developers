@@ -66,7 +66,7 @@
 
 //        //Get: Available Specific Spots
 //        [Route("~/api/parkingspots/freeSpots/{entryHour}/{leaveHour}")]
-//        public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetParkingSpecificFreeSpots(DateTime entryHour, DateTime leaveHour)
+//        public async Task<ActionResult<IEnumerable<ParkingSpot>>> GetFreeParkingSpotsByDate(DateTime entryHour, DateTime leaveHour)
 //        {
 //            if (entryHour > leaveHour)
 //            {

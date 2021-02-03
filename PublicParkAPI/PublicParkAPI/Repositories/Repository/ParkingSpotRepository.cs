@@ -18,11 +18,15 @@ namespace PublicParkAPI.Repositories
         {
         }
 
-        public async Task<IEnumerable<ParkingSpot>> GetParkingSpots()
+        public async Task<IEnumerable<ParkingSpot>> GetParkingSpotbyPrice(decimal priceHour)
+        {
+            return await GetAll().Where(p => p.priceHour <= priceHour).Include(p => p.ParkingLot).ToListAsync();
+        }
+
+        public async Task<IEnumerable<ParkingSpot>> GetAllParkingSpots()
         {
             return await GetAll().Include(p => p.ParkingLot).ToListAsync();
         }
-
 
         public async Task<ParkingSpot> GetParkingSpot(string id)
         {
@@ -30,32 +34,37 @@ namespace PublicParkAPI.Repositories
 
         }
 
-        public async Task<ParkingSpot> GetSpecificParkingSpot(ReservationDTO reservationDTO)
+        public async Task<ParkingSpot> FindParkingSpot(string id)
         {
-            return await GetAll().Include(p => p.ParkingLot).FirstOrDefaultAsync(s => s.parkingSpotID == reservationDTO.parkingSpotID);
-
-        }
-        public async Task<IEnumerable<ParkingSpot>> GetCheaperParkingSpots(decimal price)
-        {
-            return await GetAll().Where(p => p.priceHour <= price).Include(p => p.ParkingLot).ToListAsync();
+            return await Find(id);
         }
 
-        public async Task<ActionResult<ParkingSpot>> PutParkingSpot(string id, ParkingSpot parkingSpot)
+        public async Task<bool> FindParkingSpotAny(string id)
+        {
+            return await GetAll().Where(p => p.parkingSpotID == id).AnyAsync();
+        }
+
+        public async Task<ParkingSpot> PutParkingSpot(string id, ParkingSpot parkingSpot)
         {
             await UpdateAsync(parkingSpot);
+
             return parkingSpot;
         }
 
-        public async Task<ActionResult<ParkingSpot>> PostParkingSpot(ParkingSpot parkingSpot)
+        public async Task<ParkingSpot> PostParkingSpot(ParkingSpot parkingSpot)
         {
             await AddAsync(parkingSpot);
+
             return parkingSpot;
         }
 
-        public async Task<ActionResult<ParkingSpot>> DeleteParkingSpot(string id)
+
+        public async Task<ParkingSpot> DeleteParkingSpot(string id)
         {
             var parkingSpot = GetAll().FirstOrDefault(s => s.parkingSpotID == id);
+
             await DeleteAsync(parkingSpot);
+
             return parkingSpot;
         }
     }

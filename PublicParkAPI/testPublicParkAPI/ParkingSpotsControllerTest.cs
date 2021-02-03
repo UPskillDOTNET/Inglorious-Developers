@@ -24,7 +24,7 @@ namespace testPublicParkAPI
         //    var theController = new ParkingSpotsController(testContext);
 
         //    // Act
-        //    var result = await theController.GetParkingSpots();
+        //    var result = await theController.GetAllParkingSpots();
 
         //    // Assert
         //    var parkingSpots = Assert.IsType<List<ParkingSpot>>(result.Value);

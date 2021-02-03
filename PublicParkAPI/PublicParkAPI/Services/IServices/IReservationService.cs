@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
 using PublicParkAPI.DTO;
 using PublicParkAPI.Models;
 using System;
@@ -10,10 +11,12 @@ namespace PublicParkAPI.Services.IServices
 {
     public interface IReservationService
     {
-        Task<IEnumerable<ReservationDTO>> GetReservations();
-        Task<ReservationDTO> GetReservation(string id);
-        //Task<ReservationDTO> PutReservation(string id, ReservationDTO reservationDTO);
+        Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservations();
+        Task<ActionResult<ReservationDTO>> GetReservation(string id);
+        Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservationsNotCancelled();
+        Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO);
+        //GetEndTimeAndFinalPrice
         Task<ActionResult<Reservation>> PatchReservation(string id);
-        Task<ReservationDTO> PostReservation(ReservationDTO reservationDTO);
+        ValidationResult Validate(ReservationDTO reservationDTO);
     }
 }

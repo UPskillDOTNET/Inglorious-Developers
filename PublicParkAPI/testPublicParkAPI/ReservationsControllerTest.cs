@@ -10,24 +10,34 @@ using testProject;
 using PublicParkAPI.Controllers;
 using System.Threading;
 using Microsoft.AspNetCore.Mvc;
+using PublicParkAPI.Repositories;
+using AutoMapper;
+using PublicParkAPI.Services.Services;
+using PublicParkAPI.Mappings;
+using PublicParkAPI.DTO;
 
 namespace testPublicParkAPI {
     public class ReservationsControllerTest {
 
-        //[Fact]
-        //public async Task GetAllReservationsAsync_ShouldReturnAllReservationsAsync() {
-        //    // Arrange 
-        //    var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-        //    //Arrange
-        //    var TestContext = TodoContextMocker.GetPublicParkContext(dbName);
-        //    var theController = new ReservationsController(TestContext);
-        //    //Act
-        //    var result = await theController.GetReservations();
+        [Fact]
+        public async Task GetAllReservationsAsync_ShouldReturnAllReservationsAsync()
+        {
+            // Arrange 
+            var TestContext = TodoContextMocker.GetPublicParkContext("getAllReservations");
+            var reservationRepository = new ReservationRepository(TestContext);
+            var parkingSpotRepository = new ParkingSpotRepository(TestContext);
+            var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
+            var mapper = config.CreateMapper();
+            var parkingSpotService = new ParkingSpotService(parkingSpotRepository, mapper, reservationRepository);
+            var reservationService = new ReservationService(reservationRepository, mapper, parkingSpotRepository);
+            var theController = new ReservationsController(reservationService, parkingSpotService);
+            //Act
+            var result = await theController.GetReservations();
 
-        //    //Assert
-        //    var items = Assert.IsType<List<Reservation>>(result.Value);
-        //    Assert.Equal(8, items.Count);
-        //}
+            //Assert
+            var items = Assert.IsType<List<ReservationDTO>>(result.Value);
+            Assert.Equal(8, items.Count);
+        }
 
         //[Fact]
         //public async Task GetRecomendationByID_ShouldReturnNotFound() {

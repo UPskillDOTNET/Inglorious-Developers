@@ -21,11 +21,11 @@ namespace testPublicParkAPI
     public class ParkingLotsControllerTest
     {
         [Fact]
-        public async Task GetAllParkingLotsAsync_ShouldReturnAllParkingLots()
+        public async Task GetAllParkingLotsAsync_ShouldReturnAllParkingLotsAsync()
         {
             // Arrange
             Thread.Sleep(1000);
-            var testContext = TodoContextMocker.GetPublicParkContext("ShouldReturnAllParkingLots");
+            var testContext = TodoContextMocker.GetPublicParkContext("ShouldReturnAllParkingLotsAsync");
             var parkingLotRepository = new ParkingLotRepository(testContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
