@@ -91,7 +91,8 @@ namespace PublicParkAPI.Controllers
                 if (await ParkingLotExists(id))
                 {
                     return Conflict("Parking Lot already exists.");
-                } else
+                }
+                else
                 {
                     throw;
                 }

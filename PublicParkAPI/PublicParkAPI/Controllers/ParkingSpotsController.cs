@@ -17,6 +17,7 @@ using PublicParkAPI.Services;
 namespace PublicParkAPI.Controllers
 {
     [Route("api/parkingSpots")]
+    [ApiController]
     public class ParkingSpotsController : Controller
     {
         private readonly IParkingSpotService _parkingSpotService;
@@ -28,55 +29,61 @@ namespace PublicParkAPI.Controllers
 
         // GET: api/ParkingSpots
         [HttpGet]
-        public Task<IEnumerable<ParkingSpotDTO>> GetAllParkingSpots()
+        public Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots()
         {
             return _parkingSpotService.GetAllParkingSpots();
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpot(string id)
-        {
-            var parkingSpots = await _parkingSpotService.GetParkingSpot(id);
-            if (parkingSpots.Value == null)
-            {
-                return NotFound();
-            }
-
-            return parkingSpots;
-        }
-
         [HttpGet]
         [Route("~/api/parkingSpots/freeSpots")]
-        public Task<IEnumerable<ParkingSpotDTO>> GetFreeParkingSpots()
+        public Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpots()
         {
             return _parkingSpotService.GetFreeParkingSpots();
         }
 
         //Get: Available Specific Spots
         [Route("~/api/parkingSpots/freeSpots/{entryHour}/{leaveHour}")]
-        public Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(DateTime entryHour, DateTime leaveHour)
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate)
         {
-            return _parkingSpotService.GetFreeParkingSpotsByDate(entryHour, leaveHour);
+            if( startDate > endDate)
+            {
+                return BadRequest("Dates not correct");
+            }
+            return await _parkingSpotService.GetFreeParkingSpotsByDate(startDate, endDate);
         }
 
         //Get: Available Parking Spots by price
-        [Route("~/api/parkingSpots/freeSpots/{price}")]
-        public Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetParkingPriceFreeSpots(Decimal price)
+        [Route("~/api/parkingSpots/freeSpots/{priceHour}")]
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsbyPrice(decimal priceHour)
         {
-            return _parkingSpotService.GetParkingPriceFreeSpots(price);
+            if (priceHour <= 0)
+            {
+                return BadRequest("Can't input a negative price");
+            }
+            var parkingSpots = await _parkingSpotService.GetFreeParkingSpotsbyPrice(priceHour);
+            return Ok(parkingSpots);
         }
 
-        // Deveria ser um patch, pois só é possivel alterar o preço
-        // Responsabilidade do Admin
+        [HttpGet("{id}")]
+        public Task<ActionResult<ParkingSpotDTO>> GetParkingSpot(string id)
+        {
+            return _parkingSpotService.GetParkingSpot(id);
+        }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutParkingSpot(string id, [FromBody] ParkingSpotDTO parkingSpotDTO)
         {
             var Results = _parkingSpotService.Validate(parkingSpotDTO);
+
             if (!Results.IsValid)
             {
-                return BadRequest("Can't create" + Results);
+                return BadRequest("Can't update " + Results);
             }
+
+            if (id != parkingSpotDTO.parkingSpotID)
+            {
+                return BadRequest();
+            } 
             try
             {
                 await _parkingSpotService.PutParkingSpot(id, parkingSpotDTO);
@@ -85,7 +92,7 @@ namespace PublicParkAPI.Controllers
             {
                 if (await ParkingSpotExists(id) == false)
                 {
-                    return NotFound("Parking Spot not found.");
+                    return NotFound("The Parking pot you were trying to update could not be found.");
                 }
                 else
                 {
@@ -96,16 +103,17 @@ namespace PublicParkAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ParkingSpotDTO>> PostParkingSpot([FromBody] ParkingSpotDTO parkingSpotDTO)
+        public async Task<IActionResult> PostParkingSpot([FromBody] ParkingSpotDTO parkingSpotDTO)
         {
-
             var id = parkingSpotDTO.parkingSpotID;
+
             var Results = _parkingSpotService.Validate(parkingSpotDTO);
 
             if (!Results.IsValid)
             {
-                return BadRequest("Can't create" + Results);
+                return BadRequest("Can't create " + Results);
             }
+
             try
             {
                 await _parkingSpotService.PostParkingSpot(parkingSpotDTO);
@@ -143,18 +151,7 @@ namespace PublicParkAPI.Controllers
 
         public async Task<bool> ParkingSpotExists(string id)
         {
-            var parkingspot = await _parkingSpotService.GetParkingSpot(id);
-
-            if (parkingspot.Value != null)
-            {
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
+            return await _parkingSpotService.FindParkingSpotAny(id);
         }
     }
 }
