@@ -52,13 +52,13 @@ namespace PrivateParkAPI.Controllers
             var Results = _reservationService.Validate(reservationDTO);
             var id = reservationDTO.reservationID;
             var TheController = new ParkingSpotsController(_parkingSpotService);
-            var parkingSpot = await _parkingSpotService.GetSpecificParkingSpot(reservationDTO);
+            var parkingSpot = await _parkingSpotService.Find(reservationDTO.parkingSpotID);
 
             if (!Results.IsValid)
             {
                 return BadRequest("Can't create " + Results);
             }
-            if (parkingSpot.Value.isPrivate == true)
+            if (parkingSpot.isPrivate == true)
             {
                 return BadRequest("ParkingSpot is not available for reservation");
             }
@@ -95,7 +95,7 @@ namespace PrivateParkAPI.Controllers
 
                     if (reservationDTO.Value.isCancelled == true)
                     {
-                        return Ok();
+                        return Ok(reservationDTO);
                     }
 
                 }

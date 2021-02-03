@@ -87,7 +87,7 @@ namespace PrivateParkAPI.Services.Services
         public async Task<ActionResult<ParkingSpotDTO>> PostParkingSpot(ParkingSpotDTO parkingSpotDTO)
         {
             var parkingSpot = _mapper.Map<ParkingSpotDTO, ParkingSpot>(parkingSpotDTO);
-            
+
 
             await _parkingSpotRepository.PostParkingSpot(parkingSpot);
 
@@ -107,12 +107,17 @@ namespace PrivateParkAPI.Services.Services
 
         }
 
-        public async Task<ActionResult<ParkingSpotDTO>> GetSpecificParkingSpot(ReservationDTO reservationDTO) {
-            var parkingspot = await _parkingSpotRepository.GetSpecificParkingSpot(reservationDTO);
+        public async Task<ParkingSpotDTO> Find(string id)
+        {
+
+            var parkingspot = await _parkingSpotRepository.FindParkingSpot(id);
             var parkingSpotsDTO = _mapper.Map<ParkingSpot, ParkingSpotDTO>(parkingspot);
             return parkingSpotsDTO;
         }
-
+        public async Task<bool> FindParkingSpotAny(string id)
+        {
+            return await _parkingSpotRepository.FindParkingSpotAny(id);
+        }
         public ValidationResult Validate(ParkingSpotDTO parkingSpotDTO)
         {
             ParkingSpotValidator validationRules = new ParkingSpotValidator();

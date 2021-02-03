@@ -30,7 +30,14 @@ namespace PrivateParkAPI.Repositories.Repository
         }
 
         // GET: api/ParkingSpots/5
-        
+        public  async Task<ParkingSpot> FindParkingSpot(string id)
+        {
+            return await Find(id);
+        }
+        public async Task<bool> FindParkingSpotAny(string id)
+        {
+            return await GetAll().Where(p=>p.parkingSpotID == id).AnyAsync();
+        }
         public async Task<ParkingSpot> GetParkingSpot(string id)
         {
             return await GetAll().Include(p => p.ParkingLot).FirstOrDefaultAsync(s => s.parkingSpotID == id);
@@ -44,7 +51,7 @@ namespace PrivateParkAPI.Repositories.Repository
         // PUT: api/ParkingSpots/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
  
-        public async Task<ActionResult<ParkingSpot>>PutParkingSpot(string id, ParkingSpot parkingSpot)
+        public async Task<ParkingSpot> PutParkingSpot(string id, ParkingSpot parkingSpot)
         {
              await UpdateAsync(parkingSpot);
             
@@ -54,7 +61,7 @@ namespace PrivateParkAPI.Repositories.Repository
         //// POST: api/ParkingSpots
         //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<ParkingSpot>> PostParkingSpot(ParkingSpot parkingSpot)
+        public async Task<ParkingSpot> PostParkingSpot(ParkingSpot parkingSpot)
         {
            
             await AddAsync(parkingSpot);
@@ -62,14 +69,10 @@ namespace PrivateParkAPI.Repositories.Repository
             return parkingSpot;
         }
 
-        public async Task<ParkingSpot> GetSpecificParkingSpot(ReservationDTO reservationDTO) {
-            return await GetAll().Include(p => p.ParkingLot).FirstOrDefaultAsync(s => s.parkingSpotID == reservationDTO.parkingSpotID);
-
-        }
 
         // DELETE: api/ParkingSpots/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ParkingSpot>> DeleteParkingSpot(string id)
+        public async Task<ParkingSpot> DeleteParkingSpot(string id)
         {
             var parkingSpot = GetAll().First(s => s.parkingSpotID == id);
            

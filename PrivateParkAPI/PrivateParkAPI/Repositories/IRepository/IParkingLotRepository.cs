@@ -14,10 +14,10 @@ namespace PrivateParkAPI.Repositories.IRepository
 
         Task<ParkingLot> GetParkingLot(int id);
 
-        Task<ActionResult<ParkingLot>> PutParkingLot(int id, ParkingLot parkingLot);
+        Task<ParkingLot> PutParkingLot(int id, ParkingLot parkingLot);
 
-        Task<ActionResult<ParkingLot>> PostParkingLot(ParkingLot parkingLot);
+        Task<ParkingLot> PostParkingLot(ParkingLot parkingLot);
 
-        Task<ActionResult<ParkingLot>> DeleteParkingLot(int id);
+        Task<ParkingLot> DeleteParkingLot(int id);
     }
 }
