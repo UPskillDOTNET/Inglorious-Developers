@@ -1,0 +1,54 @@
+Brief
+
+The user accesses the platform and authenticates in it in order to check the available parking spots. The platform asks the initial and end dates.
+The user inputs the required data. The platform shows the list of available parking spots.
+The user checks the list of the available parking spots. The platform informs the user that the operation was successful.
+
+
+Fully-Dressed:
+
+Name: Available Parking Spots Consultation
+
+Primary Actor: User
+
+Stakeholders and interests:
+• User: Ability to check available parking spots. 
+• Parking Lot:  Display Parking spaces to potential customers.
+
+Preconditions: 
+• The Parking Spots must exist in the database whether it is public or private.
+
+Postconditions:
+• N/A
+
+Main Success Scenario: 
+1. The user starts the authentication operation.
+2. The Platform allows the user to be authenticated.
+3. The user accesses the platform to check the available parking spots.
+4. The platform asks the start and end date.
+5. The user inserts the requested data.
+6. The platform displays the list of the available parking spots to the user.
+7. The user checks the list.
+8. The platform informs the user that the operation was successful.
+
+Extensions (alternative scenarios):
+*a.
+1. The User can’t authenticate on the platform.
+2. The use case ends.
+
+*b.
+1. The User cancels the list visualization.
+2. The use case ends.
+
+6a. There are no parking spots available
+1. The platform informs the user that there are no parking spots available.
+2. The use case ends. Starts again on step 1.
+
+Special Requirements:
+
+Variations in Technology and Data: N/A
+
+Frequency of Occurrence: Whenever a user wants to check parking availability.
+
+Miscellaneous: 
+• A non-registered person can check availability?
