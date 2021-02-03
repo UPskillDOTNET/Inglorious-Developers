@@ -29,18 +29,14 @@ namespace PrivateParkAPI.Repositories.Repository
 
         public async Task<IEnumerable<Reservation>> GetReservationDateTimeNow() 
         {
-            return await GetAll().Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now && r.isCancelled == false).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+            return await GetAll().Where(r => (r.startTime <= DateTime.Now && r.endTime >= DateTime.Now)).Where(r => r.isCancelled == true).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
         }
 
         public async Task<IEnumerable<Reservation>> GetSpecificReservation(DateTime startDate, DateTime endDate)
         {
-            return await GetAll().Where(r => (r.startTime >= startDate && r.endTime <= endDate) || (r.startTime <= endDate && r.endTime >= startDate)).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+            return await GetAll().Where(r => (r.startTime >= startDate && r.endTime <= endDate) || (r.startTime <= endDate && r.endTime >= startDate)).Where(r => r.isCancelled == true).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
         }
 
-        public async Task<IEnumerable<Reservation>> GetSpecificReservationByDates(DateTime leaveHour, DateTime entryHour)
-        {
-            return await GetAll().Where(r => r.startTime <= leaveHour && r.endTime >= entryHour).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
-        }
 
         // GET: api/Reservation/5
         public async Task<Reservation> GetReservation(string id)

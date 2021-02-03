@@ -29,28 +29,28 @@ namespace PrivateParkAPI.Services.Services
 
 
 
-        public async Task<IEnumerable<ParkingSpotDTO>> GetAllnotPrivate()
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllnotPrivate()
         {
             var parkingSpots = await _parkingSpotRepository.GetnotPrivateParkingSpots();
             var parkingSpotsDTO = _mapper.Map<List<ParkingSpot>, List<ParkingSpotDTO>>(parkingSpots.ToList());
             return parkingSpotsDTO;
         }
-        public async Task<IEnumerable<ParkingSpotDTO>> GetAllParkingSpots()
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots()
         {
             var parkingSpots = await _parkingSpotRepository.GetAllParkingSpots();
             var parkingSpotsDTO = _mapper.Map<List<ParkingSpot>, List<ParkingSpotDTO>>(parkingSpots.ToList());
             return parkingSpotsDTO;
         }
-        public async Task<IEnumerable<ParkingSpotDTO>> GetFreeParkingSpots()
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpots()
         {
             var reservations = await _reservationRepository.GetReservationDateTimeNow();
             var parkingSpots = await _parkingSpotRepository.GetnotPrivateParkingSpots();
-            var res = from p in parkingSpots where !(from r in reservations where r.parkingSpotID == p.parkingSpotID && (r.startTime <= DateTime.Now && r.endTime >= DateTime.Now) select r.parkingSpotID).Contains(p.parkingSpotID) select p;
+            var res = from p in parkingSpots where !(from r in reservations where r.parkingSpotID == p.parkingSpotID select r.parkingSpotID).Contains(p.parkingSpotID) select p;
             var parkingSpotsDTO = _mapper.Map<List<ParkingSpot>, List<ParkingSpotDTO>>(res.ToList());
             return parkingSpotsDTO;
         }
 
-        public async Task<IEnumerable<ParkingSpotDTO>> GetFreeParkingSpotsbyPrice(decimal priceHour)
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsbyPrice(decimal priceHour)
         {
             var reservations = await _reservationRepository.GetReservationDateTimeNow();
             var parkingSpots = await _parkingSpotRepository.GetParkingSpotbyPrice(priceHour);
@@ -58,7 +58,7 @@ namespace PrivateParkAPI.Services.Services
             var parkingSpotsDTO = _mapper.Map<List<ParkingSpot>, List<ParkingSpotDTO>>(res.ToList());
             return parkingSpotsDTO;
         }
-        public async Task<IEnumerable<ParkingSpotDTO>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate)
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate)
         {
             var reservations = await _reservationRepository.GetSpecificReservation(startDate, endDate);
             var parkingSpots = await _parkingSpotRepository.GetnotPrivateParkingSpots();
@@ -66,7 +66,7 @@ namespace PrivateParkAPI.Services.Services
             var parkingSpotsDTO = _mapper.Map<List<ParkingSpot>, List<ParkingSpotDTO>>(res.ToList());
             return parkingSpotsDTO;
         }
-        public async Task<ParkingSpotDTO> GetParkingSpot(string id)
+        public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpot(string id)
         {
             var parkingSpot = await _parkingSpotRepository.GetParkingSpot(id);
             var parkingSpotsDTO = _mapper.Map<ParkingSpot, ParkingSpotDTO>(parkingSpot);
@@ -107,8 +107,10 @@ namespace PrivateParkAPI.Services.Services
 
         }
 
-        public async Task<ParkingSpot> GetSpecificParkingSpot(ReservationDTO reservationDTO) {
-            return await _parkingSpotRepository.GetSpecificParkingSpot(reservationDTO);
+        public async Task<ActionResult<ParkingSpotDTO>> GetSpecificParkingSpot(ReservationDTO reservationDTO) {
+            var parkingspot = await _parkingSpotRepository.GetSpecificParkingSpot(reservationDTO);
+            var parkingSpotsDTO = _mapper.Map<ParkingSpot, ParkingSpotDTO>(parkingspot);
+            return parkingSpotsDTO;
         }
 
         public ValidationResult Validate(ParkingSpotDTO parkingSpotDTO)

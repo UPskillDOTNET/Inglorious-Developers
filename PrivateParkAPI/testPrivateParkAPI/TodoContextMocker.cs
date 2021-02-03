@@ -33,7 +33,7 @@ namespace testProject {
             dbContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "A3", priceHour = 0.25m, isCovered = false, isPrivate = false, parkingLotID = 1 });
 
             dbContext.Reservations.Add(new Reservation { reservationID = "ABC1", isCancelled = false, startTime = DateTime.Parse("2021-01-28 07:00:00"), hours = 1, endTime = DateTime.Parse("2021-05-22 08:00:00"), parkingSpotID = "A1", });
-            dbContext.Reservations.Add(new Reservation { reservationID = "ABC2", isCancelled = true, startTime = DateTime.Parse("2021-08-22 07:00:00"), hours = 2, endTime = DateTime.Parse("2021-08-22 09:00:00"), parkingSpotID = "E1", });
+            dbContext.Reservations.Add(new Reservation { reservationID = "ABC2", isCancelled = true, startTime = DateTime.Parse("2021-02-01 07:00:00"), hours = 2, endTime = DateTime.Parse("2021-09-10 09:00:00"), parkingSpotID = "E1", });
             dbContext.Reservations.Add(new Reservation { reservationID = "ABC3", isCancelled = false, startTime = DateTime.Parse("2021-09-22 07:00:00"), hours = 12, endTime = DateTime.Parse("2021-09-22 19:00:00"), parkingSpotID = "I1" });
             dbContext.Reservations.Add(new Reservation { reservationID = "ABC4", isCancelled = false, startTime = DateTime.Parse("2021-10-22 07:00:00"), hours = 3, endTime = DateTime.Parse("2021-10-22 10:00:00"), parkingSpotID = "O1", });
             dbContext.Reservations.Add(new Reservation { reservationID = "ABC5", isCancelled = false, startTime = DateTime.Parse("2021-09-22 07:00:00"), hours = 1, endTime = DateTime.Parse("2021-09-22 08:00:00"), parkingSpotID = "A3", });

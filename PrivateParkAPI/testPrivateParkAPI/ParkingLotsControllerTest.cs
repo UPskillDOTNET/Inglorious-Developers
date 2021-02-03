@@ -30,14 +30,13 @@ namespace testPrivateParkAPI
             var mapper = config.CreateMapper();
             var ParkingLotService = new ParkingLotService(parkingLotRepository, mapper);
             var theController = new ParkingLotsController(ParkingLotService);
-            //var theController = new TestParkingLotController(TestContext);
 
             // Act
             var result = await theController.GetParkingLots();
 
 
             //Assert
-            var items = Assert.IsType<List<ParkingLotDTO>>(result);
+            var items = Assert.IsType<List<ParkingLotDTO>>(result.Value);
             Assert.Equal(5, items.Count);
         }
 
@@ -77,7 +76,7 @@ namespace testPrivateParkAPI
             var result = await theController.GetParkingLot(1231231213);
 
             //Assert
-            Assert.IsType<NotFoundResult>(result.Result);
+            Assert.IsType<NotFoundObjectResult>(result.Result);
         }
 
         //[Fact]

@@ -11,7 +11,7 @@ namespace PrivateParkAPI.Services.IServices
 {
     public interface IParkingLotService
     {
-        Task<IEnumerable<ParkingLotDTO>> GetParkingLots();
+        Task<ActionResult<IEnumerable<ParkingLotDTO>>> GetParkingLots();
 
         Task<ActionResult<ParkingLotDTO>> GetParkingLot(int id);
 

@@ -25,24 +25,24 @@ namespace PrivateParkAPI.Services.Services
             _mapper = mapper;
         }
         
-        public async Task<IEnumerable<ReservationDTO>> GetReservations()
+        public async Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservations()
         {
             var reservations = await _reservationRepository.GetReservations();
             var reservationsDTO = _mapper.Map<List<Reservation>, List<ReservationDTO>>(reservations.ToList());
             return reservationsDTO;
         }
-        public async Task<IEnumerable<ReservationDTO>> GetReservationsNotCancelled() {
+        public async Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservationsNotCancelled() {
             var reservations = await _reservationRepository.GetReservationsNotCancelled();
             var reservationsDTO = _mapper.Map<List<Reservation>, List<ReservationDTO>>(reservations.ToList());
             return reservationsDTO;
         }
 
-        public async Task<ReservationDTO> GetReservation(string id) {
+        public async Task<ActionResult<ReservationDTO>> GetReservation(string id) {
             var reservation = await _reservationRepository.GetReservation(id);
             var reservationsDTO = _mapper.Map<Reservation, ReservationDTO>(reservation);
             return reservationsDTO;
         }
-        public async Task<ReservationDTO> PostReservation(ReservationDTO reservationDTO) {
+        public async Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO) {
             var parkingSpot = await _parkingSpotRepository.GetSpecificParkingSpot(reservationDTO);
             reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
             reservationDTO.finalPrice = reservationDTO.hours * parkingSpot.priceHour;

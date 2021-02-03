@@ -21,7 +21,7 @@ namespace PrivateParkAPI.Controllers
         }
 
         [HttpGet]
-        public Task<IEnumerable<ParkingLotDTO>> GetParkingLots()
+        public Task<ActionResult<IEnumerable<ParkingLotDTO>>> GetParkingLots()
         {
             return _parkingLotService.GetParkingLots();
         }
@@ -34,14 +34,14 @@ namespace PrivateParkAPI.Controllers
 
             if (parkingLot.Value == null)
             {
-                return NotFound();
+                return NotFound(parkingLot);
             }
             return parkingLot;
         }
 
         // PUT: api/testesParkingLot/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutParkingLot(int id, ParkingLotDTO parkingLotDTO)
+        public async Task<ActionResult<ParkingLotDTO>> PutParkingLot(int id, ParkingLotDTO parkingLotDTO)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace PrivateParkAPI.Controllers
 
         // POST: api/testesParkingLot
         [HttpPost]
-        public async Task<IActionResult> PostParkingLot(ParkingLotDTO parkingLotDTO)
+        public async Task<ActionResult<ParkingLotDTO>> PostParkingLot(ParkingLotDTO parkingLotDTO)
         {
             var id = parkingLotDTO.parkingLotID;
 

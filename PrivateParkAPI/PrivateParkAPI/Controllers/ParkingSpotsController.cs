@@ -1,8 +1,6 @@
-﻿using FluentValidation.Results;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Services.IServices;
-using PrivateParkAPI.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -15,15 +13,15 @@ namespace PrivateParkAPI.Controllers
     public class ParkingSpotsController : Controller
     {
         private readonly IParkingSpotService _parkingSpotService;
-    
+
         public ParkingSpotsController(IParkingSpotService parkingSpotService)
         {
             _parkingSpotService = parkingSpotService;
         }
-      
+
         //Get not Private ParkingSpots
         [HttpGet]
-        public Task<IEnumerable<ParkingSpotDTO>> GetAllNotPrive()
+        public Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllNotPrivate()
         {
             return _parkingSpotService.GetAllnotPrivate();
         }
@@ -31,7 +29,7 @@ namespace PrivateParkAPI.Controllers
         //Get All ParkingSpots (private and not Private)
         [HttpGet]
         [Route("~/api/parkingspots/all")]
-        public Task<IEnumerable<ParkingSpotDTO>> GetAllParkingSpots()
+        public Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots()
         {
             return _parkingSpotService.GetAllParkingSpots();
         }
@@ -39,7 +37,7 @@ namespace PrivateParkAPI.Controllers
         //Get All Available ParkingSpots 
         [HttpGet]
         [Route("~/api/parkingspots/freeSpots")]
-        public Task<IEnumerable<ParkingSpotDTO>> GetAllFreeParkingSpots()
+        public Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllFreeParkingSpots()
         {
             return _parkingSpotService.GetFreeParkingSpots();
         }
@@ -47,14 +45,14 @@ namespace PrivateParkAPI.Controllers
         //Get All Available ParkingSpots in a set of dates
         [HttpGet]
         [Route("~/api/parkingspots/freeSpots/{startDate}/{endDate}")]
-        public async Task<IActionResult> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate)
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate)
         {
-            if (startDate>endDate)
+            if (startDate > endDate)
             {
                 return BadRequest("Dates not correct");
             }
-            var parkingSpots = await _parkingSpotService.GetFreeParkingSpotsByDate(startDate, endDate);
-            return Ok(parkingSpots); 
+
+            return await _parkingSpotService.GetFreeParkingSpotsByDate(startDate, endDate);
         }
 
         //Get All Available ParkingSpots by price
@@ -71,16 +69,21 @@ namespace PrivateParkAPI.Controllers
 
         //Get ParkingSpot by ID
         [HttpGet("{id}")]
-        public Task<ParkingSpotDTO> GetParkingSpot(string id)
+        public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpot(string id)
         {
-            var parkingSpots = _parkingSpotService.GetParkingSpot(id);
-
+            
+            var parkingSpots = await _parkingSpotService.GetParkingSpot(id);
+            
+            if (parkingSpots.Value == null)
+            {
+                return NotFound(parkingSpots);
+            }
             return parkingSpots;
         }
 
         //Update ParkingSpot 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutParkingSpot(string id, ParkingSpotDTO parkingSpotDTO)
+        public async Task<ActionResult<ParkingSpotDTO>> PutParkingSpot(string id, ParkingSpotDTO parkingSpotDTO)
         {
             var Results = _parkingSpotService.Validate(parkingSpotDTO);
 
@@ -113,7 +116,7 @@ namespace PrivateParkAPI.Controllers
         }
         //Create ParkingSpot
         [HttpPost]
-        public async Task<IActionResult> PostParkingSpot(ParkingSpotDTO parkingSpotDTO)
+        public async Task<ActionResult<ParkingSpotDTO>> PostParkingSpot(ParkingSpotDTO parkingSpotDTO)
         {
             var id = parkingSpotDTO.parkingSpotID;
 
@@ -143,31 +146,32 @@ namespace PrivateParkAPI.Controllers
         }
         //Delete ParkingSpot
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteParkingSpot(string id)
+        public async Task<ActionResult<ParkingSpotDTO>> DeleteParkingSpot(string id)
         {
+          
             try
             {
                 await _parkingSpotService.DeleteParkingSpot(id);
             }
             catch (InvalidOperationException)
             {
-                if (await ParkingSpotExists(id) == false)
+                if (await ParkingSpotExists(id)==false)
                 {
-                    return Conflict("Can't delete an non-existing ParkingSpot");
+                    return NotFound("Can't delete an non-existing ParkingSpot");
                 }
                 else
                 {
                     throw;
                 }
             }
-            return NotFound();
+            return NoContent();
         }
 
         public async Task<bool> ParkingSpotExists(string id)
         {
             var parkingspot = await  _parkingSpotService.GetParkingSpot(id);
-           
-            if (parkingspot != null) 
+
+            if (parkingspot.Value != null)
             {
 
                 return true;

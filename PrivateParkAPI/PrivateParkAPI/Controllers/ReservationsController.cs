@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PrivateParkAPI.Data;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Services.IServices;
 using System;
@@ -22,39 +21,44 @@ namespace PrivateParkAPI.Controllers
         }
 
         [HttpGet]
-        public Task<IEnumerable<ReservationDTO>> GetReservations()
+        public async Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservations()
         {
-            return _reservationService.GetReservations();
+            return await _reservationService.GetReservations();
         }
 
         [HttpGet("{id}")]
-        public Task<ReservationDTO> GetReservation(string id)
+        public async Task<ActionResult<ReservationDTO>> GetReservation(string id)
         {
-            var reservation = _reservationService.GetReservation(id);
-
+            var reservation = await _reservationService.GetReservation(id);
+            if (reservation.Value == null)
+            {
+                return NotFound(reservation);
+            }
             return reservation;
         }
 
         //GetAll not cancelled
         [Route("~/api/reservations/notCancelled")]
-        public Task<IEnumerable<ReservationDTO>> GetReservationsNotCancelled() {
-            return _reservationService.GetReservationsNotCancelled();
+        public async Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservationsNotCancelled()
+        {
+            return await _reservationService.GetReservationsNotCancelled();
         }
 
         //Post Resevation
         [HttpPost]
-        public async Task<IActionResult> PostReservation( ReservationDTO reservationDTO)
+        public async Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO)
         {
 
             var Results = _reservationService.Validate(reservationDTO);
             var id = reservationDTO.reservationID;
             var TheController = new ParkingSpotsController(_parkingSpotService);
+            var parkingSpot = await _parkingSpotService.GetSpecificParkingSpot(reservationDTO);
 
             if (!Results.IsValid)
             {
                 return BadRequest("Can't create " + Results);
             }
-            if (reservationDTO.ParkingSpot.isPrivate == true)
+            if (parkingSpot.Value.isPrivate == true)
             {
                 return BadRequest("ParkingSpot is not available for reservation");
             }

@@ -12,16 +12,16 @@ namespace PrivateParkAPI.Services.IServices
 {
     public interface IParkingSpotService
     {
-        Task<IEnumerable<ParkingSpotDTO>> GetAllnotPrivate();
-        Task<IEnumerable<ParkingSpotDTO>> GetAllParkingSpots();
-        Task<IEnumerable<ParkingSpotDTO>> GetFreeParkingSpots();
-        Task<IEnumerable<ParkingSpotDTO>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate);
-        Task<IEnumerable<ParkingSpotDTO>> GetFreeParkingSpotsbyPrice(decimal priceHour);
-        Task<ParkingSpotDTO> GetParkingSpot(string id);
+        Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllnotPrivate();
+        Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots();
+        Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpots();
+        Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate);
+        Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsbyPrice(decimal priceHour);
+        Task<ActionResult<ParkingSpotDTO>> GetParkingSpot(string id);
         Task <ActionResult<ParkingSpotDTO>> PutParkingSpot(string id, ParkingSpotDTO parkingSpotDTO);
         Task<ActionResult<ParkingSpotDTO>> PostParkingSpot( ParkingSpotDTO parkingSpotDTO);
         Task<ActionResult<ParkingSpotDTO>> DeleteParkingSpot(string id);
-        Task<ParkingSpot> GetSpecificParkingSpot(ReservationDTO reservationDTO);
+        Task<ActionResult<ParkingSpotDTO>> GetSpecificParkingSpot(ReservationDTO reservationDTO);
         ValidationResult Validate(ParkingSpotDTO parkingSpotDTO);
     }
 }

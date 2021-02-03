@@ -25,7 +25,7 @@ namespace PrivateParkAPI.Services.Services
         }
 
 
-        public async Task<IEnumerable<ParkingLotDTO>> GetParkingLots()
+        public async Task<ActionResult<IEnumerable<ParkingLotDTO>>> GetParkingLots()
         {
             var parkingLots = await _parkingLotRepository.GetParkingLots();
             var parkingLotDTO = _mapper.Map<List<ParkingLot>, List<ParkingLotDTO>>(parkingLots.ToList());

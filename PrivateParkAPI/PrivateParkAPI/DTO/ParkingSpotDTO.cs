@@ -14,8 +14,9 @@ namespace PrivateParkAPI.DTO {
         public int floor { get; set; }
         [Required]
         public bool isPrivate { get; set; }
+        public bool isCovered { get; set; }
         [Required]
-        public int ParkingLotID { get; set; }
+        public int parkingLotID { get; set; }
         public ParkingLot ParkingLot { get; set; }
     }
 }
