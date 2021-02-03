@@ -1,29 +1,12 @@
-<<<<<<< HEAD
-﻿using FluentValidation;
-using PublicParkAPI.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace PublicParkAPI.Utils
-{
-    public class ReservationValidator : AbstractValidator<ReservationDTO>
-    {
-=======
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FluentValidation;
 using PublicParkAPI.DTO;
 
 namespace PublicParkAPI.Utils
 {
-    public class ReservationValidator : AbstractValidator<ReservationDTO> 
+    public class ReservationValidator : AbstractValidator<ReservationDTO>
     {
 
->>>>>>> c6bd7685ce42d6279ba3d7412fcbb0d0779b1b3c
         public ReservationValidator()
         {
             RuleFor(ReservationDTO => ReservationDTO.startTime).NotEmpty();
@@ -34,7 +17,3 @@ namespace PublicParkAPI.Utils
 
     }
 }
-<<<<<<< HEAD
-=======
-    
->>>>>>> c6bd7685ce42d6279ba3d7412fcbb0d0779b1b3c
