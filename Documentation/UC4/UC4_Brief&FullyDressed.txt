@@ -1,0 +1,72 @@
+Brief:
+
+The user accesses the platform and authenticates in it. The user opens the SubLet Managing dashboard.
+The platform asks what action the user intends to perform (Register, Consult, Edit, Delete). The user chooses to register a sublet.
+The platform asks the user to fill the required data ( reservation identification, let hours, let price, start time). The user inputs the requested data.
+The platform shows the data to the user, asking him to confirm it. The user confirms.
+The platform saves the data and informs the user that the operation was successful.
+
+Fully-Dressed:
+
+Name: Sublet Management
+
+Primary Actor: User
+
+Stakeholders and interests:
+• User: Have the ability to sublet his reservation passing it to another user and have the chance to get credit from this transaction.
+• User: Have the chance of reserving an already booked parking spot.
+• Platform:  Give more rent options to its users.
+
+Preconditions: 
+• A reservation must exist and must belong to the user.
+
+Postconditions:
+• The Sublet list is updated according to the details provided by the user..
+
+Main Success Scenario: 
+1. The user accesses the Sublet managing dashboard in the platform.
+2. The Platform asks what action he intends to perform (Register, Consult, Edit, Delete).
+3. The user selects register a sublet.
+4. The platform asks to fill the required data (reservationID, letHours, letPrice, startTime)
+5. The user inserts the requested data.
+6. The platform shows the data to the user, asking him to confirm it.
+7. The user confirms. 
+8. The platform saves the data and informs the user that the operation was successful.
+
+Extensions (alternative scenarios):
+*a.
+1. The user cancels the sublet registration process.
+2. The use case ends.
+
+5a.
+1. The user inserts non valid data.
+2. The platform warns him about it.
+3. The platform allows the user to change the data.
+4. The user does not change the data.
+5. The use case ends.
+
+5b.
+1. Required data was not inserted
+2. The platform informs the user which details are required.
+3. The user does not input the required data.
+4. The use case ends.
+
+5c. The platform cannot find the Reservation.
+1. The platform alerts the user to that fact.
+2. The platform allows the user to change the reservation unique identificator.
+3. The user does not input an existing reservation.
+4. The use case ends.
+
+6a. The platform detects that the sublet details already exist in the platform.
+1. The platform alerts the user to that fact.
+2. The platform allows the user to change the input details.
+3. The user does not change the entered duplicated details.
+4. The use case ends.
+
+Special Requirements:
+
+Variations in Technology and Data: n/a
+
+Frequency of Occurrence: Whenever a user wants to sublet his reservation.
+
+Miscellaneous: 
