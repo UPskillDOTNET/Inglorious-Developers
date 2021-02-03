@@ -106,7 +106,7 @@ namespace testPrivateParkAPI
             // Act
             var result = await theController.GetParkingSpot(testCod);
             //Assert
-            Assert.IsType<NotFoundObjectResult>(result.Result);
+            Assert.IsType<NotFoundResult>(result.Result);
         }
 
         [Fact]
@@ -460,7 +460,7 @@ namespace testPrivateParkAPI
             var notExists = await theController.GetParkingSpot(parkingID);
 
             // Assert
-            Assert.IsType<NotFoundObjectResult>(notExists.Result);
+            Assert.IsType<NotFoundResult>(notExists.Result);
         }
     }
 }

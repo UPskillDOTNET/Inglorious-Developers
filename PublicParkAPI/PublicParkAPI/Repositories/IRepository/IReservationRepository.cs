@@ -14,6 +14,7 @@ namespace PublicParkAPI.Contracts
         Task<IEnumerable<Reservation>> GetReservationsNotCancelled();
         Task<IEnumerable<Reservation>> GetSpecificReservation(DateTime leaveHour, DateTime entryHour);
         Task<Reservation> GetReservation(string id);
+        Task<bool> FindReservationAny(string id);
         Task<Reservation> PatchReservation(string id);
         Task<Reservation> PostReservation(Reservation reservation);
     }

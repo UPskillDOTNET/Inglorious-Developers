@@ -39,12 +39,12 @@ namespace PublicParkAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ReservationDTO>> GetReservation(string id)
         {
-            var reservation = await _reservationService.GetReservation(id);
-            if (reservation.Value == null)
+            
+            if (await ReservationExists(id) == false)
             {
-                return NotFound(reservation);
+                return NotFound("Reservation was not Found");
             }
-            return reservation;
+            return await _reservationService.GetReservation(id);
         }
 
         [Route("~/api/reservations/notCancelled")]
@@ -54,7 +54,7 @@ namespace PublicParkAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostReservation([FromBody] ReservationDTO reservationDTO)
+        public async Task<ActionResult<ReservationDTO>> PostReservation([FromBody] ReservationDTO reservationDTO)
         {
             var Results = _reservationService.Validate(reservationDTO);
             var id = reservationDTO.reservationID;
@@ -91,7 +91,7 @@ namespace PublicParkAPI.Controllers
         {
             var reservationDTO = await _reservationService.GetReservation(id);
 
-            if (await ReservationExists(id))
+            if (await ReservationExists(id)==false)
             {
                 if (reservationDTO.Value.isCancelled == false)
                 {
@@ -110,17 +110,8 @@ namespace PublicParkAPI.Controllers
         //Reservation exists
         public async Task<bool> ReservationExists(string id)
         {
-            var reservation = await _reservationService.GetReservation(id);
+           return await _reservationService.FindReservationAny(id);
 
-            if (reservation != null)
-            {
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
     }
 }

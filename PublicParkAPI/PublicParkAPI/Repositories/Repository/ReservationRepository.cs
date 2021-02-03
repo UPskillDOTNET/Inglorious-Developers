@@ -41,7 +41,10 @@ namespace PublicParkAPI.Repositories
         {
             return await GetAll().Include(s => s.ParkingSpot).ThenInclude(p => p.ParkingLot).FirstOrDefaultAsync(r => r.reservationID == id);
         }
-
+        public async Task<bool> FindReservationAny(string id)
+        {
+            return await GetAll().Where(p => p.reservationID == id).AnyAsync();
+        }
         public async Task<Reservation> PostReservation(Reservation reservation)
         {
             await AddAsync(reservation);

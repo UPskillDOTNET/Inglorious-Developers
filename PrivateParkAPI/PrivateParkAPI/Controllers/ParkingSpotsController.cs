@@ -57,28 +57,25 @@ namespace PrivateParkAPI.Controllers
 
         //Get All Available ParkingSpots by price
         [Route("~/api/parkingspots/freeSpots/{priceHour}")]
-        public async Task<IActionResult> GetFreeParkingSpotsbyPrice(decimal priceHour)
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsbyPrice(decimal priceHour)
         {
             if (priceHour <= 0)
             {
                 return BadRequest("Can't input a negative price");
             }
-            var parkingSpots = await _parkingSpotService.GetFreeParkingSpotsbyPrice(priceHour);
-            return Ok(parkingSpots);
+            return await _parkingSpotService.GetFreeParkingSpotsbyPrice(priceHour);
         }
 
         //Get ParkingSpot by ID
         [HttpGet("{id}")]
         public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpot(string id)
         {
-            
-            var parkingSpots = await _parkingSpotService.GetParkingSpot(id);
-            
-            if (parkingSpots.Value == null)
+
+            if (await ParkingSpotExists(id) == false)
             {
-                return NotFound(parkingSpots);
+                return NotFound();
             }
-            return parkingSpots;
+            return await _parkingSpotService.GetParkingSpot(id);
         }
 
         //Update ParkingSpot 

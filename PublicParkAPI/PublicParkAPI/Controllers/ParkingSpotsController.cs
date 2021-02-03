@@ -71,7 +71,7 @@ namespace PublicParkAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutParkingSpot(string id, [FromBody] ParkingSpotDTO parkingSpotDTO)
+        public async Task<ActionResult<ParkingSpotDTO>> PutParkingSpot(string id, [FromBody] ParkingSpotDTO parkingSpotDTO)
         {
             var Results = _parkingSpotService.Validate(parkingSpotDTO);
 
@@ -103,7 +103,7 @@ namespace PublicParkAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostParkingSpot([FromBody] ParkingSpotDTO parkingSpotDTO)
+        public async Task<ActionResult<ParkingSpotDTO>> PostParkingSpot([FromBody] ParkingSpotDTO parkingSpotDTO)
         {
             var id = parkingSpotDTO.parkingSpotID;
 
@@ -135,7 +135,7 @@ namespace PublicParkAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteParkingSpot(string id)
+        public async Task<ActionResult<ParkingSpotDTO>> DeleteParkingSpot(string id)
         {
 
             if (await ParkingSpotExists(id) == false)
