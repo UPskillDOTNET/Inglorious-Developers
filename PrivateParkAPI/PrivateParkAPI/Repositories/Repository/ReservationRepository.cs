@@ -45,20 +45,22 @@ namespace PrivateParkAPI.Repositories.Repository
         }
 
         // POST: api/ParkingSpots
-        public async Task<ActionResult<Reservation>> PostReservation(Reservation reservation)
+        public async Task<Reservation> PostReservation(Reservation reservation)
         {
             await AddAsync(reservation);
             return reservation;
         }
 
-        //// PUT: api/ParkingSpots/5
-        //public async Task<ActionResult<Reservation>> PutReservation(string id, Reservation reservation)
-        //{
-
-        //    GetAll().Where(r => r.reservationID == id).Include(s => s.ParkingSpot);
-        //    await UpdateAsync(reservation);
-        //    return reservation;
-        //}
+        public async Task<Reservation> PatchReservation(string id)
+        {
+            var x = GetAll().Include(s => s.ParkingSpot).ThenInclude(p => p.ParkingLot)
+                .FirstOrDefaultAsync(r => r.reservationID == id)
+                .Result;
+            x.isCancelled = true;
+            await UpdateAsync(x);
+            return x;
+            
+        }
 
         //// DELETE: api/ParkingSpots/5
         //public async Task<ActionResult<Reservation>> DeleteReservation(string id)

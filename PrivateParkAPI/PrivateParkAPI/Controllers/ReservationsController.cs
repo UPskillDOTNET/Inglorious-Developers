@@ -81,53 +81,36 @@ namespace PrivateParkAPI.Controllers
             return CreatedAtAction("PostReservation", new { id = reservationDTO.reservationID }, reservationDTO);
         }
 
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<ReservationDTO>> PatchReservation(string id)
+        {
+            var reservationDTO = await _reservationService.GetReservation(id);
 
-        //Put Reservation
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutReservation(string id, ReservationDTO reservationDTO)
-        //{
-        //    try
-        //    {
-        //        await _reservationService.PutReservation(reservationDTO.reservationID, reservationDTO);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        if (await ReservationExists(id) == false)
-        //        {
-        //            return NotFound("The Reservation does not exist");
-        //        }
-        //        throw;
-        //    }
-        //    return NoContent();
-        //}
 
-        //Delete Reservation
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteReservation(string id)
-        //{
-        //    try
-        //    {
-        //        await _reservationService.DeleteReservation(id);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        if (await ReservationExists(id) == false)
-        //        {
-        //            return Conflict("Can't delete an non-existing Reservation");
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-        //    return NotFound();
-        //}
+            if (await ReservationExists(id))
+            {
+                if (reservationDTO.Value.isCancelled == false)
+                {
+                    await _reservationService.PatchReservation(id);
+
+                    if (reservationDTO.Value.isCancelled == true)
+                    {
+                        return Ok();
+                    }
+
+                }
+                BadRequest("Couldn't change value");
+
+            }
+
+            return NotFound("Reservation does not Exist"); 
+        }
 
         public async Task<bool> ReservationExists(string id)
         {
             var reservation = await _reservationService.GetReservation(id);
 
-            if (reservation != null)
+            if (reservation.Result != null)
             {
 
                 return true;
