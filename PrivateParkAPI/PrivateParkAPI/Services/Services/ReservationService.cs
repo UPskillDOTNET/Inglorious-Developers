@@ -65,12 +65,11 @@ namespace PrivateParkAPI.Services.Services
             
             return await _reservationRepository.PatchReservation(id);
         }
+
         public ValidationResult Validate(ReservationDTO reservationDTO)
         {
             ReservationValidator validationRules = new ReservationValidator();
-
             ValidationResult Results = validationRules.Validate(reservationDTO);
-
             return Results;
         }
     }
