@@ -29,7 +29,7 @@ namespace PublicParkAPI.Services.Services
             return parkingLotsDTO;
         }
 
-        public async Task<ParkingLotDTO> GetParkingLot(int id)
+        public async Task<ActionResult<ParkingLotDTO>> GetParkingLot(int id)
         {
             var parkingLot = await _parkingLotRepository.GetParkingLot(id);
             var parkingLotDTO = _mapper.Map<ParkingLot, ParkingLotDTO>(parkingLot);
