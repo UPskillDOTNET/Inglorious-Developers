@@ -27,8 +27,6 @@ namespace PrivateParkAPI.Services.Services
             _mapper = mapper;
         }
 
-
-
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllnotPrivate()
         {
             var parkingSpots = await _parkingSpotRepository.GetnotPrivateParkingSpots();
