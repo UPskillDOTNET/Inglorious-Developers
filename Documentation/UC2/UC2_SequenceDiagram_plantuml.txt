@@ -1,0 +1,55 @@
+@startuml
+autonumber
+
+actor "non registered user" as UNR
+participant ":Register\nUserUI" as UI
+participant ":RegisterUser\nController" as CTRL
+participant ":Platform" as PLAT
+participant ":User" as USR
+
+activate UNR
+UNR -> UI : starts the User registration
+activate UI
+UI --> UNR : asks to fill the required data (name, nif, email, pwd)
+deactivate UI
+
+UNR -> UI : inputs the required data
+activate UI
+
+UI -> CTRL : newUser \n(userID, name, nif, email, pwd)
+activate CTRL
+
+CTRL -> PLAT: user = newUser \n(userID, name, nif, email, pwd)
+activate PLAT
+deactivate CTRL
+PLAT -> USR: create \n(userID, name, nif, email, pwd)
+activate USR
+
+PLAT -> PLAT : validateUser(userID, name, nif, email, pwd)
+
+
+
+UI --> UNR : asks for confirmation
+deactivate PLAT
+deactivate UI
+
+UNR -> UI : confirms the data
+activate UI
+
+UI -> CTRL: registerUser()
+activate CTRL
+CTRL -> PLAT: registerUser(user)
+activate PLAT
+
+USR -> USR: validatesUser(user)
+
+PLAT -> PLAT: addUser(user)
+
+
+deactivate PLAT
+deactivate CTRL
+UI --> UNR : the operation was successful
+deactivate UI
+deactivate USR
+deactivate UNR
+@enduml
