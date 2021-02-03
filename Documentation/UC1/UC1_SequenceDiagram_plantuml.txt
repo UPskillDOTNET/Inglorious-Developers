@@ -1,0 +1,97 @@
+@startuml
+autonumber
+'hide footbox
+actor "Admin" as ADM
+
+
+participant ":PlatformUI" as PUI
+participant ":AuthenticationService" as AUT
+participant ":WebAPIParkingSpotUI" as UI
+participant ":WebAPIParkingSpotController" as CTRL
+participant ":Platform\n:List<ParkingLot>" as PLAT
+participant ":ParkingLot\n ParkingSpot" as PLO
+participant "parkingSpot\n:ParkingSpot" as PSP
+
+activate ADM
+ADM -> PUI : asks to be authenticated in the Platform
+activate PUI
+PUI --> ADM : asks Login details
+deactivate PUI
+ADM -> PUI : inputs login details
+activate PUI
+PUI -> AUT : new login
+activate AUT
+AUT -> AUT : validates user
+AUT --> PUI : login successful
+deactivate AUT
+PUI --> ADM : notification successful login
+deactivate PUI
+
+
+
+ADM -> UI : starts a ParkingSpot registration
+activate UI
+UI --> ADM : asks to fill the required data (parkingLotID, isPrivate, isCovered, floor, priceHour)
+deactivate UI
+
+ADM -> UI : inputs the required data
+activate UI
+
+UI -> CTRL : lpl = getParkingLot()
+activate CTRL
+
+CTRL -> PLAT : lpl = getParkingLot()
+activate PLAT
+|||
+deactivate PLAT
+deactivate CTRL
+
+UI --> ADM : shows the parking lot list and asks to select one
+deactivate PLAT
+deactivate UI
+
+ADM -> UI : selects a parking lot
+activate UI
+
+UI -> CTRL : newParkingSpot \n(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)
+activate CTRL
+
+CTRL -> PLAT : res = getParkingLotById(parkingLotID)
+activate PLAT
+|||
+deactivate PLAT
+
+CTRL -> PLO: parkingSpot = newParkingSpot \n(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)
+activate PLO
+
+
+PLO --> PSP**: create \n(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)
+PLO->PLO: validationParkingSpot(parkingSpot)
+
+
+UI --> ADM : asks for confirmation
+deactivate PLO
+deactivate PLAT
+deactivate CTRL
+deactivate UI
+
+
+
+ADM->UI : confirms the data
+activate UI
+UI->CTRL : registsParkingSpot()
+activate CTRL
+
+CTRL->PLO : registsParkingSpot(parkingSpot)
+activate PLO
+activate PSP
+
+PSP->PSP: validatesParkingSpot(parkingSpot)
+
+PLO->PLO: getParkingSpot(parkingSpot)
+PLO->PLO: addParkingSpot(parkingSpot)
+deactivate PSP
+
+UI--> ADM : informs that the operation was successful
+deactivate ADM
+@enduml

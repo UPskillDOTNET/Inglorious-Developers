@@ -1,0 +1,88 @@
+@startuml
+autonumber
+'hide footbox
+actor "User" as USR
+
+
+participant ":PlatformUI" as PUI
+participant ":AuthenticationService" as AUT
+participant ":EditUserUI" as UI
+participant ":EditUserController" as CTRL
+participant ":Platform\n:List<User>" as PLAT
+participant "user\n:User" as USER
+
+activate USR
+USR -> PUI : asks to be authenticated in the Platform
+activate PUI
+PUI --> USR : asks Login details
+deactivate PUI
+USR -> PUI : inputs login details
+activate PUI
+PUI -> AUT : new login
+activate AUT
+AUT -> AUT : validates user
+AUT --> PUI : login successful
+deactivate AUT
+PUI --> USR : notification successful login
+deactivate PUI
+
+
+
+USR -> UI : access user dashboard
+activate UI
+UI --> USR : allows the user to access it
+deactivate UI
+
+USR -> UI : starts a User edition
+activate UI
+UI --> USR : asks to fill the required data he wants to edit (Name, NIF or email)
+deactivate UI
+
+USR -> UI : inputs the required data
+
+activate UI
+
+UI -> CTRL : User \n(UserID, Name, NIF, email)
+activate CTRL
+
+CTRL -> PLAT : user = getUserById(userId)
+activate PLAT
+|||
+deactivate PLAT
+
+CTRL -> USER: user = putUser \n(UserID, Name, NIF, email)
+activate USER
+USER -> USER: validationUser(user)
+
+
+
+
+
+
+
+UI--> USR : asks for confirmation
+deactivate USER
+deactivate PLAT
+deactivate CTRL
+deactivate UI
+
+
+
+USR->UI : confirms the data
+activate UI
+UI->CTRL : editsUser()
+activate CTRL
+
+CTRL->USER: editsUser(user)
+activate USER
+activate USER
+
+USER->USER: validatesUser(user)
+
+
+USER->USER: editsUser(user)
+deactivate USER
+
+UI --> USR : informs the user that the operation was successful
+deactivate USR
+@enduml
