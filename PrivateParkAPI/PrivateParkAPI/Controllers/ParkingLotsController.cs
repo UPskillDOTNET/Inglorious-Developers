@@ -93,21 +93,6 @@ namespace PrivateParkAPI.Controllers
             return CreatedAtAction("GetParkingLot", new { id = parkingLotDTO.parkingLotID }, parkingLotDTO);
         }
 
-        //// DELETE: api/ParkingLots/5
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteParkingLot(int id)
-        //{
-        //    if (await ParkingLotExists(id) == false)
-        //    {
-        //        return NotFound("Parking Lot does not exist.");
-        //    }
-        //    else
-        //    {
-        //        await _parkingLotService.DeleteParkingLot(id);
-        //    }
-        //    return Ok();
-        //}
-
         private async Task<bool> ParkingLotExists(int id)
         {
             var parkingLot = await _parkingLotService.GetParkingLot(id);

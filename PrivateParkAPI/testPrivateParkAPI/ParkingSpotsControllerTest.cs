@@ -48,7 +48,7 @@ namespace testPrivateParkAPI
             var parkingSpotService = new ParkingSpotService(parkingSpotRepository, reservationRepository, mapper);
             var theController = new ParkingSpotsController(parkingSpotService);
             // Act
-            var result = await theController.GetAllFreeParkingSpots();
+            var result = await theController.GetFreeParkingSpots();
             //Assert
             var items = Assert.IsType<List<ParkingSpotDTO>>(result.Value);
             Assert.Equal(2, items.Count);

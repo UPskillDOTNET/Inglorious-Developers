@@ -99,10 +99,8 @@ namespace PrivateParkAPI.Controllers
                     }
 
                 }
-                BadRequest("Couldn't change value");
-
+                return BadRequest("Couldn't change value");
             }
-
             return NotFound("Reservation does not Exist"); 
         }
 
