@@ -56,9 +56,7 @@ namespace PrivateParkAPI.Services.Services
         public ValidationResult Validate(ParkingLotDTO parkingLotDTO)
         {
             ParkingLotValidator validationRules = new ParkingLotValidator();
-
             ValidationResult Results = validationRules.Validate(parkingLotDTO);
-
             return Results;
         }
     }

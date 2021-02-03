@@ -34,6 +34,13 @@ namespace PublicParkAPI.Services.Services
             return reservationsDTO;
         }
 
+        public async Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservationsNotCancelled()
+        {
+            var reservations = await _reservationRepository.GetReservationsNotCancelled();
+            var reservationsDTO = _mapper.Map<List<Reservation>, List<ReservationDTO>>(reservations.ToList());
+            return reservationsDTO;
+        }
+
         public async Task<ActionResult<ReservationDTO>> GetReservation(string id)
         {
             var reservation = await _reservationRepository.GetReservation(id);
@@ -41,11 +48,20 @@ namespace PublicParkAPI.Services.Services
             return reservationDTO;
         }
 
-        public async Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservationsNotCancelled()
+        public async Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO)
         {
-            var reservations = await _reservationRepository.GetReservationsNotCancelled();
-            var reservationsDTO = _mapper.Map<Reservation, ReservationDTO>(reservations);
-            return reservationsDTO;
+            await GetEndTimeandFinalPrice(reservationDTO);         
+            var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);
+            await _reservationRepository.PostReservation(reservation);
+            return reservationDTO;
+        }
+
+        public async Task<ActionResult<ReservationDTO>> GetEndTimeandFinalPrice(ReservationDTO reservationDTO)
+        {
+            var parkingSpot = await _parkingSpotRepository.FindParkingSpot(reservationDTO.parkingSpotID);
+            reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
+            reservationDTO.finalPrice = reservationDTO.hours * parkingSpot.priceHour;
+            return reservationDTO;
         }
 
         public async Task<ActionResult<Reservation>> PatchReservation(string id)
@@ -53,25 +69,11 @@ namespace PublicParkAPI.Services.Services
             return await _reservationRepository.PatchReservation(id);            
         }
 
-        public async Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO)
-        {
-            var parkingSpot = await _parkingSpotRepository.GetSpecificParkingSpot(reservationDTO);
-            reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
-            reservationDTO.finalPrice = reservationDTO.hours * parkingSpot.priceHour;            
-            var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);
-            await _reservationRepository.PostReservation(reservation);
-
-            
-            return reservationDTO;
-        }
-
 
         public ValidationResult Validate(ReservationDTO reservationDTO)
         {
             ReservationValidator validationRules = new ReservationValidator();
-
             ValidationResult Results = validationRules.Validate(reservationDTO);
-
             return Results;
         }
     }
