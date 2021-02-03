@@ -65,13 +65,17 @@ namespace PublicParkAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public Task<ActionResult<ParkingSpotDTO>> GetParkingSpot(string id)
+        public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpot(string id)
         {
-            return _parkingSpotService.GetParkingSpot(id);
+            if (await ParkingSpotExists(id) == false)
+            {
+                return NotFound("The Parking spot you were trying to update could not be found.");
+            }
+            return await _parkingSpotService.GetParkingSpot(id);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutParkingSpot(string id, [FromBody] ParkingSpotDTO parkingSpotDTO)
+        public async Task<ActionResult<ParkingSpotDTO>> PutParkingSpot(string id, [FromBody] ParkingSpotDTO parkingSpotDTO)
         {
             var Results = _parkingSpotService.Validate(parkingSpotDTO);
 
@@ -92,7 +96,7 @@ namespace PublicParkAPI.Controllers
             {
                 if (await ParkingSpotExists(id) == false)
                 {
-                    return NotFound("The Parking pot you were trying to update could not be found.");
+                    return NotFound("The Parking spot you were trying to update could not be found.");
                 }
                 else
                 {
@@ -103,7 +107,7 @@ namespace PublicParkAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostParkingSpot([FromBody] ParkingSpotDTO parkingSpotDTO)
+        public async Task<ActionResult<ParkingSpotDTO>> PostParkingSpot([FromBody] ParkingSpotDTO parkingSpotDTO)
         {
             var id = parkingSpotDTO.parkingSpotID;
 
@@ -135,7 +139,7 @@ namespace PublicParkAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteParkingSpot(string id)
+        public async Task<ActionResult<ParkingSpotDTO>> DeleteParkingSpot(string id)
         {
 
             if (await ParkingSpotExists(id) == false)

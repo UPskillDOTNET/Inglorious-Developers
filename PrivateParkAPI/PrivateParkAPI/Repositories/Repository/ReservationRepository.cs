@@ -57,5 +57,10 @@ namespace PrivateParkAPI.Repositories.Repository
             return x;
             
         }
+
+        public async Task<bool> FindReservationAny(string id)
+        {
+            return await GetAll().Where(p => p.reservationID == id).AnyAsync();
+        }
     }
 }

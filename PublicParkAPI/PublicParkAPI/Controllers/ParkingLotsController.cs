@@ -48,7 +48,7 @@ namespace PublicParkAPI.Controllers
 
         // PUT: api/testesParkingLots/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutParkingLot(int id, [FromBody] ParkingLotDTO parkingLotDTO)
+        public async Task<ActionResult<ParkingLotDTO>> PutParkingLot(int id, [FromBody] ParkingLotDTO parkingLotDTO)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace PublicParkAPI.Controllers
 
         // POST: api/testesParkingLots
         [HttpPost]
-        public async Task<IActionResult> PostParkingLot([FromBody] ParkingLotDTO parkingLotDTO)
+        public async Task<ActionResult<ParkingLotDTO>> PostParkingLot([FromBody] ParkingLotDTO parkingLotDTO)
         {
             var id = parkingLotDTO.parkingLotID;
 
