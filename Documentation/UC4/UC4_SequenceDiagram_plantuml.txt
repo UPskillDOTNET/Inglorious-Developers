@@ -1,0 +1,97 @@
+@startuml
+autonumber
+'hide footbox
+actor "User" as USR
+
+
+participant ":PlatformUI" as PUI
+participant ":AuthenticationService" as AUT
+participant ":RegisterSubLetUI" as UI
+participant ":RegisterSubLetController" as CTRL
+participant ":Platform\n:List<Reservation>" as PLAT
+participant "res\n:Reservation" as RES
+participant "sublet\n:Sublet" as SUBLET
+
+activate USR
+USR -> PUI : asks to be authenticated in the Platform
+activate PUI
+PUI --> USR : asks Login details
+deactivate PUI
+USR -> PUI : inputs login details
+activate PUI
+PUI -> AUT : new login
+activate AUT
+AUT -> AUT : validates user
+AUT --> PUI : login successful
+deactivate AUT
+PUI --> USR : notification successful login
+deactivate PUI
+
+
+
+USR -> UI : starts a SubLet registration
+activate UI
+UI --> USR : asks to fill the required data (reservationID, letHours, letPrice, startTime)
+deactivate UI
+
+USR -> UI : inputs the required data
+activate UI
+
+UI -> CTRL : lr = getReservations()
+activate CTRL
+
+CTRL -> PLAT : lr = getReservations()
+activate PLAT
+|||
+deactivate PLAT
+deactivate CTRL
+
+UI --> USR : shows the reservation list and asks to select one
+deactivate PLAT
+deactivate UI
+
+USR -> UI : selects a reservation
+activate UI
+
+UI -> CTRL : newSublet \n(subLetID, reservationID, letHours, \n letPrice, startTime, endTime)
+activate CTRL
+
+CTRL -> PLAT : res = getReservationById(resId)
+activate PLAT
+|||
+deactivate PLAT
+
+CTRL -> RES: sublet = newSublet \n (subLetID, reservationID, letHours, \n letPrice, startTime, endTime)
+activate RES
+
+
+RES --> SUBLET**: create \n(subLetID, reservationID, letHours, \n letPrice, startTime, endTime)
+RES->RES: validationSublet(sublet)
+
+
+UI --> USR : asks for confirmation
+deactivate RES
+deactivate PLAT
+deactivate CTRL
+deactivate UI
+
+
+
+USR -> UI : confirms the data
+activate UI
+UI -> CTRL : registsSublet()
+activate CTRL
+
+CTRL -> RES : registsSublet(sublet)
+activate RES
+activate SUBLET
+
+SUBLET -> SUBLET: validatesSublet(sublet)
+
+
+RES -> RES: addSublet(sublet)
+deactivate SUBLET
+
+UI --> USR : informs the user that the operation was successful
+deactivate USR
+@enduml
