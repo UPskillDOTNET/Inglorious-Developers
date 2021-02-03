@@ -103,7 +103,7 @@ namespace PrivateParkAPI.Controllers
             }
             catch (Exception)
             {
-                if (await ParkingSpotExists(id) == false)
+                if (await ParkingSpotExists(id)==false)
                 {
                     return NotFound("The parkingSpot you were trying to update could not be found");
                 }
@@ -133,7 +133,7 @@ namespace PrivateParkAPI.Controllers
             }
             catch (Exception)
             {
-                if (await ParkingSpotExists(id))
+                if (await ParkingSpotExists(id)==true)
                 {
                     return Conflict("ParkingSpot already exist");
                 }
@@ -155,7 +155,7 @@ namespace PrivateParkAPI.Controllers
             }
             catch (InvalidOperationException)
             {
-                if (await ParkingSpotExists(id)==false)
+                if (await ParkingSpotExists(id) == false)
                 {
                     return NotFound("Can't delete an non-existing ParkingSpot");
                 }
@@ -169,17 +169,8 @@ namespace PrivateParkAPI.Controllers
 
         public async Task<bool> ParkingSpotExists(string id)
         {
-            var parkingspot = await  _parkingSpotService.GetParkingSpot(id);
-
-            if (parkingspot.Value != null)
-            {
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return await _parkingSpotService.FindParkingSpotAny(id);
+          
         }
     }
 }

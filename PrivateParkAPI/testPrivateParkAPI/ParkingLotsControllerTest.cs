@@ -199,7 +199,7 @@ namespace testPrivateParkAPI
             //Assert
             var items = Assert.IsType<ParkingLotDTO>(getResult.Value);
             Assert.Equal("Jardim da Pérgola", items.name);
-            Assert.IsType<CreatedAtActionResult>(result);
+            Assert.IsType<CreatedAtActionResult>(result.Result);
         }
 
         [Fact]
@@ -227,7 +227,7 @@ namespace testPrivateParkAPI
             var result = await theController.PostParkingLot(newParkingLot);
 
             //Assert
-            Assert.IsType<BadRequestObjectResult>(result);
+            Assert.IsType<BadRequestObjectResult>(result.Result);
         }
 
         //[Fact]

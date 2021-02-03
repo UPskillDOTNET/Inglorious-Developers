@@ -16,11 +16,11 @@ namespace PublicParkAPI.DTO
         public string municipality { get; set; }
         [Required]
         public string location { get; set; }
-        //[Required]
-        //public int capacity { get; set; }
-        //[Required]
-        //public DateTime openingTime { get; set; }
-        //[Required]
-        //public DateTime closingTime { get; set; }
+        [Required]
+        public int capacity { get; set; }
+        [Required]
+        public DateTime openingTime { get; set; }
+        [Required]
+        public DateTime closingTime { get; set; }
     }
 }

@@ -54,7 +54,7 @@ namespace PrivateParkAPI.Services.Services
 
         public async Task<ActionResult<ReservationDTO>> GetEndTimeandFinalPrice(ReservationDTO reservationDTO)
         {
-            var parkingSpot = await _parkingSpotRepository.GetSpecificParkingSpot(reservationDTO);
+            var parkingSpot = await _parkingSpotRepository.FindParkingSpot(reservationDTO.parkingSpotID);
             reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
             reservationDTO.finalPrice = reservationDTO.hours * parkingSpot.priceHour;
             return reservationDTO;

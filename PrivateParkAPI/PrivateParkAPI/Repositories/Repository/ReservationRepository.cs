@@ -15,13 +15,12 @@ namespace PrivateParkAPI.Repositories.Repository
         public ReservationRepository(PrivateParkContext privateParkContext) : base(privateParkContext)
         {
         }
-        // GET: api/Reservations
+
         public async Task<IEnumerable<Reservation>> GetReservations()
         {
             return await GetAll().ToListAsync();
         }
 
-        // GET: api/reservationtest/notCancelled
         public async Task<IEnumerable<Reservation>> GetReservationsNotCancelled() 
         {
             return await GetAll().Where(r => r.isCancelled == false).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
@@ -37,14 +36,11 @@ namespace PrivateParkAPI.Repositories.Repository
             return await GetAll().Where(r => (r.startTime >= startDate && r.endTime <= endDate) || (r.startTime <= endDate && r.endTime >= startDate)).Where(r => r.isCancelled == true).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
         }
 
-
-        // GET: api/Reservation/5
         public async Task<Reservation> GetReservation(string id)
         {
-            return await GetAll().Include(p => p.ParkingSpot).FirstOrDefaultAsync(s => s.reservationID == id);
+            return await GetAll().Include(p => p.ParkingSpot).ThenInclude(p => p.ParkingLot).FirstOrDefaultAsync(s => s.reservationID == id);
         }
 
-        // POST: api/ParkingSpots
         public async Task<Reservation> PostReservation(Reservation reservation)
         {
             await AddAsync(reservation);
@@ -61,13 +57,5 @@ namespace PrivateParkAPI.Repositories.Repository
             return x;
             
         }
-
-        //// DELETE: api/ParkingSpots/5
-        //public async Task<ActionResult<Reservation>> DeleteReservation(string id)
-        //{
-        //    var reservation = GetAll().FirstOrDefault(r => r.reservationID == id);
-        //    await DeleteAsync(reservation);
-        //    return reservation;
-        //}
     }
 }
