@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PrivateParkAPI.Controllers;
 using PrivateParkAPI.DTO;
+using PrivateParkAPI.Models;
 using PrivateParkAPI.Repositories.Repository;
 using PrivateParkAPI.Services.Services;
 using System;
@@ -366,33 +368,38 @@ namespace testPrivateParkAPI
         //        }
 
 
-        //        [Fact]
-        //        public async Task PutParkingSpot_ShouldReturnCreatedResponse()
-        //        {
-        //            // Arrange
-        //            var TestContext = TodoContextMocker.GetPrivateParkContext("putParkingisParking");
-        //            var theController = new ParkingSpotsController(TestContext);
-        //            var parkingID = "E1";
-        //            var parking = new ParkingSpot
-        //            {
-        //                parkingSpotID = "E1",
-        //                priceHour = 1.75M,
-        //                floor = 1,
-        //                isCovered = true,
-        //                isPrivate = true,
-        //                parkingLotID = 1
+        [Fact]
+        public async Task PutParkingSpot_ShouldReturnCreatedResponse()
+        {
+            // Arrange
+            var TestContext = TodoContextMocker.GetPrivateParkContext("putParkingisParking");
+            var parkingSpotRepository = new ParkingSpotRepository(TestContext);
+            var reservationRepository = new ReservationRepository(TestContext);
+            var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
+            var mapper = config.CreateMapper();
+            var parkingSpotService = new ParkingSpotService(parkingSpotRepository, reservationRepository, mapper);
+            var theController = new ParkingSpotsController(parkingSpotService);
+            var parkingID = "E1";
+            var parking = new ParkingSpotDTO
+            {
+                parkingSpotID = "E1",
+                priceHour = 1.75M,
+                floor = 1,
+                isCovered = true,
+                isPrivate = true,
+                parkingLotID = 1
 
-        //            };
+            };
 
-        //            var c = await TestContext.FindAsync<ParkingSpot>(parkingID); //To Avoid tracking error
-        //            TestContext.Entry(c).State = EntityState.Detached;
+            var c = await TestContext.FindAsync<ParkingSpot>(parkingID); //To Avoid tracking error
+            TestContext.Entry(c).State = EntityState.Detached;
 
-        //            // Act
-        //            var response = await theController.PutParkingSpot(parkingID, parking);
+            // Act
+            var response = await theController.PutParkingSpot(parkingID, parking);
 
-        //            // Assert
-        //            Assert.IsType<NoContentResult>(response);
-        //        }
+            // Assert
+            Assert.IsType<NoContentResult>(response.Result);
+        }
 
         [Fact]
         public async Task DeleteNotExistingParkingSpot_ShouldReturnNotFound()
