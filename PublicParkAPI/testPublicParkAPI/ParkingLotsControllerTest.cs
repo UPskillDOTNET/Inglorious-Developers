@@ -64,8 +64,8 @@ namespace testPublicParkAPI
         public async Task GetParkingLotByID_ShouldReturnNotFound()
         {
             //Arrange
-            Thread.Sleep(1000);
-            var testContext = TodoContextMocker.GetPublicParkContext("ShouldReturnNotFound");
+            Thread.Sleep(1300);
+            var testContext = TodoContextMocker.GetPublicParkContext("GetParkingLotShouldReturnNotFound");
             var parkingLotRepository = new ParkingLotRepository(testContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();

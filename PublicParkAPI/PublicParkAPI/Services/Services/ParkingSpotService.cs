@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using PublicParkAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using PublicParkAPI.Utils;
+using FluentValidation.Results;
 
 namespace PublicParkAPI.Services.Services
 {
@@ -33,7 +35,7 @@ namespace PublicParkAPI.Services.Services
 
         }
 
-        public async Task<ParkingSpotDTO> GetParkingSpot(string id)
+        public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpot(string id)
         {
             var parkingSpot = await _parkingSpotRepository.GetParkingSpot(id);
             var parkingSpotDTO =  _mapper.Map<ParkingSpot, ParkingSpotDTO>(parkingSpot);
@@ -102,5 +104,13 @@ namespace PublicParkAPI.Services.Services
             return await _parkingSpotRepository.GetSpecificParkingSpot(reservationDTO);
         }
 
+        public ValidationResult Validate(ParkingSpotDTO parkingSpotDTO)
+        {
+            ParkingSpotValidator validationRules = new ParkingSpotValidator();
+
+            ValidationResult Results = validationRules.Validate(parkingSpotDTO);
+
+            return Results;
+        }
     }
 }

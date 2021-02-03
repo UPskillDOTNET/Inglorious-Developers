@@ -34,10 +34,15 @@ namespace PublicParkAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public Task<ParkingSpotDTO> GetParkingSpot(string id)
+        public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpot(string id)
         {
-            return _parkingSpotService.GetParkingSpot(id);
-    
+            var parkingSpots = await _parkingSpotService.GetParkingSpot(id);
+            if (parkingSpots.Value == null)
+            {
+                return NotFound();
+            }
+
+            return parkingSpots;
         }
 
         [HttpGet]
@@ -86,11 +91,16 @@ namespace PublicParkAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostParkingSpot([FromBody] ParkingSpotDTO parkingSpotDTO)
+        public async Task<ActionResult<ParkingSpotDTO>> PostParkingSpot([FromBody] ParkingSpotDTO parkingSpotDTO)
         {
 
             var id = parkingSpotDTO.parkingSpotID;
+            var Results = _parkingSpotService.Validate(parkingSpotDTO);
 
+            if (!Results.IsValid)
+            {
+                return BadRequest("Can't create" + Results);
+            }
             try
             {
                 await _parkingSpotService.PostParkingSpot(parkingSpotDTO);
