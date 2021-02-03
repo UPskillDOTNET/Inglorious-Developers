@@ -1,19 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CentralAPI", "CentralAPI\CentralAPI.csproj", "{C501A253-EE7C-4A3D-942D-05FD530C0F85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CentralAPI", "CentralAPI\CentralAPI.csproj", "{C501A253-EE7C-4A3D-942D-05FD530C0F85}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PrivateParkAPI", "PrivateParkAPI", "{B3448B13-92AF-4820-91D5-4DF368BB5173}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrivateParkAPI", "PrivateParkAPI\PrivateParkAPI\PrivateParkAPI.csproj", "{133A62D1-BB30-423A-B56B-5BE9C367829A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrivateParkAPI", "PrivateParkAPI\PrivateParkAPI\PrivateParkAPI.csproj", "{133A62D1-BB30-423A-B56B-5BE9C367829A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublicParkAPI", "PublicParkAPI", "{AAA0F388-56A9-4604-9D8A-2BCF82092A98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicParkAPI", "PublicParkAPI\PublicParkAPI\PublicParkAPI.csproj", "{028A4E2C-F937-4E34-8F9E-993E3D413828}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicParkAPI", "PublicParkAPI\PublicParkAPI\PublicParkAPI.csproj", "{028A4E2C-F937-4E34-8F9E-993E3D413828}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testCentralAPI", "testCentralAPI\testCentralAPI.csproj", "{32C6EA8E-3876-4D30-A317-010893AD463C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "testCentralAPI", "testCentralAPI\testCentralAPI.csproj", "{32C6EA8E-3876-4D30-A317-010893AD463C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "testPublicParkAPI", "PublicParkAPI\testPublicParkAPI\testPublicParkAPI.csproj", "{1592B36B-D40D-4EE9-8B8B-C579C9C1EFDC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "testPrivateParkAPI", "PrivateParkAPI\testPrivateParkAPI\testPrivateParkAPI.csproj", "{1B9FB826-844C-4ED1-805E-2F50D0E37C98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,9 +27,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C501A253-EE7C-4A3D-942D-05FD530C0F85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -76,9 +77,41 @@ Global
 		{32C6EA8E-3876-4D30-A317-010893AD463C}.Release|x64.Build.0 = Release|Any CPU
 		{32C6EA8E-3876-4D30-A317-010893AD463C}.Release|x86.ActiveCfg = Release|Any CPU
 		{32C6EA8E-3876-4D30-A317-010893AD463C}.Release|x86.Build.0 = Release|Any CPU
+		{1592B36B-D40D-4EE9-8B8B-C579C9C1EFDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1592B36B-D40D-4EE9-8B8B-C579C9C1EFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1592B36B-D40D-4EE9-8B8B-C579C9C1EFDC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1592B36B-D40D-4EE9-8B8B-C579C9C1EFDC}.Debug|x64.Build.0 = Debug|Any CPU
+		{1592B36B-D40D-4EE9-8B8B-C579C9C1EFDC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1592B36B-D40D-4EE9-8B8B-C579C9C1EFDC}.Debug|x86.Build.0 = Debug|Any CPU
+		{1592B36B-D40D-4EE9-8B8B-C579C9C1EFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1592B36B-D40D-4EE9-8B8B-C579C9C1EFDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1592B36B-D40D-4EE9-8B8B-C579C9C1EFDC}.Release|x64.ActiveCfg = Release|Any CPU
+		{1592B36B-D40D-4EE9-8B8B-C579C9C1EFDC}.Release|x64.Build.0 = Release|Any CPU
+		{1592B36B-D40D-4EE9-8B8B-C579C9C1EFDC}.Release|x86.ActiveCfg = Release|Any CPU
+		{1592B36B-D40D-4EE9-8B8B-C579C9C1EFDC}.Release|x86.Build.0 = Release|Any CPU
+		{1B9FB826-844C-4ED1-805E-2F50D0E37C98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B9FB826-844C-4ED1-805E-2F50D0E37C98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B9FB826-844C-4ED1-805E-2F50D0E37C98}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1B9FB826-844C-4ED1-805E-2F50D0E37C98}.Debug|x64.Build.0 = Debug|Any CPU
+		{1B9FB826-844C-4ED1-805E-2F50D0E37C98}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1B9FB826-844C-4ED1-805E-2F50D0E37C98}.Debug|x86.Build.0 = Debug|Any CPU
+		{1B9FB826-844C-4ED1-805E-2F50D0E37C98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B9FB826-844C-4ED1-805E-2F50D0E37C98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B9FB826-844C-4ED1-805E-2F50D0E37C98}.Release|x64.ActiveCfg = Release|Any CPU
+		{1B9FB826-844C-4ED1-805E-2F50D0E37C98}.Release|x64.Build.0 = Release|Any CPU
+		{1B9FB826-844C-4ED1-805E-2F50D0E37C98}.Release|x86.ActiveCfg = Release|Any CPU
+		{1B9FB826-844C-4ED1-805E-2F50D0E37C98}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{133A62D1-BB30-423A-B56B-5BE9C367829A} = {B3448B13-92AF-4820-91D5-4DF368BB5173}
 		{028A4E2C-F937-4E34-8F9E-993E3D413828} = {AAA0F388-56A9-4604-9D8A-2BCF82092A98}
+		{1592B36B-D40D-4EE9-8B8B-C579C9C1EFDC} = {AAA0F388-56A9-4604-9D8A-2BCF82092A98}
+		{1B9FB826-844C-4ED1-805E-2F50D0E37C98} = {B3448B13-92AF-4820-91D5-4DF368BB5173}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C246E44D-87D1-4C03-9426-2D401FDE3EA6}
 	EndGlobalSection
 EndGlobal
