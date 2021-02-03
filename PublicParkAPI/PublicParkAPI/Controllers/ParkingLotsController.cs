@@ -25,7 +25,7 @@ namespace PublicParkAPI.Controllers
             _parkingLotService = parkingLotService;
         }
 
-        // GET: api/testesParkingLot
+        // GET: api/testesParkingLots
         [HttpGet]
         public Task<IEnumerable<ParkingLotDTO>> GetParkingLots()
         {
@@ -46,7 +46,7 @@ namespace PublicParkAPI.Controllers
             return parkingLot;
         }
 
-        // PUT: api/testesParkingLot/5
+        // PUT: api/testesParkingLots/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutParkingLot(int id, [FromBody] ParkingLotDTO parkingLotDTO)
         {
@@ -58,7 +58,7 @@ namespace PublicParkAPI.Controllers
             {
                 if (await ParkingLotExists(id) == false)
                 {
-                    return NotFound("Parking Spot not found.");
+                    return NotFound("Parking Lot not found.");
                 }
                 else
                 {
@@ -70,12 +70,33 @@ namespace PublicParkAPI.Controllers
 
 
 
-        // POST: api/testesParkingLot
+        // POST: api/testesParkingLots
         [HttpPost]
         public async Task<IActionResult> PostParkingLot([FromBody] ParkingLotDTO parkingLotDTO)
         {
-            await _parkingLotService.PostParkingLot(parkingLotDTO);
-            return Ok();
+            var id = parkingLotDTO.parkingLotID;
+
+            var Results = _parkingLotService.Validate(parkingLotDTO);
+
+            if (!Results.IsValid)
+            {
+                return BadRequest("Can't update" + Results);
+            }
+            try
+            {
+                await _parkingLotService.PostParkingLot(parkingLotDTO);
+            }
+            catch (Exception)
+            {
+                if (await ParkingLotExists(id))
+                {
+                    return Conflict("Parking Lot already exists.");
+                } else
+                {
+                    throw;
+                }
+            }
+            return CreatedAtAction("GetParkingLot", new { id = parkingLotDTO.parkingLotID }, parkingLotDTO);
         }
 
         private async Task<bool> ParkingLotExists(int id)
