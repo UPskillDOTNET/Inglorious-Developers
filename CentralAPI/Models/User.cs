@@ -7,5 +7,14 @@ namespace CentralAPI.Models
 {
     public class User
     {
+        public string userID { get; set; }
+
+        public string name { get; set; }
+
+        public string email { get; set; }
+
+        public string nif { get; set; }
+
+        public decimal wallet { get; set; }
     }
 }
