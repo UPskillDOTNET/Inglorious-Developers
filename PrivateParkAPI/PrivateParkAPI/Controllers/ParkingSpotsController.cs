@@ -57,28 +57,27 @@ namespace PrivateParkAPI.Controllers
 
         //Get All Available ParkingSpots by price
         [Route("~/api/parkingspots/freeSpots/{priceHour}")]
-        public async Task<IActionResult> GetFreeParkingSpotsbyPrice(decimal priceHour)
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsbyPrice(decimal priceHour)
         {
             if (priceHour <= 0)
             {
                 return BadRequest("Can't input a negative price");
             }
-            var parkingSpots = await _parkingSpotService.GetFreeParkingSpotsbyPrice(priceHour);
-            return Ok(parkingSpots);
+           
+            return await _parkingSpotService.GetFreeParkingSpotsbyPrice(priceHour);
         }
 
         //Get ParkingSpot by ID
         [HttpGet("{id}")]
         public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpot(string id)
         {
-            
-            var parkingSpots = await _parkingSpotService.GetParkingSpot(id);
-            
-            if (parkingSpots.Value == null)
+
+            if (await ParkingSpotExists(id) == false)
             {
-                return NotFound(parkingSpots);
+                return NotFound("ParkingSpot not Found");
             }
-            return parkingSpots;
+            return await _parkingSpotService.GetParkingSpot(id);
         }
 
         //Update ParkingSpot 
@@ -103,7 +102,7 @@ namespace PrivateParkAPI.Controllers
             }
             catch (Exception)
             {
-                if (await ParkingSpotExists(id)==false)
+                if (await ParkingSpotExists(id) == false)
                 {
                     return NotFound("The Parking Spot you were trying to update could not be found");
                 }
@@ -133,7 +132,7 @@ namespace PrivateParkAPI.Controllers
             }
             catch (Exception)
             {
-                if (await ParkingSpotExists(id)==true)
+                if (await ParkingSpotExists(id) == true)
                 {
                     return Conflict("ParkingSpot already exist");
                 }
@@ -148,7 +147,7 @@ namespace PrivateParkAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<ParkingSpotDTO>> DeleteParkingSpot(string id)
         {
-          
+
             try
             {
                 await _parkingSpotService.DeleteParkingSpot(id);
@@ -170,7 +169,7 @@ namespace PrivateParkAPI.Controllers
         public async Task<bool> ParkingSpotExists(string id)
         {
             return await _parkingSpotService.FindParkingSpotAny(id);
-          
+
         }
     }
 }

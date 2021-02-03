@@ -51,20 +51,20 @@ namespace PrivateParkAPI.Controllers
 
             var Results = _reservationService.Validate(reservationDTO);
             var id = reservationDTO.reservationID;
-            var TheController = new ParkingSpotsController(_parkingSpotService);
             var parkingSpot = await _parkingSpotService.Find(reservationDTO.parkingSpotID);
+            
 
             if (!Results.IsValid)
             {
                 return BadRequest("Can't create " + Results);
             }
+            if (parkingSpot == null)
+            {
+                return BadRequest("ParkingSpot doens't exist");
+            }
             if (parkingSpot.isPrivate == true)
             {
                 return BadRequest("ParkingSpot is not available for reservation");
-            }
-            if (await TheController.ParkingSpotExists(reservationDTO.parkingSpotID) == false)
-            {
-                return BadRequest("ParkingSpot doens't exist");
             }
             try
             {
@@ -106,17 +106,7 @@ namespace PrivateParkAPI.Controllers
 
         public async Task<bool> ReservationExists(string id)
         {
-            var reservation = await _reservationService.GetReservation(id);
-
-            if (reservation.Result != null)
-            {
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return await _reservationService.FindReservationAny(id);
         }
     }
 }
