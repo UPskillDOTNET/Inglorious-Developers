@@ -65,7 +65,10 @@ namespace PrivateParkAPI.Services.Services
             
             return await _reservationRepository.PatchReservation(id);
         }
-
+        public async Task<bool> FindReservationAny(string id)
+        {
+           return await _reservationRepository.FindReservationAny(id);
+        }
         public ValidationResult Validate(ReservationDTO reservationDTO)
         {
             ReservationValidator validationRules = new ReservationValidator();

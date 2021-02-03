@@ -14,6 +14,7 @@ namespace PrivateParkAPI.Services.IServices
         Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservations();
         Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservationsNotCancelled();
         Task<ActionResult<ReservationDTO>> GetReservation(string id);
+        Task<bool> FindReservationAny(string id);
         Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO);
         Task<ActionResult<ReservationDTO>> GetEndTimeandFinalPrice(ReservationDTO reservationDTO);
         Task<ActionResult<Reservation>>PatchReservation(string id);

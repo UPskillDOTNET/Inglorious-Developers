@@ -87,7 +87,7 @@ namespace PrivateParkAPI.Controllers
             var reservationDTO = await _reservationService.GetReservation(id);
 
 
-            if (await ReservationExists(id))
+            if (await ReservationExists(id)== false)
             {
                 if (reservationDTO.Value.isCancelled == false)
                 {
@@ -106,17 +106,7 @@ namespace PrivateParkAPI.Controllers
 
         public async Task<bool> ReservationExists(string id)
         {
-            var reservation = await _reservationService.GetReservation(id);
-
-            if (reservation.Result != null)
-            {
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return await _reservationService.FindReservationAny(id);
         }
     }
 }
