@@ -27,13 +27,13 @@ namespace PublicParkAPI.Repositories
             return await GetAll().FirstOrDefaultAsync(l => l.parkingLotID == id);
         }
 
-        public async Task<ActionResult<ParkingLot>> PutParkingLot(int id, ParkingLot parkingLot)
+        public async Task<ParkingLot> PutParkingLot(int id, ParkingLot parkingLot)
         {
             await UpdateAsync(parkingLot);
             return parkingLot;
         }
 
-        public async Task<ActionResult<ParkingLot>> PostParkingLot(ParkingLot parkingLot)
+        public async Task<ParkingLot> PostParkingLot(ParkingLot parkingLot)
         {
             await AddAsync(parkingLot);
             return parkingLot;

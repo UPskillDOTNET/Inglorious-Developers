@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
 using PublicParkAPI.DTO;
 using System;
 using System.Collections.Generic;
@@ -13,5 +14,6 @@ namespace PublicParkAPI.Services.IServices
         Task<ActionResult<ParkingLotDTO>> GetParkingLot(int id);
         Task<ActionResult<ParkingLotDTO>> PutParkingLot(int id, ParkingLotDTO parkingLotDTO);
         Task<ActionResult<ParkingLotDTO>> PostParkingLot(ParkingLotDTO parkingLotDTO);
+        ValidationResult Validate(ParkingLotDTO parkingLotDTO);
     }
 }

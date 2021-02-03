@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using PublicParkAPI.Contracts;
 using PublicParkAPI.DTO;
 using PublicParkAPI.Models;
 using PublicParkAPI.Services.IServices;
+using PublicParkAPI.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,5 +51,12 @@ namespace PublicParkAPI.Services.Services
             await _parkingLotRepository.PostParkingLot(parkingLot);
             return parkingLotDTO;
         }
+
+        public ValidationResult Validate(ParkingLotDTO parkingLotDTO)
+        {
+            ParkingLotValidator validationRules = new ParkingLotValidator();
+            ValidationResult Results = validationRules.Validate(parkingLotDTO);
+            return Results;
+        } 
     }
 }
