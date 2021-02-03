@@ -40,7 +40,6 @@ namespace PublicParkAPI.Controllers
         public async Task<ActionResult<ReservationDTO>> GetReservation(string id)
         {
             var reservation = await _reservationService.GetReservation(id);
-
             if (reservation.Value == null)
             {
                 return NotFound(reservation);
@@ -62,9 +61,14 @@ namespace PublicParkAPI.Controllers
             var TheController = new ParkingSpotsController(_parkingSpotService);
             var parkingSpot = await _parkingSpotService.Find(reservationDTO.parkingSpotID);
 
+            if (!Results.IsValid)
+            {
+                return BadRequest("Can't create " + Results);
+            }
+
             if (await TheController.ParkingSpotExists(reservationDTO.parkingSpotID) == false)
             {
-                return BadRequest("ParkingSpot doens't exist.");
+                return BadRequest("ParkingSpot doesn't exist.");
             }
 
             try
@@ -83,10 +87,24 @@ namespace PublicParkAPI.Controllers
         }
 
         [HttpPatch("{id}")]
-        public IActionResult PatchReservation(string id)
+        public async Task<ActionResult<ReservationDTO>> PatchReservation(string id)
         {
-            _reservationService.PatchReservation(id);
-            return Ok("Reservation Cancelled");
+            var reservationDTO = await _reservationService.GetReservation(id);
+
+            if (await ReservationExists(id))
+            {
+                if (reservationDTO.Value.isCancelled == false)
+                {
+                    await _reservationService.PatchReservation(id);
+
+                    if (reservationDTO.Value.isCancelled == true)
+                    {
+                        return Ok(reservationDTO);
+                    }
+                }
+                return BadRequest("Couldn't change value");
+            }
+            return NotFound("Reservation does not exist");
         }
         
         //Reservation exists

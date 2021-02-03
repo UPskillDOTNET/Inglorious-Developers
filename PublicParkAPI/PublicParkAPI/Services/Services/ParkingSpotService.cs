@@ -42,7 +42,7 @@ namespace PublicParkAPI.Services.Services
             return parkingSpotsDTO;
         }
 
-        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetParkingPriceFreeSpots(decimal price)
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsbyPrice(decimal price)
         {
             var reservations = await _reservationRepository.GetReservationDateTimeNow();
             var parkingSpots = await _parkingSpotRepository.GetParkingSpotbyPrice(price);
