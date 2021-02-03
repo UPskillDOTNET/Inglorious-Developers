@@ -1,0 +1,60 @@
+Brief:
+
+The non-registered user accesses the platform to register in it. The platform asks the non-registered user for Name, NIF, and email.
+The not registered user inserts the requested data. The platform shows the data to the non-registered user, asking him to confirm it.
+The non-registered user confirms. The platform saves the data and informs the new user that the operation was successful.
+
+
+Fully-Dressed:
+
+Name: User Registration
+
+Primary Actor: Non-user
+
+Stakeholders and interests:
+• Non-User: Have the ability to register in the platform and being able to use the features it provides.
+• Platform:  Have registered users using the platform.
+
+Preconditions: n/a
+
+Postconditions:
+• The Users list is updated according to the details provided by the user himself.
+
+Main Success Scenario: 
+1. The non-user starts the registration process.
+2. The Platform asks for its details (Name, nif and email).
+3. The non-user inserts the requested data.
+4. The platform shows the data to the non-user, asking him to confirm it.
+5. The non-user confirms. 
+6. The platform saves the data and informs the non-user that the operation was successful and that he became a platform registered user.
+
+Extensions (alternative scenarios):
+*a.
+1. The non-user cancels the registration process.
+2. The use case ends.
+
+3a.
+3. The non-user inserts non valid data.
+4. The platform warns him about it.
+5. The platform allows the non-user to change the data.
+6. The non-user does not change the data.
+7. The use case ends.
+
+3b.
+3. Required data was not inserted
+4. The platform informs which details are required.
+5. The non-user does not input the required data.
+6. The use case ends.
+
+6a. The platform detects that the user details already exist in the platform belonging to another user.
+7. The platform alerts the non-user to that fact.
+8. The platform allows the non-user to change the input details.
+9. The non-user does not change the entered duplicated details.
+10. The use case ends.
+pecial Requirements:
+
+Variations in Technology and Data: N/A
+
+Frequency of Occurrence: Whenever a non-user wants to get registered in the platform.
+
+Miscellaneous: 
