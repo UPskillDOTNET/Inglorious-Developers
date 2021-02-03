@@ -37,7 +37,7 @@ namespace PrivateParkAPI.Controllers
         //Get All Available ParkingSpots 
         [HttpGet]
         [Route("~/api/parkingspots/freeSpots")]
-        public Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllFreeParkingSpots()
+        public Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpots()
         {
             return _parkingSpotService.GetFreeParkingSpots();
         }
@@ -105,7 +105,7 @@ namespace PrivateParkAPI.Controllers
             {
                 if (await ParkingSpotExists(id)==false)
                 {
-                    return NotFound("The parkingSpot you were trying to update could not be found");
+                    return NotFound("The Parking Spot you were trying to update could not be found");
                 }
                 else
                 {
