@@ -129,7 +129,7 @@ namespace testPublicParkAPI
             var response = await theController.PostParkingSpot(noPriceParkingSpot);
 
             // Assert
-            Assert.IsType<BadRequestObjectResult>(response);
+            Assert.IsType<BadRequestObjectResult>(response.Result);
         }
 
         [Fact]
@@ -156,7 +156,7 @@ namespace testPublicParkAPI
             var response = await theController.PostParkingSpot(noParkingLotID);
 
             // Assert
-            Assert.IsType<BadRequestObjectResult>(response);
+            Assert.IsType<BadRequestObjectResult>(response.Result);
         }
 
         [Fact]
@@ -182,7 +182,7 @@ namespace testPublicParkAPI
                 var response = await theController.PostParkingSpot(theNewParkingSpot);
 
                 // Assert
-                Assert.IsType<CreatedAtActionResult>(response);
+                Assert.IsType<CreatedAtActionResult>(response.Result);
             }
 
         [Fact]
@@ -206,11 +206,13 @@ namespace testPublicParkAPI
 
             // Act
             var response = await theController.PostParkingSpot(thenewParkingSpot);
-            var result = response as CreatedAtActionResult;
+            var result = await theController.GetParkingSpot("T435");
+
 
             // Assert
-            Assert.NotNull(response);
-            Assert.IsNotType<BadRequestObjectResult>(result);
+            Assert.IsType<CreatedAtActionResult>(response.Result);
+            Assert.NotNull(result.Value);
+            Assert.IsNotType<BadRequestObjectResult>(response.Result);
             Assert.IsType<ParkingSpotDTO>(result.Value);
 
             var theParkingSpot = result.Value as ParkingSpotDTO;
@@ -242,7 +244,7 @@ namespace testPublicParkAPI
             var response = await theController.PutParkingSpot(testCod, theNonParkingSpot);
 
             // Assert
-            Assert.IsType<NotFoundObjectResult>(response);
+            Assert.IsType<NotFoundObjectResult>(response.Result);
         }
 
         [Fact]
@@ -269,7 +271,7 @@ namespace testPublicParkAPI
             var response = await theController.PutParkingSpot(testCod, noPriceParkingSpot);
 
             // Assert
-            Assert.IsType<BadRequestObjectResult>(response);
+            Assert.IsType<BadRequestObjectResult>(response.Result);
 
         }
 
@@ -297,7 +299,7 @@ namespace testPublicParkAPI
             var response = await theController.PutParkingSpot(testCod, noPriceParkingSpot);
 
             // Assert
-            Assert.IsType<BadRequestObjectResult>(response);
+            Assert.IsType<BadRequestObjectResult>(response.Result);
         }
 
         [Fact]
@@ -330,7 +332,7 @@ namespace testPublicParkAPI
             // Assert
             var items = Assert.IsType<ParkingSpotDTO>(getResult.Value);
             Assert.Equal(0.30m, items.priceHour);
-            Assert.IsType<NoContentResult>(response);
+            Assert.IsType<NoContentResult>(response.Result);
         }
 
         //[Fact]
