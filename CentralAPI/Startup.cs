@@ -6,11 +6,15 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using PrivateParkAPI.Data;
+using PublicParkAPI.Data;
+
 
 namespace CentralAPI
 {
@@ -26,8 +30,15 @@ namespace CentralAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<PublicParkContext>(options =>
+               options.UseSqlServer(
+                   Configuration.GetConnectionString("PublicConnection")));
+            services.AddDbContext<PrivateParkContext>(options =>
+               options.UseSqlServer(
+                   Configuration.GetConnectionString("PrivateConnection")));
 
             services.AddControllers();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
