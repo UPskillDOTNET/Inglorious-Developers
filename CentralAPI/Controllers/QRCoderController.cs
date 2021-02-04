@@ -7,6 +7,9 @@ using QRCoder;
 
 namespace CentralAPI.Controllers
 {
+
+    [Route("api/testcode")]
+    [ApiController]
     public class QRCoderController : Controller
     {
         public IActionResult Index()
@@ -18,10 +21,10 @@ namespace CentralAPI.Controllers
         public IActionResult Index(string qrText)
         {
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrText,
-            QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrText, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
             Bitmap qrCodeImage = qrCode.GetGraphic(20);
+            
             return View(BitmapToBytes(qrCodeImage));
         }
 
