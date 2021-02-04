@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PrivateParkAPI.Data;
-using PrivateParkAPI.Models;
+using PrivateParkAPI.DTO;
+using PrivateParkAPI.Services.IServices;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace PrivateParkAPI.Controllers
@@ -12,149 +11,96 @@ namespace PrivateParkAPI.Controllers
     [Authorize]
     [Route("api/reservations")]
     [ApiController]
-    public class ReservationsController : ControllerBase
+    public class ReservationsController : Controller
     {
-        private readonly PrivateParkContext _context;
+        private readonly IReservationService _reservationService;
+        private readonly IParkingSpotService _parkingSpotService;
 
-        public ReservationsController(PrivateParkContext context)
+        public ReservationsController(IReservationService reservationService, IParkingSpotService parkingSpotService)
         {
-            _context = context;
+            _reservationService = reservationService;
+            _parkingSpotService = parkingSpotService;
         }
 
-        // GET: api/Reservations
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
+        public async Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservations()
         {
-            return await _context.Reservations.Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+            return await _reservationService.GetReservations();
         }
 
-        // GET: api/Reservations/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Reservation>> GetReservation(string id)
+        public async Task<ActionResult<ReservationDTO>> GetReservation(string id)
         {
-            var reservation = await _context.Reservations.Include(s => s.ParkingSpot).ThenInclude(p => p.ParkingLot).FirstOrDefaultAsync(r => r.reservationID == id);
 
-            if (reservation == null)
+            if (await ReservationExists(id) == false)
             {
-                return NotFound("Reservation does not Exist");
+                return NotFound("Reservarion not Found");
             }
-
-            return reservation;
+            return await _reservationService.GetReservation(id);
         }
 
-        // PUT: api/Reservations/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutReservation(string id, Reservation reservation)
+        //GetAll not cancelled
+        [Route("~/api/reservations/notCancelled")]
+        public async Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservationsNotCancelled()
         {
-            if (id != reservation.reservationID || !ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            
-            var parkingspot = await _context.ParkingSpots.Where(p => p.parkingSpotID == reservation.parkingSpotID).FirstOrDefaultAsync();
-
-            if (parkingspot.isPrivate == true)
-            {
-                return Conflict("Can't make a reservation on a private parking spot");
-            }
-
-            reservation = new Reservation
-            {
-                reservationID = reservation.reservationID,
-                startTime = reservation.startTime,
-                hours = reservation.hours,
-                endTime = reservation.startTime.AddHours(reservation.hours),
-                finalPrice = reservation.hours * parkingspot.priceHour,
-                parkingSpotID = reservation.parkingSpotID
-            };
-
-            _context.Entry(reservation).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ReservationExists(id))
-                {
-                    return NotFound("Can't Update a Reservation that does not Exist");
-                }
-                else
-                {
-                    throw;
-                }
-            }
-         
-            return NoContent();
+            return await _reservationService.GetReservationsNotCancelled();
         }
 
-        // POST: api/Reservations
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //Post Resevation
         [HttpPost]
-        public async Task<ActionResult<Reservation>> PostReservation(Reservation reservation)
+        public async Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            
-            var parkingspot = await _context.ParkingSpots.Where(p => p.parkingSpotID == reservation.parkingSpotID).FirstOrDefaultAsync();
-           
-            if (parkingspot.isPrivate == true)
-            {
-                return Conflict("Can't make a reservation on a private parking spot"); 
-            }
-            
-            reservation = new Reservation {
-                reservationID = reservation.reservationID,
-                startTime = reservation.startTime,
-                hours = reservation.hours,
-                endTime = reservation.startTime.AddHours(reservation.hours),
-                finalPrice = reservation.hours * parkingspot.priceHour,
-                parkingSpotID = reservation.parkingSpotID };
 
-            _context.Reservations.Add(reservation);
-            
+            var Results = _reservationService.Validate(reservationDTO);
+            var parkingSpot = await _parkingSpotService.Find(reservationDTO.parkingSpotID);
+
+            if (!Results.IsValid)
+            {
+                return BadRequest("Can't create " + Results);
+            }
+            if (parkingSpot == null)
+            {
+                return BadRequest("ParkingSpot doens't exist");
+            }
+            if (parkingSpot.isPrivate == true)
+            {
+                return BadRequest("ParkingSpot is not available for reservation");
+            }
             try
             {
-                await _context.SaveChangesAsync();
+                await _reservationService.PostReservation(reservationDTO);
             }
-            catch (DbUpdateException)
+            catch (Exception)
             {
-                if (ReservationExists(reservation.reservationID))
+                if (await ReservationExists(reservationDTO.reservationID) == true)
                 {
-                    return Conflict("Reservation already Exist!");
+                    return Conflict("The Reservations already exist");
                 }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
-
-            return CreatedAtAction("GetReservation", new { id = reservation.reservationID }, reservation);
+            return CreatedAtAction("PostReservation", new { id = reservationDTO.reservationID }, reservationDTO);
         }
 
-        // DELETE: api/Reservations/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteReservation(string id)
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<ReservationDTO>> PatchReservation(string id)
         {
-            var reservation = await _context.Reservations.FindAsync(id);
-            if (reservation == null)
+            var reservationDTO = await _reservationService.GetReservation(id);
+
+            if (await ReservationExists(id))
             {
-                return NotFound("Can't delete a Reservation that does not Exist");
+                if (reservationDTO.Value.isCancelled == false)
+                {
+                    await _reservationService.PatchReservation(id);
+                    return Ok(reservationDTO);
+                }
+                return BadRequest("Couldn't change value");
             }
-
-            _context.Reservations.Remove(reservation);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return NotFound("Reservation does not Exist");
         }
 
-        private bool ReservationExists(string id)
+        public async Task<bool> ReservationExists(string id)
         {
-            return _context.Reservations.Any(e => e.reservationID == id);
+            return await _reservationService.FindReservationAny(id);
         }
     }
 }

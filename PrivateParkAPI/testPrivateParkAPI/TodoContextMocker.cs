@@ -5,14 +5,11 @@ using System;
 
 
 
-namespace testProject
-{
-    public static class TodoContextMocker
-    {
+namespace testProject {
+    public static class TodoContextMocker {
         private static PrivateParkContext dbContext;
 
-        public static PrivateParkContext GetPrivateParkContext(string dbName)
-        {
+        public static PrivateParkContext GetPrivateParkContext(string dbName) {
             var options = new DbContextOptionsBuilder<PrivateParkContext>()
                 .UseInMemoryDatabase(databaseName: dbName)
                 .Options;
@@ -22,11 +19,10 @@ namespace testProject
             return dbContext;
         }
 
-        private static void Seed()
-        {
+        private static void Seed() {
             dbContext.ParkingLots.Add(new ParkingLot { name = "Parque da República", companyOwner = "NorteShopping", location = "Avenida da República", capacity = 125, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
             dbContext.ParkingLots.Add(new ParkingLot { name = "Parque Brito Capelo", companyOwner = "InRio", location = "Rua Brito Capelo", capacity = 250, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
-            dbContext.ParkingLots.Add(new ParkingLot { name = "Parque da Liberdade", companyOwner = "CasinoEstoril", location = "Avenida da Liberdade", capacity = 423, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00")});
+            dbContext.ParkingLots.Add(new ParkingLot { name = "Parque da Liberdade", companyOwner = "CasinoEstoril", location = "Avenida da Liberdade", capacity = 423, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
             dbContext.ParkingLots.Add(new ParkingLot { name = "Parque dos Congregados", companyOwner = "EuSeiLa", location = "Rua dos Congregados", capacity = 588, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
             dbContext.ParkingLots.Add(new ParkingLot { name = "Parque Carlos Alberto", companyOwner = "Upskill", location = "Praça Carlos Alberto", capacity = 365, openingTime = DateTime.Parse("2020-02-22 12:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
 
@@ -36,14 +32,14 @@ namespace testProject
             dbContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "O1", priceHour = 1.00m, isCovered = true, isPrivate = false, parkingLotID = 3 });
             dbContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "A3", priceHour = 0.25m, isCovered = false, isPrivate = false, parkingLotID = 1 });
 
-            dbContext.Reservations.Add(new Reservation { reservationID = "ABC1",startTime = DateTime.Parse("2021-01-28 07:00:00"), hours = 1, endTime = DateTime.Parse("2021-05-22 08:00:00"), parkingSpotID = "A1", });
-            dbContext.Reservations.Add(new Reservation { reservationID = "ABC2", startTime = DateTime.Parse("2021-08-22 07:00:00"), hours = 2, endTime = DateTime.Parse("2021-08-22 09:00:00"), parkingSpotID = "E1", });
-            dbContext.Reservations.Add(new Reservation { reservationID = "ABC3", startTime = DateTime.Parse("2021-09-22 07:00:00"), hours = 12, endTime = DateTime.Parse("2021-09-22 19:00:00"), parkingSpotID = "I1" });
-            dbContext.Reservations.Add(new Reservation { reservationID = "ABC4", startTime = DateTime.Parse("2021-10-22 07:00:00"), hours = 3, endTime = DateTime.Parse("2021-10-22 10:00:00"), parkingSpotID = "O1", });
-            dbContext.Reservations.Add(new Reservation { reservationID = "ABC5", startTime = DateTime.Parse("2021-09-22 07:00:00"), hours = 1, endTime = DateTime.Parse("2021-09-22 08:00:00"), parkingSpotID = "A3", });
-            dbContext.Reservations.Add(new Reservation { reservationID = "ABC6", startTime = DateTime.Parse("2021-08-22 12:00:00"), hours = 1, endTime = DateTime.Parse("2021-08-22 13:00:00"), parkingSpotID = "A1", });
-            dbContext.Reservations.Add(new Reservation { reservationID = "ABC7", startTime = DateTime.Parse("2021-07-22 14:00:00"), hours = 1, endTime = DateTime.Parse("2021-07-22 15:00:00"), parkingSpotID = "A1", });
-            dbContext.Reservations.Add(new Reservation { reservationID = "ABC8", startTime = DateTime.Parse("2021-06-22 18:00:00"), hours = 1, endTime = DateTime.Parse("2021-06-22 19:00:00"), parkingSpotID = "I1", });
+            dbContext.Reservations.Add(new Reservation { reservationID = "ABC1", isCancelled = false, startTime = DateTime.Parse("2021-01-28 07:00:00"), hours = 1, endTime = DateTime.Parse("2021-05-22 08:00:00"), parkingSpotID = "A1", });
+            dbContext.Reservations.Add(new Reservation { reservationID = "ABC2", isCancelled = true, startTime = DateTime.Parse("2021-02-01 07:00:00"), hours = 2, endTime = DateTime.Parse("2021-09-10 09:00:00"), parkingSpotID = "E1", });
+            dbContext.Reservations.Add(new Reservation { reservationID = "ABC3", isCancelled = false, startTime = DateTime.Parse("2021-09-22 07:00:00"), hours = 12, endTime = DateTime.Parse("2021-09-22 19:00:00"), parkingSpotID = "I1" });
+            dbContext.Reservations.Add(new Reservation { reservationID = "ABC4", isCancelled = false, startTime = DateTime.Parse("2021-10-22 07:00:00"), hours = 3, endTime = DateTime.Parse("2021-10-22 10:00:00"), parkingSpotID = "O1", });
+            dbContext.Reservations.Add(new Reservation { reservationID = "ABC5", isCancelled = false, startTime = DateTime.Parse("2021-09-22 07:00:00"), hours = 1, endTime = DateTime.Parse("2021-09-22 08:00:00"), parkingSpotID = "A3", });
+            dbContext.Reservations.Add(new Reservation { reservationID = "ABC6", isCancelled = false, startTime = DateTime.Parse("2021-08-22 12:00:00"), hours = 1, endTime = DateTime.Parse("2021-08-22 13:00:00"), parkingSpotID = "A1", });
+            dbContext.Reservations.Add(new Reservation { reservationID = "ABC7", isCancelled = true, startTime = DateTime.Parse("2021-07-22 14:00:00"), hours = 1, endTime = DateTime.Parse("2021-07-22 15:00:00"), parkingSpotID = "A1", });
+            dbContext.Reservations.Add(new Reservation { reservationID = "ABC8", isCancelled = false, startTime = DateTime.Parse("2021-06-22 18:00:00"), hours = 1, endTime = DateTime.Parse("2021-06-22 19:00:00"), parkingSpotID = "I1", });
             dbContext.SaveChanges();
         }
     }

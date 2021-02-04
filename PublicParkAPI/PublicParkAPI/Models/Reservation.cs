@@ -16,8 +16,11 @@ namespace PublicParkAPI.Models
         [Required]
         public int hours { get; set; }
         public decimal finalPrice { get; set; }
-        public DateTime endTime { get; set; }
 
+        [Required]
+        public bool isCancelled { get; set; }
+
+        public DateTime endTime { get; set; }      
         [ForeignKey("ParkingSpot")]
         public string parkingSpotID { get; set; }
 
