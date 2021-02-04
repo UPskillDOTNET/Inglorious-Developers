@@ -42,6 +42,7 @@ namespace PublicParkAPI.Controllers
         }
 
         //Get: Available Specific Spots
+        [HttpGet]
         [Route("~/api/parkingSpots/freeSpots/{entryHour}/{leaveHour}")]
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate)
         {
@@ -53,6 +54,7 @@ namespace PublicParkAPI.Controllers
         }
 
         //Get: Available Parking Spots by price
+        [HttpGet]
         [Route("~/api/parkingSpots/freeSpots/{priceHour}")]
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsbyPrice(decimal priceHour)
         {

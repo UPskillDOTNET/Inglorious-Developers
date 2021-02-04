@@ -58,15 +58,14 @@ namespace PublicParkAPI.Controllers
         {
             var Results = _reservationService.Validate(reservationDTO);
             var id = reservationDTO.reservationID;
-            var TheController = new ParkingSpotsController(_parkingSpotService);
-            var parkingSpot = await _parkingSpotService.Find(reservationDTO.parkingSpotID);
+            var parkingSpotExists = _parkingSpotService.Find(reservationDTO.parkingSpotID);
 
             if (!Results.IsValid)
             {
                 return BadRequest("Can't create " + Results);
             }
 
-            if (await TheController.ParkingSpotExists(reservationDTO.parkingSpotID) == false)
+            if (parkingSpotExists == null)
             {
                 return BadRequest("ParkingSpot doesn't exist.");
             }
@@ -91,16 +90,12 @@ namespace PublicParkAPI.Controllers
         {
             var reservationDTO = await _reservationService.GetReservation(id);
 
-            if (await ReservationExists(id)==false)
+            if (await ReservationExists(id)==true)
             {
                 if (reservationDTO.Value.isCancelled == false)
                 {
                     await _reservationService.PatchReservation(id);
-
-                    if (reservationDTO.Value.isCancelled == true)
-                    {
-                        return Ok(reservationDTO);
-                    }
+                    return Ok("Reservation Cancelled");
                 }
                 return BadRequest("Couldn't change value");
             }
