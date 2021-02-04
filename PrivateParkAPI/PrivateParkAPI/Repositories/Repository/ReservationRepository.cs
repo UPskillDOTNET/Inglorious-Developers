@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using PrivateParkAPI.Data;
 using PrivateParkAPI.Models;
 using PrivateParkAPI.Repositories.IRepository;
@@ -21,12 +20,12 @@ namespace PrivateParkAPI.Repositories.Repository
             return await GetAll().ToListAsync();
         }
 
-        public async Task<IEnumerable<Reservation>> GetReservationsNotCancelled() 
+        public async Task<IEnumerable<Reservation>> GetReservationsNotCancelled()
         {
             return await GetAll().Where(r => r.isCancelled == false).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
         }
 
-        public async Task<IEnumerable<Reservation>> GetReservationDateTimeNow() 
+        public async Task<IEnumerable<Reservation>> GetReservationDateTimeNow()
         {
             return await GetAll().Where(r => (r.startTime <= DateTime.Now && r.endTime >= DateTime.Now)).Where(r => r.isCancelled == true).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
         }
@@ -55,7 +54,7 @@ namespace PrivateParkAPI.Repositories.Repository
             x.isCancelled = true;
             await UpdateAsync(x);
             return x;
-            
+
         }
 
         public async Task<bool> FindReservationAny(string id)

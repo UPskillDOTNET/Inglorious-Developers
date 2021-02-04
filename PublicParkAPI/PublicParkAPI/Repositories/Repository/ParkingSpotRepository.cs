@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using PublicParkAPI.Contracts;
 using PublicParkAPI.Data;
-using PublicParkAPI.DTO;
 using PublicParkAPI.Models;
 using PublicParkAPI.Repositories.Repository;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

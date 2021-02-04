@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Services.IServices;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace PrivateParkAPI.Controllers
 {
+    [Authorize]
     [Route("api/parkingspots")]
     [ApiController]
     public class ParkingSpotsController : Controller
@@ -64,7 +66,7 @@ namespace PrivateParkAPI.Controllers
             {
                 return BadRequest("Can't input a negative price");
             }
-           
+
             return await _parkingSpotService.GetFreeParkingSpotsbyPrice(priceHour);
         }
 
@@ -117,7 +119,7 @@ namespace PrivateParkAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<ParkingSpotDTO>> PostParkingSpot(ParkingSpotDTO parkingSpotDTO)
         {
-            var id = parkingSpotDTO.parkingSpotID;
+
 
             var Results = _parkingSpotService.Validate(parkingSpotDTO);
 
@@ -132,7 +134,7 @@ namespace PrivateParkAPI.Controllers
             }
             catch (Exception)
             {
-                if (await ParkingSpotExists(id) == true)
+                if (await ParkingSpotExists(parkingSpotDTO.parkingSpotID) == true)
                 {
                     return Conflict("ParkingSpot already exist");
                 }

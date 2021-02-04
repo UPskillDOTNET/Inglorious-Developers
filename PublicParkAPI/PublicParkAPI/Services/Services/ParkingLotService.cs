@@ -6,7 +6,6 @@ using PublicParkAPI.DTO;
 using PublicParkAPI.Models;
 using PublicParkAPI.Services.IServices;
 using PublicParkAPI.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -57,6 +56,6 @@ namespace PublicParkAPI.Services.Services
             ParkingLotValidator validationRules = new ParkingLotValidator();
             ValidationResult Results = validationRules.Validate(parkingLotDTO);
             return Results;
-        } 
+        }
     }
 }

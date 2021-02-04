@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PrivateParkAPI.Services.IServices
 {
@@ -17,7 +15,7 @@ namespace PrivateParkAPI.Services.IServices
         Task<bool> FindReservationAny(string id);
         Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO);
         Task<ActionResult<ReservationDTO>> GetEndTimeandFinalPrice(ReservationDTO reservationDTO);
-        Task<ActionResult<Reservation>>PatchReservation(string id);
+        Task<ActionResult<Reservation>> PatchReservation(string id);
         ValidationResult Validate(ReservationDTO reservationDTO);
     }
 }

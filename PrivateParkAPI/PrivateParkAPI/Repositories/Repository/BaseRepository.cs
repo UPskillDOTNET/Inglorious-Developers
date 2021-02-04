@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PrivateParkAPI.Data;
+﻿using PrivateParkAPI.Data;
 using PrivateParkAPI.Repositories.IRepository;
 using System;
 using System.Linq;
@@ -27,8 +26,8 @@ namespace PrivateParkAPI.Repositories.Repository
             }
         }
 
-        public async Task <TEntity> Find(string id)
-        {   
+        public async Task<TEntity> Find(string id)
+        {
             try
             {
 
@@ -39,7 +38,7 @@ namespace PrivateParkAPI.Repositories.Repository
                 throw new Exception($"Couldn't retrieve entities: {ex.Message}");
             }
         }
-       
+
         public async Task<TEntity> AddAsync(TEntity entity)
         {
             if (entity == null)

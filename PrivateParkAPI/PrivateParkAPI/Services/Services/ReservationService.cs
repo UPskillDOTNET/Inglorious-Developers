@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using PrivateParkAPI.DTO;
@@ -10,6 +6,9 @@ using PrivateParkAPI.Models;
 using PrivateParkAPI.Repositories.IRepository;
 using PrivateParkAPI.Services.IServices;
 using PrivateParkAPI.Utils;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PrivateParkAPI.Services.Services
 {
@@ -25,26 +24,29 @@ namespace PrivateParkAPI.Services.Services
             _parkingSpotRepository = parkingSpotRepository;
             _mapper = mapper;
         }
-        
+
         public async Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservations()
         {
             var reservations = await _reservationRepository.GetReservations();
             var reservationsDTO = _mapper.Map<List<Reservation>, List<ReservationDTO>>(reservations.ToList());
             return reservationsDTO;
         }
-        public async Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservationsNotCancelled() {
+        public async Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservationsNotCancelled()
+        {
             var reservations = await _reservationRepository.GetReservationsNotCancelled();
             var reservationsDTO = _mapper.Map<List<Reservation>, List<ReservationDTO>>(reservations.ToList());
             return reservationsDTO;
         }
 
-        public async Task<ActionResult<ReservationDTO>> GetReservation(string id) {
+        public async Task<ActionResult<ReservationDTO>> GetReservation(string id)
+        {
             var reservation = await _reservationRepository.GetReservation(id);
             var reservationsDTO = _mapper.Map<Reservation, ReservationDTO>(reservation);
             return reservationsDTO;
         }
 
-        public async Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO) {
+        public async Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO)
+        {
 
             await GetEndTimeandFinalPrice(reservationDTO);
             var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);
@@ -62,12 +64,12 @@ namespace PrivateParkAPI.Services.Services
 
         public async Task<ActionResult<Reservation>> PatchReservation(string id)
         {
-            
+
             return await _reservationRepository.PatchReservation(id);
         }
         public async Task<bool> FindReservationAny(string id)
         {
-           return await _reservationRepository.FindReservationAny(id);
+            return await _reservationRepository.FindReservationAny(id);
         }
         public ValidationResult Validate(ReservationDTO reservationDTO)
         {

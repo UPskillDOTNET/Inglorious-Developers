@@ -1,14 +1,14 @@
-﻿using PublicParkAPI.Contracts;
+﻿using AutoMapper;
+using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
+using PublicParkAPI.Contracts;
 using PublicParkAPI.DTO;
+using PublicParkAPI.Models;
+using PublicParkAPI.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using PublicParkAPI.Models;
-using Microsoft.AspNetCore.Mvc;
-using PublicParkAPI.Utils;
-using FluentValidation.Results;
 
 namespace PublicParkAPI.Services.Services
 {
@@ -64,7 +64,7 @@ namespace PublicParkAPI.Services.Services
         public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpot(string id)
         {
             var parkingSpot = await _parkingSpotRepository.GetParkingSpot(id);
-            var parkingSpotDTO =  _mapper.Map<ParkingSpot, ParkingSpotDTO>(parkingSpot);
+            var parkingSpotDTO = _mapper.Map<ParkingSpot, ParkingSpotDTO>(parkingSpot);
             return parkingSpotDTO;
         }
 

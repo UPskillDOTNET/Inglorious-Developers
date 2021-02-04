@@ -1,13 +1,9 @@
 ﻿using FluentValidation;
 using PrivateParkAPI.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PrivateParkAPI.Utils
 {
-    public class ParkingLotValidator: AbstractValidator<ParkingLotDTO>
+    public class ParkingLotValidator : AbstractValidator<ParkingLotDTO>
     {
         public ParkingLotValidator()
         {
@@ -22,6 +18,6 @@ namespace PrivateParkAPI.Utils
 
 
 
-      
+
     }
 }

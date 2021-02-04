@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Services.IServices;
 using System;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace PrivateParkAPI.Controllers
 {
+    [Authorize]
     [Route("api/reservations")]
     [ApiController]
     public class ReservationsController : Controller
@@ -29,12 +31,12 @@ namespace PrivateParkAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ReservationDTO>> GetReservation(string id)
         {
-            var reservation = await _reservationService.GetReservation(id);
-            if (reservation.Value == null)
+
+            if (await ReservationExists(id) == false)
             {
-                return NotFound(reservation);
+                return NotFound("Reservarion not Found");
             }
-            return reservation;
+            return await _reservationService.GetReservation(id);
         }
 
         //GetAll not cancelled
@@ -50,9 +52,7 @@ namespace PrivateParkAPI.Controllers
         {
 
             var Results = _reservationService.Validate(reservationDTO);
-            var id = reservationDTO.reservationID;
             var parkingSpot = await _parkingSpotService.Find(reservationDTO.parkingSpotID);
-            
 
             if (!Results.IsValid)
             {
@@ -72,7 +72,7 @@ namespace PrivateParkAPI.Controllers
             }
             catch (Exception)
             {
-                if (await ReservationExists(id) == true)
+                if (await ReservationExists(reservationDTO.reservationID) == true)
                 {
                     return Conflict("The Reservations already exist");
                 }
@@ -86,22 +86,16 @@ namespace PrivateParkAPI.Controllers
         {
             var reservationDTO = await _reservationService.GetReservation(id);
 
-
             if (await ReservationExists(id))
             {
                 if (reservationDTO.Value.isCancelled == false)
                 {
                     await _reservationService.PatchReservation(id);
-
-                    if (reservationDTO.Value.isCancelled == true)
-                    {
-                        return Ok(reservationDTO);
-                    }
-
+                    return Ok(reservationDTO);
                 }
                 return BadRequest("Couldn't change value");
             }
-            return NotFound("Reservation does not Exist"); 
+            return NotFound("Reservation does not Exist");
         }
 
         public async Task<bool> ReservationExists(string id)

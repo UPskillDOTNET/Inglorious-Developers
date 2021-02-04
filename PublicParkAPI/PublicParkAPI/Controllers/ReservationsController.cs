@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.JsonPatch;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PublicParkAPI.Contracts;
-using PublicParkAPI.Data;
 using PublicParkAPI.DTO;
-using PublicParkAPI.Models;
 using PublicParkAPI.Services;
 using PublicParkAPI.Services.IServices;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PublicParkAPI.Controllers
 {
-
+    [Authorize]
     [Route("api/reservations")]
     [ApiController]
     public class ReservationsController : ControllerBase
@@ -39,7 +32,7 @@ namespace PublicParkAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ReservationDTO>> GetReservation(string id)
         {
-            
+
             if (await ReservationExists(id) == false)
             {
                 return NotFound("Reservation was not Found");
@@ -57,7 +50,6 @@ namespace PublicParkAPI.Controllers
         public async Task<ActionResult<ReservationDTO>> PostReservation([FromBody] ReservationDTO reservationDTO)
         {
             var Results = _reservationService.Validate(reservationDTO);
-            var id = reservationDTO.reservationID;
             var parkingSpotExists = _parkingSpotService.Find(reservationDTO.parkingSpotID);
 
             if (!Results.IsValid)
@@ -76,7 +68,7 @@ namespace PublicParkAPI.Controllers
             }
             catch (Exception)
             {
-                if (await ReservationExists(id) == true)
+                if (await ReservationExists(reservationDTO.reservationID) == true)
                 {
                     return Conflict("The Reservations already exist");
                 }
@@ -90,7 +82,7 @@ namespace PublicParkAPI.Controllers
         {
             var reservationDTO = await _reservationService.GetReservation(id);
 
-            if (await ReservationExists(id)==true)
+            if (await ReservationExists(id) == true)
             {
                 if (reservationDTO.Value.isCancelled == false)
                 {
@@ -101,11 +93,11 @@ namespace PublicParkAPI.Controllers
             }
             return NotFound("Reservation does not exist");
         }
-        
+
         //Reservation exists
         public async Task<bool> ReservationExists(string id)
         {
-           return await _reservationService.FindReservationAny(id);
+            return await _reservationService.FindReservationAny(id);
 
         }
     }

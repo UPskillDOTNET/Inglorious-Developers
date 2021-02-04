@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using PrivateParkAPI.Repositories.IRepository;
+﻿using Microsoft.EntityFrameworkCore;
 using PrivateParkAPI.Data;
 using PrivateParkAPI.Models;
-using Microsoft.EntityFrameworkCore;
-using PrivateParkAPI.DTO;
-using Microsoft.AspNetCore.Mvc;
+using PrivateParkAPI.Repositories.IRepository;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PrivateParkAPI.Repositories.Repository
 {

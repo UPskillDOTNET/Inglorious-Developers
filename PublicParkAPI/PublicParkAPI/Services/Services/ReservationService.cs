@@ -6,7 +6,6 @@ using PublicParkAPI.DTO;
 using PublicParkAPI.Models;
 using PublicParkAPI.Services.IServices;
 using PublicParkAPI.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -50,7 +49,7 @@ namespace PublicParkAPI.Services.Services
 
         public async Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO)
         {
-            await GetEndTimeandFinalPrice(reservationDTO);         
+            await GetEndTimeandFinalPrice(reservationDTO);
             var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);
             await _reservationRepository.PostReservation(reservation);
             return reservationDTO;
@@ -65,8 +64,8 @@ namespace PublicParkAPI.Services.Services
         }
 
         public async Task<ActionResult<Reservation>> PatchReservation(string id)
-        {           
-            return await _reservationRepository.PatchReservation(id);            
+        {
+            return await _reservationRepository.PatchReservation(id);
         }
         public async Task<bool> FindReservationAny(string id)
         {

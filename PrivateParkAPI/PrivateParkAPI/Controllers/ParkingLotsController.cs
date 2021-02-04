@@ -1,14 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PrivateParkAPI.DTO;
-using PrivateParkAPI.Models;
 using PrivateParkAPI.Services.IServices;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace PrivateParkAPI.Controllers
 {
+    [Authorize]
     [Route("api/parkinglots")]
     [ApiController]
     public class ParkingLotsController : Controller
@@ -30,13 +30,11 @@ namespace PrivateParkAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ParkingLotDTO>> GetParkingLot(int id)
         {
-            var parkingLot = await _parkingLotService.GetParkingLot(id);
-
-            if (parkingLot.Value == null)
+            if (await ParkingLotExists(id) == false)
             {
-                return NotFound(parkingLot);
+                return NotFound("ParkingLot not Found");
             }
-            return parkingLot;
+            return await _parkingLotService.GetParkingLot(id);
         }
 
         // PUT: api/testesParkingLot/5
@@ -65,8 +63,6 @@ namespace PrivateParkAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<ParkingLotDTO>> PostParkingLot(ParkingLotDTO parkingLotDTO)
         {
-            var id = parkingLotDTO.parkingLotID;
-
             var Results = _parkingLotService.Validate(parkingLotDTO);
 
             if (!Results.IsValid)
@@ -80,7 +76,7 @@ namespace PrivateParkAPI.Controllers
 
             catch (Exception)
             {
-                if (await ParkingLotExists(id))
+                if (await ParkingLotExists(parkingLotDTO.parkingLotID))
                 {
                     return Conflict("Parking Lot already exists.");
                 }

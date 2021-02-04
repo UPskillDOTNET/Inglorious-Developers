@@ -1,7 +1,6 @@
 ﻿using PublicParkAPI.Contracts;
 using PublicParkAPI.Data;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,7 +30,7 @@ namespace PublicParkAPI.Repositories.Repository
 
         public async Task<TEntity> Find(string id)
         {
-           try
+            try
             {
                 return await publicParkContext.Set<TEntity>().FindAsync(id);
             }

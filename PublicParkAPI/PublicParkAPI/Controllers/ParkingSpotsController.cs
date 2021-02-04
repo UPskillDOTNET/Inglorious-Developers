@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PublicParkAPI.Contracts;
-using PublicParkAPI.Data;
 using PublicParkAPI.DTO;
-using PublicParkAPI.Models;
 using PublicParkAPI.Services;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PublicParkAPI.Controllers
 {
+    [Authorize]
     [Route("api/parkingSpots")]
     [ApiController]
     public class ParkingSpotsController : Controller
@@ -46,7 +39,7 @@ namespace PublicParkAPI.Controllers
         [Route("~/api/parkingSpots/freeSpots/{entryHour}/{leaveHour}")]
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate)
         {
-            if( startDate > endDate)
+            if (startDate > endDate)
             {
                 return BadRequest("Dates not correct");
             }
@@ -62,8 +55,7 @@ namespace PublicParkAPI.Controllers
             {
                 return BadRequest("Can't input a negative price");
             }
-            var parkingSpots = await _parkingSpotService.GetFreeParkingSpotsbyPrice(priceHour);
-            return Ok(parkingSpots);
+            return await _parkingSpotService.GetFreeParkingSpotsbyPrice(priceHour);
         }
 
         [HttpGet("{id}")]
@@ -89,7 +81,7 @@ namespace PublicParkAPI.Controllers
             if (id != parkingSpotDTO.parkingSpotID)
             {
                 return BadRequest();
-            } 
+            }
             try
             {
                 await _parkingSpotService.PutParkingSpot(id, parkingSpotDTO);
@@ -111,8 +103,6 @@ namespace PublicParkAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<ParkingSpotDTO>> PostParkingSpot([FromBody] ParkingSpotDTO parkingSpotDTO)
         {
-            var id = parkingSpotDTO.parkingSpotID;
-
             var Results = _parkingSpotService.Validate(parkingSpotDTO);
 
             if (!Results.IsValid)
@@ -127,7 +117,7 @@ namespace PublicParkAPI.Controllers
 
             catch (Exception)
             {
-                if (await ParkingSpotExists(id))
+                if (await ParkingSpotExists(parkingSpotDTO.parkingSpotID))
                 {
                     return Conflict("Parking Spot already exists.");
                 }

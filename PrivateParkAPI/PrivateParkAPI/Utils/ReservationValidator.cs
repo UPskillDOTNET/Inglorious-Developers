@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FluentValidation;
+﻿using FluentValidation;
 using PrivateParkAPI.DTO;
 
 namespace PrivateParkAPI.Utils
 {
-    public class ReservationValidator : AbstractValidator<ReservationDTO> 
+    public class ReservationValidator : AbstractValidator<ReservationDTO>
     {
 
         public ReservationValidator()
@@ -22,4 +18,3 @@ namespace PrivateParkAPI.Utils
 
     }
 }
-    

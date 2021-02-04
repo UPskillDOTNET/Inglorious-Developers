@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FluentValidation;
-using FluentValidation.Results;
+﻿using FluentValidation;
 using PublicParkAPI.DTO;
 
 namespace PublicParkAPI.Utils
@@ -15,6 +10,6 @@ namespace PublicParkAPI.Utils
             RuleFor(ParkingSpotDTO => ParkingSpotDTO.priceHour).GreaterThan(0).LessThan(100);
             RuleFor(ParkingSpotDTO => ParkingSpotDTO.ParkingLotID).NotEmpty();
         }
-    }    
-    
+    }
+
 }
