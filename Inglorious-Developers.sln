@@ -19,6 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "testPublicParkAPI", "Public
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "testPrivateParkAPI", "PrivateParkAPI\testPrivateParkAPI\testPrivateParkAPI.csproj", "{1B9FB826-844C-4ED1-805E-2F50D0E37C98}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer", "IdentityServer", "{85C70CFA-3E12-4208-9750-542CE7F2613D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAuthenticationServer", "UserAuthenticationServer\UserAuthenticationServer.csproj", "{6BCFBA99-E58C-4BC4-8258-47245E1FD063}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +105,18 @@ Global
 		{1B9FB826-844C-4ED1-805E-2F50D0E37C98}.Release|x64.Build.0 = Release|Any CPU
 		{1B9FB826-844C-4ED1-805E-2F50D0E37C98}.Release|x86.ActiveCfg = Release|Any CPU
 		{1B9FB826-844C-4ED1-805E-2F50D0E37C98}.Release|x86.Build.0 = Release|Any CPU
+		{6BCFBA99-E58C-4BC4-8258-47245E1FD063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BCFBA99-E58C-4BC4-8258-47245E1FD063}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BCFBA99-E58C-4BC4-8258-47245E1FD063}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6BCFBA99-E58C-4BC4-8258-47245E1FD063}.Debug|x64.Build.0 = Debug|Any CPU
+		{6BCFBA99-E58C-4BC4-8258-47245E1FD063}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6BCFBA99-E58C-4BC4-8258-47245E1FD063}.Debug|x86.Build.0 = Debug|Any CPU
+		{6BCFBA99-E58C-4BC4-8258-47245E1FD063}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BCFBA99-E58C-4BC4-8258-47245E1FD063}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BCFBA99-E58C-4BC4-8258-47245E1FD063}.Release|x64.ActiveCfg = Release|Any CPU
+		{6BCFBA99-E58C-4BC4-8258-47245E1FD063}.Release|x64.Build.0 = Release|Any CPU
+		{6BCFBA99-E58C-4BC4-8258-47245E1FD063}.Release|x86.ActiveCfg = Release|Any CPU
+		{6BCFBA99-E58C-4BC4-8258-47245E1FD063}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,6 +126,7 @@ Global
 		{028A4E2C-F937-4E34-8F9E-993E3D413828} = {AAA0F388-56A9-4604-9D8A-2BCF82092A98}
 		{1592B36B-D40D-4EE9-8B8B-C579C9C1EFDC} = {AAA0F388-56A9-4604-9D8A-2BCF82092A98}
 		{1B9FB826-844C-4ED1-805E-2F50D0E37C98} = {B3448B13-92AF-4820-91D5-4DF368BB5173}
+		{6BCFBA99-E58C-4BC4-8258-47245E1FD063} = {85C70CFA-3E12-4208-9750-542CE7F2613D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C246E44D-87D1-4C03-9426-2D401FDE3EA6}
