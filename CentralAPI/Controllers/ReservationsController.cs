@@ -86,7 +86,7 @@ namespace CentralAPI.Controllers
         //POST private reservation
         [HttpPost]
         [Route("centralapi/privatereservation")]
-        public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PostPrivateReservation([Bind("parkingLotID, name, companyOwner, location, capacity, openingTime, closingTime")] PrivateParkAPI.DTO.ReservationDTO reservationDTO)
+        public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PostPrivateReservation([FromBody]PrivateParkAPI.DTO.ReservationDTO reservationDTO)
         {
             using (var client = new HttpClient())
             {
@@ -171,13 +171,13 @@ namespace CentralAPI.Controllers
         //POST private reservation
         [HttpPost]
         [Route("centralapi/publicreservation")]
-        public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PostPublicReservation([Bind("parkingLotID, name, companyOwner, location, capacity, openingTime, closingTime")] PrivateParkAPI.DTO.ReservationDTO reservationDTO)
+        public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PostPublicReservation([FromBody]PrivateParkAPI.DTO.ReservationDTO reservationDTO)
         {
             using (var client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(reservationDTO), Encoding.UTF8, "application/json");
                 string endpoint = privateApiBaseUrl + "/reservations";
-                var response = await client.PostAsync(endpoint, content);
+                var response = await client.PostAsync(endpoint, content);                
             }
             return reservationDTO;
         }
