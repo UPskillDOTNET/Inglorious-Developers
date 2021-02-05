@@ -15,18 +15,34 @@ namespace CentralAPI.Controllers
     public class ParkingLotsController : ControllerBase
     {
         private readonly string privateApiBaseUrl;
-        private readonly string publicApiBaseUrl;
+        private readonly string publicApiBaseUrl;        
         private readonly IConfiguration _configure;
 
         public ParkingLotsController(IConfiguration configuration)
         {
             _configure = configuration;
             privateApiBaseUrl = _configure.GetValue<string>("PrivateAPIBaseurl");
-            publicApiBaseUrl = _configure.GetValue<string>("PublicAPIBaseurl");
+            publicApiBaseUrl = _configure.GetValue<string>("PublicAPIBaseurl");            
         }
 
 
         // PRIVATE PARKING LOTS
+
+
+        //[HttpGet]
+        //[Route("/centralapi/parkinglots/{route}")]
+        //public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ParkingLotDTO>>> GetAllPrivateParkingLots(string route)
+        //{
+        //    var parkingLotsList = new List<PrivateParkAPI.DTO.ParkingLotDTO>();
+        //    using (var client = new HttpClient())
+        //    {
+        //        string endpoint = baseApiUrl + route + "/api/parkingspots";
+        //        var response = await client.GetAsync(endpoint);
+        //        response.EnsureSuccessStatusCode();
+        //        parkingLotsList = await response.Content.ReadAsAsync<List<PrivateParkAPI.DTO.ParkingLotDTO>>();
+        //    }
+        //    return parkingLotsList;
+        //}
 
         //Get All Private Parking Lots
         [HttpGet]
