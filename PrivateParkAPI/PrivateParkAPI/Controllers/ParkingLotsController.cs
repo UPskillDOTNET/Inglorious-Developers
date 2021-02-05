@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PrivateParkAPI.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/parkinglots")]
     [ApiController]
     public class ParkingLotsController : Controller
