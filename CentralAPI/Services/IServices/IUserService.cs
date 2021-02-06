@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Services.IServices
 {
-    public class IUserService
+    public interface IUserService
     {
     }
 }
