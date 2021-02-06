@@ -22,9 +22,9 @@ namespace CentralAPI.Services.Services
             _mapper = mapper;
         }
 
-        public async Task<ActionResult<IEnumerable<Wallet>>> GetAllWallets()
+        public async Task<ActionResult<IEnumerable<WalletDTO>>> GetAllWallets()
         {
-            var wallets = await _walletRepository.GetAllWallets();
+            var wallets = await _walletRepository.GetWallets();
             var walletsDTO = _mapper.Map<List<Wallet>, List<WalletDTO>>(wallets.ToList());
             return walletsDTO;
         }

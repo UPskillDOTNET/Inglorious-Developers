@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Repositories.IRepository
 {
-    public interface IWalletRepository
+    public interface IWalletRepository : IBaseRepository<Wallet>
     {
         Task<IEnumerable<Wallet>> GetWallets();
     }

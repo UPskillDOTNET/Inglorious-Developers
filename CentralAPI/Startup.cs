@@ -13,6 +13,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
+using CentralAPI.Services.IServices;
+using CentralAPI.Services.Services;
+using CentralAPI.Repositories.IRepository;
+using CentralAPI.Repositories.Repository;
 
 namespace CentralAPI
 {
@@ -30,6 +34,10 @@ namespace CentralAPI
         {
 
             services.AddDbContext<CentralAPIContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<IWalletRepository, WalletRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IWalletService, WalletService>();
+            services.AddTransient<IUserService, UserService>();
             services.AddControllers();
         }
 

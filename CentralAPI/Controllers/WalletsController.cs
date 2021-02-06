@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CentralAPI.Data;
 using CentralAPI.Models;
 using CentralAPI.Services.IServices;
+using CentralAPI.DTO;
 
 namespace CentralAPI.Controllers
 {
@@ -24,7 +25,7 @@ namespace CentralAPI.Controllers
 
         // GET: Wallets
         [HttpGet]
-        public Task<ActionResult<IEnumerable<Wallet>>> GetAllWallets()
+        public Task<ActionResult<IEnumerable<WalletDTO>>> GetAllWallets()
         {
             return _walletService.GetAllWallets();
         }
