@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using CentralAPI.Data;
-using CentralAPI.Models;
 using CentralAPI.Services.IServices;
+using CentralAPI.DTO;
 
 namespace CentralAPI.Controllers
 {
@@ -17,7 +12,7 @@ namespace CentralAPI.Controllers
     {
         private readonly IUserService _userService;
 
-        public UsersController(IUserService UserService)
+        public UsersController(IUserService userService)
         {
             _userService = userService;
         }
