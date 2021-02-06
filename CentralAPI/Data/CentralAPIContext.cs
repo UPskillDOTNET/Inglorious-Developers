@@ -14,6 +14,7 @@ namespace CentralAPI.Data
         {
         }
 
+        public DbSet<User> Users { get; set; } 
         public DbSet<Wallet> Wallets { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Payment> Payments { get; set; }
