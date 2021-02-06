@@ -15,6 +15,6 @@ namespace CentralAPI.Models
 
         public string nif { get; set; }
 
-        public decimal wallet { get; set; }
+        public string walletID { get; set; }
     }
 }

@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Models
 {
-    public class ParkingLot
+    public class Reservation
     {
-        public string parkingLotID { get; set; }
+        public string reservationID { get; set; }
     }
 }

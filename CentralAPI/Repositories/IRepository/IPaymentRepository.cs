@@ -5,7 +5,12 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Repositories.IRepository
 {
-    public interface IPaymentRepository
+    public interface IPaymentRepository /*IBaseRepository*/
     {
+        //Task<TEntity> Balance(string id);
+
+        //Task<TEntity> AddAsync(TEntity entity);
+
+        //Task<TEntity> UpdateAsync(TEntity entity);
     }
 }

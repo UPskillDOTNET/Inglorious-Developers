@@ -7,5 +7,6 @@ namespace CentralAPI.Models
 {
     public class Sublet
     {
+        public string subletID { get; set; }
     }
 }
