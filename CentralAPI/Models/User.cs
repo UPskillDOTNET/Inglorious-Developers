@@ -14,7 +14,5 @@ namespace CentralAPI.Models
         public string email { get; set; }
 
         public string nif { get; set; }
-
-        public string walletID { get; set; }
     }
 }

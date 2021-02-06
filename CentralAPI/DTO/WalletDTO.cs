@@ -1,23 +1,20 @@
-﻿using System;
+﻿using CentralAPI.Models;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-using CentralAPI.Models;
 
-namespace CentralAPI.Models
+namespace CentralAPI.DTO
 {
-    public class Wallet
+    public class WalletDTO
     {
-        [Key]
+
         public string walletID { get; set; }
 
         public decimal totalAmount { get; set; }
 
         public string currency { get; set; }
 
-        [ForeignKey("User")]
         public string userID { get; set; }
 
         public User User { get; set; }

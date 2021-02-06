@@ -18,6 +18,7 @@ namespace PrivateParkAPI.Services.Services
         private readonly IParkingSpotRepository _parkingSpotRepository;
         private readonly IReservationRepository _reservationRepository;
         private readonly IMapper _mapper;
+
         public ParkingSpotService(IParkingSpotRepository parkingSpotRepository, IReservationRepository reservationRepository, IMapper mapper)
         {
             _parkingSpotRepository = parkingSpotRepository;
