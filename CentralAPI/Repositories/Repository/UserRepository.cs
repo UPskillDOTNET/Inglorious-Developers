@@ -1,6 +1,7 @@
 ﻿using CentralAPI.Data;
 using CentralAPI.Models;
 using CentralAPI.Repositories.IRepository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,11 @@ namespace CentralAPI.Repositories.Repository
     {
         public UserRepository(CentralAPIContext CentralAPIContext) : base(CentralAPIContext)
         {
+        }
+
+        public async Task<IEnumerable<User>> GetUsers()
+        {
+            return await GetAll().ToListAsync();
         }
     }
 }

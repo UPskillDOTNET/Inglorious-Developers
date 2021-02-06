@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Repositories.IRepository
 {
-    interface IUserRepository : IBaseRepository<User>
+    public interface IUserRepository : IBaseRepository<User>
     {
+        Task<IEnumerable<User>> GetUsers();
     }
 }
