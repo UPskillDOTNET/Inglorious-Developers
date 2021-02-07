@@ -15,9 +15,24 @@ namespace CentralAPI.Repositories.Repository
         {
         }
 
-        public async Task<IEnumerable<Wallet>> GetWallets()
+        public IEnumerable<Wallet> GetWallets()
         {
-            return await GetAll().Include(w => w.User).ToListAsync();
+            return GetAll().Include(w => w.User).ToList();
+        }
+
+        public Wallet CreateWallet()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Wallet GetBalance(string userID)
+        {
+            return GetAll().Where(w => w.userID == userID).FirstOrDefault();
+        }
+
+        public Wallet UpdateBalance()
+        {
+            throw new NotImplementedException();
         }
     }
 }

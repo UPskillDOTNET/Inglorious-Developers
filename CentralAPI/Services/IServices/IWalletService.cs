@@ -11,5 +11,6 @@ namespace CentralAPI.Services.IServices
     public interface IWalletService
     {
         Task<ActionResult<IEnumerable<WalletDTO>>> GetAllWallets();
+        Task<ActionResult<WalletDTO>> GetBalance(string userID);
     }
 }

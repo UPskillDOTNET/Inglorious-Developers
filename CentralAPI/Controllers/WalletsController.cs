@@ -12,7 +12,7 @@ using CentralAPI.DTO;
 
 namespace CentralAPI.Controllers
 {
-    [Route("api/wallets")]
+    [Route("api/[controller]")]
     [ApiController]
     public class WalletsController : Controller
     {
@@ -29,6 +29,16 @@ namespace CentralAPI.Controllers
         {
             return _walletService.GetAllWallets();
         }
+
+        //[HttpGet]
+        //[Route("~/api/users/balance/{userID}")]
+        //public Task<ActionResult<WalletDTO>> GetBalance(string userID)
+        //{
+        //    //if (GetUserById(userID) == null) {
+        //    // return NotFound();
+        //    // }
+        //    //return _walletService.GetBalance(userID);
+        //}
 
         //// GET: Wallets/Details/5
         //public async Task<IActionResult> Details(string id)
@@ -156,4 +166,8 @@ namespace CentralAPI.Controllers
         //    _context.Wallets.Remove(wallet);
         //    await _context.SaveChangesAsync();
         //    return RedirectToAction(nameof(Index));
-        //}
+        //}}
+    }
+}
+
+          

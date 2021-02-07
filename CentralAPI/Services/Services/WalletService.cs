@@ -24,9 +24,22 @@ namespace CentralAPI.Services.Services
 
         public async Task<ActionResult<IEnumerable<WalletDTO>>> GetAllWallets()
         {
-            var wallets = await _walletRepository.GetWallets();
-            var walletsDTO = _mapper.Map<List<Wallet>, List<WalletDTO>>(wallets.ToList());
-            return walletsDTO;
+            return await new Task<ActionResult<IEnumerable<WalletDTO>>>(() =>
+            {
+                var wallets = _walletRepository.GetWallets();
+                var walletsDTO = _mapper.Map<List<Wallet>, List<WalletDTO>>(wallets.ToList());
+                return walletsDTO;
+            });
+        }
+
+        public async Task<ActionResult<WalletDTO>> GetBalance(string userID)
+        {
+            return await new Task<ActionResult<WalletDTO>>(() =>
+            {
+                var wallet = _walletRepository.GetBalance(userID);
+                var walletDTO = _mapper.Map<Wallet, WalletDTO>(wallet);
+                return walletDTO;
+            });
         }
     }
 }
