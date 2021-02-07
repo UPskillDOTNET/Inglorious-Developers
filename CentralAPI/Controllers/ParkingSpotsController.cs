@@ -75,7 +75,9 @@ namespace CentralAPI.Controllers {
         [HttpGet]
         [Route("centralapi/PriFreeSpots/{priceHour}")]
         public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ParkingSpotDTO>>> GetFreeParkingSpotsByDatePrivate(Decimal priceHour) {
-
+            if (priceHour <= 0) {
+                return BadRequest("Can't input a negative price");
+            }
             var parkingSpotsList = new List<PrivateParkAPI.DTO.ParkingSpotDTO>();
             using (var client = new HttpClient()) {
                 string endpoint = privateApiBaseUrl + "/parkingspots/freeSpots/" + priceHour.ToString(CultureInfo.InvariantCulture);
@@ -205,7 +207,9 @@ namespace CentralAPI.Controllers {
         [HttpGet]
         [Route("centralapi/PubFreeSpots/{priceHour}")]
         public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ParkingSpotDTO>>> GetFreeParkingSpotsByDatePublic(Decimal priceHour) {
-
+            if (priceHour <= 0) {
+                return BadRequest("Can't input a negative price");
+            }
             var parkingSpotsList = new List<PrivateParkAPI.DTO.ParkingSpotDTO>();
             using (var client = new HttpClient()) {
                 string endpoint = privateApiBaseUrl + "/parkingSpots/freeSpots/" + priceHour.ToString(CultureInfo.InvariantCulture);
