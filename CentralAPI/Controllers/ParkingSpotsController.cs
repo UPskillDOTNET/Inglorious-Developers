@@ -9,6 +9,9 @@ using System.Net.Http.Headers;
 using System;
 using Newtonsoft.Json;
 using System.Text;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace CentralAPI.Controllers {
     [ApiController]
@@ -23,8 +26,10 @@ namespace CentralAPI.Controllers {
             publicApiBaseUrl = _configure.GetValue<string>("PublicAPIBaseurl");
         }
 
+        /*------------PRIVATE------------*/
+
         [HttpGet]
-        [Route("centralapi/privateparkingspots")]
+        [Route("centralapi/PriParkingSpots")]
 
         public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ParkingSpotDTO>>> GetAllPrivateParkingSpots() {
 
@@ -38,9 +43,52 @@ namespace CentralAPI.Controllers {
             return parkingSpotsList;
         }
 
+        [HttpGet]
+        [Route("centralapi/PriFreeSpots")]
+        public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ParkingSpotDTO>>> GetAllPrivateAPIFreeSpots() {
+            var parkingSpotsList = new List<PrivateParkAPI.DTO.ParkingSpotDTO>();
+            using (var client = new HttpClient()) {
+                string endpoint = privateApiBaseUrl + "/parkingspots/freeSpots";
+                var response = await client.GetAsync(endpoint);
+                response.EnsureSuccessStatusCode();
+                parkingSpotsList = await response.Content.ReadAsAsync<List<PrivateParkAPI.DTO.ParkingSpotDTO>>();
+            }
+            return parkingSpotsList;
+        }
+
+        [HttpGet]
+        [Route("centralapi/PriFreeSpots/{entryHour}/{leaveHour}")]
+        public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ParkingSpotDTO>>> GetFreeParkingSpotsByDatePrivate(DateTime startDate, DateTime endDate) {
+            if (startDate > endDate) {
+                return BadRequest("Dates are not correct");
+            }
+            var parkingSpotsList = new List<PrivateParkAPI.DTO.ParkingSpotDTO>();
+            using (var client = new HttpClient()) {
+                string endpoint = privateApiBaseUrl + "/parkingspots/freeSpots/" + startDate.ToString("yyyy-MM-ddTHH:mm:ss") + "/" + endDate.ToString("yyyy-MM-ddTHH:mm:ss");
+                var response = await client.GetAsync(endpoint);
+                response.EnsureSuccessStatusCode();
+                parkingSpotsList = await response.Content.ReadAsAsync<List<PrivateParkAPI.DTO.ParkingSpotDTO>>();
+            }
+            return parkingSpotsList;
+        }
+
+        [HttpGet]
+        [Route("centralapi/PriFreeSpots/{priceHour}")]
+        public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ParkingSpotDTO>>> GetFreeParkingSpotsByDatePrivate(Decimal priceHour) {
+
+            var parkingSpotsList = new List<PrivateParkAPI.DTO.ParkingSpotDTO>();
+            using (var client = new HttpClient()) {
+                string endpoint = privateApiBaseUrl + "/parkingspots/freeSpots/" + priceHour.ToString(CultureInfo.InvariantCulture);
+                var response = await client.GetAsync(endpoint);
+                response.EnsureSuccessStatusCode();
+                parkingSpotsList = await response.Content.ReadAsAsync<List<PrivateParkAPI.DTO.ParkingSpotDTO>>();
+            }
+            return parkingSpotsList;
+        }
+
         //GetByIdPrivate
         [HttpGet]
-        [Route("centralapi/privateparkingspots/{id}")]
+        [Route("centralapi/PriParkingSpots/{id}")]
         public async Task<ActionResult<PrivateParkAPI.DTO.ParkingSpotDTO>> GetPrivateParkingSpot(string id) {
             if (id == null) {
                 return NotFound();
@@ -61,7 +109,7 @@ namespace CentralAPI.Controllers {
 
         //POST private
         [HttpPost]
-        [Route("centralapi/privateparkingspots")]
+        [Route("centralapi/PriParkingSpots")]
 
         public async Task<ActionResult<PrivateParkAPI.DTO.ParkingSpotDTO>> Create([Bind("parkingSpotID, priceHour, floor, isPrivate, isCovered, parkingLotID")] PrivateParkAPI.DTO.ParkingSpotDTO parkingSpotDTO) {
 
@@ -76,9 +124,9 @@ namespace CentralAPI.Controllers {
 
         //PUT private
         [HttpPost]
-        [Route("centralapi/privateparkingspots/{id}")]
+        [Route("centralapi/PriParkingSpots/{id}")]
 
-        public async Task<ActionResult<PrivateParkAPI.DTO.ParkingSpotDTO>> Edit(int id, [Bind("parkingSpotID, priceHour, floor, isPrivate, isCovered, parkingLotID")] PrivateParkAPI.DTO.ParkingSpotDTO parkingSpotDTO) {
+        public async Task<ActionResult<PrivateParkAPI.DTO.ParkingSpotDTO>> EditPrivateParkingSpot(string id, [Bind("parkingSpotID, priceHour, floor, isPrivate, isCovered, parkingLotID")] PrivateParkAPI.DTO.ParkingSpotDTO parkingSpotDTO) {
 
             using (HttpClient client = new HttpClient()) {
 
@@ -89,8 +137,10 @@ namespace CentralAPI.Controllers {
             return parkingSpotDTO;
         }
 
+        /*------------PUBLIC------------*/
+
         [HttpGet]
-        [Route("centralapi/publicparkingspots")]
+        [Route("centralapi/PubParkingSpots")]
         public async Task<ActionResult<IEnumerable<PublicParkAPI.DTO.ParkingSpotDTO>>> GetAllPublicParkingSpots() {
 
             var parkingSpotsList = new List<PublicParkAPI.DTO.ParkingSpotDTO>();
@@ -104,7 +154,20 @@ namespace CentralAPI.Controllers {
         }
 
         [HttpGet]
-        [Route("centralapi/publicparkingspots/{id}")]
+        [Route("centralapi/PubFreeSpots")]
+        public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ParkingSpotDTO>>> GetAllPublicAPIFreeSpots() {
+            var parkingSpotsList = new List<PrivateParkAPI.DTO.ParkingSpotDTO>();
+            using (var client = new HttpClient()) {
+                string endpoint = privateApiBaseUrl + "/parkingSpots/freeSpots";
+                var response = await client.GetAsync(endpoint);
+                response.EnsureSuccessStatusCode();
+                parkingSpotsList = await response.Content.ReadAsAsync<List<PrivateParkAPI.DTO.ParkingSpotDTO>>();
+            }
+            return parkingSpotsList;
+        }
+
+        [HttpGet]
+        [Route("centralapi/PubParkingSpots/{id}")]
         public async Task<ActionResult<PublicParkAPI.DTO.ParkingSpotDTO>> GetPublicParkingSpot(string id) {
             if (id == null) {
                 return NotFound();
@@ -123,10 +186,39 @@ namespace CentralAPI.Controllers {
             return parkingSpot;
         }
 
+        [HttpGet]
+        [Route("centralapi/PubFreeSpots/{entryHour}/{leaveHour}")]
+        public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ParkingSpotDTO>>> GetFreeParkingSpotsByDatePublic(DateTime startDate, DateTime endDate) {
+            if (startDate > endDate) {
+                return BadRequest("Dates are not correct");
+            }
+            var parkingSpotsList = new List<PrivateParkAPI.DTO.ParkingSpotDTO>();
+            using (var client = new HttpClient()) {
+                string endpoint = privateApiBaseUrl + "/parkingSpots/freeSpots/" + startDate.ToString("yyyy-MM-ddTHH:mm:ss") + "/" + endDate.ToString("yyyy-MM-ddTHH:mm:ss");
+                var response = await client.GetAsync(endpoint);
+                response.EnsureSuccessStatusCode();
+                parkingSpotsList = await response.Content.ReadAsAsync<List<PrivateParkAPI.DTO.ParkingSpotDTO>>();
+            }
+            return parkingSpotsList;
+        }
+
+        [HttpGet]
+        [Route("centralapi/PubFreeSpots/{priceHour}")]
+        public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ParkingSpotDTO>>> GetFreeParkingSpotsByDatePublic(Decimal priceHour) {
+
+            var parkingSpotsList = new List<PrivateParkAPI.DTO.ParkingSpotDTO>();
+            using (var client = new HttpClient()) {
+                string endpoint = privateApiBaseUrl + "/parkingSpots/freeSpots/" + priceHour.ToString(CultureInfo.InvariantCulture);
+                var response = await client.GetAsync(endpoint);
+                response.EnsureSuccessStatusCode();
+                parkingSpotsList = await response.Content.ReadAsAsync<List<PrivateParkAPI.DTO.ParkingSpotDTO>>();
+            }
+            return parkingSpotsList;
+        }
+
         //POST public
         [HttpPost]
-        [Route("centralapi/publicparkingspots")]
-
+        [Route("centralapi/PubParkingSpots")]
         public async Task<ActionResult<PublicParkAPI.DTO.ParkingSpotDTO>> Create([Bind("parkingSpotID, priceHour, parkingLotID")] PublicParkAPI.DTO.ParkingSpotDTO parkingSpotDTO) {
 
             using (HttpClient client = new HttpClient()) {
@@ -140,9 +232,8 @@ namespace CentralAPI.Controllers {
 
         //PUT public
         [HttpPost]
-        [Route("centralapi/publicparkingspots/{id}")]
-
-        public async Task<ActionResult<PublicParkAPI.DTO.ParkingSpotDTO>> Edit(int id, [Bind("parkingSpotID, priceHour, parkingLotID")] PublicParkAPI.DTO.ParkingSpotDTO parkingSpotDTO) {
+        [Route("centralapi/PubParkingSpots/{id}")]
+        public async Task<ActionResult<PublicParkAPI.DTO.ParkingSpotDTO>> EditPublicParkingSpot(string id, [Bind("parkingSpotID, priceHour, floor, isPrivate, isCovered, parkingLotID")] PublicParkAPI.DTO.ParkingSpotDTO parkingSpotDTO) {
 
             using (HttpClient client = new HttpClient()) {
 
@@ -152,6 +243,7 @@ namespace CentralAPI.Controllers {
             }
             return parkingSpotDTO;
         }
-
     }
 }
+
+
