@@ -17,6 +17,8 @@ using CentralAPI.Services.IServices;
 using CentralAPI.Services.Services;
 using CentralAPI.Repositories.IRepository;
 using CentralAPI.Repositories.Repository;
+using CentralAPI.DTO;
+using AutoMapper;
 
 namespace CentralAPI
 {
@@ -34,11 +36,13 @@ namespace CentralAPI
         {
 
             services.AddDbContext<CentralAPIContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddTransient<IWalletRepository, WalletRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IWalletService, WalletService>();
             services.AddTransient<IUserService, UserService>();
             services.AddControllers();
+            services.AddAutoMapper(typeof(Maps));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
