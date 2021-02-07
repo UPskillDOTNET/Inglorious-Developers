@@ -1,0 +1,130 @@
+@startuml
+autonumber
+'hide footbox
+actor "Admin" as ADM
+
+
+participant ":PlatformUI" as PUI
+participant ":AuthenticationService" as AUT
+participant ":WebAPIParkingSpotUI" as UI
+participant ":WebAPIParkingSpotController" as CTRL
+participant ":WebAPIParkingSpotService" as SERV
+participant ":WebAPIParkingSpotRepository" as REPO
+participant ":Platform\n:List<ParkingLot>" as PLAT
+participant ":ParkingLot\n ParkingSpot" as PLO
+participant "parkingSpot\n:ParkingSpot" as PSP
+
+activate ADM
+ADM -> PUI : asks to be authenticated in the Platform
+activate PUI
+PUI --> ADM : asks Login details
+deactivate PUI
+ADM -> PUI : inputs login details
+activate PUI
+PUI -> AUT : new login
+activate AUT
+AUT -> AUT : validates user
+AUT --> PUI : login successful
+deactivate AUT
+PUI --> ADM : notification successful login
+deactivate PUI
+
+
+
+ADM -> UI : starts a ParkingSpot registration
+activate UI
+UI --> ADM : asks to fill the required data (parkingLotID, isPrivate, isCovered, floor, priceHour)
+deactivate UI
+
+ADM -> UI : inputs the required data
+activate UI
+
+UI -> CTRL : lpl = getParkingLot()
+activate CTRL
+
+CTRL -> SERV : lpl = getParkingLot()
+activate SERV
+deactivate CTRL
+
+SERV -> REPO : lpl = getParkingLot()Async
+activate REPO
+deactivate SERV
+
+REPO -> PLAT : lpl = getParkingLot()ToListAsync
+activate PLAT
+|||
+deactivate PLAT
+deactivate REPO
+
+UI --> ADM : shows the parking lot list and asks to select one
+deactivate PLAT
+deactivate UI
+
+ADM -> UI : selects a parking lot
+activate UI
+
+UI -> CTRL : newParkingSpot \n(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)
+activate CTRL
+
+CTRL -> SERV : res = getParkingLotById(parkingLotID)
+activate SERV
+
+SERV -> REPO : res = getParkingLotById(parkingLotID)Async
+activate REPO
+|||
+deactivate SERV
+
+REPO -> PLAT : res = getParkingLotById(parkingLotID)Async
+activate PLAT
+|||
+deactivate REPO
+deactivate PLAT
+
+CTRL -> SERV: parkingSpot = newParkingSpot \n(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)
+activate SERV
+deactivate CTRL
+SERV -> REPO: parkingSpot = newParkingSpot \n(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)Async
+activate REPO
+deactivate SERV
+REPO -> PLO: parkingSpot = newParkingSpot \n(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)Async
+activate PLO
+deactivate REPO
+
+PLO --> PSP**: create \n(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)
+PLO->PLO: validationParkingSpot(parkingSpot)
+
+
+UI --> ADM : asks for confirmation
+deactivate PLO
+deactivate PLAT
+deactivate CTRL
+deactivate UI
+
+
+
+ADM->UI : confirms the data
+activate UI
+UI->CTRL : registsParkingSpot()
+
+activate CTRL
+CTRL->SERV: registsParkingSpot(parkingSpot)
+activate SERV
+deactivate CTRL
+SERV ->REPO: registsParkingSpot(parkingSpot)
+activate REPO
+deactivate SERV
+REPO->PLO : registsParkingSpot(parkingSpot)
+deactivate REPO
+activate PLO
+
+activate PSP
+deactivate CTRL
+PSP->PSP: validatesParkingSpot(parkingSpot)
+
+PLO->PLO: getParkingSpot(parkingSpot)
+PLO->PLO: addParkingSpot(parkingSpot)
+deactivate PSP
+
+UI--> ADM : informs that the operation was successful
+deactivate ADM
+@enduml

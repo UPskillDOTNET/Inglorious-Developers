@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1745px" preserveAspectRatio="none" style="width:3463px;height:1745px;" version="1.1" viewBox="0 0 3463 1745" width="3463px" zoomAndPan="magnify"><defs><filter height="300%" id="fa5vkvgvxv7ki" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="1544.6406" style="stroke:#A80036;stroke-width:1.0;" width="10" x="26" y="98.2969"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="326" y="119.4297"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="129.5313" style="stroke:#A80036;stroke-width:1.0;" width="10" x="326" y="177.6953"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="71.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="477.5" y="206.8281"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="670" y="336.3594"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="260.6641" style="stroke:#A80036;stroke-width:1.0;" width="10" x="670" y="394.625"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="597.3203" style="stroke:#A80036;stroke-width:1.0;" width="10" x="670" y="684.4219"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="341.0625" style="stroke:#A80036;stroke-width:1.0;" width="10" x="670" y="1310.875"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="59.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1149" y="423.7578"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="271.6641" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1149" y="728.6875"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="59.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1149" y="1340.0078"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="89.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1628" y="452.8906"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="59.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1628" y="757.8203"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="104.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1628" y="970.3516"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="89.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1628" y="1369.1406"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="89.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2146" y="512.0234"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="114.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2146" y="786.9531"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="104.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2146" y="1044.6172"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="59.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2146" y="1428.2734"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="30" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2480" y="571.1563"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="30" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2480" y="871.0859"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="162.8594" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2663" y="1118.8828"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="164.5313" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2663" y="1487.4063"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="119.3984" style="stroke:#A80036;stroke-width:1.0;" width="10" x="3198" y="1487.4063"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="31" x2="31" y1="88.2969" y2="1660.9375"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="330.5" x2="330.5" y1="88.2969" y2="1660.9375"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="482.5" x2="482.5" y1="88.2969" y2="1660.9375"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="674.5" x2="674.5" y1="88.2969" y2="1660.9375"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="1153.5" x2="1153.5" y1="88.2969" y2="1660.9375"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="1632.5" x2="1632.5" y1="88.2969" y2="1660.9375"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="2150.5" x2="2150.5" y1="88.2969" y2="1660.9375"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="2484.5" x2="2484.5" y1="88.2969" y2="1660.9375"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="2667.5" x2="2667.5" y1="88.2969" y2="1660.9375"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="3203" x2="3203" y1="1197.6797" y2="1660.9375"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="46" x="5" y="84.9951">Admin</text><ellipse cx="31" cy="15" fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M31,23 L31,50 M18,31 L44,31 M31,50 L18,65 M31,50 L44,65 " fill="none" filter="url(#fa5vkvgvxv7ki)" style="stroke:#A80036;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="46" x="5" y="1672.9326">Admin</text><ellipse cx="31" cy="1686.2344" fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M31,1694.2344 L31,1721.2344 M18,1702.2344 L44,1702.2344 M31,1721.2344 L18,1736.2344 M31,1721.2344 L44,1736.2344 " fill="none" filter="url(#fa5vkvgvxv7ki)" style="stroke:#A80036;stroke-width:2.0;"/><rect fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="95" x="281.5" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="81" x="288.5" y="72.9951">:PlatformUI</text><rect fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="95" x="281.5" y="1659.9375"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="81" x="288.5" y="1679.9326">:PlatformUI</text><rect fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="180" x="390.5" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="166" x="397.5" y="72.9951">:AuthenticationService</text><rect fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="180" x="390.5" y="1659.9375"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="166" x="397.5" y="1679.9326">:AuthenticationService</text><rect fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="177" x="584.5" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="163" x="591.5" y="72.9951">:WebAPIParkingSpotUI</text><rect fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="177" x="584.5" y="1659.9375"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="163" x="591.5" y="1679.9326">:WebAPIParkingSpotUI</text><rect fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="237" x="1033.5" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="223" x="1040.5" y="72.9951">:WebAPIParkingSpotController</text><rect fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="237" x="1033.5" y="1659.9375"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="223" x="1040.5" y="1679.9326">:WebAPIParkingSpotController</text><rect fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="217" x="1522.5" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="203" x="1529.5" y="72.9951">:WebAPIParkingSpotService</text><rect fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="217" x="1522.5" y="1659.9375"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="203" x="1529.5" y="1679.9326">:WebAPIParkingSpotService</text><rect fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="243" x="2027.5" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="229" x="2034.5" y="72.9951">:WebAPIParkingSpotRepository</text><rect fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="243" x="2027.5" y="1659.9375"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="229" x="2034.5" y="1679.9326">:WebAPIParkingSpotRepository</text><rect fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" height="46.5938" style="stroke:#A80036;stroke-width:1.5;" width="145" x="2410.5" y="36.7031"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="68" x="2449" y="56.6982">:Platform</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="131" x="2417.5" y="72.9951">:List&lt;ParkingLot&gt;</text><rect fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" height="46.5938" style="stroke:#A80036;stroke-width:1.5;" width="145" x="2410.5" y="1659.9375"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="68" x="2449" y="1679.9326">:Platform</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="131" x="2417.5" y="1696.2295">:List&lt;ParkingLot&gt;</text><rect fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" height="46.5938" style="stroke:#A80036;stroke-width:1.5;" width="107" x="2612.5" y="36.7031"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="83" x="2624.5" y="56.6982">:ParkingLot</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="89" x="2623.5" y="72.9951">ParkingSpot</text><rect fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" height="46.5938" style="stroke:#A80036;stroke-width:1.5;" width="107" x="2612.5" y="1659.9375"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="83" x="2624.5" y="1679.9326">:ParkingLot</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="89" x="2623.5" y="1696.2295">ParkingSpot</text><rect fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" height="46.5938" style="stroke:#A80036;stroke-width:1.5;" width="108" x="3147" y="1659.9375"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="90" x="3156" y="1679.9326">parkingSpot</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="94" x="3154" y="1696.2295">:ParkingSpot</text><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="1544.6406" style="stroke:#A80036;stroke-width:1.0;" width="10" x="26" y="98.2969"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="326" y="119.4297"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="129.5313" style="stroke:#A80036;stroke-width:1.0;" width="10" x="326" y="177.6953"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="71.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="477.5" y="206.8281"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="670" y="336.3594"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="260.6641" style="stroke:#A80036;stroke-width:1.0;" width="10" x="670" y="394.625"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="597.3203" style="stroke:#A80036;stroke-width:1.0;" width="10" x="670" y="684.4219"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="341.0625" style="stroke:#A80036;stroke-width:1.0;" width="10" x="670" y="1310.875"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="59.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1149" y="423.7578"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="271.6641" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1149" y="728.6875"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="59.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1149" y="1340.0078"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="89.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1628" y="452.8906"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="59.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1628" y="757.8203"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="104.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1628" y="970.3516"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="89.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1628" y="1369.1406"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="89.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2146" y="512.0234"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="114.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2146" y="786.9531"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="104.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2146" y="1044.6172"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="59.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2146" y="1428.2734"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="30" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2480" y="571.1563"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="30" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2480" y="871.0859"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="162.8594" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2663" y="1118.8828"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="164.5313" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2663" y="1487.4063"/><rect fill="#FFFFFF" filter="url(#fa5vkvgvxv7ki)" height="119.3984" style="stroke:#A80036;stroke-width:1.0;" width="10" x="3198" y="1487.4063"/><polygon fill="#A80036" points="314,115.4297,324,119.4297,314,123.4297,318,119.4297" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="36" x2="320" y1="119.4297" y2="119.4297"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="43" y="114.3638">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="258" x="56" y="114.3638">asks to be authenticated in the Platform</text><polygon fill="#A80036" points="47,144.5625,37,148.5625,47,152.5625,43,148.5625" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="41" x2="330" y1="148.5625" y2="148.5625"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="53" y="143.4966">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="113" x="66" y="143.4966">asks Login details</text><polygon fill="#A80036" points="314,173.6953,324,177.6953,314,181.6953,318,177.6953" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="36" x2="320" y1="177.6953" y2="177.6953"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="8" x="43" y="172.6294">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="119" x="55" y="172.6294">inputs login details</text><polygon fill="#A80036" points="465.5,202.8281,475.5,206.8281,465.5,210.8281,469.5,206.8281" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="336" x2="471.5" y1="206.8281" y2="206.8281"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="343" y="201.7622">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="61" x="356" y="201.7622">new login</text><line style="stroke:#A80036;stroke-width:1.0;" x1="487.5" x2="529.5" y1="235.9609" y2="235.9609"/><line style="stroke:#A80036;stroke-width:1.0;" x1="529.5" x2="529.5" y1="235.9609" y2="248.9609"/><line style="stroke:#A80036;stroke-width:1.0;" x1="488.5" x2="529.5" y1="248.9609" y2="248.9609"/><polygon fill="#A80036" points="498.5,244.9609,488.5,248.9609,498.5,252.9609,494.5,248.9609" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="494.5" y="230.895">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="90" x="507.5" y="230.895">validates user</text><polygon fill="#A80036" points="347,274.0938,337,278.0938,347,282.0938,343,278.0938" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="341" x2="481.5" y1="278.0938" y2="278.0938"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="353" y="273.0278">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="101" x="366" y="273.0278">login successful</text><polygon fill="#A80036" points="47,303.2266,37,307.2266,47,311.2266,43,307.2266" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="41" x2="330" y1="307.2266" y2="307.2266"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="53" y="302.1606">7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="176" x="66" y="302.1606">notification successful login</text><polygon fill="#A80036" points="658,332.3594,668,336.3594,658,340.3594,662,336.3594" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="36" x2="664" y1="336.3594" y2="336.3594"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="43" y="331.2935">8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="206" x="56" y="331.2935">starts a ParkingSpot registration</text><polygon fill="#A80036" points="47,361.4922,37,365.4922,47,369.4922,43,365.4922" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="41" x2="674" y1="365.4922" y2="365.4922"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="53" y="360.4263">9</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="514" x="66" y="360.4263">asks to fill the required data (parkingLotID, isPrivate, isCovered, floor, priceHour)</text><polygon fill="#A80036" points="658,390.625,668,394.625,658,398.625,662,394.625" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="36" x2="664" y1="394.625" y2="394.625"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19" x="43" y="389.5591">10</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="154" x="66" y="389.5591">inputs the required data</text><polygon fill="#A80036" points="1137,419.7578,1147,423.7578,1137,427.7578,1141,423.7578" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="680" x2="1143" y1="423.7578" y2="423.7578"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="687" y="418.6919">11</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="130" x="709" y="418.6919">lpl = getParkingLot()</text><polygon fill="#A80036" points="1616,448.8906,1626,452.8906,1616,456.8906,1620,452.8906" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1159" x2="1622" y1="452.8906" y2="452.8906"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="1166" y="447.8247">12</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="130" x="1188" y="447.8247">lpl = getParkingLot()</text><polygon fill="#A80036" points="2134,508.0234,2144,512.0234,2134,516.0234,2138,512.0234" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1638" x2="2140" y1="512.0234" y2="512.0234"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="1645" y="506.9575">13</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="169" x="1666" y="506.9575">lpl = getParkingLot()Async</text><polygon fill="#A80036" points="2468,567.1563,2478,571.1563,2468,575.1563,2472,571.1563" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="2156" x2="2474" y1="571.1563" y2="571.1563"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="2163" y="566.0903">14</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="207" x="2185" y="566.0903">lpl = getParkingLot()ToListAsync</text><polygon fill="#A80036" points="47,651.2891,37,655.2891,47,659.2891,43,655.2891" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="41" x2="674" y1="655.2891" y2="655.2891"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="53" y="650.2231">15</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="307" x="75" y="650.2231">shows the parking lot list and asks to select one</text><polygon fill="#A80036" points="658,680.4219,668,684.4219,658,688.4219,662,684.4219" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="36" x2="664" y1="684.4219" y2="684.4219"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="43" y="679.356">16</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="128" x="65" y="679.356">selects a parking lot</text><polygon fill="#A80036" points="1137,724.6875,1147,728.6875,1137,732.6875,1141,728.6875" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="680" x2="1143" y1="728.6875" y2="728.6875"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="687" y="716.0552">17</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="103" x="709" y="708.4888">newParkingSpot</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="428" x="709" y="723.6216">(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)</text><polygon fill="#A80036" points="1616,753.8203,1626,757.8203,1616,761.8203,1620,757.8203" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1159" x2="1622" y1="757.8203" y2="757.8203"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="1166" y="752.7544">18</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="243" x="1188" y="752.7544">res = getParkingLotById(parkingLotID)</text><polygon fill="#A80036" points="2134,782.9531,2144,786.9531,2134,790.9531,2138,786.9531" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1638" x2="2140" y1="786.9531" y2="786.9531"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="1645" y="781.8872">19</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="282" x="1667" y="781.8872">res = getParkingLotById(parkingLotID)Async</text><polygon fill="#A80036" points="2468,867.0859,2478,871.0859,2468,875.0859,2472,871.0859" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="2156" x2="2474" y1="871.0859" y2="871.0859"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19" x="2163" y="866.02">20</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="282" x="2186" y="866.02">res = getParkingLotById(parkingLotID)Async</text><polygon fill="#A80036" points="1616,966.3516,1626,970.3516,1616,974.3516,1620,970.3516" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1159" x2="1622" y1="970.3516" y2="970.3516"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="1166" y="957.7192">21</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="197" x="1188" y="950.1528">parkingSpot = newParkingSpot</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="428" x="1188" y="965.2856">(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)</text><polygon fill="#A80036" points="2134,1040.6172,2144,1044.6172,2134,1048.6172,2138,1044.6172" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1638" x2="2140" y1="1044.6172" y2="1044.6172"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="1645" y="1031.9849">22</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="197" x="1667" y="1024.4185">parkingSpot = newParkingSpot</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="467" x="1667" y="1039.5513">(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)Async</text><polygon fill="#A80036" points="2651,1114.8828,2661,1118.8828,2651,1122.8828,2655,1118.8828" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="2156" x2="2657" y1="1118.8828" y2="1118.8828"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="2163" y="1106.2505">23</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="197" x="2184" y="1098.6841">parkingSpot = newParkingSpot</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="467" x="2184" y="1113.8169">(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)Async</text><polygon fill="#A80036" points="3135,1189.1484,3145,1193.1484,3135,1197.1484,3139,1193.1484" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="2673" x2="3141" y1="1193.1484" y2="1193.1484"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="2680" y="1180.5161">24</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="41" x="2702" y="1172.9497">create</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="428" x="2702" y="1188.0825">(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)</text><rect fill="#FEFECE" filter="url(#fa5vkvgvxv7ki)" height="46.5938" style="stroke:#A80036;stroke-width:1.5;" width="108" x="3147" y="1156.8828"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="90" x="3156" y="1176.8779">parkingSpot</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="94" x="3154" y="1193.1748">:ParkingSpot</text><line style="stroke:#A80036;stroke-width:1.0;" x1="2673" x2="2715" y1="1239.6094" y2="1239.6094"/><line style="stroke:#A80036;stroke-width:1.0;" x1="2715" x2="2715" y1="1239.6094" y2="1252.6094"/><line style="stroke:#A80036;stroke-width:1.0;" x1="2674" x2="2715" y1="1252.6094" y2="1252.6094"/><polygon fill="#A80036" points="2684,1248.6094,2674,1252.6094,2684,1256.6094,2680,1252.6094" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="2680" y="1234.5435">25</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="224" x="2702" y="1234.5435">validationParkingSpot(parkingSpot)</text><polygon fill="#A80036" points="47,1277.7422,37,1281.7422,47,1285.7422,43,1281.7422" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="41" x2="674" y1="1281.7422" y2="1281.7422"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="53" y="1276.6763">26</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="136" x="75" y="1276.6763">asks for confirmation</text><polygon fill="#A80036" points="658,1306.875,668,1310.875,658,1314.875,662,1310.875" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="36" x2="664" y1="1310.875" y2="1310.875"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="43" y="1305.8091">27</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="114" x="65" y="1305.8091">confirms the data</text><polygon fill="#A80036" points="1137,1336.0078,1147,1340.0078,1137,1344.0078,1141,1340.0078" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="680" x2="1143" y1="1340.0078" y2="1340.0078"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="687" y="1334.9419">28</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="129" x="709" y="1334.9419">registsParkingSpot()</text><polygon fill="#A80036" points="1616,1365.1406,1626,1369.1406,1616,1373.1406,1620,1369.1406" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1159" x2="1622" y1="1369.1406" y2="1369.1406"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="1166" y="1364.0747">29</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="205" x="1188" y="1364.0747">registsParkingSpot(parkingSpot)</text><polygon fill="#A80036" points="2134,1424.2734,2144,1428.2734,2134,1432.2734,2138,1428.2734" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1638" x2="2140" y1="1428.2734" y2="1428.2734"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="1645" y="1423.2075">30</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="205" x="1667" y="1423.2075">registsParkingSpot(parkingSpot)</text><polygon fill="#A80036" points="2651,1483.4063,2661,1487.4063,2651,1491.4063,2655,1487.4063" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="2151" x2="2657" y1="1487.4063" y2="1487.4063"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="2158" y="1482.3403">31</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="205" x="2179" y="1482.3403">registsParkingSpot(parkingSpot)</text><line style="stroke:#A80036;stroke-width:1.0;" x1="3208" x2="3250" y1="1516.5391" y2="1516.5391"/><line style="stroke:#A80036;stroke-width:1.0;" x1="3250" x2="3250" y1="1516.5391" y2="1529.5391"/><line style="stroke:#A80036;stroke-width:1.0;" x1="3209" x2="3250" y1="1529.5391" y2="1529.5391"/><polygon fill="#A80036" points="3219,1525.5391,3209,1529.5391,3219,1533.5391,3215,1529.5391" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="3215" y="1511.4731">32</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="220" x="3236" y="1511.4731">validatesParkingSpot(parkingSpot)</text><line style="stroke:#A80036;stroke-width:1.0;" x1="2673" x2="2715" y1="1558.6719" y2="1558.6719"/><line style="stroke:#A80036;stroke-width:1.0;" x1="2715" x2="2715" y1="1558.6719" y2="1571.6719"/><line style="stroke:#A80036;stroke-width:1.0;" x1="2674" x2="2715" y1="1571.6719" y2="1571.6719"/><polygon fill="#A80036" points="2684,1567.6719,2674,1571.6719,2684,1575.6719,2680,1571.6719" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="16" x="2680" y="1553.606">33</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="183" x="2700" y="1553.606">getParkingSpot(parkingSpot)</text><line style="stroke:#A80036;stroke-width:1.0;" x1="2673" x2="2715" y1="1605.8047" y2="1605.8047"/><line style="stroke:#A80036;stroke-width:1.0;" x1="2715" x2="2715" y1="1605.8047" y2="1618.8047"/><line style="stroke:#A80036;stroke-width:1.0;" x1="2668" x2="2715" y1="1618.8047" y2="1618.8047"/><polygon fill="#A80036" points="2678,1614.8047,2668,1618.8047,2678,1622.8047,2674,1618.8047" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="2680" y="1600.7388">34</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="186" x="2701" y="1600.7388">addParkingSpot(parkingSpot)</text><polygon fill="#A80036" points="42,1638.9375,32,1642.9375,42,1646.9375,38,1642.9375" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="36" x2="669" y1="1642.9375" y2="1642.9375"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="48" y="1637.8716">35</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="270" x="69" y="1637.8716">informs that the operation was successful</text><!--MD5=[6e499aed93fe47019c625a355abb726e]
+@startuml
+autonumber
+'hide footbox
+actor "Admin" as ADM
+
+
+participant ":PlatformUI" as PUI
+participant ":AuthenticationService" as AUT
+participant ":WebAPIParkingSpotUI" as UI
+participant ":WebAPIParkingSpotController" as CTRL
+participant ":WebAPIParkingSpotService" as SERV
+participant ":WebAPIParkingSpotRepository" as REPO
+participant ":Platform\n:List<ParkingLot>" as PLAT
+participant ":ParkingLot\n ParkingSpot" as PLO
+participant "parkingSpot\n:ParkingSpot" as PSP
+
+activate ADM
+ADM -> PUI : asks to be authenticated in the Platform
+activate PUI
+PUI - -> ADM : asks Login details
+deactivate PUI
+ADM -> PUI : inputs login details
+activate PUI
+PUI -> AUT : new login
+activate AUT
+AUT -> AUT : validates user
+AUT - -> PUI : login successful
+deactivate AUT
+PUI - -> ADM : notification successful login
+deactivate PUI
+
+
+
+ADM -> UI : starts a ParkingSpot registration
+activate UI
+UI - -> ADM : asks to fill the required data (parkingLotID, isPrivate, isCovered, floor, priceHour)
+deactivate UI
+
+ADM -> UI : inputs the required data
+activate UI
+
+UI -> CTRL : lpl = getParkingLot()
+activate CTRL
+
+CTRL -> SERV : lpl = getParkingLot()
+activate SERV
+deactivate CTRL
+
+SERV -> REPO : lpl = getParkingLot()Async
+activate REPO
+deactivate SERV
+
+REPO -> PLAT : lpl = getParkingLot()ToListAsync
+activate PLAT
+|||
+deactivate PLAT
+deactivate REPO
+
+UI - -> ADM : shows the parking lot list and asks to select one
+deactivate PLAT
+deactivate UI
+
+ADM -> UI : selects a parking lot
+activate UI
+
+UI -> CTRL : newParkingSpot \n(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)
+activate CTRL
+
+CTRL -> SERV : res = getParkingLotById(parkingLotID)
+activate SERV
+
+SERV -> REPO : res = getParkingLotById(parkingLotID)Async
+activate REPO
+|||
+deactivate SERV
+
+REPO -> PLAT : res = getParkingLotById(parkingLotID)Async
+activate PLAT
+|||
+deactivate REPO
+deactivate PLAT
+
+CTRL -> SERV: parkingSpot = newParkingSpot \n(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)
+activate SERV
+deactivate CTRL
+SERV -> REPO: parkingSpot = newParkingSpot \n(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)Async
+activate REPO
+deactivate SERV
+REPO -> PLO: parkingSpot = newParkingSpot \n(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)Async
+activate PLO
+deactivate REPO
+
+PLO - -> PSP**: create \n(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)
+PLO->PLO: validationParkingSpot(parkingSpot)
+
+
+UI - -> ADM : asks for confirmation
+deactivate PLO
+deactivate PLAT
+deactivate CTRL
+deactivate UI
+
+
+
+ADM->UI : confirms the data
+activate UI
+UI->CTRL : registsParkingSpot()
+
+activate CTRL
+CTRL->SERV: registsParkingSpot(parkingSpot)
+activate SERV
+deactivate CTRL
+SERV ->REPO: registsParkingSpot(parkingSpot)
+activate REPO
+deactivate SERV
+REPO->PLO : registsParkingSpot(parkingSpot)
+deactivate REPO
+activate PLO
+
+activate PSP
+deactivate CTRL
+PSP->PSP: validatesParkingSpot(parkingSpot)
+
+PLO->PLO: getParkingSpot(parkingSpot)
+PLO->PLO: addParkingSpot(parkingSpot)
+deactivate PSP
+
+UI- -> ADM : informs that the operation was successful
+deactivate ADM
+@enduml
+
+@startuml
+autonumber
+actor "Admin" as ADM
+
+
+participant ":PlatformUI" as PUI
+participant ":AuthenticationService" as AUT
+participant ":WebAPIParkingSpotUI" as UI
+participant ":WebAPIParkingSpotController" as CTRL
+participant ":WebAPIParkingSpotService" as SERV
+participant ":WebAPIParkingSpotRepository" as REPO
+participant ":Platform\n:List<ParkingLot>" as PLAT
+participant ":ParkingLot\n ParkingSpot" as PLO
+participant "parkingSpot\n:ParkingSpot" as PSP
+
+activate ADM
+ADM -> PUI : asks to be authenticated in the Platform
+activate PUI
+PUI - -> ADM : asks Login details
+deactivate PUI
+ADM -> PUI : inputs login details
+activate PUI
+PUI -> AUT : new login
+activate AUT
+AUT -> AUT : validates user
+AUT - -> PUI : login successful
+deactivate AUT
+PUI - -> ADM : notification successful login
+deactivate PUI
+
+
+
+ADM -> UI : starts a ParkingSpot registration
+activate UI
+UI - -> ADM : asks to fill the required data (parkingLotID, isPrivate, isCovered, floor, priceHour)
+deactivate UI
+
+ADM -> UI : inputs the required data
+activate UI
+
+UI -> CTRL : lpl = getParkingLot()
+activate CTRL
+
+CTRL -> SERV : lpl = getParkingLot()
+activate SERV
+deactivate CTRL
+
+SERV -> REPO : lpl = getParkingLot()Async
+activate REPO
+deactivate SERV
+
+REPO -> PLAT : lpl = getParkingLot()ToListAsync
+activate PLAT
+|||
+deactivate PLAT
+deactivate REPO
+
+UI - -> ADM : shows the parking lot list and asks to select one
+deactivate PLAT
+deactivate UI
+
+ADM -> UI : selects a parking lot
+activate UI
+
+UI -> CTRL : newParkingSpot \n(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)
+activate CTRL
+
+CTRL -> SERV : res = getParkingLotById(parkingLotID)
+activate SERV
+
+SERV -> REPO : res = getParkingLotById(parkingLotID)Async
+activate REPO
+|||
+deactivate SERV
+
+REPO -> PLAT : res = getParkingLotById(parkingLotID)Async
+activate PLAT
+|||
+deactivate REPO
+deactivate PLAT
+
+CTRL -> SERV: parkingSpot = newParkingSpot \n(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)
+activate SERV
+deactivate CTRL
+SERV -> REPO: parkingSpot = newParkingSpot \n(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)Async
+activate REPO
+deactivate SERV
+REPO -> PLO: parkingSpot = newParkingSpot \n(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)Async
+activate PLO
+deactivate REPO
+
+PLO - -> PSP**: create \n(parkingSpotID, parkingLotID, isPrivate, isCovered, floor, priceHour)
+PLO->PLO: validationParkingSpot(parkingSpot)
+
+
+UI - -> ADM : asks for confirmation
+deactivate PLO
+deactivate PLAT
+deactivate CTRL
+deactivate UI
+
+
+
+ADM->UI : confirms the data
+activate UI
+UI->CTRL : registsParkingSpot()
+
+activate CTRL
+CTRL->SERV: registsParkingSpot(parkingSpot)
+activate SERV
+deactivate CTRL
+SERV ->REPO: registsParkingSpot(parkingSpot)
+activate REPO
+deactivate SERV
+REPO->PLO : registsParkingSpot(parkingSpot)
+deactivate REPO
+activate PLO
+
+activate PSP
+deactivate CTRL
+PSP->PSP: validatesParkingSpot(parkingSpot)
+
+PLO->PLO: getParkingSpot(parkingSpot)
+PLO->PLO: addParkingSpot(parkingSpot)
+deactivate PSP
+
+UI- -> ADM : informs that the operation was successful
+deactivate ADM
+@enduml
+
+PlantUML version 1.2021.2beta4(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
