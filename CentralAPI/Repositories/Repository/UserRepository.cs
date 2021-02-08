@@ -1,6 +1,7 @@
 ﻿using CentralAPI.Data;
 using CentralAPI.Models;
 using CentralAPI.Repositories.IRepository;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,11 @@ namespace CentralAPI.Repositories.Repository
         public async Task<IEnumerable<User>> GetUsers()
         {
             return await GetAll().ToListAsync();
+        }
+
+        public async Task<User> GetUsersById(string id)
+        {
+            return await GetAll().FirstOrDefaultAsync(l => l.userID == id);
         }
     }
 }

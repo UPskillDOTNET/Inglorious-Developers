@@ -8,7 +8,7 @@ namespace CentralAPI.Controllers
 {
     [Route("api/users")]
     [ApiController]
-    public class UsersController : Controller
+    public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
 
@@ -24,19 +24,18 @@ namespace CentralAPI.Controllers
             return _userService.GetAllUsers();
         }
 
-        //// GET: api/Users/5
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<User>> GetUser(string id)
-        //{
-        //    var user = await _context.Users.FindAsync(id);
+        // GET: api/Users/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UserDTO>> GetUserById(string id)
+        {
 
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
+            if (await UserExists(id) == false)
+            {
+                return NotFound("User not Found");
+            }
+            return await _userService.GetUserById(id);
+        }
 
-        //    return user;
-        //}
 
         //// PUT: api/Users/5
         //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -114,5 +113,20 @@ namespace CentralAPI.Controllers
         //{
         //    return _context.Users.Any(e => e.userID == id);
         //}
+
+        private async Task<bool> UserExists(string id)
+        {
+            var user = await _userService.GetUserById(id);
+
+            if (user != null)
+            {
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

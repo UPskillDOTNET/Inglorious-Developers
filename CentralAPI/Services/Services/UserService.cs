@@ -28,5 +28,12 @@ namespace CentralAPI.Services.Services
             var UserDTO = _mapper.Map<List<User>, List<UserDTO>>(users.ToList());
             return UserDTO;
         }
+
+        public async Task<ActionResult<UserDTO>> GetUserById(string id)
+        {
+            var user = await _userRepository.GetUsersById(id);
+            var userDTO = _mapper.Map<User, UserDTO>(user);
+            return userDTO;
+        }
     }
 }

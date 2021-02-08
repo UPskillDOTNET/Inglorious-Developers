@@ -11,5 +11,7 @@ namespace CentralAPI.Services.IServices
     public interface IUserService
     {
         Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers();
+
+        Task<ActionResult<UserDTO>> GetUserById(string id);
     }
 }
