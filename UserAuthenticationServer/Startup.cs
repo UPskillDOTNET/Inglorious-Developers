@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using UserAuthenticationServer.Clients;
 using UserAuthenticationServer.Resources;
-using UserAuthenticationServer.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +23,6 @@ namespace UserAuthenticationServer
                     .AddInMemoryIdentityResources(Resources.Resources.GetIdentityResources())
                     .AddInMemoryApiResources(Resources.Resources.GetApiResources())
                     .AddInMemoryApiScopes(Resources.Resources.GetApiScopes())
-                    .AddTestUsers(Users.Users.Get())
                     .AddDeveloperSigningCredential();
         }
 

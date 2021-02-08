@@ -55,7 +55,7 @@ namespace PublicParkAPI
             services.AddAuthentication("Bearer")
                      .AddIdentityServerAuthentication("Bearer", options =>
                      {
-                         options.ApiName = "PubAPI";
+                         options.ApiName = "PublicAPI";
                          options.Authority = "https://localhost:44309";
                      });
 

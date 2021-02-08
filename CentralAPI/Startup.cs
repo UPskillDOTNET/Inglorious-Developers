@@ -29,7 +29,7 @@ namespace CentralAPI
             services.AddAuthentication("Bearer")
                     .AddIdentityServerAuthentication("Bearer", options =>
                     {
-                        options.ApiName = "PubAPI";
+                        options.ApiName = "CentralAPI";
                         options.Authority = "https://localhost:44309";
                     });
             services.AddControllers();
