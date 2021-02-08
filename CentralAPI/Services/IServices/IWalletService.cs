@@ -13,7 +13,7 @@ namespace CentralAPI.Services.IServices
     {
         Task<ActionResult<IEnumerable<WalletDTO>>> GetAllWallets();
         Task<ActionResult<WalletDTO>> GetBalance(string userID);
-        Task<ActionResult<WalletDTO>> CreateWallet(WalletDTO walletDTO);
+        Task<ActionResult<WalletDTO>> CreateWallet(string userID, string currency);
         Task<bool> FindWalletAny(string id);
         ValidationResult Validate(WalletDTO walletDTO);
     }

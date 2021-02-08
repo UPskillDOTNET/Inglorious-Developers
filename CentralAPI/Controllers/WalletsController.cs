@@ -47,33 +47,79 @@ namespace CentralAPI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public async Task<IActionResult> CreateWallet(WalletDTO walletDTO)
+        public async Task<ActionResult<WalletDTO>> CreateWallet(string userID, string currency)
         {
-            // Wallet começa a 0 sempre
-            walletDTO.totalAmount = 0;
-            // Wallet começa com o currency que o User especifica no registo
-            //walletDTO.currency = _userService.GetCurrencyById(User user)
+            userID = "batata";
+            currency = "test";
+            var resp = await _walletService.CreateWallet(userID, currency);
+            var walletDTO = resp.Value;
 
-            var Results = _walletService.Validate(walletDTO);
-            try
+            if (walletDTO == null)
             {
-                await _walletService.CreateWallet(walletDTO);
+                return BadRequest();
             }
-
-            catch (Exception)
-            {
-                if (await WalletExists(walletDTO.walletID))
-                {
-                    return Conflict("Wallet already exists.");
-                }
-                else
-                {
-                    throw;
-                }
-
-            }
-            return CreatedAtAction("GetBalance", new { id = walletDTO.walletID }, walletDTO);
+            return Ok(walletDTO);
         }
+
+        //[HttpPut("{id}")]
+        //public async Task<ActionResult<WalletDTO>> UpdateWallet(string id, WalletDTO walletDTO, decimal value)
+        //{
+        //    var Results = _walletService.Validate(walletDTO);
+
+        //    if (!Results.IsValid)
+        //    {
+        //        return BadRequest("Can't update " + Results);
+        //    }
+
+        //    if (id != walletDTO.walletID)
+        //    {
+        //        return BadRequest();
+        //    }
+
+        //    try
+        //    {
+
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        throw;
+        //    }
+        //}
+
+
+        //[HttpPut("{id}")]
+        //public async Task<ActionResult<ParkingSpotDTO>> PutParkingSpot(string id, ParkingSpotDTO parkingSpotDTO)
+        //{
+        //    var Results = _parkingSpotService.Validate(parkingSpotDTO);
+
+        //    if (!Results.IsValid)
+        //    {
+        //        return BadRequest("Can't update " + Results);
+        //    }
+
+        //    if (id != parkingSpotDTO.parkingSpotID)
+        //    {
+        //        return BadRequest();
+        //    }
+
+        //    try
+        //    {
+        //        await _parkingSpotService.PutParkingSpot(id, parkingSpotDTO);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        if (await ParkingSpotExists(id) == false)
+        //        {
+        //            return NotFound("The Parking Spot you were trying to update could not be found");
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+        //    return NoContent();
+        //}
 
         private async Task<bool> WalletExists(string id)
         {
