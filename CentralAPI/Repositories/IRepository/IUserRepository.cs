@@ -16,6 +16,8 @@ namespace CentralAPI.Repositories.IRepository
        
        Task<User> UpdateUserById(string id, User user);
 
-        Task<User> CreateUser(User user);
+       Task<User> CreateUser(User user);
+
+       Task<User> DeleteUserProfile(string id);
     }
 }

@@ -19,5 +19,6 @@ namespace CentralAPI.Services.IServices
 
         Task<ActionResult<UserDTO>> CreateUser(UserDTO userDTO, string currency);
 
+        Task<ActionResult<UserDTO>> DeleteUserProfile(string id);
     }
 }

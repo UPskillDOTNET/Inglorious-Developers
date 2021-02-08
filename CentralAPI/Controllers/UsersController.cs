@@ -76,21 +76,21 @@ namespace CentralAPI.Controllers
             return Ok(userDTO);
         }
 
-        //// delete: api/users/5
-        //[httpdelete("{id}")]
-        //public async task<iactionresult> deleteuser(string id)
-        //{
-        //    var user = await _context.users.findasync(id);
-        //    if (user == null)
-        //    {
-        //        return notfound();
-        //    }
+        // DELETE: api/users/5
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<UserDTO>> DeleteUserProfile(string id)
+        {
 
-        //    _context.users.remove(user);
-        //    await _context.savechangesasync();
-
-        //    return nocontent();
-        //}
+            if (await UserExists(id) == false)
+            {
+                return NotFound("User does not exist.");
+            }
+            else
+            {
+                await _userService.DeleteUserProfile(id);
+            }
+            return Ok();
+        }
 
         //private bool UserExists(string id)
         //{

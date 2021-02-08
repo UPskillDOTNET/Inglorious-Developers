@@ -49,5 +49,12 @@ namespace CentralAPI.Services.Services
             await _userRepository.CreateUser(user);
             return userDTO;
         }
+
+        public async Task<ActionResult<UserDTO>> DeleteUserProfile(string id)
+        {
+            var user = await _userRepository.DeleteUserProfile(id);
+            var userDTO = _mapper.Map<User, UserDTO>(user);
+            return userDTO;
+        }
     }
 }

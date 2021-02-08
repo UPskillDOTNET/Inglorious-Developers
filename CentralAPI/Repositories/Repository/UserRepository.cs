@@ -39,5 +39,14 @@ namespace CentralAPI.Repositories.Repository
 
             return user;
         }
+
+        public async Task<User> DeleteUserProfile(string id)
+        {
+            var user = GetAll().FirstOrDefault(u => u.userID == id);
+
+            await DeleteAsync(user);
+
+            return user;
+        }
     }
 }
