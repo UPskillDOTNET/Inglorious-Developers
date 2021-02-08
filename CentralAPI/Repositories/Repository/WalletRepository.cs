@@ -20,19 +20,25 @@ namespace CentralAPI.Repositories.Repository
             return GetAll().Include(w => w.User).ToList();
         }
 
-        public Wallet CreateWallet()
-        {
-            throw new NotImplementedException();
-        }
-
         public Wallet GetBalance(string userID)
         {
             return GetAll().Where(w => w.userID == userID).FirstOrDefault();
         }
 
+        public async Task<Wallet> CreateWallet(Wallet wallet)
+        {
+            await AddAsync(wallet);
+            return wallet;
+        }
+
         public Wallet UpdateBalance()
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<bool> FindWalletAny(string id)
+        {
+            return await GetAll().Where(p => p.walletID == id).AnyAsync();
         }
     }
 }

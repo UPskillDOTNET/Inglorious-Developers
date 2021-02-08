@@ -3,6 +3,8 @@ using CentralAPI.DTO;
 using CentralAPI.Models;
 using CentralAPI.Repositories.IRepository;
 using CentralAPI.Services.IServices;
+using CentralAPI.Utils;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -22,24 +24,51 @@ namespace CentralAPI.Services.Services
             _mapper = mapper;
         }
 
+
         public async Task<ActionResult<IEnumerable<WalletDTO>>> GetAllWallets()
         {
-            return await new Task<ActionResult<IEnumerable<WalletDTO>>>(() =>
-            {
-                var wallets = _walletRepository.GetWallets();
-                var walletsDTO = _mapper.Map<List<Wallet>, List<WalletDTO>>(wallets.ToList());
-                return walletsDTO;
-            });
+            //return await new Task<ActionResult<IEnumerable<WalletDTO>>>(() =>
+            //{
+            //    var wallets = _walletRepository.GetWallets();
+            //    var walletsDTO = _mapper.Map<List<Wallet>, List<WalletDTO>>(wallets.ToList());
+            //    return walletsDTO;
+            //});
+            var wallets = _walletRepository.GetWallets();
+            var walletsDTO = _mapper.Map<List<Wallet>, List<WalletDTO>>(wallets.ToList());
+            return walletsDTO;
         }
 
         public async Task<ActionResult<WalletDTO>> GetBalance(string userID)
         {
-            return await new Task<ActionResult<WalletDTO>>(() =>
-            {
-                var wallet = _walletRepository.GetBalance(userID);
-                var walletDTO = _mapper.Map<Wallet, WalletDTO>(wallet);
-                return walletDTO;
-            });
+            //return await new Task<ActionResult<WalletDTO>>(() =>
+            //{
+            //    var wallet = _walletRepository.GetBalance(userID);
+            //    var walletDTO = _mapper.Map<Wallet, WalletDTO>(wallet);
+            //    return walletDTO;
+            //});
+            var wallet = _walletRepository.GetBalance(userID);
+            var walletDTO = _mapper.Map<Wallet, WalletDTO>(wallet);
+            return walletDTO;
         }
+
+        public async Task<ActionResult<WalletDTO>> CreateWallet(WalletDTO walletDTO)
+        {
+            var wallet = _mapper.Map<WalletDTO, Wallet>(walletDTO);
+            await _walletRepository.CreateWallet(wallet);
+            return walletDTO;
+        }
+
+        public async Task<bool> FindWalletAny(string id)
+        {
+            return await _walletRepository.FindWalletAny(id);
+        }
+
+        public ValidationResult Validate(WalletDTO walletDTO)
+        {
+            WalletValidator validationRules = new WalletValidator();
+            ValidationResult Results = validationRules.Validate(walletDTO);
+            return Results;
+        }
+
     }
 }

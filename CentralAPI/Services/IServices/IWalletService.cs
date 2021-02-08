@@ -1,5 +1,6 @@
 ﻿using CentralAPI.DTO;
 using CentralAPI.Models;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,8 @@ namespace CentralAPI.Services.IServices
     {
         Task<ActionResult<IEnumerable<WalletDTO>>> GetAllWallets();
         Task<ActionResult<WalletDTO>> GetBalance(string userID);
+        Task<ActionResult<WalletDTO>> CreateWallet(WalletDTO walletDTO);
+        Task<bool> FindWalletAny(string id);
+        ValidationResult Validate(WalletDTO walletDTO);
     }
 }

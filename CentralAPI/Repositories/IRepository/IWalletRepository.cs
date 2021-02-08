@@ -9,8 +9,9 @@ namespace CentralAPI.Repositories.IRepository
     public interface IWalletRepository : IBaseRepository<Wallet>
     {
         IEnumerable<Wallet> GetWallets();
-        Wallet CreateWallet();
         Wallet GetBalance(string userID);
+        Task<Wallet> CreateWallet(Wallet wallet);
         Wallet UpdateBalance();
+        Task<bool> FindWalletAny(string id);
     }
 }
