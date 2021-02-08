@@ -11,7 +11,8 @@ namespace CentralAPI.Repositories.IRepository
         IEnumerable<Wallet> GetWallets();
         Wallet GetBalance(string userID);
         Task<Wallet> CreateWallet(Wallet wallet);
-        Wallet UpdateBalance();
+        Task<Wallet> DepositToWallet(string walletID, decimal value);
+        Task<Wallet> WithdrawFromWallet(string walletID, decimal value);
         Task<bool> FindWalletAny(string id);
     }
 }

@@ -63,6 +63,20 @@ namespace CentralAPI.Services.Services
             return walletDTO;
         }
 
+        public async Task<ActionResult<WalletDTO>> DepositToWallet(string walletID, decimal value)
+        {
+            // Verificar a wallet pelo ID
+            //await _walletRepository.DepositToWallet(walletID, value);
+            throw new NotImplementedException();
+            // Alterar com o valor que recebe no argumento - nao pode ser menor que 0 ou a operação é cancelada
+        }
+
+        public async Task<ActionResult<WalletDTO>> WithdrawFromWallet(string walletID, decimal value)
+        {
+            //await _walletRepository.WithdrawFromWallet(walletID, value);
+            throw new NotImplementedException();
+        }
+
         public async Task<bool> FindWalletAny(string id)
         {
             return await _walletRepository.FindWalletAny(id);

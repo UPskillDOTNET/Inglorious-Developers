@@ -31,7 +31,14 @@ namespace CentralAPI.Repositories.Repository
             return wallet;
         }
 
-        public Wallet UpdateBalance()
+        public async Task<Wallet> DepositToWallet(string walletID, decimal value)
+        {
+            //await UpdateAsync;
+            //return Wallet
+            throw new NotImplementedException();
+        }
+
+        public Task<Wallet> WithdrawFromWallet(string walletID, decimal value)
         {
             throw new NotImplementedException();
         }
