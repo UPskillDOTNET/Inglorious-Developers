@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using UserAuthenticationServer.Clients;
+using UserAuthenticationServer.Resources;
+using UserAuthenticationServer.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +19,13 @@ namespace UserAuthenticationServer
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentityServer()
+                    .AddInMemoryClients(Clients.Clients.Get())
+                    .AddInMemoryIdentityResources(Resources.Resources.GetIdentityResources())
+                    .AddInMemoryApiResources(Resources.Resources.GetApiResources())
+                    .AddInMemoryApiScopes(Resources.Resources.GetApiScopes())
+                    .AddTestUsers(Users.Users.Get())
+                    .AddDeveloperSigningCredential();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -27,12 +37,13 @@ namespace UserAuthenticationServer
             }
 
             app.UseRouting();
+            app.UseIdentityServer();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Hello World!");
+                    await context.Response.WriteAsync("This Is a testing ground for User Authentication, Olá Tiago");
                 });
             });
         }

@@ -26,7 +26,12 @@ namespace CentralAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddAuthentication("Bearer")
+                    .AddIdentityServerAuthentication("Bearer", options =>
+                    {
+                        options.ApiName = "PubAPI";
+                        options.Authority = "https://localhost:44309";
+                    });
             services.AddControllers();
         }
 
@@ -42,12 +47,10 @@ namespace CentralAPI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
         }
     }
 }

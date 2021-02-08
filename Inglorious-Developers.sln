@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "testPrivateParkAPI", "Priva
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer", "IdentityServer", "{85C70CFA-3E12-4208-9750-542CE7F2613D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAuthenticationServer", "UserAuthenticationServer\UserAuthenticationServer.csproj", "{6BCFBA99-E58C-4BC4-8258-47245E1FD063}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAuthenticationServer", "UserAuthenticationServer\UserAuthenticationServer.csproj", "{6BCFBA99-E58C-4BC4-8258-47245E1FD063}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

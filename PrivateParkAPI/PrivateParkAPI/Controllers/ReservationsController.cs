@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PrivateParkAPI.Controllers
 {
-    [Authorize]
+    [AuthorizeAttribute]
     [Route("api/reservations")]
     [ApiController]
     public class ReservationsController : Controller
