@@ -14,10 +14,12 @@ namespace CentralAPI.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IWalletService _walletService;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, IWalletService walletService)
         {
             _userService = userService;
+            _walletService = walletService;
         }
 
         // GET: Users
@@ -39,7 +41,7 @@ namespace CentralAPI.Controllers
             return await _userService.GetUserById(id);
         }
 
-
+        // O Nif não pode ser alterado, quando não se escreve o nif no body deste método, o nif fica a null
         // PUT: api/Users/5
         [HttpPut("{id}")]
         public async Task<ActionResult<UserDTO>> UpdateUserById(string id, [FromBody] UserDTO userDTO)
@@ -64,6 +66,7 @@ namespace CentralAPI.Controllers
 
         // POST: api/Users
         [HttpPost]
+        [Route("/api/[controller]/{currency}/")]
         public async Task<ActionResult<UserDTO>> CreateUser (UserDTO userDTO, string currency)
         {
             var resp = await _userService.CreateUser(userDTO, currency);
@@ -73,6 +76,9 @@ namespace CentralAPI.Controllers
             {
                 return BadRequest();
             }
+
+            _walletService.CreateWallet(userDTO.userID, currency);
+
             return Ok(userDTO);
         }
 

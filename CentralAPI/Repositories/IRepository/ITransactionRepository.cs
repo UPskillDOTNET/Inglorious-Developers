@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Repositories.IRepository
 {
-    public interface ITransactionRepository : IBaseRepository<Transaction>
-    {
-    }
+    //public interface ITransactionRepository : IBaseRepository<Transaction>
+    //{
+    //}
 }

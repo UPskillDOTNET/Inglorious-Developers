@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Repositories.Repository
 {
-    public class TransactionRepository : BaseRepository<Transaction>, ITransactionRepository
-    {
-    }
+    //public class TransactionRepository : BaseRepository<Transaction>, ITransactionRepository
+    //{
+    //}
 }

@@ -12,7 +12,7 @@ namespace CentralAPI.Models
         [Key]
         public string transactionID { get; set; }
 
-        public string paymentMethod { get; set; }
+        // Verificar isto da Operation - entre deposit e withdraw - boolean?
         public string operation { get; set; }
 
         [ForeignKey("User")]
@@ -20,6 +20,6 @@ namespace CentralAPI.Models
 
         public decimal value { get; set; }
 
-        public DateTime transaction { get; set; }
+        public DateTime transactionDate { get; set; }
     }
 }

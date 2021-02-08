@@ -57,13 +57,19 @@ namespace CentralAPI.Services.Services
             var walletDTO = _mapper.Map<Wallet, WalletDTO>(wallet);
             return walletDTO;
         }
-
+        
         public async Task<ActionResult<WalletDTO>> CreateWallet(string userID, string currency)
         {
+            if (currency == null)
+            {
+                currency = "euro";
+            }
+
             Wallet wallet = new Wallet {
                 walletID = userID,
                 totalAmount = 0,
-                currency = currency
+                currency = currency,
+                userID = userID
             };
             await _walletRepository.CreateWallet(wallet);
             var walletDTO = _mapper.Map<Wallet, WalletDTO>(wallet);
