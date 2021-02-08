@@ -13,5 +13,7 @@ namespace CentralAPI.Services.IServices
         Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers();
 
         Task<ActionResult<UserDTO>> GetUserById(string id);
+
+        Task<ActionResult<UserDTO>> UpdateUserById(string id, UserDTO userDTO);
     }
 }

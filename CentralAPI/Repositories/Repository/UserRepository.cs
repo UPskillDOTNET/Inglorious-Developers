@@ -25,5 +25,11 @@ namespace CentralAPI.Repositories.Repository
         {
             return await GetAll().FirstOrDefaultAsync(l => l.userID == id);
         }
+
+        public async Task<User> UpdateUserById(string id, User user)
+        {
+            await UpdateAsync(user);
+            return user;
+        }
     }
 }

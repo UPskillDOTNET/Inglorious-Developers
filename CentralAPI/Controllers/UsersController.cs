@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CentralAPI.Services.IServices;
 using CentralAPI.DTO;
+using CentralAPI.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace CentralAPI.Controllers
 {
@@ -37,36 +40,27 @@ namespace CentralAPI.Controllers
         }
 
 
-        //// PUT: api/Users/5
-        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutUser(string id, User user)
-        //{
-        //    if (id != user.userID)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    _context.Entry(user).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!UserExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
+        // PUT: api/Users/5
+        [HttpPut("{id}")]
+        public async Task<ActionResult<UserDTO>> UpdateUserById(string id, [FromBody] UserDTO userDTO)
+        {
+            try
+            {
+                await _userService.UpdateUserById(id, userDTO);
+            }
+            catch (Exception)
+            {
+                if (await UserExists(id) == false)
+                {
+                    return NotFound("User not found.");
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
 
         //// POST: api/Users
         //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

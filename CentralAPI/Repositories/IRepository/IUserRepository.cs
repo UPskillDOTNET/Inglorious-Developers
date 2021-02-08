@@ -12,6 +12,7 @@ namespace CentralAPI.Repositories.IRepository
        Task<IEnumerable<User>> GetUsers();
 
        Task<User> GetUsersById(string id);
-        
+       
+       Task<User> UpdateUserById(string id, User user);
     }
 }
