@@ -22,12 +22,12 @@ namespace CentralAPI.Repositories.Repository
 
         public Wallet GetBalance(string userID)
         {
-            return GetAll().Where(w => w.userID == userID).FirstOrDefault();
+            return GetAll().Where(w => w.userID == userID).Include(w => w.User).FirstOrDefault();
         }
 
         public Wallet GetWalletById(string walletID)
         {
-            return GetAll().Where(w => w.walletID == walletID).FirstOrDefault();
+            return GetAll().Where(w => w.walletID == walletID).Include(w => w.User).FirstOrDefault();
         }
 
         public async Task<Wallet> CreateWallet(Wallet wallet)

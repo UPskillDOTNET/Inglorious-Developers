@@ -73,7 +73,7 @@ namespace CentralAPI.Controllers
                 return BadRequest();
             }
             await _walletService.DepositToWallet(walletID, value);
-            return Ok();
+            return Ok(value + " euros added to the account sucessfully.");
         }
 
         [HttpPut]
@@ -91,8 +91,9 @@ namespace CentralAPI.Controllers
             {
                 return BadRequest("Insufficient funds, please charge your wallet.");
             }
+            
             await _walletService.WithdrawFromWallet(walletID, value);
-            return Ok();
+            return Ok(value + " euros withdrawn from the account sucessfully.");
         }
 
         private async Task<bool> WalletExists(string id)
