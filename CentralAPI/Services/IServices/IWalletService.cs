@@ -15,8 +15,8 @@ namespace CentralAPI.Services.IServices
         Task<ActionResult<WalletDTO>> GetBalance(string userID);
         Task<ActionResult<WalletDTO>> GetWalletById(string walletID);
         Task<ActionResult<WalletDTO>> CreateWallet(string userID, string currency);
-        Task<ActionResult<WalletDTO>> DepositToWallet(string walletID, decimal value);
-        Task<ActionResult<WalletDTO>> WithdrawFromWallet(string walletID, decimal value);
+        Task<ActionResult<Wallet>> DepositToWallet(string walletID, decimal value);
+        Task<ActionResult<Wallet>> WithdrawFromWallet(string walletID, decimal value);
         Task<bool> FindWalletAny(string id);
         ValidationResult Validate(WalletDTO walletDTO);
     }

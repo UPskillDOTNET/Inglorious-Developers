@@ -62,19 +62,37 @@ namespace CentralAPI.Controllers
             }
             return Ok(walletDTO);
         }
-
+        [HttpPut]
+        [Route("/api/[controller]/deposit/{walletID}/{value}/")]
         public async Task<ActionResult<WalletDTO>> DepositToWallet(string walletID, decimal value)
         {
-            var resp = await _walletService.DepositToWallet(walletID, value);
-            var walletDTO = resp.Value;
-            return Ok(walletDTO);
+
+            var walletDTO = GetWalletById(walletID).Result.Value;
+            if (walletDTO == null)
+            {
+                return BadRequest();
+            }
+            await _walletService.DepositToWallet(walletID, value);
+            return Ok();
         }
 
+        [HttpPut]
+        [Route("/api/[controller]/withdraw/{walletID}/{value}/")]
         public async Task<ActionResult<WalletDTO>> WithdrawFromWallet(string walletID, decimal value)
         {
-            var resp = await _walletService.WithdrawFromWallet(walletID, value);
-            var walletDTO = resp.Value;
-            return Ok(walletDTO);
+            var walletDTO = GetWalletById(walletID).Result.Value;
+
+            if (walletDTO == null)
+            {
+                return BadRequest();
+            }
+
+            if (walletDTO.totalAmount - value < 0)
+            {
+                return BadRequest("Insufficient funds, please charge your wallet.");
+            }
+            await _walletService.WithdrawFromWallet(walletID, value);
+            return Ok();
         }
 
         private async Task<bool> WalletExists(string id)

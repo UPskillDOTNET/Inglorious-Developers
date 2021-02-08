@@ -38,14 +38,21 @@ namespace CentralAPI.Repositories.Repository
 
         public async Task<Wallet> DepositToWallet(string walletID, decimal value)
         {
-            //await UpdateAsync;
-            //return Wallet
-            throw new NotImplementedException();
+            var x = GetAll().FirstOrDefaultAsync(w => w.walletID == walletID)
+                .Result;
+            x.totalAmount += value;
+            await UpdateAsync(x);
+            return x;
+            
         }
 
-        public Task<Wallet> WithdrawFromWallet(string walletID, decimal value)
+        public async Task<Wallet> WithdrawFromWallet(string walletID, decimal value)
         {
-            throw new NotImplementedException();
+            var x = GetAll().FirstOrDefaultAsync(w => w.walletID == walletID)
+                .Result;
+            x.totalAmount -= value;
+            await UpdateAsync(x);
+            return x;
         }
 
         public async Task<bool> FindWalletAny(string id)

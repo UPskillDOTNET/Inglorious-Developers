@@ -74,7 +74,6 @@ namespace PrivateParkAPI.Services.Services
         {
             var parkingSpot = _mapper.Map<ParkingSpotDTO, ParkingSpot>(parkingSpotDTO);
 
-
             await _parkingSpotRepository.PutParkingSpot(id, parkingSpot);
 
             return parkingSpotDTO;

@@ -44,6 +44,7 @@ namespace PrivateParkAPI.Repositories.Repository
             return await GetAll().Where(p => p.parkingSpotID == id).AnyAsync();
         }
 
+        //  este id não está a ser utilizado
         public async Task<ParkingSpot> PutParkingSpot(string id, ParkingSpot parkingSpot)
         {
             await UpdateAsync(parkingSpot);

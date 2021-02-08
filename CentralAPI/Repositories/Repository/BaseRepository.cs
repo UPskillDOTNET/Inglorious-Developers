@@ -1,5 +1,5 @@
 ﻿using CentralAPI.Data;
-
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -66,7 +66,7 @@ namespace CentralAPI.Repositories.Repository
             {
                 throw new ArgumentNullException($"{nameof(AddAsync)} entity must not be null");
             }
-
+      
             try
             {
                 CentralAPIContext.Update(entity);
