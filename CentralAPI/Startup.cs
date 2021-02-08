@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using CentralAPI.Data;
+using CentralAPI.DTO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +33,8 @@ namespace CentralAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<CentralParkContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<PublicParkContext>(options =>
                options.UseSqlServer(
                    Configuration.GetConnectionString("PublicConnection")));
@@ -38,6 +43,7 @@ namespace CentralAPI
                    Configuration.GetConnectionString("PrivateConnection")));
 
             services.AddControllers();
+            services.AddAutoMapper(typeof(Maps));
 
         }
 
