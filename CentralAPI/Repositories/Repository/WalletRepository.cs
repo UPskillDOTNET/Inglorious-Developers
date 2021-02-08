@@ -25,6 +25,11 @@ namespace CentralAPI.Repositories.Repository
             return GetAll().Where(w => w.userID == userID).FirstOrDefault();
         }
 
+        public Wallet GetWalletById(string walletID)
+        {
+            return GetAll().Where(w => w.walletID == walletID).FirstOrDefault();
+        }
+
         public async Task<Wallet> CreateWallet(Wallet wallet)
         {
             await AddAsync(wallet);

@@ -43,6 +43,13 @@ namespace CentralAPI.Controllers
             return await _walletService.GetBalance(userID);
         }
 
+        [HttpGet]
+        [Route("/api/[controller]/{walletID}")]
+        public async Task<ActionResult<WalletDTO>> GetWalletById(string walletID)
+        {
+            return await _walletService.GetWalletById(walletID);
+        }
+
         [HttpPost]
         public async Task<ActionResult<WalletDTO>> CreateWallet(string userID, string currency)
         {
@@ -58,10 +65,8 @@ namespace CentralAPI.Controllers
 
         public async Task<ActionResult<WalletDTO>> DepositToWallet(string walletID, decimal value)
         {
-
             var resp = await _walletService.DepositToWallet(walletID, value);
             var walletDTO = resp.Value;
-
             return Ok(walletDTO);
         }
 

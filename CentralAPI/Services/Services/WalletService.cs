@@ -51,6 +51,13 @@ namespace CentralAPI.Services.Services
             return walletDTO;
         }
 
+        public async Task<ActionResult<WalletDTO>> GetWalletById(string walletID)
+        {
+            var wallet = _walletRepository.GetWalletById(walletID);
+            var walletDTO = _mapper.Map<Wallet, WalletDTO>(wallet);
+            return walletDTO;
+        }
+
         public async Task<ActionResult<WalletDTO>> CreateWallet(string userID, string currency)
         {
             Wallet wallet = new Wallet {
@@ -66,7 +73,8 @@ namespace CentralAPI.Services.Services
         public async Task<ActionResult<WalletDTO>> DepositToWallet(string walletID, decimal value)
         {
             // Verificar a wallet pelo ID
-            //await _walletRepository.DepositToWallet(walletID, value);
+            
+            await _walletRepository.DepositToWallet(walletID, value);
             throw new NotImplementedException();
             // Alterar com o valor que recebe no argumento - nao pode ser menor que 0 ou a operação é cancelada
         }
@@ -88,6 +96,5 @@ namespace CentralAPI.Services.Services
             ValidationResult Results = validationRules.Validate(walletDTO);
             return Results;
         }
-
     }
 }
