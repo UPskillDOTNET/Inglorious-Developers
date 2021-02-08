@@ -11,7 +11,7 @@ namespace CentralAPI.Utils
     {
         public WalletValidator()
         { 
-            RuleFor(WalletDTO => WalletDTO.totalAmount).GreaterThan(0);
+            RuleFor(WalletDTO => WalletDTO.totalAmount).GreaterThanOrEqualTo(0);
             RuleFor(WalletDTO => WalletDTO.userID).NotEmpty();
         }
     }

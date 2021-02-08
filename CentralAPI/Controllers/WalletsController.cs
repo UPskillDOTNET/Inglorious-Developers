@@ -47,9 +47,13 @@ namespace CentralAPI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateWallet([Bind("walletID,totalAmount,currency")] WalletDTO walletDTO)
+        public async Task<IActionResult> CreateWallet(WalletDTO walletDTO)
         {
+            // Wallet começa a 0 sempre
+            walletDTO.totalAmount = 0;
+            // Wallet começa com o currency que o User especifica no registo
+            //walletDTO.currency = _userService.GetCurrencyById(User user)
+
             var Results = _walletService.Validate(walletDTO);
             try
             {
