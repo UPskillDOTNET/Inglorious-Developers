@@ -1,4 +1,5 @@
 ﻿using CentralAPI.Data;
+using CentralAPI.DTO;
 using CentralAPI.Models;
 using CentralAPI.Repositories.IRepository;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,13 @@ namespace CentralAPI.Repositories.Repository
         public async Task<User> UpdateUserById(string id, User user)
         {
             await UpdateAsync(user);
+            return user;
+        }
+
+        public async Task<User> CreateUser(User user)
+        {
+            await AddAsync(user);
+
             return user;
         }
     }

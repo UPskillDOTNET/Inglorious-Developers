@@ -1,4 +1,5 @@
-﻿using CentralAPI.Models;
+﻿using CentralAPI.DTO;
+using CentralAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,7 @@ namespace CentralAPI.Repositories.IRepository
        Task<User> GetUsersById(string id);
        
        Task<User> UpdateUserById(string id, User user);
+
+        Task<User> CreateUser(User user);
     }
 }

@@ -62,45 +62,34 @@ namespace CentralAPI.Controllers
             return NoContent();
         }
 
-        //// POST: api/Users
-        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPost]
-        //public async Task<ActionResult<User>> PostUser(User user)
-        //{
-        //    _context.Users.Add(user);
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateException)
-        //    {
-        //        if (UserExists(user.userID))
-        //        {
-        //            return Conflict();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
+        // POST: api/Users
+        [HttpPost]
+        public async Task<ActionResult<UserDTO>> CreateUser (UserDTO userDTO, string currency)
+        {
+            var resp = await _userService.CreateUser(userDTO, currency);
+            var UserDTO = resp.Value;
 
-        //    return CreatedAtAction("GetUser", new { id = user.userID }, user);
-        //}
+            if(userDTO == null)
+            {
+                return BadRequest();
+            }
+            return Ok(userDTO);
+        }
 
-        //// DELETE: api/Users/5
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteUser(string id)
+        //// delete: api/users/5
+        //[httpdelete("{id}")]
+        //public async task<iactionresult> deleteuser(string id)
         //{
-        //    var user = await _context.Users.FindAsync(id);
+        //    var user = await _context.users.findasync(id);
         //    if (user == null)
         //    {
-        //        return NotFound();
+        //        return notfound();
         //    }
 
-        //    _context.Users.Remove(user);
-        //    await _context.SaveChangesAsync();
+        //    _context.users.remove(user);
+        //    await _context.savechangesasync();
 
-        //    return NoContent();
+        //    return nocontent();
         //}
 
         //private bool UserExists(string id)
