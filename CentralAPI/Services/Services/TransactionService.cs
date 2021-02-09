@@ -13,9 +13,20 @@ namespace CentralAPI.Services.Services
 {
     public class TransactionService : ITransactionService
     {
-        public Task<ActionResult<IEnumerable<TransactionDTO>>> GetAllTransactions()
+        private readonly ITransactionRepository _transactionRepository;
+        private readonly IMapper _mapper;
+
+        public TransactionService(ITransactionRepository transactionRepository, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _transactionRepository = transactionRepository;
+            _mapper = mapper;
+        }
+
+        public async Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactions()
+        {
+            var transactions = _transactionRepository.GetTransactions();
+            var transactionsDTO = _mapper.Map<List<Transaction>, List<TransactionDTO>>(transactions.ToList());
+            return transactionsDTO;
         }
 
         public Task<ActionResult<IEnumerable<TransactionDTO>>> GetOperationTransactionsByUserID(string userID, string operation)

@@ -18,6 +18,8 @@ namespace CentralAPI.Models
         [ForeignKey("User")]
         public string userID { get; set; }
 
+        public User User { get; set; }
+
         public decimal value { get; set; }
 
         public DateTime transactionDate { get; set; }

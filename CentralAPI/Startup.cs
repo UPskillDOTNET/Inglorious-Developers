@@ -39,8 +39,10 @@ namespace CentralAPI
             services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddTransient<IWalletRepository, WalletRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ITransactionRepository, TransactionRepository>();
             services.AddTransient<IWalletService, WalletService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ITransactionService, TransactionService>();
             services.AddControllers();
             services.AddAutoMapper(typeof(Maps));
         }

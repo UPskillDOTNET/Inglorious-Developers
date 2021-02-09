@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 using CentralAPI.Models;
 
-namespace CentralAPI.Data {
-    
+namespace CentralAPI.Data
+{
+
     public class DBInitializer
     {
         public static void Initialize(CentralAPIContext context)
@@ -48,6 +49,35 @@ namespace CentralAPI.Data {
             foreach (Wallet w in Wallets)
             {
                 context.Wallets.Add(w);
+            }
+            context.SaveChanges();
+
+            if (context.Transactions.Any())
+            {
+                return;   // DB has been seeded
+            }
+
+            var Transactions = new Transaction[]
+            {
+                    new Transaction {transactionID="1", operation="deposit", userID="1",value=24.3m, transactionDate= DateTime.Parse("2020-02-22 19:30:00")},
+                    new Transaction {transactionID="3", operation="deposit", userID="3",value=14.7m, transactionDate= DateTime.Parse("2020-01-14 19:00:00")},
+                    new Transaction {transactionID="2", operation="withdraw", userID="2", value=30.3m, transactionDate= DateTime.Parse("2020-02-03 20:00:00")},
+            };
+
+            //         public string transactionID { get; set; }
+
+            //// Verificar isto da Operation - entre deposit e withdraw - boolean?
+            //public string operation { get; set; }
+
+            //public string userID { get; set; }
+
+            //public decimal value { get; set; }
+
+            //public DateTime transactionDate { get; set; }
+
+            foreach (Transaction t in Transactions)
+            {
+                context.Transactions.Add(t);
             }
             context.SaveChanges();
         }

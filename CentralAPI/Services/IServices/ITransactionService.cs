@@ -10,7 +10,7 @@ namespace CentralAPI.Services.IServices
     public interface ITransactionService
     {
 
-        Task<ActionResult<IEnumerable<TransactionDTO>>> GetAllTransactions();
+        Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactions();
         Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactionsByUserID(string userID);
         Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactionsByUserAndDate(string userID);
         Task<ActionResult<IEnumerable<TransactionDTO>>> GetOperationTransactionsByUserID(string userID, string operation);

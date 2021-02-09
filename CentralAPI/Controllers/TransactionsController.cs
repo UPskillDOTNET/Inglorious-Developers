@@ -11,6 +11,8 @@ using CentralAPI.Services.IServices;
 
 namespace CentralAPI.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class TransactionsController : Controller
     {
         private readonly ITransactionService _transactionService;
@@ -21,43 +23,43 @@ namespace CentralAPI.Controllers
         }
 
         [HttpGet]
-        public Task<ActionResult<IEnumerable<TransactionDTO>>> GetAllTransactions()
+        public Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactions()
         {
-            return _transactionService.GetAllTransactions();
+            return _transactionService.GetTransactions();
         }
 
-        // GET: Transactions/Delete/5
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: Transactions/Delete/5
+        //public async Task<IActionResult> Delete(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var transaction = await _context.Transaction
-                .FirstOrDefaultAsync(m => m.transactionID == id);
-            if (transaction == null)
-            {
-                return NotFound();
-            }
+        //    var transaction = await _context.Transaction
+        //        .FirstOrDefaultAsync(m => m.transactionID == id);
+        //    if (transaction == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(transaction);
-        }
+        //    return View(transaction);
+        //}
 
-        // POST: Transactions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            var transaction = await _context.Transaction.FindAsync(id);
-            _context.Transaction.Remove(transaction);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //// POST: Transactions/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(string id)
+        //{
+        //    var transaction = await _context.Transaction.FindAsync(id);
+        //    _context.Transaction.Remove(transaction);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
-        private bool TransactionExists(string id)
-        {
-            return _context.Transaction.Any(e => e.transactionID == id);
-        }
+        //private bool TransactionExists(string id)
+        //{
+        //    return _context.Transaction.Any(e => e.transactionID == id);
+        //}
     }
 }
