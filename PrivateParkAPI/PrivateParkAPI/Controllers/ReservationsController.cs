@@ -48,7 +48,7 @@ namespace PrivateParkAPI.Controllers
 
         //Post Resevation
         [HttpPost]
-        public async Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO)
+        public async Task<ActionResult<ReservationDTO>> PostReservation([FromBody] ReservationDTO reservationDTO)
         {
 
             var Results = _reservationService.Validate(reservationDTO);
