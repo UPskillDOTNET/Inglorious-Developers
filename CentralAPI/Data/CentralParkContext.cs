@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Data
 {
-    public class CentralParkContext :IdentityDbContext<apiUser>
+    public class CentralParkContext :DbContext
     {
         public CentralParkContext(DbContextOptions<CentralParkContext> options) : base(options) { }
 
         public DbSet<ParkingLot> ParkingLots { get; set; }
-        //public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<CentralReservation> CentralReservations { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
