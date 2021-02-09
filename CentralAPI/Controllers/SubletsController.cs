@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CentralAPI.Data;
 using CentralAPI.Models;
+using CentralAPI.Services.IServices;
+using CentralAPI.DTO;
 
 namespace CentralAPI.Controllers
 {
@@ -14,25 +16,25 @@ namespace CentralAPI.Controllers
     [ApiController]
     public class SubletsController : ControllerBase
     {
-        private readonly CentralAPIContext _context;
+        private readonly ISubletService _subletService;
 
-        public SubletsController(CentralAPIContext context)
+        public SubletsController(ISubletService subletService)
         {
-            _context = context;
+            _subletService = subletService;
         }
 
         // GET: api/Sublets
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Sublet>>> GetSublets()
+        public async Task<ActionResult<IEnumerable<SubletDTO>>> GetSublets()
         {
-            return await _context.Sublets.ToListAsync();
+            return await _subletService.GetSublets();
         }
 
         // GET: api/Sublets/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Sublet>> GetSublet(string id)
+        public async Task<ActionResult<SubletDTO>> GetSublet(string id)
         {
-            var sublet = await _context.Sublets.FindAsync(id);
+            var sublet = await _subletService.GetSublet(id);
 
             if (sublet == null)
             {
@@ -42,50 +44,50 @@ namespace CentralAPI.Controllers
             return sublet;
         }
 
-        // PUT: api/Sublets/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutSublet(string id, Sublet sublet)
-        {
-            if (id != sublet.subletID)
-            {
-                return BadRequest();
-            }
+        //// PUT: api/Sublets/5
+        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutSublet(string id, Sublet sublet)
+        //{
+        //    if (id != sublet.subletID)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            _context.Entry(sublet).State = EntityState.Modified;
+        //    _context.Entry(sublet).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!SubletExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!SubletExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
         // POST: api/Sublets
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Sublet>> PostSublet(Sublet sublet)
+        public async Task<ActionResult<SubletDTO>> PostSublet([FromBody]SubletDTO subletDTO)
         {
-            _context.Sublets.Add(sublet);
+            
             try
             {
-                await _context.SaveChangesAsync();
+                await _subletService.CreateSublet(subletDTO);
             }
             catch (DbUpdateException)
             {
-                if (SubletExists(sublet.subletID))
+                if (SubletExists(subletDTO.subletID))
                 {
                     return Conflict();
                 }
@@ -95,28 +97,32 @@ namespace CentralAPI.Controllers
                 }
             }
 
-            return CreatedAtAction("GetSublet", new { id = sublet.subletID }, sublet);
+            return CreatedAtAction("GetSublet", new { id = subletDTO.subletID }, subletDTO);
         }
 
         // DELETE: api/Sublets/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSublet(string id)
+        public async Task<ActionResult<SubletDTO>> CancelSublet(string id)
         {
-            var sublet = await _context.Sublets.FindAsync(id);
-            if (sublet == null)
+            if (SubletExists(id))
             {
                 return NotFound();
             }
+            
 
-            _context.Sublets.Remove(sublet);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return await _subletService.CancelSublet(id);
         }
 
         private bool SubletExists(string id)
         {
-            return _context.Sublets.Any(e => e.subletID == id);
+            if (_subletService.GetSublet(id) == null)
+            {
+                return false;
+            }
+            return true;
         }
+      
+       
+            
     }
 }

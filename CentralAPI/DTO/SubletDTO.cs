@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CentralAPI.Models
+namespace CentralAPI.DTO
 {
-    public class Sublet
+    public class SubletDTO
     {
-        [Key]
         public string subletID { get; set; }
         public string reservationID { get; set; }
         public string mainUserID { get; set; }
@@ -18,6 +15,5 @@ namespace CentralAPI.Models
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }
         public bool isCancelled { get; set; }
-
     }
 }

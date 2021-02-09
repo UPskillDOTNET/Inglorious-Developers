@@ -71,6 +71,20 @@ namespace CentralAPI.Data
                 context.Transactions.Add(t);
             }
             context.SaveChanges();
+
+            var Sublets = new Sublet[]
+           {
+                    new Sublet {subletID = "abc4", reservationID = "wtv", mainUserID="1", subUserID = "2", letPrice = 3.0m, startDate= DateTime.Parse("2020-01-14 19:00:00"), endDate = DateTime.Parse("2020-01-15 19:00:00"), isCancelled=false},
+                    new Sublet {subletID = "abc5", reservationID = "wtv2", mainUserID="2", subUserID = "3", letPrice = 3.0m, startDate= DateTime.Parse("2020-01-14 19:00:00"), endDate = DateTime.Parse("2020-01-15 19:00:00"), isCancelled=false},
+                    new Sublet {subletID = "abc6", reservationID = "wtv3", mainUserID="3", subUserID = "1", letPrice = 3.0m, startDate= DateTime.Parse("2020-01-14 19:00:00"), endDate = DateTime.Parse("2020-01-15 19:00:00"), isCancelled=false}
+
+           };
+
+            foreach (Sublet s in Sublets)
+            {
+                context.Sublets.Add(s);
+            }
+            context.SaveChanges();
         }
     }
 }

@@ -14,6 +14,7 @@ namespace CentralAPI.DTO
             CreateMap<Wallet, WalletDTO>().ReverseMap();
             CreateMap<User, UserDTO>().ReverseMap();
             CreateMap<Transaction, TransactionDTO>().ReverseMap();
+            CreateMap<Sublet, SubletDTO>().ReverseMap();
         }
     }
 }
