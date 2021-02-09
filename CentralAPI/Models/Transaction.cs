@@ -13,7 +13,6 @@ namespace CentralAPI.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string transactionID { get; set; }
 
-        // Verificar isto da Operation - entre deposit e withdraw - boolean?
         public string operation { get; set; }
 
         [ForeignKey("User")]

@@ -28,29 +28,25 @@ namespace CentralAPI.Controllers
             return _transactionService.GetTransactions();
         }
 
-        [HttpGet]
-        [Route("~/api/users/transactions/{userID}")]
+        [HttpGet("users/{userID}")]
         public Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactionsByUserID(string userID)
         {
             return _transactionService.GetTransactionsByUserID(userID);
         }
 
-        [HttpGet]
-        [Route("~/api/users/transactions/{userID}/{operation}")]
+        [HttpGet("users/{userID}/{operation}")]
         public Task<ActionResult<IEnumerable<TransactionDTO>>> GetOperationTransactionsByUserID(string userID, string operation)
         {
             return _transactionService.GetOperationTransactionsByUserID(userID, operation);
         }
 
-        [HttpGet]
-        [Route("~/api/users/transactions/{userID}/{dateTime}")]
+        [HttpGet("users/{userID}/{dateTime}")]
         public Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactionsByUserAndDate(string userID, DateTime dateTime)
         {
             return _transactionService.GetTransactionsByUserAndDate(userID, dateTime);
         }
 
-        [HttpPost]
-        [Route("/api/transactions/{userID}/{operation}/{value}")]
+        [HttpPost("/users/{userID}/{operation}/{value}")]
         public async Task<ActionResult<TransactionDTO>> CreateTransaction(string userID, string operation, decimal value)
         {
             var resp = await _transactionService.CreateTransaction(userID, operation, value);
