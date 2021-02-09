@@ -35,6 +35,13 @@ namespace CentralAPI.Controllers
             return _transactionService.GetTransactionsByUserID(userID);
         }
 
+        [HttpGet]
+        [Route("~/api/users/transactions/{userID}/{operation}")]
+        public Task<ActionResult<IEnumerable<TransactionDTO>>> GetOperationTransactionsByUserID(string userID, string operation)
+        {
+            return _transactionService.GetOperationTransactionsByUserID(userID, operation);
+        }
+
 
 
         //// GET: Transactions/Delete/5

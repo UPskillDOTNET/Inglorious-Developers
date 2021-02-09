@@ -12,8 +12,8 @@ namespace CentralAPI.Services.IServices
 
         Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactions();
         Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactionsByUserID(string userID);
-        Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactionsByUserAndDate(string userID);
         Task<ActionResult<IEnumerable<TransactionDTO>>> GetOperationTransactionsByUserID(string userID, string operation);
+        Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactionsByUserAndDate(string userID);
 
     }
 }

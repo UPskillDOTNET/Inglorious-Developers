@@ -27,9 +27,9 @@ namespace CentralAPI.Repositories.Repository
             return GetAll().Where(t => t.userID == userID).Include(w => w.User).ToList();
         }
 
-        public IEnumerable<Transaction> GetOperationTransactionsByUserAndDate()
+        public IEnumerable<Transaction> GetOperationTransactionsByUser(string userID, string operation)
         {
-            throw new NotImplementedException();
+            return GetAll().Where(t => t.userID == userID && t.operation == operation).Include(w => w.User).ToList();
         }
 
 

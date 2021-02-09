@@ -10,7 +10,7 @@ namespace CentralAPI.Repositories.IRepository
     {
         IEnumerable<Transaction> GetTransactions();
         IEnumerable<Transaction> GetTransactionsByUserID(string userID);
+        IEnumerable<Transaction> GetOperationTransactionsByUser(string userID, string operation);
         IEnumerable<Transaction> GetTransactionsByUserAndDate();
-        IEnumerable<Transaction> GetOperationTransactionsByUserAndDate();
     }
 }
