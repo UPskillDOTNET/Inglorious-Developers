@@ -14,9 +14,12 @@ namespace CentralAPI.Models {
         public DateTime endTime { get; set; }
         [Range(00.00, 99.99)]
         public decimal finalPrice { get; set; }
-        public string parkingSpotID { get; set; }
+        //public string parkingSpotID { get; set; }
         [ForeignKey("User")]
         public string userID { get; set; }
         public User User { get; set; }
+        [ForeignKey("ParkingLot")]
+        public int parkingLotID { get; set; }
+        public ParkingLot ParkingLot { get; set; }
     }
 }

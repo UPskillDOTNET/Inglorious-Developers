@@ -7,7 +7,7 @@ namespace CentralAPI.Utils {
         public CentralReservationValidator() {
             RuleFor(CentralReservationDTO => CentralReservationDTO.startTime).NotEmpty();
             //RuleFor(CentralReservationDTO => CentralReservationDTO.hours).GreaterThan(0);
-            RuleFor(CentralReservationDTO => CentralReservationDTO.parkingSpotID).NotEmpty();
+            RuleFor(CentralReservationDTO => CentralReservationDTO.parkingLotID).NotEmpty();
         }
     }
 }

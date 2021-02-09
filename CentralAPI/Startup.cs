@@ -39,6 +39,7 @@ namespace CentralAPI
         {
             services.AddDbContext<CentralParkContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             //services.AddDbContext<PublicParkContext>(options =>
             //   options.UseSqlServer(
             //       Configuration.GetConnectionString("PublicConnection")));
@@ -48,8 +49,12 @@ namespace CentralAPI
             services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddTransient<IParkingLotRepository, ParkingLotRepository>();
             services.AddTransient<IParkingLotService, ParkingLotService>();
-
-            services.AddControllers();
+            services.AddTransient<ICentralReservationRepository, CentralReservationRepository>();
+            services.AddTransient<ICentralReservationService, CentralReservationService>();
+            
+            services.AddControllers().AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
             services.AddAutoMapper(typeof(Maps));
 
         }
