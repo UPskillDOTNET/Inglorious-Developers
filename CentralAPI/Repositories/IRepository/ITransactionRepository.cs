@@ -9,7 +9,7 @@ namespace CentralAPI.Repositories.IRepository
     public interface ITransactionRepository : IBaseRepository<Transaction>
     {
         IEnumerable<Transaction> GetTransactions();
-        IEnumerable<Transaction> GetTransactionsByUserID();
+        IEnumerable<Transaction> GetTransactionsByUserID(string userID);
         IEnumerable<Transaction> GetTransactionsByUserAndDate();
         IEnumerable<Transaction> GetOperationTransactionsByUserAndDate();
     }

@@ -29,17 +29,19 @@ namespace CentralAPI.Services.Services
             return transactionsDTO;
         }
 
+        public async Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactionsByUserID(string userID)
+        {
+            var transactions = _transactionRepository.GetTransactionsByUserID(userID);
+            var transactionsDTO = _mapper.Map<List<Transaction>, List<TransactionDTO>>(transactions.ToList());
+            return transactionsDTO;
+        }
+
         public Task<ActionResult<IEnumerable<TransactionDTO>>> GetOperationTransactionsByUserID(string userID, string operation)
         {
             throw new NotImplementedException();
         }
 
         public Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactionsByUserAndDate(string userID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactionsByUserID(string userID)
         {
             throw new NotImplementedException();
         }

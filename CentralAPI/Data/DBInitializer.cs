@@ -62,18 +62,8 @@ namespace CentralAPI.Data
                     new Transaction {transactionID="1", operation="deposit", userID="1",value=24.3m, transactionDate= DateTime.Parse("2020-02-22 19:30:00")},
                     new Transaction {transactionID="3", operation="deposit", userID="3",value=14.7m, transactionDate= DateTime.Parse("2020-01-14 19:00:00")},
                     new Transaction {transactionID="2", operation="withdraw", userID="2", value=30.3m, transactionDate= DateTime.Parse("2020-02-03 20:00:00")},
+                    new Transaction {transactionID="4", operation="withdraw", userID="2", value=50.3m, transactionDate= DateTime.Parse("2020-02-08 23:00:00")}
             };
-
-            //         public string transactionID { get; set; }
-
-            //// Verificar isto da Operation - entre deposit e withdraw - boolean?
-            //public string operation { get; set; }
-
-            //public string userID { get; set; }
-
-            //public decimal value { get; set; }
-
-            //public DateTime transactionDate { get; set; }
 
             foreach (Transaction t in Transactions)
             {

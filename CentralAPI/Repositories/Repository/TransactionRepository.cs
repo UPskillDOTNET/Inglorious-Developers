@@ -22,6 +22,11 @@ namespace CentralAPI.Repositories.Repository
             return GetAll().Include(w => w.User).ToList();
         }
 
+        public IEnumerable<Transaction> GetTransactionsByUserID(string userID)
+        {
+            return GetAll().Where(t => t.userID == userID).Include(w => w.User).ToList();
+        }
+
         public IEnumerable<Transaction> GetOperationTransactionsByUserAndDate()
         {
             throw new NotImplementedException();
@@ -29,11 +34,6 @@ namespace CentralAPI.Repositories.Repository
 
 
         public IEnumerable<Transaction> GetTransactionsByUserAndDate()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Transaction> GetTransactionsByUserID()
         {
             throw new NotImplementedException();
         }
