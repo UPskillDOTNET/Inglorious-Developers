@@ -13,5 +13,24 @@ namespace CentralAPI.Services.Services
 {
     public class TransactionService : ITransactionService
     {
+        public Task<ActionResult<IEnumerable<TransactionDTO>>> GetAllTransactions()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ActionResult<IEnumerable<TransactionDTO>>> GetOperationTransactionsByUserID(string userID, string operation)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactionsByUserAndDate(string userID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactionsByUserID(string userID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
