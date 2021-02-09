@@ -8,9 +8,10 @@ namespace CentralAPI.Repositories.IRepository
 {
     public interface ITransactionRepository : IBaseRepository<Transaction>
     {
-        IEnumerable<Transaction> GetTransactions();
-        IEnumerable<Transaction> GetTransactionsByUserID(string userID);
-        IEnumerable<Transaction> GetOperationTransactionsByUser(string userID, string operation);
-        IEnumerable<Transaction> GetTransactionsByUserAndDate();
+        Task<IEnumerable<Transaction>> GetTransactions();
+        Task<IEnumerable<Transaction>> GetTransactionsByUserID(string userID);
+        Task<IEnumerable<Transaction>> GetOperationTransactionsByUser(string userID, string operation);
+        Task<IEnumerable<Transaction>> GetTransactionsByUserAndDate(string userID, DateTime dateTime);
+        Task<Transaction> CreateTransaction(Transaction transaction);
     }
 }

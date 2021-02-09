@@ -35,10 +35,7 @@ namespace CentralAPI.Repositories.Repository
         {
             return await GetAll().Where(r => (r.startDate >= startDate && r.endDate <= endDate) || (r.startDate <= endDate && r.endDate >= startDate)).ToListAsync();
         }
-        public async Task<Sublet> GetSublet(string id)
-        {
-            return await Get(id);
-        }
+
         public async Task<Sublet> CreateSublet(Sublet sublet)
         {
             sublet = await AddAsync(sublet);
@@ -48,6 +45,11 @@ namespace CentralAPI.Repositories.Repository
         {
             sublet = await UpdateAsync(sublet);
             return sublet;
+        }
+
+        public async Task<Sublet> GetSublet(string id)
+        {
+            return await Find(id);
         }
     }
 }

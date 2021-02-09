@@ -24,28 +24,45 @@ namespace CentralAPI.Services.Services
 
         public async Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactions()
         {
-            var transactions =  _transactionRepository.GetTransactions();
+            var transactions =  await _transactionRepository.GetTransactions();
             var transactionsDTO = _mapper.Map<List<Transaction>, List<TransactionDTO>>(transactions.ToList());
             return transactionsDTO;
         }
 
         public async Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactionsByUserID(string userID)
         {
-            var transactions = _transactionRepository.GetTransactionsByUserID(userID);
+            var transactions = await _transactionRepository.GetTransactionsByUserID(userID);
             var transactionsDTO = _mapper.Map<List<Transaction>, List<TransactionDTO>>(transactions.ToList());
             return transactionsDTO;
         }
 
         public async Task<ActionResult<IEnumerable<TransactionDTO>>> GetOperationTransactionsByUserID(string userID, string operation)
         {
-            var transactions = _transactionRepository.GetOperationTransactionsByUser(userID, operation);
+            var transactions = await _transactionRepository.GetOperationTransactionsByUser(userID, operation);
             var transactionsDTO = _mapper.Map<List<Transaction>, List<TransactionDTO>>(transactions.ToList());
             return transactionsDTO;
         }
 
-        public Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactionsByUserAndDate(string userID)
+        public async Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactionsByUserAndDate(string userID, DateTime dateTime)
         {
-            throw new NotImplementedException();
+            var transactions = await _transactionRepository.GetTransactionsByUserAndDate(userID, dateTime);
+            var transactionsDTO = _mapper.Map<List<Transaction>, List<TransactionDTO>>(transactions.ToList());
+            return transactionsDTO;
+        }
+
+        public async Task<ActionResult<TransactionDTO>> CreateTransaction(string userID, string operation, decimal value)
+        {
+            Transaction transaction = new Transaction
+            {
+                operation = operation,
+                userID = userID,
+                value = value,
+                transactionDate = DateTime.Now
+            };
+
+            await _transactionRepository.CreateTransaction(transaction);
+            var transactionDTO = _mapper.Map<Transaction, TransactionDTO>(transaction);
+            return transactionDTO;
         }
     }
 }

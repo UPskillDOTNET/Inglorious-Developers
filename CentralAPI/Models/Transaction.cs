@@ -10,6 +10,7 @@ namespace CentralAPI.Models
     public class Transaction
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string transactionID { get; set; }
 
         // Verificar isto da Operation - entre deposit e withdraw - boolean?

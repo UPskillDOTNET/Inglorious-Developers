@@ -9,8 +9,6 @@ namespace CentralAPI
     {
         IQueryable<TEntity> GetAll();
 
-        Task<TEntity> Get(string id);
-
         Task<TEntity> Find(string id);
 
         Task<TEntity> AddAsync(TEntity entity);

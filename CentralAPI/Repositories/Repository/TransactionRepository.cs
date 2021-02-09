@@ -17,25 +17,31 @@ namespace CentralAPI.Repositories.Repository
         {
         }
 
-        public IEnumerable<Transaction> GetTransactions()
+        public async Task<IEnumerable<Transaction>> GetTransactions()
         {
-            return GetAll().Include(w => w.User).ToList();
+            return await GetAll().Include(w => w.User).ToListAsync();
         }
 
-        public IEnumerable<Transaction> GetTransactionsByUserID(string userID)
+        public async Task<IEnumerable<Transaction>> GetTransactionsByUserID(string userID)
         {
-            return GetAll().Where(t => t.userID == userID).Include(w => w.User).ToList();
+            return await GetAll().Where(t => t.userID == userID).Include(w => w.User).ToListAsync();
         }
 
-        public IEnumerable<Transaction> GetOperationTransactionsByUser(string userID, string operation)
+        public async Task<IEnumerable<Transaction>> GetOperationTransactionsByUser(string userID, string operation)
         {
-            return GetAll().Where(t => t.userID == userID && t.operation == operation).Include(w => w.User).ToList();
+            return await GetAll().Where(t => t.userID == userID && t.operation == operation).Include(w => w.User).ToListAsync();
         }
 
 
-        public IEnumerable<Transaction> GetTransactionsByUserAndDate()
+        public async Task<IEnumerable<Transaction>> GetTransactionsByUserAndDate(string userID, DateTime dateTime)
         {
-            throw new NotImplementedException();
+            return await GetAll().Where(t => t.userID == userID && t.transactionDate == dateTime).Include(w => w.User).ToListAsync();
+        }
+
+        public async Task<Transaction> CreateTransaction(Transaction transaction)
+        {
+            await AddAsync(transaction);
+            return transaction;
         }
     }
 }
