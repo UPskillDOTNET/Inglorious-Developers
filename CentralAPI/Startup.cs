@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CentralAPI.Data;
 using CentralAPI.DTO;
+using CentralAPI.Repositories.IRepository;
+using CentralAPI.Repositories.Repository;
+using CentralAPI.Services.IServices;
+using CentralAPI.Services.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,12 +39,15 @@ namespace CentralAPI
         {
             services.AddDbContext<CentralParkContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<PublicParkContext>(options =>
-               options.UseSqlServer(
-                   Configuration.GetConnectionString("PublicConnection")));
-            services.AddDbContext<PrivateParkContext>(options =>
-               options.UseSqlServer(
-                   Configuration.GetConnectionString("PrivateConnection")));
+            //services.AddDbContext<PublicParkContext>(options =>
+            //   options.UseSqlServer(
+            //       Configuration.GetConnectionString("PublicConnection")));
+            //services.AddDbContext<PrivateParkContext>(options =>
+            //   options.UseSqlServer(
+            //       Configuration.GetConnectionString("PrivateConnection")));
+            services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddTransient<IParkingLotRepository, ParkingLotRepository>();
+            services.AddTransient<IParkingLotService, ParkingLotService>();
 
             services.AddControllers();
             services.AddAutoMapper(typeof(Maps));
