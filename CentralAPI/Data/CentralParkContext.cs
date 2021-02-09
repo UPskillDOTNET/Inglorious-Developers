@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Data
 {
-    public class CentralParkContext :DbContext
+    public class CentralParkContext : DbContext
     {
         public CentralParkContext(DbContextOptions<CentralParkContext> options) : base(options) { }
 
