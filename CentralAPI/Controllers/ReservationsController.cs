@@ -71,6 +71,7 @@ namespace CentralAPI.Controllers
         [Route("centralapi/privatereservation")]
         public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PostPrivateReservation([FromBody] PrivateParkAPI.DTO.ReservationDTO reservationDTO)
         {
+            await _reservationService.PostReservation(reservationDTO);
             return CreatedAtAction("PostReservation", new { id = reservationDTO.reservationID }, reservationDTO);
         }
 
@@ -88,8 +89,8 @@ namespace CentralAPI.Controllers
             privateRes.finalPrice = reservationDTO.finalPrice;
             privateRes.parkingSpotID = reservationDTO.parkingSpotID;
 
-            await PostPrivateReservation(privateRes);
-            
+            await _reservationService.PostReservation(privateRes);
+
 
 
             return await _centralReservationService.PostCentralReservation(reservationDTO);
@@ -112,7 +113,7 @@ namespace CentralAPI.Controllers
                 }
                 return BadRequest("Couldn't change value");
            // }
-            return NotFound("Reservation does not Exist");
+            //return NotFound("Reservation does not Exist");
         }
 
         //PUBLIC RESERVATIONS
@@ -163,13 +164,8 @@ namespace CentralAPI.Controllers
             }
             return BadRequest("Couldn't change value");
             // }
-            return NotFound("Reservation does not Exist");
+            //return NotFound("Reservation does not Exist");
         }
-
-
-
-
-
 
 
         ////POST private reservation
