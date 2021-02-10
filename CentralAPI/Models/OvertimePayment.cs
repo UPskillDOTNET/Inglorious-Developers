@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace CentralAPI.Models
 {
-    public class PaymentMethod
+    public class OvertimePayment : Payment
     {
-        [Key]
-        public string paymentMethodID;
+        public DateTime parkingEnd { get; set; }
 
-        public string name;
+        [ForeignKey("Reservation")]
+        public string reservationID { get; set; }
     }
 }

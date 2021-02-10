@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Models
 {
-    public class PaymentMethod
+    public class ReservationPayment : Payment
     {
         [Key]
-        public string paymentMethodID;
-
-        public string name;
+        public string reservationID { get; set; }
     }
 }

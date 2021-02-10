@@ -12,9 +12,19 @@ namespace CentralAPI.Models
 
         public decimal value { get; set; }
 
-        [ForeignKey("Reservation")]
-        public string reservationID { get; set; }
+        [ForeignKey("PaymentOption")]
+        public string paymentOptionID { get; set; }
 
-        public Reservation Reservation { get; set; }
+        [ForeignKey("PaymentMethod")]
+        public string paymentMethodID { get; set; }
+
+        [ForeignKey("User")]
+        public string userID { get; set; }
+
+        public DateTime timeStamp;
+
+        public PaymentOption PaymentOption { get; set; }
+
+        public User User { get; set; }
     }
 }
