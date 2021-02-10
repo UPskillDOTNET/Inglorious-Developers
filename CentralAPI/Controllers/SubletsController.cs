@@ -101,16 +101,21 @@ namespace CentralAPI.Controllers
         }
 
         // DELETE: api/Sublets/5
-        [HttpDelete("{id}")]
+        [HttpPut("{id}")]
         public async Task<ActionResult<SubletDTO>> CancelSublet(string id)
         {
-            if (SubletExists(id))
-            {
-                return NotFound();
-            }
             
-
+            try {
+            
             return await _subletService.CancelSublet(id);
+            }
+
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
+           
         }
 
         private bool SubletExists(string id)

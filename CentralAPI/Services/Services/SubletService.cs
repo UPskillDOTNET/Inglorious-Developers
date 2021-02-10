@@ -16,6 +16,11 @@ namespace CentralAPI.Services.Services
         private readonly ISubletRepository _subletRepository;
         private readonly IMapper _mapper;
 
+        public  SubletService(ISubletRepository subletRepository, IMapper mapper)
+        {
+            _subletRepository = subletRepository;
+            _mapper = mapper;
+        }
         public async Task<ActionResult<IEnumerable<SubletDTO>>> GetSublets()
         {
             var sublets = await _subletRepository.GetSublets();
@@ -55,20 +60,24 @@ namespace CentralAPI.Services.Services
         }
         public async Task<ActionResult<SubletDTO>> CreateSublet(SubletDTO subletDTO)
         {
-            var sublet = _mapper.Map<SubletDTO , Sublet>(subletDTO);
-            
-            await _subletRepository.CreateSublet(sublet);
-
-            return subletDTO;
+           var sublet = _mapper.Map<SubletDTO , Sublet>(subletDTO);
+           var subletReturn = await _subletRepository.CreateSublet(sublet);
+           var subletReturnDTO = _mapper.Map<Sublet, SubletDTO>(subletReturn);
+            return subletReturnDTO;
 
         }
+    
         public async Task<ActionResult<SubletDTO>> CancelSublet(string id)
         {
-            var sublet= await _subletRepository.Find(id);
+            var sublet = await _subletRepository.Find(id);
             sublet.isCancelled = true;
-            var subletReturn = await _subletRepository.CancelSublet(sublet);
-            var subletDTOReturn = _mapper.Map<Sublet, SubletDTO>(subletReturn);
-            return subletDTOReturn;
+            await _subletRepository.CancelSublet(sublet);
+            var subletDTO = _mapper.Map<Sublet, SubletDTO>(sublet);
+            return subletDTO;
+
+
+
+
         }
     }
 }
