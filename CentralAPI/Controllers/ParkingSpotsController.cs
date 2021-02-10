@@ -12,6 +12,7 @@ using System.Text;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
+using CentralAPI.Services.IServices;
 
 namespace CentralAPI.Controllers {
     [ApiController]
@@ -19,9 +20,11 @@ namespace CentralAPI.Controllers {
         private readonly string privateApiBaseUrl;
         private readonly string publicApiBaseUrl;
         private readonly IConfiguration _configure;
+        private readonly IParkingLotService _parkingLotService;
 
-        public ParkingSpotController(IConfiguration configuration) {
+        public ParkingSpotController(IConfiguration configuration, IParkingLotService parkingLotService) {
             _configure = configuration;
+            _parkingLotService = parkingLotService;
             privateApiBaseUrl = _configure.GetValue<string>("PrivateAPIBaseurl");
             publicApiBaseUrl = _configure.GetValue<string>("PublicAPIBaseurl");
         }
@@ -29,13 +32,14 @@ namespace CentralAPI.Controllers {
         /*------------PRIVATE------------*/
 
         [HttpGet]
-        [Route("centralapi/PriParkingSpots")]
+        [Route("centralapi/PriParkingSpots/ParkingLot/{id}")]
 
-        public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ParkingSpotDTO>>> GetAllPrivateParkingSpots() {
+        public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ParkingSpotDTO>>> GetAllPrivateParkingSpots(int id) {
 
             var parkingSpotsList = new List<PrivateParkAPI.DTO.ParkingSpotDTO>();
+            var parkinglot = await _parkingLotService.GetParkingLot(id);
             using (var client = new HttpClient()) {
-                string endpoint = privateApiBaseUrl + "/parkingspots/all";
+                string endpoint = parkinglot.Value.myURL + "/parkingspots/all";
                 var response = await client.GetAsync(endpoint);
                 response.EnsureSuccessStatusCode();
                 parkingSpotsList = await response.Content.ReadAsAsync<List<PrivateParkAPI.DTO.ParkingSpotDTO>>();

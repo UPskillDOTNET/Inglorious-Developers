@@ -24,5 +24,7 @@ namespace CentralAPI.Models
         public DateTime openingTime { get; set; }
         [Required]
         public DateTime closingTime { get; set; }
+
+        public string myURL { get; set; }
     }
 }

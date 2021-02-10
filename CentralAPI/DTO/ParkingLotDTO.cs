@@ -14,5 +14,6 @@ namespace CentralAPI.DTO
         public int capacity { get; set; }
         public DateTime openingTime { get; set; }
         public DateTime closingTime { get; set; }
+        public string myURL { get; set; }
     }
 }
