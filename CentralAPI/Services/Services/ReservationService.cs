@@ -12,12 +12,14 @@ using Newtonsoft.Json;
 using System.Text;
 using CentralAPI.DTO;
 using CentralAPI.Services.IServices;
+using CentralAPI.Controllers;
 
 namespace CentralAPI.Services.Services {
     public class ReservationService : IReservationService {
 
         private readonly IMapper _mapper;
         private readonly IConfiguration _configure;
+        public ParkingSpotController parkingSpotController;
         private readonly string privateApiBaseUrl;
         private readonly string publicApiBaseUrl;
 
@@ -29,44 +31,55 @@ namespace CentralAPI.Services.Services {
         }
         
         public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ReservationDTO>>> GetAllPrivateReservations() {
+
             var reservationList = new List<PrivateParkAPI.DTO.ReservationDTO>();
+
             using (var client = new HttpClient()) {
                 string endpoint = privateApiBaseUrl + "/reservations";
                 var response = await client.GetAsync(endpoint);
                 response.EnsureSuccessStatusCode();
                 reservationList = await response.Content.ReadAsAsync<List<PrivateParkAPI.DTO.ReservationDTO>>();
             }
+
             return reservationList;
         }
 
 
         public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ReservationDTO>>> GetAllNotCanceledPrivateReservations() {
+
             var reservationList = new List<PrivateParkAPI.DTO.ReservationDTO>();
+
             using (var client = new HttpClient()) {
                 string endpoint = privateApiBaseUrl + "/reservations/notCancelled";
                 var response = await client.GetAsync(endpoint);
                 response.EnsureSuccessStatusCode();
                 reservationList = await response.Content.ReadAsAsync<List<PrivateParkAPI.DTO.ReservationDTO>>();
             }
+
             return reservationList;
         }
 
         public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> GetPrivateReservationById(string id) {
+
             PrivateParkAPI.DTO.ReservationDTO reservationDTO;
+
             using (var client = new HttpClient()) {
                 string endpoint = privateApiBaseUrl + "/reservations/" + id;
                 var response = await client.GetAsync(endpoint);
                 response.EnsureSuccessStatusCode();
                 reservationDTO = await response.Content.ReadAsAsync<PrivateParkAPI.DTO.ReservationDTO>();
             }
+
             return reservationDTO;
         }
 
         public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PatchPrivateReservation(string id)
         {
             PrivateParkAPI.DTO.ReservationDTO reservationDTO;
+
             using (var client = new HttpClient())
             {
+
                 StringContent content = new StringContent(JsonConvert.SerializeObject(id), Encoding.UTF8, "application/json");
                 string endpoint = privateApiBaseUrl + "/reservations/" + id;
                 var response = await client.PatchAsync(endpoint, content);
@@ -74,35 +87,29 @@ namespace CentralAPI.Services.Services {
             }
             return reservationDTO;
         }
-        //public async Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO) {
-        //    await GetEndTimeandFinalPrice(reservationDTO);
-        //    var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);
+        public async Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO)
+        {
+            await GetEndTimeandFinalPrice(reservationDTO);
+            var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);
 
-        //    if (!Results.IsValid) {
-        //        return BadRequest("Can't create " + Results);
-        //    }
-        //    if (parkingSpot == null) {
-        //        return BadRequest("ParkingSpot doens't exist");
-        //    }
-        //    if (parkingSpot.isPrivate == true) {
-        //        return BadRequest("ParkingSpot is not available for reservation");
-        //    }
-        //    try {
-        //        await PostReservation(reservationDTO);
-        //    } catch (Exception) {
-        //        if (await ReservationExists(reservationDTO.reservationID) == true) {
-        //            return Conflict("The Reservations already exist");
-        //        }
-        //        throw;
-        //    }
+            using (var client = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(reservation), Encoding.UTF8, "application/json");
+                string endpoint = privateApiBaseUrl + "/reservations";
+                var response = await client.PostAsync(endpoint, content);
+            }
+            return reservationDTO;
+        }
 
-        //    using (var client = new HttpClient()) {
-        //        StringContent content = new StringContent(JsonConvert.SerializeObject(reservationDTO), Encoding.UTF8, "application/json");
-        //        string endpoint = privateApiBaseUrl + "/reservations";
-        //        var response = await client.PostAsync(endpoint, content);
-        //    }
-        //    return reservationDTO;
-        //}
+        public async Task<ActionResult<ReservationDTO>> GetEndTimeandFinalPrice(ReservationDTO reservationDTO)
+        {
+            ParkingSpotController parkingSpotController = new ParkingSpotController(_configure);
+            var parkingSpotAction = await parkingSpotController.GetPrivateParkingSpot(reservationDTO.parkingSpotID);
+            var parkingSpot = parkingSpotAction.Value;
+            reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
+            reservationDTO.finalPrice = reservationDTO.hours * parkingSpot.priceHour;
+            return reservationDTO;
+        }
 
         //[HttpPost]
         //[Route("centralapi/onereservation")]
@@ -124,12 +131,6 @@ namespace CentralAPI.Services.Services {
 
         //}
 
-        //public async Task<ActionResult<ReservationDTO>> GetEndTimeandFinalPrice(ReservationDTO reservationDTO) {
-        //    var parkingSpot = await _parkingSpotRepository.FindParkingSpot(reservationDTO.parkingSpotID);
-        //    reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
-        //    reservationDTO.finalPrice = reservationDTO.hours * parkingSpot.priceHour;
-        //    return reservationDTO;
-        //}
 
         //public async Task<ActionResult<Reservation>> PatchReservation(string id) {
 

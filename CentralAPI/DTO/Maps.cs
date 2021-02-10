@@ -12,7 +12,8 @@ namespace CentralAPI.DTO
         public Maps()
         {            
             CreateMap<ParkingLot, ParkingLotDTO>().ReverseMap();
-            //CreateMap<Reservation, ReservationDTO>().ReverseMap();
+            CreateMap<PrivateParkAPI.Models.Reservation, PrivateParkAPI.DTO.ReservationDTO>().ReverseMap();
+            CreateMap<PublicParkAPI.Models.Reservation, PublicParkAPI.DTO.ReservationDTO>().ReverseMap();
         }
     }
 }
