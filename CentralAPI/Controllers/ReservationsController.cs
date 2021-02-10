@@ -97,18 +97,23 @@ namespace CentralAPI.Controllers
         }
 
         ////POST Cancel Reservation by ID
-        //[HttpPost]
-        //[Route("centralapi/cancelprivatereservation/{id}")]
-        //public async Task<IActionResult> PatchtPrivateReservation(string id)
-        //{
-        //    using (var client = new HttpClient())
-        //    {
-        //        StringContent content = new StringContent(JsonConvert.SerializeObject(id), Encoding.UTF8, "application/json");
-        //        string endpoint = privateApiBaseUrl + "/reservations/" + id;
-        //        var response = await client.PatchAsync(endpoint, content);
-        //    }
-        //    return NoContent();
-        //}
+        [HttpPost]
+        [Route("centralapi/cancelprivatereservation/{id}")]
+        public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PatchPrivateReservation(string id)
+        {
+            var reservationDTO = await _reservationService.GetPrivateReservationById(id);
+
+            //if (await ReservationExists(id))
+            //{
+                if (reservationDTO.Value.isCancelled == false)
+                {
+                    await _reservationService.PatchPrivateReservation(id);
+                    return Ok(reservationDTO);
+                }
+                return BadRequest("Couldn't change value");
+           // }
+            return NotFound("Reservation does not Exist");
+        }
 
         //PUBLIC RESERVATIONS
 
@@ -141,6 +146,27 @@ namespace CentralAPI.Controllers
             //    return NotFound();
             //}
         }
+
+        ////POST Cancel Reservation by ID
+        [HttpPost]
+        [Route("centralapi/cancelpublicreservation/{id}")]
+        public async Task<ActionResult<PublicParkAPI.DTO.ReservationDTO>> PatchPublicReservation(string id)
+        {
+            var reservationDTO = await _reservationService.GetPrivateReservationById(id);
+
+            //if (await ReservationExists(id))
+            //{
+            if (reservationDTO.Value.isCancelled == false)
+            {
+                await _reservationService.PatchPublicReservation(id);
+                return Ok(reservationDTO);
+            }
+            return BadRequest("Couldn't change value");
+            // }
+            return NotFound("Reservation does not Exist");
+        }
+
+
 
 
 

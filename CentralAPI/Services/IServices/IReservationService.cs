@@ -18,12 +18,13 @@ namespace CentralAPI.Services.IServices {
         //Task<ActionResult<CentralReservationDTO>> PostUserReservation(ReservationDTO reservationDTO);
         //Task<ActionResult<CentralReservationDTO>> GetEndTimeandFinalPrice(CentralReservationDTO centralReservation);
         //Task<bool> FindCentralReservationAny(string id);
-        //Task<ActionResult<CentralReservation>> PatchCentralReservation(string id);
+        Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PatchPrivateReservation(string id);
         //ValidationResult Validate(CentralReservationDTO centralReservationDTO);
 
         /*------------------------------------PUBLIC---------------------------------*/
         Task<ActionResult<IEnumerable<PublicParkAPI.DTO.ReservationDTO>>> GetAllPublicReservations();
         Task<ActionResult<IEnumerable<PublicParkAPI.DTO.ReservationDTO>>> GetAllNotCanceledPublicReservations();
         Task<ActionResult<PublicParkAPI.DTO.ReservationDTO>> GetPublicReservationById(string id);
+        Task<ActionResult<PublicParkAPI.DTO.ReservationDTO>> PatchPublicReservation(string id);
     }
 }

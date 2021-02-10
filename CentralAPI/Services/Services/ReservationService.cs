@@ -40,7 +40,7 @@ namespace CentralAPI.Services.Services {
         }
 
 
-        public async Task<ActionResult<IEnumerable<ReservationDTO>>> GetAllNotCanceledPrivateReservations() {
+        public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ReservationDTO>>> GetAllNotCanceledPrivateReservations() {
             var reservationList = new List<PrivateParkAPI.DTO.ReservationDTO>();
             using (var client = new HttpClient()) {
                 string endpoint = privateApiBaseUrl + "/reservations/notCancelled";
@@ -51,7 +51,7 @@ namespace CentralAPI.Services.Services {
             return reservationList;
         }
 
-        public async Task<ActionResult<ReservationDTO>> GetPrivateReservationById(string id) {
+        public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> GetPrivateReservationById(string id) {
             PrivateParkAPI.DTO.ReservationDTO reservationDTO;
             using (var client = new HttpClient()) {
                 string endpoint = privateApiBaseUrl + "/reservations/" + id;
@@ -62,6 +62,18 @@ namespace CentralAPI.Services.Services {
             return reservationDTO;
         }
 
+        public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PatchPrivateReservation(string id)
+        {
+            PrivateParkAPI.DTO.ReservationDTO reservationDTO;
+            using (var client = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(id), Encoding.UTF8, "application/json");
+                string endpoint = privateApiBaseUrl + "/reservations/" + id;
+                var response = await client.PatchAsync(endpoint, content);
+                reservationDTO = await response.Content.ReadAsAsync<PrivateParkAPI.DTO.ReservationDTO>();
+            }
+            return reservationDTO;
+        }
         //public async Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO) {
         //    await GetEndTimeandFinalPrice(reservationDTO);
         //    var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);
@@ -161,6 +173,19 @@ namespace CentralAPI.Services.Services {
                 string endpoint = publicApiBaseUrl + "/reservations/" + id;
                 var response = await client.GetAsync(endpoint);
                 response.EnsureSuccessStatusCode();
+                reservationDTO = await response.Content.ReadAsAsync<PublicParkAPI.DTO.ReservationDTO>();
+            }
+            return reservationDTO;
+        }
+
+        public async Task<ActionResult<PublicParkAPI.DTO.ReservationDTO>> PatchPublicReservation(string id)
+        {
+            PublicParkAPI.DTO.ReservationDTO reservationDTO;
+            using (var client = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(id), Encoding.UTF8, "application/json");
+                string endpoint = publicApiBaseUrl + "/reservations/" + id;
+                var response = await client.PatchAsync(endpoint, content);
                 reservationDTO = await response.Content.ReadAsAsync<PublicParkAPI.DTO.ReservationDTO>();
             }
             return reservationDTO;
