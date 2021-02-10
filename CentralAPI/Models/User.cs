@@ -14,6 +14,5 @@ namespace CentralAPI.Models
         public string email { get; set; }
 
         public string nif { get; set; }
-        public List<CentralReservation> centralReservations { get; set; }
     }
 }

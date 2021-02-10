@@ -51,7 +51,8 @@ namespace CentralAPI
             services.AddTransient<IParkingLotService, ParkingLotService>();
             services.AddTransient<ICentralReservationRepository, CentralReservationRepository>();
             services.AddTransient<ICentralReservationService, CentralReservationService>();
-            
+            services.AddTransient<IReservationService, ReservationService>();
+
             services.AddControllers().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
