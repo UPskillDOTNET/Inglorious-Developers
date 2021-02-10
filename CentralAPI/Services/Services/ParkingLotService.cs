@@ -3,11 +3,8 @@ using CentralAPI.DTO;
 using CentralAPI.Models;
 using CentralAPI.Repositories.IRepository;
 using CentralAPI.Services.IServices;
-using CentralAPI.Utils;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 

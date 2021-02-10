@@ -7,8 +7,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using CentralAPI.Models;
 
 namespace CentralAPI.DTO {
-    public class CentralReservationDTO {
-        [Key]
+    public class CentralReservationDTO {   
+        public string centralReservationID { get; set; }
         public string reservationID { get; set; }
         public bool isCancelled { get; set; }
         public DateTime startTime { get; set; }

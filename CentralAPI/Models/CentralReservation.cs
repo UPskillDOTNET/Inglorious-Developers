@@ -8,7 +8,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace CentralAPI.Models {
     public class CentralReservation {
         [Key]
-        public string reservationID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public string centralReservationID { get; set; }
+        public string reservationID { get; set; }        
+        [ForeignKey("ParkingLot")]
+        public int parkingLotID { get; set; }        
         public bool isCancelled { get; set; }
         public DateTime startTime { get; set; }
         public int hours { get; set; }
@@ -19,8 +23,7 @@ namespace CentralAPI.Models {
         [ForeignKey("User")]
         public string userID { get; set; }
         public User User { get; set; }
-        [ForeignKey("ParkingLot")]
-        public int parkingLotID { get; set; }
+        
         public ParkingLot ParkingLot { get; set; }
     }
 }

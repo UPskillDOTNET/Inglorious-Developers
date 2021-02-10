@@ -19,170 +19,84 @@ namespace CentralAPI.Controllers
     public class ReservationsController : ControllerBase
     {
 
-        private readonly IParkingLotService _parkingLotService;
+        
         private readonly IReservationService _reservationService;
-        private readonly IConfiguration _configure;
+        
 
-        public ReservationsController(IConfiguration configuration, IReservationService reservationService, IParkingLotService parkingLotService)
-        {
-            _configure = configuration;
-            _parkingLotService = parkingLotService;
+        public ReservationsController(IReservationService reservationService)
+        {            
             _reservationService = reservationService;
         }
        
 
-        //Get All Private Resevations
+        //Get All Resevations
         [HttpGet]
-        [Route("centralapi/allprivatereservation")]
-        public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ReservationDTO>>> GetAllPrivateReservations()
+        [Route("centralapi/parkinglot/{id}/allreservation")]
+        public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ReservationDTO>>> GetAllReservations(int id)
         {
-            return await _reservationService.GetAllPrivateReservations();
+            return await _reservationService.GetAllReservations(id);
         }
 
 
         //Get All Not Cancelled Reservations
         [HttpGet]
-        [Route("centralapi/privatereservation")]
-        public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ReservationDTO>>> GetAllNotCanceledPrivateReservations() {
-            return await _reservationService.GetAllNotCanceledPrivateReservations();
+        [Route("centralapi/parkinglot/{id}/reservation")]
+        public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ReservationDTO>>> GetAllNotCanceledReservations(int id) {
+            return await _reservationService.GetAllNotCanceledReservations(id);
         }
 
-        //Get Private Resevations by Id
+        //Get Resevations by Id
         [HttpGet]
-        [Route("centralapi/privatereservation/{id}")]
-        public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> GetPrivateReservationById(string id) {
+        [Route("centralapi/parkinglot/{pLotID}/reservation/{id}")]
+        public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> GetReservationById(string id, int pLotID) {
             if (id == null) {
                 return NotFound();
             }
             //if (await ReservationExists(id) == false) {
             //    return NotFound("Reservarion not Found");
             //}
-            return await _reservationService.GetPrivateReservationById(id);
+            return await _reservationService.GetReservationById(id, pLotID);
             //if (PrivateParkAPI.DTO.ReservationDTO == null) {
             //    return NotFound();
             //}
         }
 
 
-        //POST Private Resevation only in PrivateAPI
+        //POST Resevation only in ParkAPI
         [HttpPost]
-        [Route("centralapi/privateapireservation")]
-        public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PostPrivateReservation([FromBody] PrivateParkAPI.DTO.ReservationDTO reservationDTO)
+        [Route("centralapi/parkinglot/{pLotID}/apireservation")]
+        public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PostReservation([FromBody] PrivateParkAPI.DTO.ReservationDTO reservationDTO, int pLotID)
         {
-            await _reservationService.PostReservation(reservationDTO);
+            await _reservationService.PostReservation(reservationDTO, pLotID);
             return CreatedAtAction("PostReservation", new { id = reservationDTO.reservationID }, reservationDTO);
         }
 
-        //POST Private Reservation in Both Central and Private APIs
+        //POST Reservation in Both Central and Park APIs
         [HttpPost]
-        [Route("centralapi/privatereservation")]
-        public async Task<ActionResult<CentralReservationDTO>> PostUserReservation([FromBody] CentralReservationDTO reservationDTO)
+        [Route("centralapi/parkinglot/{pLotID}/reservation")]
+        public async Task<ActionResult<CentralReservationDTO>> PostUserReservation([FromBody] CentralReservationDTO reservationDTO, int pLotID)
         {            
-           await _reservationService.PostUserReservation(reservationDTO);
+           await _reservationService.PostUserReservation(reservationDTO, pLotID);
             return CreatedAtAction("PostReservation", new { id = reservationDTO.reservationID }, reservationDTO);
         }
 
         //POST Cancel Reservation by ID
         [HttpPost]
-        [Route("centralapi/cancelprivatereservation/{id}")]
-        public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PatchPrivateReservation(string id)
+        [Route("centralapi/parkinglot/{pLotID}/cancelreservation/{id}")]
+        public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PatchReservation(string id, int pLotID)
         {
-            var reservationDTO = await _reservationService.GetPrivateReservationById(id);
+            var reservationDTO = await _reservationService.GetReservationById(id, pLotID);
 
             //if (await ReservationExists(id))
             //{
                 if (reservationDTO.Value.isCancelled == false)
                 {
-                    await _reservationService.PatchPrivateReservation(id);
+                    await _reservationService.PatchReservation(id, pLotID);
                     return Ok(reservationDTO);
                 }
                 return BadRequest("Couldn't change value");
            // }
             //return NotFound("Reservation does not Exist");
-        }
-
-        //PUBLIC RESERVATIONS
-
-        //Get All Public Resevations
-        [HttpGet]
-        [Route("centralapi/allpublicreservation")]
-        public async Task<ActionResult<IEnumerable<PublicParkAPI.DTO.ReservationDTO>>> GetAllPublicReservations() {
-            return await _reservationService.GetAllPublicReservations();
-        }
-
-        //Get All Not Cancelled Reservations
-        [HttpGet]
-        [Route("centralapi/publicreservation")]
-        public async Task<ActionResult<IEnumerable<PublicParkAPI.DTO.ReservationDTO>>> GetAllNotCanceledPublicReservations() {
-            return await _reservationService.GetAllNotCanceledPublicReservations();
-        }
-
-        //Get Specific Resevations
-        [HttpGet]
-        [Route("centralapi/publicreservation/{id}")]
-        public async Task<ActionResult<PublicParkAPI.DTO.ReservationDTO>> GetPublicReservationById(string id) {
-            if (id == null) {
-                return NotFound();
-            }
-            //if (await ReservationExists(id) == false) {
-            //    return NotFound("Reservarion not Found");
-            //}
-            return await _reservationService.GetPublicReservationById(id);
-            //if (PrivateParkAPI.DTO.ReservationDTO == null) {
-            //    return NotFound();
-            //}
-        }
-
-        ////POST Cancel Reservation by ID
-        [HttpPost]
-        [Route("centralapi/cancelpublicreservation/{id}")]
-        public async Task<ActionResult<PublicParkAPI.DTO.ReservationDTO>> PatchPublicReservation(string id)
-        {
-            var reservationDTO = await _reservationService.GetPrivateReservationById(id);
-
-            //if (await ReservationExists(id))
-            //{
-            if (reservationDTO.Value.isCancelled == false)
-            {
-                await _reservationService.PatchPublicReservation(id);
-                return Ok(reservationDTO);
-            }
-            return BadRequest("Couldn't change value");
-            // }
-            //return NotFound("Reservation does not Exist");
-        }
-
-
-        ////POST private reservation
-        //[HttpPost]
-        //[Route("centralapi/publicreservation")]
-        //public async Task<ActionResult<PublicParkAPI.DTO.ReservationDTO>> PostPublicReservation([FromBody] PublicParkAPI.DTO.ReservationDTO reservationDTO)
-        //{
-        //    using (var client = new HttpClient())
-        //    {
-        //        StringContent content = new StringContent(JsonConvert.SerializeObject(reservationDTO), Encoding.UTF8, "application/json");
-        //        string endpoint = publicApiBaseUrl + "/reservations";
-        //        var response = await client.PostAsync(endpoint, content);
-        //    }
-        //    return reservationDTO;
-        //}
-
-        ////POST Cancel Reservation by ID
-        //[HttpPost]
-        //[Route("centralapi/cancelpublicreservation/{id}")]
-        //public async Task<IActionResult> PatchtPublicReservation(string id)
-        //{
-        //    using (var client = new HttpClient())
-        //    {
-        //        StringContent content = new StringContent(JsonConvert.SerializeObject(id), Encoding.UTF8, "application/json");
-        //        string endpoint = publicApiBaseUrl + "/reservations/" + id;
-        //        var response = await client.PatchAsync(endpoint, content);
-        //    }
-        //    return NoContent();
-        //}
-
-        //public async Task<bool> ReservationExists(string id) {
-        //    return await _reservationService.GetReservation(id);
-        //}
+        }       
     }
 }
