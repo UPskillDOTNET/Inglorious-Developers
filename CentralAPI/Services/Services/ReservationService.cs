@@ -20,11 +20,14 @@ namespace CentralAPI.Services.Services {
         private readonly IMapper _mapper;
         private readonly IConfiguration _configure;
         public ParkingSpotController parkingSpotController;
+        private readonly ICentralReservationService _centralReservationService;
+        private readonly IParkingLotService _parkingLotService;
         private readonly string privateApiBaseUrl;
         private readonly string publicApiBaseUrl;
 
-        public ReservationService(IConfiguration configuration, IMapper mapper) {
+        public ReservationService(IConfiguration configuration, ICentralReservationService centralReservationService, IMapper mapper) {
             _configure = configuration;
+            _centralReservationService = centralReservationService;
             privateApiBaseUrl = _configure.GetValue<string>("PrivateAPIBaseurl");
             publicApiBaseUrl = _configure.GetValue<string>("PublicAPIBaseurl");
             _mapper = mapper;
@@ -89,7 +92,7 @@ namespace CentralAPI.Services.Services {
         }
         public async Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO)
         {
-            await GetEndTimeandFinalPrice(reservationDTO);
+            await GetEndTimeAndFinalPrice(reservationDTO);
             var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);
 
             using (var client = new HttpClient())
@@ -101,9 +104,9 @@ namespace CentralAPI.Services.Services {
             return reservationDTO;
         }
 
-        public async Task<ActionResult<ReservationDTO>> GetEndTimeandFinalPrice(ReservationDTO reservationDTO)
+        public async Task<ActionResult<ReservationDTO>> GetEndTimeAndFinalPrice(ReservationDTO reservationDTO)
         {
-            ParkingSpotController parkingSpotController = new ParkingSpotController(_configure);
+            ParkingSpotController parkingSpotController = new ParkingSpotController(_configure, _parkingLotService);
             var parkingSpotAction = await parkingSpotController.GetPrivateParkingSpot(reservationDTO.parkingSpotID);
             var parkingSpot = parkingSpotAction.Value;
             reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
@@ -111,25 +114,25 @@ namespace CentralAPI.Services.Services {
             return reservationDTO;
         }
 
-        //[HttpPost]
-        //[Route("centralapi/onereservation")]
-        //public async Task<ActionResult<CentralReservationDTO>> PostUserReservation([FromBody] CentralReservationDTO reservationDTO) {
-        //    PrivateParkAPI.DTO.ReservationDTO privateRes = new PrivateParkAPI.DTO.ReservationDTO();
-        //    privateRes.reservationID = reservationDTO.reservationID;
-        //    privateRes.isCancelled = reservationDTO.isCancelled;
-        //    privateRes.startTime = reservationDTO.startTime;
-        //    privateRes.hours = reservationDTO.hours;
-        //    privateRes.endTime = reservationDTO.endTime;
-        //    privateRes.finalPrice = reservationDTO.finalPrice;
-        //    privateRes.parkingSpotID = reservationDTO.parkingSpotID;
+       
+        public async Task<ActionResult<CentralReservationDTO>> PostUserReservation([FromBody] CentralReservationDTO reservationDTO)
+        {
+            PrivateParkAPI.DTO.ReservationDTO privateRes = new PrivateParkAPI.DTO.ReservationDTO();
+            privateRes.reservationID = reservationDTO.reservationID;
+            privateRes.isCancelled = reservationDTO.isCancelled;
+            privateRes.startTime = reservationDTO.startTime;
+            privateRes.hours = reservationDTO.hours;
+            privateRes.endTime = reservationDTO.endTime;
+            privateRes.finalPrice = reservationDTO.finalPrice;
+            privateRes.parkingSpotID = reservationDTO.parkingSpotID;
 
-        //    await PostReservation(privateRes);
+            await PostReservation(privateRes);
+            await _centralReservationService.PostCentralReservation(reservationDTO);
 
 
+            return reservationDTO;
 
-        //    return await _centralReservationController.PostCentralReservation(reservationDTO);
-
-        //}
+        }
 
 
         //public async Task<ActionResult<Reservation>> PatchReservation(string id) {

@@ -19,15 +19,13 @@ namespace CentralAPI.Controllers
     public class ReservationsController : ControllerBase
     {
 
-        private readonly ICentralReservationService _centralReservationService;
         private readonly IParkingLotService _parkingLotService;
         private readonly IReservationService _reservationService;
         private readonly IConfiguration _configure;
 
-        public ReservationsController(IConfiguration configuration, ICentralReservationService centralReservationService, IReservationService reservationService, IParkingLotService parkingLotService)
+        public ReservationsController(IConfiguration configuration, IReservationService reservationService, IParkingLotService parkingLotService)
         {
             _configure = configuration;
-            _centralReservationService = centralReservationService;
             _parkingLotService = parkingLotService;
             _reservationService = reservationService;
         }
@@ -49,7 +47,7 @@ namespace CentralAPI.Controllers
             return await _reservationService.GetAllNotCanceledPrivateReservations();
         }
 
-        //Get Specific Resevations
+        //Get Private Resevations by Id
         [HttpGet]
         [Route("centralapi/privatereservation/{id}")]
         public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> GetPrivateReservationById(string id) {
@@ -66,38 +64,25 @@ namespace CentralAPI.Controllers
         }
 
 
-        //POST private reservation
+        //POST Private Resevation only in PrivateAPI
         [HttpPost]
-        [Route("centralapi/privatereservation")]
+        [Route("centralapi/privateapireservation")]
         public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PostPrivateReservation([FromBody] PrivateParkAPI.DTO.ReservationDTO reservationDTO)
         {
             await _reservationService.PostReservation(reservationDTO);
             return CreatedAtAction("PostReservation", new { id = reservationDTO.reservationID }, reservationDTO);
         }
 
-
+        //POST Private Reservation in Both Central and Private APIs
         [HttpPost]
-        [Route("centralapi/onereservation")]
+        [Route("centralapi/privatereservation")]
         public async Task<ActionResult<CentralReservationDTO>> PostUserReservation([FromBody] CentralReservationDTO reservationDTO)
-        {
-            PrivateParkAPI.DTO.ReservationDTO privateRes = new PrivateParkAPI.DTO.ReservationDTO();
-            privateRes.reservationID = reservationDTO.reservationID;
-            privateRes.isCancelled = reservationDTO.isCancelled;
-            privateRes.startTime = reservationDTO.startTime;
-            privateRes.hours = reservationDTO.hours;
-            privateRes.endTime = reservationDTO.endTime;
-            privateRes.finalPrice = reservationDTO.finalPrice;
-            privateRes.parkingSpotID = reservationDTO.parkingSpotID;
-
-            await _reservationService.PostReservation(privateRes);
-
-
-
-            return await _centralReservationService.PostCentralReservation(reservationDTO);
-
+        {            
+           await _reservationService.PostUserReservation(reservationDTO);
+            return CreatedAtAction("PostReservation", new { id = reservationDTO.reservationID }, reservationDTO);
         }
 
-        ////POST Cancel Reservation by ID
+        //POST Cancel Reservation by ID
         [HttpPost]
         [Route("centralapi/cancelprivatereservation/{id}")]
         public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PatchPrivateReservation(string id)

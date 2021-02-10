@@ -47,7 +47,7 @@ namespace CentralAPI.Controllers {
         [HttpPost]
         public async Task<ActionResult<CentralReservationDTO>> PostCentralReservation([FromBody] CentralReservationDTO centralReservationDTO) {
             //var Results = _centralReservationService.Validate(centralReservationDTO);
-            var parkingLotExists = _parkingLotService.GetParkingLot(centralReservationDTO.parkingLotID);
+            //var parkingLotExists = _parkingLotService.GetParkingLot(centralReservationDTO.parkingLotID);
             //var parkingSpotPubExists = _parkingSpotController.GetPublicParkingSpot(centralReservationDTO.parkingSpotID);
             //var parkingSpotPriExists = _parkingSpotController.GetPrivateParkingSpot(centralReservationDTO.parkingSpotID);
             //var userExists = _userService.Find(centralReservationDTO.userID);

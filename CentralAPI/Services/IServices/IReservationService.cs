@@ -12,11 +12,10 @@ namespace CentralAPI.Services.IServices {
         /*------------------------------------PRIVATE---------------------------------*/
         Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ReservationDTO>>> GetAllPrivateReservations();
         Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ReservationDTO>>> GetAllNotCanceledPrivateReservations();
-        Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> GetPrivateReservationById(string id);
-        //Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ReservationDTO>>> GetReservationsNotCancelled();
+        Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> GetPrivateReservationById(string id);        
         Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PostReservation(ReservationDTO reservationDTO);
-        //Task<ActionResult<CentralReservationDTO>> PostUserReservation(ReservationDTO reservationDTO);
-        Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> GetEndTimeandFinalPrice(PrivateParkAPI.DTO.ReservationDTO reservationDTO);
+        Task<ActionResult<CentralReservationDTO>> PostUserReservation([FromBody] CentralReservationDTO reservationDTO);
+        Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> GetEndTimeAndFinalPrice(PrivateParkAPI.DTO.ReservationDTO reservationDTO);
         //Task<bool> FindCentralReservationAny(string id);
         Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PatchPrivateReservation(string id);
         //ValidationResult Validate(CentralReservationDTO centralReservationDTO);
