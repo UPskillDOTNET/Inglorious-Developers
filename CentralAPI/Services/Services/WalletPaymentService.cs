@@ -31,7 +31,7 @@ namespace CentralAPI.Services.Services
             throw new NotImplementedException();
         }
 
-        public Task<ActionResult<ReservationPayment>> PayReservation(CentralReservationDTO centralReservationDTO)
+        public Task<ActionResult<ReservationPaymentDTOOperation>> PayReservation(CentralReservationDTO centralReservationDTO)
         {
 
             CentralReservationDTO centralReservationTest = new CentralReservationDTO
@@ -50,15 +50,12 @@ namespace CentralAPI.Services.Services
             var wallet = _walletService.GetWalletById(reservationToPayment.userID).Result;
             var x = wallet.Value;
 
-            //Verificar se a Wallet tem dinheiro para a operação ter sucesso
-            if (reservationToPayment.finalPrice > x.totalAmount)
-            {
-                //caso não tenha, a operação ser cancelada, e uma mensagem para carregar a wallet
-                ret
-            }
+            var walletDTOOperation = _walletService.WithdrawFromWallet(x.walletID, reservationToPayment.finalPrice).Result.Value;
 
-            // caso tenha sucesso, a operação continua.
-            // A reserva é guardada.
+            if (!walletDTOOperation.isSuccess)
+            {
+                wa
+            }
             _centralReservationService.PostCentralReservation(centralReservationTest);
 
             //QR Code com os dados da Reserva
