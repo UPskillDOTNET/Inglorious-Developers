@@ -71,7 +71,13 @@ namespace CentralAPI
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
             services.AddAutoMapper(typeof(Maps));
-            services.AddControllersWithViews();
+            services.AddAuthentication("Bearer")
+                    .AddIdentityServerAuthentication("Bearer", options =>
+                    {
+                        options.ApiName = "CentralAPI";
+                        options.Authority = "https://localhost:44309";
+                    });
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,14 +98,10 @@ namespace CentralAPI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
         }
     }
 }
