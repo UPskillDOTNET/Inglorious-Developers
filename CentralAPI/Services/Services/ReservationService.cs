@@ -3,6 +3,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Models;
+using PrivateParkAPI.Repositories;
+using PublicParkAPI.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +15,22 @@ using System.Text;
 using CentralAPI.DTO;
 using CentralAPI.Services.IServices;
 using CentralAPI.Controllers;
+using FluentValidation.Results;
+using CentralAPI.Utils;
 
 namespace CentralAPI.Services.Services {
     public class ReservationService : IReservationService {
 
         private readonly IMapper _mapper;
         private readonly IConfiguration _configure;
-        public ParkingSpotController parkingSpotController;
+        public readonly ParkingSpotController parkingSpotController;
         private readonly ICentralReservationService _centralReservationService;
-        private readonly IParkingLotService _parkingLotService;        
+        private readonly IParkingLotService _parkingLotService;
+        private readonly IParkingSpotService _parkingSpotService;
+
+        //private readonly PrivateParkAPI.Repositories.Repository.ReservationRepository _privateReservationRepository;
+        //private readonly PublicParkAPI.Repositories.ReservationRepository _publicReservationRepository;
+
 
         public ReservationService(IConfiguration configuration, ICentralReservationService centralReservationService, IParkingLotService parkingLotService, IMapper mapper) {
             _configure = configuration;
@@ -98,7 +107,7 @@ namespace CentralAPI.Services.Services {
         //Method to post a reservation in the Parking Lot API
         public async Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO, int pLotID)
         {
-            await GetEndTimeAndFinalPrice(reservationDTO);
+            await GetEndTimeAndFinalPrice(reservationDTO, pLotID);
             var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);            
             var parkinglot = await _parkingLotService.GetParkingLot(pLotID);
 
@@ -111,10 +120,10 @@ namespace CentralAPI.Services.Services {
             return reservationDTO;
         }
 
-        public async Task<ActionResult<ReservationDTO>> GetEndTimeAndFinalPrice(ReservationDTO reservationDTO)
+        public async Task<ActionResult<ReservationDTO>> GetEndTimeAndFinalPrice(ReservationDTO reservationDTO, int id)
         {
-            ParkingSpotController parkingSpotController = new ParkingSpotController(_configure, _parkingLotService);
-            var parkingSpotAction = await parkingSpotController.GetPrivateParkingSpot(reservationDTO.parkingSpotID);
+            ParkingSpotController parkingSpotController = new ParkingSpotController(_configure, _parkingLotService, _parkingSpotService);
+            var parkingSpotAction = await parkingSpotController.GetParkingSpotById(id, reservationDTO.parkingSpotID);
             var parkingSpot = parkingSpotAction.Value;
             reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
             reservationDTO.finalPrice = reservationDTO.hours * parkingSpot.priceHour;
@@ -141,6 +150,11 @@ namespace CentralAPI.Services.Services {
 
             return reservationDTO;
 
-        }        
+        }
+        public ValidationResult Validate(ReservationDTO reservationDTO) {
+            ReservationValidator validationRules = new ReservationValidator();
+            ValidationResult Results = validationRules.Validate(reservationDTO);
+            return Results;
+        }
     }
 }

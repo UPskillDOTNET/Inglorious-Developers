@@ -49,6 +49,7 @@ namespace CentralAPI
             services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddTransient<IParkingLotRepository, ParkingLotRepository>();
             services.AddTransient<IParkingLotService, ParkingLotService>();
+            services.AddTransient<IParkingSpotService, ParkingSpotService>();
             services.AddTransient<ICentralReservationRepository, CentralReservationRepository>();
             services.AddTransient<ICentralReservationService, CentralReservationService>();
             services.AddTransient<IReservationService, ReservationService>();

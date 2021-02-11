@@ -3,6 +3,8 @@ using CentralAPI.DTO;
 using CentralAPI.Models;
 using CentralAPI.Repositories.IRepository;
 using CentralAPI.Services.IServices;
+using CentralAPI.Utils;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,11 +52,10 @@ namespace CentralAPI.Services.Services
             return parkingLotDTO;
         }
 
-        //public ValidationResult Validate(ParkingLotDTO parkingLotDTO)
-        //{
-        //    ParkingLotValidator validationRules = new ParkingLotValidator();
-        //    ValidationResult Results = validationRules.Validate(parkingLotDTO);
-        //    return Results;
-        //}
+        public ValidationResult Validate(ParkingLotDTO parkingLotDTO) {
+            ParkingLotValidator validationRules = new ParkingLotValidator();
+            ValidationResult Results = validationRules.Validate(parkingLotDTO);
+            return Results;
+        }
     }
 }

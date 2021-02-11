@@ -87,16 +87,22 @@ namespace CentralAPI.Controllers
         {
             var reservationDTO = await _reservationService.GetReservationById(id, pLotID);
 
-            //if (await ReservationExists(id))
+            //if (await ReservationExists(id, pLotID))
             //{
-                if (reservationDTO.Value.isCancelled == false)
-                {
+            //    if (reservationDTO.Value.isCancelled == false)
+            //    {
                     await _reservationService.PatchReservation(id, pLotID);
                     return Ok(reservationDTO);
-                }
-                return BadRequest("Couldn't change value");
-           // }
+            //    }
+            //    return BadRequest("Couldn't change value");
+            //}
             //return NotFound("Reservation does not Exist");
-        }       
+        }
+
+        //[HttpGet]
+        //[Route("centralapi/parkinglot/{pLotid}/reservationexists/{id}")]
+        //public async Task<bool> ReservationExists(string id, int pLotID) {
+        //    return await _reservationService.FindReservationAny(id, pLotID);
+        //}
     }
 }
