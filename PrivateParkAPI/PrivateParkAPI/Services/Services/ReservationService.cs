@@ -47,25 +47,18 @@ namespace PrivateParkAPI.Services.Services
 
         public async Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO)
         {
-
-            await GetEndTimeandFinalPrice(reservationDTO);
             var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);
-            await _reservationRepository.PostReservation(reservation);
-            return reservationDTO;
+            var reservationReturn = await _reservationRepository.PostReservation(reservation);
+            var reservationDTOReturn = _mapper.Map<Reservation, ReservationDTO>(reservationReturn);
+            return reservationDTOReturn;
         }
-
-        public async Task<ActionResult<ReservationDTO>> GetEndTimeandFinalPrice(ReservationDTO reservationDTO)
+        public async Task<ActionResult<ReservationDTO>> PatchReservation(string id)
         {
-            var parkingSpot = await _parkingSpotRepository.FindParkingSpot(reservationDTO.parkingSpotID);
-            reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
-            reservationDTO.finalPrice = reservationDTO.hours * parkingSpot.priceHour;
+            var reservation = await _reservationRepository.Find(id);
+            reservation.isCancelled = true;
+            var reservations = await _reservationRepository.PatchReservation(reservation);
+            var reservationDTO = _mapper.Map<Reservation, ReservationDTO>(reservations);
             return reservationDTO;
-        }
-
-        public async Task<ActionResult<Reservation>> PatchReservation(string id)
-        {
-
-            return await _reservationRepository.PatchReservation(id);
         }
         public async Task<bool> FindReservationAny(string id)
         {

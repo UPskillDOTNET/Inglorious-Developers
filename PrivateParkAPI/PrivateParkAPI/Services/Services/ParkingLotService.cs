@@ -41,15 +41,17 @@ namespace PrivateParkAPI.Services.Services
         public async Task<ActionResult<ParkingLotDTO>> PutParkingLot(int id, ParkingLotDTO parkingLotDTO)
         {
             var parkingLot = _mapper.Map<ParkingLotDTO, ParkingLot>(parkingLotDTO);
-            await _parkingLotRepository.PutParkingLot(id, parkingLot);
-            return parkingLotDTO;
+            var parkingLotReturn = await _parkingLotRepository.PutParkingLot(parkingLot);
+            var parkingLotDTOReturn = _mapper.Map<ParkingLot, ParkingLotDTO>(parkingLotReturn);
+            return parkingLotDTOReturn;
         }
 
         public async Task<ActionResult<ParkingLotDTO>> PostParkingLot(ParkingLotDTO parkingLotDTO)
         {
             var parkingLot = _mapper.Map<ParkingLotDTO, ParkingLot>(parkingLotDTO);
-            await _parkingLotRepository.PostParkingLot(parkingLot);
-            return parkingLotDTO;
+            var parkingLotReturn =  await _parkingLotRepository.PostParkingLot(parkingLot);
+            var parkingLotDTOReturn = _mapper.Map<ParkingLot, ParkingLotDTO>(parkingLotReturn);
+            return parkingLotDTOReturn;
         }
 
         public ValidationResult Validate(ParkingLotDTO parkingLotDTO)
