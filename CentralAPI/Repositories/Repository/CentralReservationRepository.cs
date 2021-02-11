@@ -13,7 +13,7 @@ using CentralAPI.Repositories.IRepository;
 namespace CentralAPI.Repositories.Repository {
     public class CentralReservationRepository : BaseRepository<CentralReservation>, ICentralReservationRepository {
 
-        public CentralReservationRepository(CentralParkContext centralAPIContext) : base(centralAPIContext) {
+        public CentralReservationRepository(CentralAPIContext centralAPIContext) : base(centralAPIContext) {
         }
 
         public async Task<IEnumerable<CentralReservation>> GetAllCentralReservations() {

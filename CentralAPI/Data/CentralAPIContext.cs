@@ -16,10 +16,13 @@ namespace CentralAPI.Data
 
         public DbSet<User> Users { get; set; } 
         public DbSet<Wallet> Wallets { get; set; }
-        public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Sublet> Sublets { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<ReservationPayment> ReservationPayments { get; set; }
+        public DbSet<ParkingLot> ParkingLots { get; set; }
+        public DbSet<CentralReservation> CentralReservations { get; set; }
+
     }
 }
 

@@ -11,7 +11,7 @@ namespace CentralAPI.Repositories.Repository
 {
     public class ParkingLotRepository : BaseRepository<ParkingLot>, IParkingLotRepository
     {
-        public ParkingLotRepository(CentralParkContext centralParkContext) : base(centralParkContext)
+        public ParkingLotRepository(CentralAPIContext centralParkContext) : base(centralParkContext)
         {
         }
         public async Task<IEnumerable<ParkingLot>> GetParkingLots()

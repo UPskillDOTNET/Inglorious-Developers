@@ -26,7 +26,7 @@ namespace CentralAPI.Services.Services
             throw new NotImplementedException();
         }
 
-        public void PayReservation(ReservationDTO reservationDTO, ReservationPaymentDTO reservationPaymentDTO)
+        public void PayReservation(CentralReservationDTO centralReservationDTO, ReservationPaymentDTO reservationPaymentDTO)
         {
 
             ReservationPaymentDTO reservationPaymentDTO1 = new ReservationPaymentDTO

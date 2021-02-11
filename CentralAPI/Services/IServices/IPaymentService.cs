@@ -8,7 +8,7 @@ namespace CentralAPI.Services.IServices
 {
     public interface IPaymentService
     {
-        void PayReservation(ReservationDTO reservationDTO, ReservationPaymentDTO reservationPaymentDTO);
+        void PayReservation(CentralReservationDTO centralReservationDTO, ReservationPaymentDTO reservationPaymentDTO);
         void PayOvertime(string reservationID, DateTime parkingEnd);
     }
 }

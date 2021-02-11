@@ -8,7 +8,7 @@ namespace CentralAPI.Data
 {
     public class DBInitializer
     {
-        public static void Initialize (CentralParkContext context)
+        public static void Initialize (CentralAPIContext context)
         {
             context.Database.EnsureCreated();
 
@@ -67,6 +67,82 @@ namespace CentralAPI.Data
                 context.CentralReservations.Add(r);
             }
             context.SaveChanges();
+
+            if (context.Wallets.Any())
+            {
+                return;   // DB has been seeded
+            }
+
+            var Wallets = new Wallet[]
+            {
+                    new Wallet {walletID="1",totalAmount=250,currency="euro",userID="1"},
+                    new Wallet {walletID="2",totalAmount=120,currency="USD",userID="2"},
+                    new Wallet {walletID="3",totalAmount=25,currency="euro",userID="3"},
+            };
+
+            foreach (Wallet w in Wallets)
+            {
+                context.Wallets.Add(w);
+            }
+            context.SaveChanges();
+
+            if (context.Transactions.Any())
+            {
+                return;   // DB has been seeded
+            }
+
+            var Transactions = new Transaction[]
+            {
+                    new Transaction {operation="deposit", userID="1",value=24.3m, transactionDate= DateTime.Parse("2020-02-22 19:30:00")},
+                    new Transaction {operation="deposit", userID="3",value=14.7m, transactionDate= DateTime.Parse("2020-01-14 19:00:00")},
+                    new Transaction {operation="withdraw", userID="2", value=30.3m, transactionDate= DateTime.Parse("2020-02-03 20:00:00")},
+                    new Transaction {operation="withdraw", userID="2", value=50.3m, transactionDate= DateTime.Parse("2020-02-08 23:00:00")},
+                    new Transaction {operation="deposit", userID="2", value=100.3m, transactionDate= DateTime.Parse("2020-03-08 23:00:00")}
+            };
+
+            foreach (Transaction t in Transactions)
+            {
+                context.Transactions.Add(t);
+            }
+            context.SaveChanges();
+
+            if (context.Sublets.Any())
+            {
+                return;   // DB has been seeded
+            }
+
+            var Sublets = new Sublet[]
+           {
+                    new Sublet {subletID = "abc4", reservationID = "wtv", mainUserID="1", subUserID = "2", letPrice = 3.0m, startDate= DateTime.Parse("2020-01-14 19:00:00"), endDate = DateTime.Parse("2020-01-15 19:00:00"), isCancelled=false},
+                    new Sublet {subletID = "abc5", reservationID = "wtv2", mainUserID="2", subUserID = "3", letPrice = 3.0m, startDate= DateTime.Parse("2020-01-14 19:00:00"), endDate = DateTime.Parse("2020-01-15 19:00:00"), isCancelled=false},
+                    new Sublet {subletID = "abc6", reservationID = "wtv3", mainUserID="3", subUserID = "1", letPrice = 3.0m, startDate= DateTime.Parse("2020-01-14 19:00:00"), endDate = DateTime.Parse("2020-01-15 19:00:00"), isCancelled=false}
+
+           };
+
+            foreach (Sublet s in Sublets)
+            {
+                context.Sublets.Add(s);
+            }
+            context.SaveChanges();
+
+            if (context.Payments.Any())
+            {
+                return;   // DB has been seeded
+            }
+
+           // var Payments = new Payment[]
+           //{
+           //         new Payment {},
+           //         new Payment {},
+           //         new Payment {}
+
+           //};
+
+           // foreach (Payment p in Payments)
+           // {
+           //     context.Sublets.Add(p);
+           // }
+           // context.SaveChanges();
         }
     }
 }

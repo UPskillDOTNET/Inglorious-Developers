@@ -1,4 +1,5 @@
-﻿using CentralAPI.Services.IServices;
+﻿using CentralAPI.DTO;
+using CentralAPI.Services.IServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,11 @@ namespace CentralAPI.Services.Services
 
         public void PayReservation(string reservationID)
         {
+        }
+
+        public void PayReservation(CentralReservationDTO centralReservationDTO, ReservationPaymentDTO reservationPaymentDTO)
+        {
+            throw new NotImplementedException();
         }
     }
 }
