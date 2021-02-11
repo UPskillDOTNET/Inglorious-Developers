@@ -8,8 +8,8 @@ namespace CentralAPI.Repositories.IRepository
 {
     public interface IPaymentRepository : IBaseRepository<Payment>
     {
-        IEnumerable<Payment> GetPayments ();
-        Payment GetPaymentsByUserId(string userID);
+        IEnumerable<Payment> GetPayments();
+        IEnumerable<Payment> GetPaymentsByUserId(string userID);
         Task<Payment> SavePayment(Payment payment);
     }
 }
