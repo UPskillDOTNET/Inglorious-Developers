@@ -16,7 +16,7 @@ namespace CentralAPI.Controllers
     public class WalletPaymentController : ControllerBase
     {
         private readonly IWalletPaymentService _walletPaymentService;
-        private readonly IPaymentRepository _paymentRepository;
+        //private readonly IPaymentRepository _paymentRepository;
 
         public WalletPaymentController(IWalletPaymentService walletPaymentService)
         {
@@ -28,11 +28,11 @@ namespace CentralAPI.Controllers
             return await _walletPaymentService.PayReservation(centralReservationDTO);
         }
 
-        [HttpGet("/seeallpayments")]
-        public IEnumerable<Payment> GetPayments()
-        {
-            return _paymentRepository.GetPayments();
-        }
+        //[HttpGet("/seeallpayments")]
+        //public IEnumerable<Payment> GetPayments()
+        //{
+        //    return _paymentRepository.GetPayments();
+        //}
 
     }
 }

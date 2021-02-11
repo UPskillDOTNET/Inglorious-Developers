@@ -65,7 +65,7 @@ namespace CentralAPI.Controllers
             }
             catch (Exception e)
             {
-                return Conflict("Reservation was not found");
+                return Conflict("Reservation was not found" + e);
             }
         }
 
@@ -112,7 +112,7 @@ namespace CentralAPI.Controllers
             }
             catch (Exception e)
             {
-                return Conflict("Reservation was not found");
+                return Conflict("Reservation was not found" +e);
             }
             return Ok(reservationDTO);
 

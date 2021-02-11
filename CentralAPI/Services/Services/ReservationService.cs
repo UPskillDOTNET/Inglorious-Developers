@@ -127,7 +127,7 @@ namespace CentralAPI.Services.Services {
 
         public async Task<ActionResult<ReservationDTO>> GetEndTimeAndFinalPrice(ReservationDTO reservationDTO, int id)
         {
-            ParkingSpotController parkingSpotController = new ParkingSpotController(_configure, _parkingLotService, _parkingSpotService);
+            ParkingSpotController parkingSpotController = new ParkingSpotController( _parkingLotService, _parkingSpotService);
             var parkingSpotAction = await parkingSpotController.GetParkingSpotById(id, reservationDTO.parkingSpotID);
             var parkingSpot = parkingSpotAction.Value;
             reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);

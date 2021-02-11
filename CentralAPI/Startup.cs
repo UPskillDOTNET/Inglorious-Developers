@@ -59,11 +59,9 @@ namespace CentralAPI
             services.AddTransient<IReservationService, ReservationService>();
             services.AddTransient<IWalletRepository, WalletRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<ITransactionRepository, TransactionRepository>();
             services.AddTransient<IWalletService, WalletService>();
             services.AddTransient<IWalletPaymentService, WalletPaymentService>();
             services.AddTransient<IUserService, UserService>();
-            services.AddTransient<ITransactionService, TransactionService>();
             services.AddTransient<ISubletService, SubletService>();
             services.AddTransient<ISubletRepository, SubletRepository>();
 
