@@ -9,7 +9,7 @@ namespace CentralAPI.Models
 {
     public class ReservationPayment : Payment
     {
-        [Key]
+        [ForeignKey("Reservation")]
         public string reservationID { get; set; }
     }
 }

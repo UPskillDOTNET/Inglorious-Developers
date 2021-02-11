@@ -19,6 +19,7 @@ namespace CentralAPI.Data
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Sublet> Sublets { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Payment> Payments { get; set; }
     }
 }
 

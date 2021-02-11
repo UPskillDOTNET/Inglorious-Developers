@@ -72,6 +72,11 @@ namespace CentralAPI.Data
             }
             context.SaveChanges();
 
+            if (context.Sublets.Any())
+            {
+                return;   // DB has been seeded
+            }
+
             var Sublets = new Sublet[]
            {
                     new Sublet {subletID = "abc4", reservationID = "wtv", mainUserID="1", subUserID = "2", letPrice = 3.0m, startDate= DateTime.Parse("2020-01-14 19:00:00"), endDate = DateTime.Parse("2020-01-15 19:00:00"), isCancelled=false},
@@ -85,6 +90,27 @@ namespace CentralAPI.Data
                 context.Sublets.Add(s);
             }
             context.SaveChanges();
+
+            if (context.Payments.Any())
+            {
+                return;   // DB has been seeded
+            }
+
+            var Payments = new Payment[]
+           {
+                    new Payment {},
+                    new Payment {},
+                    new Payment {}
+
+           };
+
+            foreach (Payment p in Payments)
+            {
+                context.Sublets.Add(p);
+            }
+            context.SaveChanges();
+
+
         }
     }
 }
