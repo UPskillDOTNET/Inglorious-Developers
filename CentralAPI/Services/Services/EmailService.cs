@@ -24,7 +24,9 @@ namespace CentralAPI.Services.Services
             using (MailMessage mail = new MailMessage(from, to))
             {
                 mail.Subject = "Reservation " + ID + " was successful!";
-                mail.Body = "Hello! \n We from Inglorious Developers are happy to tell you that your reservation " + ID + "was successful! \n You will find atached to this email your own qr code with your reservation info. \n Please present it when you use the Parking Spot you picked!";
+                mail.Body = "Hello! \n We from Inglorious Developers are happy to tell you that your reservation " 
+                    + ID + " was successful! \n You will find atached to this email your own qr code with your reservation info. " +
+                    "\n Please present it when you use the Parking Spot you picked!";
                 mail.Attachments.Add(attachment);
 
                 mail.IsBodyHtml = false;
