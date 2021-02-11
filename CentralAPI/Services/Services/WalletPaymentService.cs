@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Services.Services
 {
-    public class WalletPaymentService : IPaymentService
+    public class WalletPaymentService : IWalletPaymentService
     { 
         private readonly IMapper _mapper;
         private readonly IReservationPaymentRepository _reservationPaymentRepository;
@@ -31,50 +31,48 @@ namespace CentralAPI.Services.Services
             throw new NotImplementedException();
         }
 
-        //public Task<ActionResult<ReservationPaymentDTOOperation>> PayReservation(CentralReservationDTO centralReservationDTO)
-        //{
-
-        //    CentralReservationDTO centralReservationTest = new CentralReservationDTO
-        //    {
-        //        reservationID = "1",
-        //        startTime = DateTime.Parse("2021-10-22 07:00:00"),
-        //        hours = 2,
-        //        finalPrice = 12.2m,
-        //        userID = "1"
-        //    };
-
-        //    // Mapear a reserva para um pagamento
-        //    var reservationToPayment = _mapper.Map<CentralReservationDTO, ReservationPaymentDTO>(centralReservationTest);
-
-        //    // Buscar a Wallet
-        //    var wallet = _walletService.GetWalletById(reservationToPayment.userID).Result.Value;
-
-        //    var walletDTOOperation = _walletService.WithdrawFromWallet(wallet.walletID, reservationToPayment.finalPrice).Result.Value;
-
-        //    if (!walletDTOOperation.isSuccess)
-        //    {
-        //        wa
-        //    }
-        //    _centralReservationService.PostCentralReservation(centralReservationTest);
+        public async Task<ActionResult<ReservationPaymentDTOOperation>> PayReservation(CentralReservationDTO centralReservationDTO)
+        {
+      
+            // Mapear a reserva para um pagamento
+            var reservationToPayment = _mapper.Map<CentralReservationDTO, ReservationPaymentDTO>(centralReservationDTO);
 
             // Buscar a Wallet
-            //var wallet = _walletService.GetWalletById(reservationToPayment.userID).Result.Value;
+            var wallet = _walletService.GetWalletById(reservationToPayment.userID).Result.Value;
 
-            //var walletDTOOperation = _walletService.WithdrawFromWallet(wallet.walletID, reservationToPayment.finalPrice).Result.Value;
+            if (wallet.totalAmount < reservationToPayment.finalPrice)
+            {
+                ReservationPaymentDTOOperation failure = new ReservationPaymentDTOOperation
+                {
+                    message = "Operation not sucessfull, insufficient funds.",
+                    isSuccess = false,
+                };
+                return failure;
+            }
+            await _walletService.WithdrawFromWallet(wallet.walletID, reservationToPayment.finalPrice);
 
-            //if (!walletDTOOperation.isSuccess)
-            //{
-            //    return walletDTOOperation;
-            //}
-            //_centralReservationService.PostCentralReservation(centralReservationTest);
+            // Está a deixar passar, mesmo que o saldo seja 
+            await _centralReservationService.PostCentralReservation(centralReservationDTO);
 
+            var reservationPayment = _mapper.Map<ReservationPaymentDTO, ReservationPayment>(reservationToPayment);
 
-        //    //QR Code com os dados da Reserva
+            await _reservationPaymentRepository.SaveReservationPayment(reservationPayment);
 
-        //    //Email enviado para o client
+            ReservationPaymentDTOOperation reservationPaymentDTOOperation = new ReservationPaymentDTOOperation
+            {
+                reservationID = reservationPayment.reservationID,
+                finalPrice = reservationPayment.finalPrice,
+                userID = reservationPayment.userID,
+                message = "Operation done",
+                isSuccess = true,
+            };
 
-        //    //Fim do flow
-        //    return reservationToPayment;
-        //}
+            //QR Code com os dados da Reserva - check
+
+            //Email enviado para o user
+
+            //Fim do flow
+            return reservationPaymentDTOOperation;
+        }
     }
 }

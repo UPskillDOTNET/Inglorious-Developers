@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Services.IServices
 {
-    public interface IPaymentService
+    public interface IWalletPaymentService
     {
-        //Task<ActionResult<ReservationPayment>> PayReservation(CentralReservationDTO centralReservationDTO);
+        Task<ActionResult<ReservationPaymentDTOOperation>> PayReservation(CentralReservationDTO centralReservationDTO);
         void PayOvertime(string reservationID, DateTime parkingEnd);
     }
 }

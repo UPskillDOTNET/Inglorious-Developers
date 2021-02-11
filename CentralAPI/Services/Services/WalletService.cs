@@ -17,7 +17,7 @@ namespace CentralAPI.Services.Services
     {
         private readonly IWalletRepository _walletRepository;
         private readonly IMapper _mapper;
-        private readonly IPaymentService _paymentService;
+        private readonly IWalletPaymentService _paymentService;
 
         public WalletService(IWalletRepository walletRepository, IMapper mapper)
         {

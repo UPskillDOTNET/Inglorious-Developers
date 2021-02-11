@@ -1,4 +1,7 @@
 ﻿using CentralAPI.DTO;
+using CentralAPI.Models;
+using CentralAPI.Repositories.IRepository;
+using CentralAPI.Services.IServices;
 using CentralAPI.Services.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,17 +15,24 @@ namespace CentralAPI.Controllers
     [Route("api/[controller]")]
     public class WalletPaymentController : ControllerBase
     {
-        private readonly WalletPaymentService _walletPaymentService;
+        private readonly IWalletPaymentService _walletPaymentService;
+        private readonly IPaymentRepository _paymentRepository;
 
-        public WalletPaymentController(WalletPaymentService walletPaymentService)
+        public WalletPaymentController(IWalletPaymentService walletPaymentService)
         {
             _walletPaymentService = walletPaymentService;
         }
 
-        //public async Task<ActionResult<ReservationPaymentDTOOperation>> PayReservation(CentralReservationDTO centralReservationDTO)
-        //{
-        //    return await _walletPaymentService.PayReservation(centralReservationDTO);
-        //}
+        public async Task<ActionResult<ReservationPaymentDTOOperation>> PayReservation(CentralReservationDTO centralReservationDTO)
+        {
+            return await _walletPaymentService.PayReservation(centralReservationDTO);
+        }
+
+        [HttpGet("/seeallpayments")]
+        public IEnumerable<Payment> GetPayments()
+        {
+            return _paymentRepository.GetPayments();
+        }
 
     }
 }
