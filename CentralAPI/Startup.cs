@@ -52,13 +52,16 @@ namespace CentralAPI
             services.AddTransient<EmailService>();
             services.AddTransient<IParkingLotService, ParkingLotService>();
             services.AddTransient<IParkingSpotService, ParkingSpotService>();
+            services.AddTransient<IPaymentRepository, PaymentRepository>();
             services.AddTransient<ICentralReservationRepository, CentralReservationRepository>();
             services.AddTransient<ICentralReservationService, CentralReservationService>();
+            services.AddTransient<IReservationPaymentRepository, ReservationPaymentRepository>();
             services.AddTransient<IReservationService, ReservationService>();
             services.AddTransient<IWalletRepository, WalletRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<ITransactionRepository, TransactionRepository>();
             services.AddTransient<IWalletService, WalletService>();
+            services.AddTransient<IWalletPaymentService, WalletPaymentService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ITransactionService, TransactionService>();
             services.AddTransient<ISubletService, SubletService>();
