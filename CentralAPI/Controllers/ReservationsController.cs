@@ -106,7 +106,14 @@ namespace CentralAPI.Controllers
                 return NotFound("Parking Lot was not found");
             }
             var reservationDTO = await _reservationService.GetReservationById(id, pLotID);
+            try 
+            { 
             await _reservationService.PatchReservation(id, pLotID);
+            }
+            catch (Exception e)
+            {
+                return Conflict("Reservation was not found");
+            }
             return Ok(reservationDTO);
 
         }

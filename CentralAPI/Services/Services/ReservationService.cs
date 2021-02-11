@@ -80,7 +80,7 @@ namespace CentralAPI.Services.Services {
                 var response = await client.GetAsync(endpoint);
                 if (response == null)
                 {
-                    throw new Exception("Teste");
+                    throw new Exception();
                 }
                 reservationDTO = await response.Content.ReadAsAsync<ReservationDTO>();
             }
@@ -100,6 +100,10 @@ namespace CentralAPI.Services.Services {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(id), Encoding.UTF8, "application/json");
                 string endpoint = parkinglot.Value.myURL + "/reservations/" + id;
                 var response = await client.PatchAsync(endpoint, content);
+                if (response == null)
+                {
+                    throw new Exception();
+                }
                 reservationDTO = await response.Content.ReadAsAsync<ReservationDTO>();
             }
             return reservationDTO;
