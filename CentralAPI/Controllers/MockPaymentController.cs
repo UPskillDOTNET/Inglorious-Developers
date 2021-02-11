@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 namespace CentralAPI.Controllers
 {
     [ApiController]
-    [Route("teste")]
-    public class PaymentsController : ControllerBase
+    [Route("api/[controller]")]
+    public class MockPaymentController : ControllerBase
     {
-        public PaymentsController()
+        public MockPaymentController()
         {
         }
 

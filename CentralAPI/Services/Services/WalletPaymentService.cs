@@ -47,16 +47,27 @@ namespace CentralAPI.Services.Services
         //    var reservationToPayment = _mapper.Map<CentralReservationDTO, ReservationPaymentDTO>(centralReservationTest);
 
         //    // Buscar a Wallet
-        //    var wallet = _walletService.GetWalletById(reservationToPayment.userID).Result;
-        //    var x = wallet.Value;
+        //    var wallet = _walletService.GetWalletById(reservationToPayment.userID).Result.Value;
 
-        //    var walletDTOOperation = _walletService.WithdrawFromWallet(x.walletID, reservationToPayment.finalPrice).Result.Value;
+        //    var walletDTOOperation = _walletService.WithdrawFromWallet(wallet.walletID, reservationToPayment.finalPrice).Result.Value;
 
         //    if (!walletDTOOperation.isSuccess)
         //    {
         //        wa
         //    }
         //    _centralReservationService.PostCentralReservation(centralReservationTest);
+
+            // Buscar a Wallet
+            //var wallet = _walletService.GetWalletById(reservationToPayment.userID).Result.Value;
+
+            //var walletDTOOperation = _walletService.WithdrawFromWallet(wallet.walletID, reservationToPayment.finalPrice).Result.Value;
+
+            //if (!walletDTOOperation.isSuccess)
+            //{
+            //    return walletDTOOperation;
+            //}
+            //_centralReservationService.PostCentralReservation(centralReservationTest);
+
 
         //    //QR Code com os dados da Reserva
 
