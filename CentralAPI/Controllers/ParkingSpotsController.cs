@@ -70,7 +70,7 @@ namespace CentralAPI.Controllers {
         [HttpPost]
         [Route("centralapi/parkinglot/{id}/parkingspots")]
 
-        public async Task<ActionResult<ParkingSpotDTO>> CreateParkingSpot([Bind("parkingSpotID, priceHour, floor, isPrivate, isCovered")] ParkingSpotDTO parkingSpotDTO, int id) {
+        public async Task<ActionResult<ParkingSpotDTO>> CreateParkingSpot([Bind("parkingSpotID, priceHour, floor, isPrivate, isCovered, parkingLotID")] ParkingSpotDTO parkingSpotDTO, int id) {
             var Results = _parkingSpotService.Validate(parkingSpotDTO);
 
             if (!Results.IsValid) {

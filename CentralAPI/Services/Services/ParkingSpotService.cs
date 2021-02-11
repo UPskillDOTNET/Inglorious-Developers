@@ -88,8 +88,8 @@ namespace CentralAPI.Services.Services {
             var parkinglot = await _parkingLotService.GetParkingLot(id);
             using (HttpClient client = new HttpClient()) {
 
-                StringContent content = new StringContent(JsonConvert.SerializeObject(parkingSpotDTO), Encoding.UTF8, "application/json");
                 parkingSpotDTO.parkingLotID = id;
+                StringContent content = new StringContent(JsonConvert.SerializeObject(parkingSpotDTO), Encoding.UTF8, "application/json");                
                 string endpoint = parkinglot.Value.myURL + "/parkingspots";
                 var response = await client.PostAsync(endpoint, content);
             }

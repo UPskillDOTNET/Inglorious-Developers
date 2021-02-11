@@ -64,17 +64,17 @@ namespace CentralAPI.Controllers
         }
         [HttpPut]
         [Route("/api/[controller]/deposit/{walletID}/{value}/")]
-        public async Task<ActionResult<WalletDTO>> DepositToWallet(string walletID, decimal value)
-        {
+        //public async Task<ActionResult<WalletDTO>> DepositToWallet(string walletID, decimal value)
+        //{
 
-            if (value == 0)
-            {
-                return BadRequest("Value is zero.");
-            }
+        //    if (value == 0)
+        //    {
+        //        return BadRequest("Value is zero.");
+        //    }
 
-            await _walletService.DepositToWallet(walletID, value);
-            return Ok(value + " euros added to the account sucessfully.");
-        }
+        //    await _walletService.DepositToWallet(walletID, value);
+        //    return Ok(value + " euros added to the account sucessfully.");
+        //}
 
         [HttpPut]
         [Route("/api/[controller]/withdraw/{walletID}/{value}/")]

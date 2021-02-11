@@ -31,39 +31,39 @@ namespace CentralAPI.Services.Services
             throw new NotImplementedException();
         }
 
-        public Task<ActionResult<ReservationPaymentDTOOperation>> PayReservation(CentralReservationDTO centralReservationDTO)
-        {
+        //public Task<ActionResult<ReservationPaymentDTOOperation>> PayReservation(CentralReservationDTO centralReservationDTO)
+        //{
 
-            CentralReservationDTO centralReservationTest = new CentralReservationDTO
-            {
-                reservationID = "1",
-                startTime = DateTime.Parse("2021-10-22 07:00:00"),
-                hours = 2,
-                finalPrice = 12.2m,
-                userID = "1"
-            };
+        //    CentralReservationDTO centralReservationTest = new CentralReservationDTO
+        //    {
+        //        reservationID = "1",
+        //        startTime = DateTime.Parse("2021-10-22 07:00:00"),
+        //        hours = 2,
+        //        finalPrice = 12.2m,
+        //        userID = "1"
+        //    };
 
-            // Mapear a reserva para um pagamento
-            var reservationToPayment = _mapper.Map<CentralReservationDTO, ReservationPaymentDTO>(centralReservationTest);
+        //    // Mapear a reserva para um pagamento
+        //    var reservationToPayment = _mapper.Map<CentralReservationDTO, ReservationPaymentDTO>(centralReservationTest);
 
-            // Buscar a Wallet
-            var wallet = _walletService.GetWalletById(reservationToPayment.userID).Result;
-            var x = wallet.Value;
+        //    // Buscar a Wallet
+        //    var wallet = _walletService.GetWalletById(reservationToPayment.userID).Result;
+        //    var x = wallet.Value;
 
-            var walletDTOOperation = _walletService.WithdrawFromWallet(x.walletID, reservationToPayment.finalPrice).Result.Value;
+        //    var walletDTOOperation = _walletService.WithdrawFromWallet(x.walletID, reservationToPayment.finalPrice).Result.Value;
 
-            if (!walletDTOOperation.isSuccess)
-            {
-                wa
-            }
-            _centralReservationService.PostCentralReservation(centralReservationTest);
+        //    if (!walletDTOOperation.isSuccess)
+        //    {
+        //        wa
+        //    }
+        //    _centralReservationService.PostCentralReservation(centralReservationTest);
 
-            //QR Code com os dados da Reserva
+        //    //QR Code com os dados da Reserva
 
-            //Email enviado para o client
+        //    //Email enviado para o client
 
-            //Fim do flow
-            return reservationToPayment;
-        }
+        //    //Fim do flow
+        //    return reservationToPayment;
+        //}
     }
 }
