@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
-using CentralAPI.Models;
 
 namespace CentralAPI.Models
 {
@@ -21,5 +16,31 @@ namespace CentralAPI.Models
         public string userID { get; set; }
 
         public User User { get; set; }
+
+
+        public bool withdraw(decimal value)
+        {
+            if (totalAmount - value < 0)
+            {
+                return false;
+            }
+            totalAmount -= value;
+            return true;
+        }
+
+        public bool deposit(decimal value)
+        {
+            if (value < 0)
+            {
+                return false;
+            }
+            totalAmount += value;
+            return true;
+        }
+
+        public decimal balance()
+        {
+            return totalAmount;
+        }
     }
 }

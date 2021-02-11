@@ -12,7 +12,7 @@ namespace PrivateParkAPI.Repositories.IRepository
         Task<ParkingSpot> GetParkingSpot(string ID);
         Task<ParkingSpot> FindParkingSpot(string id);
         Task<bool> FindParkingSpotAny(string id);
-        Task<ParkingSpot> PutParkingSpot(string id, ParkingSpot parkingSpot);
+        Task<ParkingSpot> PutParkingSpot(ParkingSpot parkingSpot);
         Task<ParkingSpot> PostParkingSpot(ParkingSpot parkingSpot);
         Task<ParkingSpot> DeleteParkingSpot(string id);
 

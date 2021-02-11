@@ -77,17 +77,50 @@ namespace CentralAPI.Services.Services
             return walletDTO;
         }
 
-        public async Task<ActionResult<Wallet>> DepositToWallet(string walletID, decimal value)
+        public async Task<ActionResult<WalletDTOOperation>> DepositToWallet(string walletID, decimal value)
         {
-  
-            return await _walletRepository.DepositToWallet(walletID, value);
+            var wallet = _walletRepository.GetWalletById(walletID);
+            WalletDTOOperation walletDTOOperation;
 
-            // Alterar com o valor que recebe no argumento - nao pode ser menor que 0 ou a operação é cancelada
+            if (!wallet.deposit(value))
+            {
+                walletDTOOperation = _mapper.Map<Wallet, WalletDTOOperation>(wallet);
+                walletDTOOperation.message = "Operation not allowed. Can't charge negative numbers.";
+                walletDTOOperation.isSuccess = false;
+                walletDTOOperation.operation = 1;
+            } else
+            {
+                walletDTOOperation = _mapper.Map<Wallet, WalletDTOOperation>(wallet);
+                walletDTOOperation.message = "Operation not allowed. Can't charge negative numbers.";
+                walletDTOOperation.isSuccess = true;
+                walletDTOOperation.operation = 1;
+                await _walletRepository.DepositToWallet(wallet, value);
+            }
+            return walletDTOOperation;
         }
 
-        public async Task<ActionResult<Wallet>> WithdrawFromWallet(string walletID, decimal value)
+        public async Task<ActionResult<WalletDTOOperation>> WithdrawFromWallet(string walletID, decimal value)
         {
-            return await _walletRepository.WithdrawFromWallet(walletID, value);
+
+            var wallet = _walletRepository.GetWalletById(walletID);
+            WalletDTOOperation walletDTOOperation;
+
+           if (!wallet.withdraw(value))
+            {
+                walletDTOOperation = _mapper.Map<Wallet,WalletDTOOperation>(wallet);
+                walletDTOOperation.message = "Operation not allowed. Insufficient funds.";
+                walletDTOOperation.isSuccess = false;
+                walletDTOOperation.operation = 2;
+            } else
+            {
+                walletDTOOperation = _mapper.Map<Wallet, WalletDTOOperation>(wallet);
+                walletDTOOperation.message = "Operation allowed.";
+                walletDTOOperation.isSuccess = true;
+                walletDTOOperation.operation = 2;
+                await _walletRepository.WithdrawFromWallet(wallet, value);
+            }
+
+            return walletDTOOperation;
         }
 
         public async Task<bool> FindWalletAny(string id)

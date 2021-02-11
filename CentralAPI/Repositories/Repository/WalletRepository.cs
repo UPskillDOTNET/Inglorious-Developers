@@ -36,23 +36,16 @@ namespace CentralAPI.Repositories.Repository
             return wallet;
         }
 
-        public async Task<Wallet> DepositToWallet(string walletID, decimal value)
+        public async Task<Wallet> DepositToWallet(Wallet wallet, decimal value)
         {
-            var x = GetAll().FirstOrDefaultAsync(w => w.walletID == walletID)
-                .Result;
-            x.totalAmount += value;
-            await UpdateAsync(x);
-            return x;
-            
+            await UpdateAsync(wallet);
+            return wallet;
         }
 
-        public async Task<Wallet> WithdrawFromWallet(string walletID, decimal value)
+        public async Task<Wallet> WithdrawFromWallet(Wallet wallet, decimal value)
         {
-            var x = GetAll().FirstOrDefaultAsync(w => w.walletID == walletID)
-                .Result;
-            x.totalAmount -= value;
-            await UpdateAsync(x);
-            return x;
+            await UpdateAsync(wallet);
+            return wallet;
         }
 
         public async Task<bool> FindWalletAny(string id)

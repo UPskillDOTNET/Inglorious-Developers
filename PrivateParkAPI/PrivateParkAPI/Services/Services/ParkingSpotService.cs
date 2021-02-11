@@ -70,13 +70,15 @@ namespace PrivateParkAPI.Services.Services
             return parkingSpotsDTO;
         }
 
-        public async Task<ActionResult<ParkingSpotDTO>> PutParkingSpot(string id, ParkingSpotDTO parkingSpotDTO)
+        public async Task<ActionResult<ParkingSpotDTO>> PutParkingSpot(ParkingSpotDTO parkingSpotDTO)
         {
             var parkingSpot = _mapper.Map<ParkingSpotDTO, ParkingSpot>(parkingSpotDTO);
 
-            await _parkingSpotRepository.PutParkingSpot(id, parkingSpot);
+            var parkingSpotReturn = await _parkingSpotRepository.PutParkingSpot(parkingSpot);
 
-            return parkingSpotDTO;
+            var parkingSpotDTOReturn = _mapper.Map<ParkingSpot, ParkingSpotDTO>(parkingSpotReturn);
+
+            return parkingSpotDTOReturn;
 
         }
 
@@ -84,22 +86,22 @@ namespace PrivateParkAPI.Services.Services
         {
             var parkingSpot = _mapper.Map<ParkingSpotDTO, ParkingSpot>(parkingSpotDTO);
 
+            var parkingSpotReturn = await _parkingSpotRepository.PostParkingSpot(parkingSpot);
 
-            await _parkingSpotRepository.PostParkingSpot(parkingSpot);
+            var parkingSpotDTOReturn = _mapper.Map<ParkingSpot, ParkingSpotDTO>(parkingSpotReturn);
 
-            return parkingSpotDTO;
+            return parkingSpotDTOReturn;
 
         }
 
         public async Task<ActionResult<ParkingSpotDTO>> DeleteParkingSpot(string id)
         {
 
-            var parkingspot = await _parkingSpotRepository.GetParkingSpot(id);
-            var parkingSpotsDTO = _mapper.Map<ParkingSpot, ParkingSpotDTO>(parkingspot);
+            var parkingSpotReturn = await _parkingSpotRepository.DeleteParkingSpot(id);
 
-            await _parkingSpotRepository.DeleteParkingSpot(id);
+            var parkingSpotDTOReturn = _mapper.Map<ParkingSpot, ParkingSpotDTO>(parkingSpotReturn);
 
-            return parkingSpotsDTO;
+            return parkingSpotDTOReturn;
 
         }
 

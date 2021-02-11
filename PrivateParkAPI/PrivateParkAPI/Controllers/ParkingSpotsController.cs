@@ -100,7 +100,7 @@ namespace PrivateParkAPI.Controllers
 
             try
             {
-                await _parkingSpotService.PutParkingSpot(id, parkingSpotDTO);
+                await _parkingSpotService.PutParkingSpot(parkingSpotDTO);
             }
             catch (Exception)
             {
