@@ -18,6 +18,7 @@ namespace PrivateParkAPI.Services.Services
         private readonly IParkingSpotRepository _parkingSpotRepository;
         private readonly IReservationRepository _reservationRepository;
         private readonly IMapper _mapper;
+
         public ParkingSpotService(IParkingSpotRepository parkingSpotRepository, IReservationRepository reservationRepository, IMapper mapper)
         {
             _parkingSpotRepository = parkingSpotRepository;
@@ -72,7 +73,6 @@ namespace PrivateParkAPI.Services.Services
         public async Task<ActionResult<ParkingSpotDTO>> PutParkingSpot(string id, ParkingSpotDTO parkingSpotDTO)
         {
             var parkingSpot = _mapper.Map<ParkingSpotDTO, ParkingSpot>(parkingSpotDTO);
-
 
             await _parkingSpotRepository.PutParkingSpot(id, parkingSpot);
 

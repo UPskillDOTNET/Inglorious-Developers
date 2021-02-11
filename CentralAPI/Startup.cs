@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using CentralAPI.Data;
 using CentralAPI.DTO;
 using CentralAPI.Repositories.IRepository;
 using CentralAPI.Repositories.Repository;
 using CentralAPI.Services.IServices;
 using CentralAPI.Services.Services;
+using CentralAPI.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -52,12 +52,20 @@ namespace CentralAPI
             services.AddTransient<ICentralReservationRepository, CentralReservationRepository>();
             services.AddTransient<ICentralReservationService, CentralReservationService>();
             services.AddTransient<IReservationService, ReservationService>();
+            services.AddTransient<IWalletRepository, WalletRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ITransactionRepository, TransactionRepository>();
+            services.AddTransient<IWalletService, WalletService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ITransactionService, TransactionService>();
+            services.AddTransient<ISubletService, SubletService>();
+            services.AddTransient<ISubletRepository, SubletRepository>();
 
             services.AddControllers().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
             services.AddAutoMapper(typeof(Maps));
-
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

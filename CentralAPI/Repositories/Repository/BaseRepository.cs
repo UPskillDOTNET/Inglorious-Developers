@@ -2,39 +2,43 @@
 using CentralAPI.Repositories.IRepository;
 using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace CentralAPI.Repositories.Repository
 {
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity: class, new()
+    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class, new()
     {
-        protected readonly CentralParkContext CentralParkContext;
-        public BaseRepository(CentralParkContext centralContext)
+
+        protected readonly CentralAPIContext CentralAPIContext;
+
+        public BaseRepository(CentralAPIContext CentralAPIContext)
         {
-            CentralParkContext = centralContext;
+            this.CentralAPIContext = CentralAPIContext;
         }
 
         public IQueryable<TEntity> GetAll()
         {
             try
             {
-                return CentralParkContext.Set<TEntity>();
+                return CentralAPIContext.Set<TEntity>();
             }
             catch (Exception ex)
             {
-                throw new Exception($"Couldn't retieve entities: {ex.Message}");
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
             }
         }
+
         public async Task<TEntity> Find(string id)
         {
             try
             {
-                return await CentralParkContext.Set<TEntity>().FindAsync(id);
+                return await CentralAPIContext.Set<TEntity>().FindAsync(id);
             }
             catch (Exception ex)
             {
-                throw new Exception($"Couldn't retieve entities: {ex.Message}");
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
             }
         }
 
@@ -47,8 +51,8 @@ namespace CentralAPI.Repositories.Repository
 
             try
             {
-                await CentralParkContext.AddAsync(entity);
-                await CentralParkContext.SaveChangesAsync();
+                await CentralAPIContext.AddAsync(entity);
+                await CentralAPIContext.SaveChangesAsync();
 
                 return entity;
             }
@@ -62,13 +66,13 @@ namespace CentralAPI.Repositories.Repository
         {
             if (entity == null)
             {
-                throw new ArgumentNullException($"{nameof(UpdateAsync)} entity must not be null");
+                throw new ArgumentNullException($"{nameof(AddAsync)} entity must not be null");
             }
-
+      
             try
             {
-                CentralParkContext.Update(entity);
-                await CentralParkContext.SaveChangesAsync();
+                CentralAPIContext.Update(entity);
+                await CentralAPIContext.SaveChangesAsync();
 
                 return entity;
             }
@@ -82,13 +86,13 @@ namespace CentralAPI.Repositories.Repository
         {
             if (entity == null)
             {
-                throw new ArgumentNullException($"{nameof(DeleteAsync)} entity must not be null");
+                throw new ArgumentNullException($"{nameof(AddAsync)} entity must not be null");
             }
 
             try
             {
-                CentralParkContext.Remove(entity);
-                await CentralParkContext.SaveChangesAsync();
+                CentralAPIContext.Remove(entity);
+                await CentralAPIContext.SaveChangesAsync();
 
                 return entity;
             }
