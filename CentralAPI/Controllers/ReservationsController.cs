@@ -1,16 +1,8 @@
 ﻿using CentralAPI.DTO;
 using CentralAPI.Services.IServices;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using CentralAPI.Controllers;
 
 namespace CentralAPI.Controllers
 {
@@ -19,90 +11,114 @@ namespace CentralAPI.Controllers
     public class ReservationsController : ControllerBase
     {
 
-        
-        private readonly IReservationService _reservationService;
-        
 
-        public ReservationsController(IReservationService reservationService)
-        {            
+        private readonly IReservationService _reservationService;
+        private readonly IParkingLotService _parkingLotService;
+
+
+        public ReservationsController(IReservationService reservationService, IParkingLotService parkingLotService)
+        {
             _reservationService = reservationService;
+            _parkingLotService = parkingLotService;
         }
-       
+
 
         //Get All Resevations
         [HttpGet]
-        [Route("centralapi/parkinglot/{id}/allreservation")]
+        [Route("centralapi/parkinglot/{id}/allreservations")]
         public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ReservationDTO>>> GetAllReservations(int id)
         {
+            if (await ParkingLotExists(id) == false)
+            {
+                return NotFound("Parking Lot was not found");
+            }
             return await _reservationService.GetAllReservations(id);
         }
 
 
         //Get All Not Cancelled Reservations
         [HttpGet]
-        [Route("centralapi/parkinglot/{id}/reservation")]
-        public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ReservationDTO>>> GetAllNotCanceledReservations(int id) {
+        [Route("centralapi/parkinglot/{id}/reservations")]
+        public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ReservationDTO>>> GetAllNotCanceledReservations(int id)
+        {
+            if (await ParkingLotExists(id) == false)
+            {
+                return NotFound("Parking Lot was not found");
+            }
             return await _reservationService.GetAllNotCanceledReservations(id);
         }
 
         //Get Resevations by Id
         [HttpGet]
-        [Route("centralapi/parkinglot/{pLotID}/reservation/{id}")]
-        public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> GetReservationById(string id, int pLotID) {
-            if (id == null) {
+        [Route("centralapi/parkinglot/{pLotID}/reservations/{id}")]
+        public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> GetReservationById(string id, int pLotID)
+        {
+            if (id == null)
+            {
                 return NotFound();
             }
-            //if (await ReservationExists(id) == false) {
-            //    return NotFound("Reservarion not Found");
-            //}
+            if (await ParkingLotExists(pLotID) == false)
+            {
+                return NotFound("Parking Lot was not found");
+            }
             return await _reservationService.GetReservationById(id, pLotID);
-            //if (PrivateParkAPI.DTO.ReservationDTO == null) {
-            //    return NotFound();
-            //}
+            
         }
 
 
         //POST Resevation only in ParkAPI
         [HttpPost]
-        [Route("centralapi/parkinglot/{pLotID}/apireservation")]
+        [Route("centralapi/parkinglot/{pLotID}/apireservations")]
         public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PostReservation([FromBody] PrivateParkAPI.DTO.ReservationDTO reservationDTO, int pLotID)
         {
+            if (await ParkingLotExists(pLotID) == false)
+            {
+                return NotFound("Parking Lot was not found");
+            }
             await _reservationService.PostReservation(reservationDTO, pLotID);
             return CreatedAtAction("PostReservation", new { id = reservationDTO.reservationID }, reservationDTO);
         }
 
         //POST Reservation in Both Central and Park APIs
         [HttpPost]
-        [Route("centralapi/parkinglot/{pLotID}/reservation")]
+        [Route("centralapi/parkinglot/{pLotID}/reservations")]
         public async Task<ActionResult<CentralReservationDTO>> PostUserReservation([FromBody] CentralReservationDTO reservationDTO, int pLotID)
-        {            
-           await _reservationService.PostUserReservation(reservationDTO, pLotID);
+        {
+            if (await ParkingLotExists(pLotID) == false)
+            {
+                return NotFound("Parking Lot was not found");
+            }
+            await _reservationService.PostUserReservation(reservationDTO, pLotID);
             return CreatedAtAction("PostReservation", new { id = reservationDTO.reservationID }, reservationDTO);
         }
 
         //POST Cancel Reservation by ID
         [HttpPost]
-        [Route("centralapi/parkinglot/{pLotID}/cancelreservation/{id}")]
+        [Route("centralapi/parkinglot/{pLotID}/cancelreservations/{id}")]
         public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PatchReservation(string id, int pLotID)
         {
+            if (await ParkingLotExists(pLotID) == false)
+            {
+                return NotFound("Parking Lot was not found");
+            }
             var reservationDTO = await _reservationService.GetReservationById(id, pLotID);
+            await _reservationService.PatchReservation(id, pLotID);
+            return Ok(reservationDTO);
 
-            //if (await ReservationExists(id, pLotID))
-            //{
-            //    if (reservationDTO.Value.isCancelled == false)
-            //    {
-                    await _reservationService.PatchReservation(id, pLotID);
-                    return Ok(reservationDTO);
-            //    }
-            //    return BadRequest("Couldn't change value");
-            //}
-            //return NotFound("Reservation does not Exist");
         }
+        private async Task<bool> ParkingLotExists(int id)
+        {
+            var parkingLot = await _parkingLotService.GetParkingLot(id);
 
-        //[HttpGet]
-        //[Route("centralapi/parkinglot/{pLotid}/reservationexists/{id}")]
-        //public async Task<bool> ReservationExists(string id, int pLotID) {
-        //    return await _reservationService.FindReservationAny(id, pLotID);
-        //}
+            if (parkingLot.Value != null)
+            {
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

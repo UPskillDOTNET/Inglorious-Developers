@@ -19,10 +19,10 @@ namespace CentralAPI.Controllers
             _walletPaymentService = walletPaymentService;
         }
 
-        public async Task<ActionResult<ReservationPaymentDTOOperation>> PayReservation(CentralReservationDTO centralReservationDTO)
-        {
-            return await _walletPaymentService.PayReservation(centralReservationDTO);
-        }
+        //public async Task<ActionResult<ReservationPaymentDTOOperation>> PayReservation(CentralReservationDTO centralReservationDTO)
+        //{
+        //    return await _walletPaymentService.PayReservation(centralReservationDTO);
+        //}
 
     }
 }

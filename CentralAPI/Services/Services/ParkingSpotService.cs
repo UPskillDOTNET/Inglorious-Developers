@@ -112,6 +112,5 @@ namespace CentralAPI.Services.Services {
             ValidationResult Results = validationRules.Validate(parkingSpotDTO);
             return Results;
         }
-
     }
 }
