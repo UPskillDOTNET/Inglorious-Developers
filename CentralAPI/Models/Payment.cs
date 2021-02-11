@@ -13,7 +13,7 @@ namespace CentralAPI.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string paymentID { get; set; }
 
-        public decimal value { get; set; }
+        public decimal finalPrice { get; set; }
 
         [ForeignKey("PaymentOption")]
         public string paymentOptionID { get; set; }

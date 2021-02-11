@@ -3,6 +3,7 @@ using CentralAPI.DTO;
 using CentralAPI.Models;
 using CentralAPI.Repositories.IRepository;
 using CentralAPI.Services.IServices;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,15 @@ namespace CentralAPI.Services.Services
     { 
         private readonly IMapper _mapper;
         private readonly IReservationPaymentRepository _reservationPaymentRepository;
+        private readonly IWalletService _walletService;
+        private readonly ICentralReservationService _centralReservationService;
 
-        public WalletPaymentService(IMapper mapper, IReservationPaymentRepository reservationPaymentRepository)
+        public WalletPaymentService(IMapper mapper, IReservationPaymentRepository reservationPaymentRepository, IWalletService walletService, ICentralReservationService centralReservationService)
         {
             _mapper = mapper;
             _reservationPaymentRepository = reservationPaymentRepository;
+            _walletService = walletService;
+            _centralReservationService = centralReservationService;
         }
 
         public void PayOvertime(string reservationID, DateTime parkingEnd)
@@ -26,33 +31,42 @@ namespace CentralAPI.Services.Services
             throw new NotImplementedException();
         }
 
-        public void PayReservation(CentralReservationDTO centralReservationDTO, ReservationPaymentDTO reservationPaymentDTO)
+        public Task<ActionResult<ReservationPayment>> PayReservation(CentralReservationDTO centralReservationDTO)
         {
 
-            ReservationPaymentDTO reservationPaymentDTO1 = new ReservationPaymentDTO
+            CentralReservationDTO centralReservationTest = new CentralReservationDTO
             {
-               reservationID = "1",
-               value = 12.12m,
-               userID = "1"
+                reservationID = "1",
+                startTime = DateTime.Parse("2021-10-22 07:00:00"),
+                hours = 2,
+                finalPrice = 12.2m,
+                userID = "1"
             };
 
-            //var wallet = FindWallet(reservationPaymentDTO.userID)
-            
-            // verificar se a 
-            //se deu ralha - Not sucessfull response
-            //se deu certo
+            // Mapear a reserva para um pagamento
+            var reservationToPayment = _mapper.Map<CentralReservationDTO, ReservationPaymentDTO>(centralReservationTest);
 
-            //(reservationPaymentDTO1.value > Wallet.totalAmount) {
-            //    return Conflict("Insufficient funds in wallet");
-            //}
+            // Buscar a Wallet
+            var wallet = _walletService.GetWalletById(reservationToPayment.userID).Result;
+            var x = wallet.Value;
 
-            //Create Reservation aqui
+            //Verificar se a Wallet tem dinheiro para a operação ter sucesso
+            if (reservationToPayment.finalPrice > x.totalAmount)
+            {
+                //caso não tenha, a operação ser cancelada, e uma mensagem para carregar a wallet
+                ret
+            }
 
-            var reservationPayment = _mapper.Map<ReservationPaymentDTO, ReservationPayment>(reservationPaymentDTO1);
-            _reservationPaymentRepository.SaveReservationPayment(reservationPayment);
-            //return {"Operation sucessfull" + paymentDTO}
+            // caso tenha sucesso, a operação continua.
+            // A reserva é guardada.
+            _centralReservationService.PostCentralReservation(centralReservationTest);
 
-      
+            //QR Code com os dados da Reserva
+
+            //Email enviado para o client
+
+            //Fim do flow
+            return reservationToPayment;
         }
     }
 }

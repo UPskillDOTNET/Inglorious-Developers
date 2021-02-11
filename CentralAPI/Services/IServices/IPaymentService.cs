@@ -1,4 +1,6 @@
 ﻿using CentralAPI.DTO;
+using CentralAPI.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +10,7 @@ namespace CentralAPI.Services.IServices
 {
     public interface IPaymentService
     {
-        void PayReservation(CentralReservationDTO centralReservationDTO, ReservationPaymentDTO reservationPaymentDTO);
+        Task<ActionResult<ReservationPayment>> PayReservation(CentralReservationDTO centralReservationDTO);
         void PayOvertime(string reservationID, DateTime parkingEnd);
     }
 }
