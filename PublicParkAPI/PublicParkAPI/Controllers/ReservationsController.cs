@@ -86,8 +86,8 @@ namespace PublicParkAPI.Controllers
             {
                 if (reservationDTO.Value.isCancelled == false)
                 {
-                    await _reservationService.PatchReservation(id);
-                    return Ok("Reservation Cancelled");
+                    reservationDTO = await _reservationService.PatchReservation(id);
+                    return Ok("Reservation is Cancelled" + reservationDTO.Result);
                 }
                 return BadRequest("Couldn't change value");
             }

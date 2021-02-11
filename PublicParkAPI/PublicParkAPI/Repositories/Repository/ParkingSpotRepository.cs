@@ -41,16 +41,16 @@ namespace PublicParkAPI.Repositories
             return await GetAll().Where(p => p.parkingSpotID == id).AnyAsync();
         }
 
-        public async Task<ParkingSpot> PutParkingSpot(string id, ParkingSpot parkingSpot)
+        public async Task<ParkingSpot> PutParkingSpot(ParkingSpot parkingSpot)
         {
-            await UpdateAsync(parkingSpot);
+            parkingSpot = await UpdateAsync(parkingSpot);
 
             return parkingSpot;
         }
 
         public async Task<ParkingSpot> PostParkingSpot(ParkingSpot parkingSpot)
         {
-            await AddAsync(parkingSpot);
+            parkingSpot = await AddAsync(parkingSpot);
 
             return parkingSpot;
         }
