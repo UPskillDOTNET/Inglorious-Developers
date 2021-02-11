@@ -48,7 +48,6 @@ namespace CentralAPI.Services.Services {
             using (var client = new HttpClient()) {
                 string endpoint = parkinglot.Value.myURL + "/reservations";
                 var response = await client.GetAsync(endpoint);
-                response.EnsureSuccessStatusCode();
                 reservationList = await response.Content.ReadAsAsync<List<ReservationDTO>>();
             }
 
@@ -63,8 +62,7 @@ namespace CentralAPI.Services.Services {
 
             using (var client = new HttpClient()) {
                 string endpoint = parkinglot.Value.myURL + "/reservations/notCancelled";
-                var response = await client.GetAsync(endpoint);
-                response.EnsureSuccessStatusCode();
+                var response = await client.GetAsync(endpoint); 
                 reservationList = await response.Content.ReadAsAsync<List<ReservationDTO>>();
             }
 
@@ -80,7 +78,10 @@ namespace CentralAPI.Services.Services {
             using (var client = new HttpClient()) {
                 string endpoint = parkinglot.Value.myURL + "/reservations/" + id;
                 var response = await client.GetAsync(endpoint);
-                response.EnsureSuccessStatusCode();
+                if (response == null)
+                {
+                    throw new Exception("Teste");
+                }
                 reservationDTO = await response.Content.ReadAsAsync<ReservationDTO>();
             }
 

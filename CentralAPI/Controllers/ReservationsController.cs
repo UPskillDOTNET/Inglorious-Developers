@@ -1,6 +1,7 @@
 ﻿using CentralAPI.DTO;
 using CentralAPI.Services.IServices;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -53,16 +54,19 @@ namespace CentralAPI.Controllers
         [Route("centralapi/parkinglot/{pLotID}/reservations/{id}")]
         public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> GetReservationById(string id, int pLotID)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            
             if (await ParkingLotExists(pLotID) == false)
             {
                 return NotFound("Parking Lot was not found");
             }
-            return await _reservationService.GetReservationById(id, pLotID);
-            
+            try
+            {
+                return await _reservationService.GetReservationById(id, pLotID);
+            }
+            catch (Exception e)
+            {
+                return Conflict("Reservation was not found");
+            }
         }
 
 
@@ -74,7 +78,7 @@ namespace CentralAPI.Controllers
             if (await ParkingLotExists(pLotID) == false)
             {
                 return NotFound("Parking Lot was not found");
-            }
+            }            
             await _reservationService.PostReservation(reservationDTO, pLotID);
             return CreatedAtAction("PostReservation", new { id = reservationDTO.reservationID }, reservationDTO);
         }
@@ -119,6 +123,6 @@ namespace CentralAPI.Controllers
             {
                 return false;
             }
-        }
+        }        
     }
 }
