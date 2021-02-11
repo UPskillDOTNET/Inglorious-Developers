@@ -48,6 +48,8 @@ namespace CentralAPI
             //       Configuration.GetConnectionString("PrivateConnection")));
             services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddTransient<IParkingLotRepository, ParkingLotRepository>();
+            services.AddTransient<QRgenerator>();
+            services.AddTransient<EmailService>();
             services.AddTransient<IParkingLotService, ParkingLotService>();
             services.AddTransient<IParkingSpotService, ParkingSpotService>();
             services.AddTransient<ICentralReservationRepository, CentralReservationRepository>();
@@ -66,7 +68,7 @@ namespace CentralAPI
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
             services.AddAutoMapper(typeof(Maps));
-            services.AddControllers();
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

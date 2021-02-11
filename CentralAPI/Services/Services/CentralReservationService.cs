@@ -20,11 +20,16 @@ namespace CentralAPI.Services.Services {
         private readonly IParkingLotRepository _parkingLotRepository;
         //private readonly ParkingSpotController _parkingSpotsController;
         //private readonly IUserRepository _userRepository;
+        private readonly QRgenerator _qRgenerator;
+        private readonly EmailService _emailService;
+
         private readonly IMapper _mapper;
 
-        public CentralReservationService(ICentralReservationRepository centralReservationRepository, IParkingLotRepository parkingLotRepository, IMapper mapper) {
+        public CentralReservationService(ICentralReservationRepository centralReservationRepository, IParkingLotRepository parkingLotRepository,QRgenerator qRgenerator, EmailService emailService ,IMapper mapper) {
             _centralReservationRepository = centralReservationRepository;
             _parkingLotRepository = parkingLotRepository;
+            _qRgenerator = qRgenerator;
+            _emailService = emailService; 
             //_parkingSpotsController = parkingSpotController;
             //_userRepository = userRepository;
             _mapper = mapper;
@@ -50,6 +55,8 @@ namespace CentralAPI.Services.Services {
 
         public async Task<ActionResult<CentralReservationDTO>> PostCentralReservation(CentralReservationDTO centralReservationDTO) {
             await GetEndTimeandFinalPrice(centralReservationDTO);
+            var qr = _qRgenerator.MakeQR(centralReservationDTO);
+            await _emailService.SendQRToEmailAsync(qr.Result.Value, centralReservationDTO.userID, centralReservationDTO.centralReservationID);
             var centralReservation = _mapper.Map<CentralReservationDTO, CentralReservation>(centralReservationDTO);
             await _centralReservationRepository.PostCentralReservation(centralReservation);
             return centralReservationDTO;
