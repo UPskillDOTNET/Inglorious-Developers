@@ -17,7 +17,7 @@ namespace CentralAPI.Services.Services
     {
         private readonly IWalletRepository _walletRepository;
         private readonly IMapper _mapper;
-        private readonly IWalletPaymentService _paymentService;
+        //private readonly IWalletPaymentService _paymentService;
 
         public WalletService(IWalletRepository walletRepository, IMapper mapper)
         {
@@ -28,12 +28,7 @@ namespace CentralAPI.Services.Services
 
         public async Task<ActionResult<IEnumerable<WalletDTO>>> GetAllWallets()
         {
-            //return await new Task<ActionResult<IEnumerable<WalletDTO>>>(() =>
-            //{
-            //    var wallets = _walletRepository.GetWallets();
-            //    var walletsDTO = _mapper.Map<List<Wallet>, List<WalletDTO>>(wallets.ToList());
-            //    return walletsDTO;
-            //});
+          
             var wallets = _walletRepository.GetWallets();
             var walletsDTO = _mapper.Map<List<Wallet>, List<WalletDTO>>(wallets.ToList());
             return walletsDTO;
@@ -41,12 +36,7 @@ namespace CentralAPI.Services.Services
 
         public async Task<ActionResult<WalletDTO>> GetBalance(string userID)
         {
-            //return await new Task<ActionResult<WalletDTO>>(() =>
-            //{
-            //    var wallet = _walletRepository.GetBalance(userID);
-            //    var walletDTO = _mapper.Map<Wallet, WalletDTO>(wallet);
-            //    return walletDTO;
-            //});
+         
             var wallet = _walletRepository.GetBalance(userID);
             var walletDTO = _mapper.Map<Wallet, WalletDTO>(wallet);
             return walletDTO;

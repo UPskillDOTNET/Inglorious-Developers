@@ -14,13 +14,13 @@ namespace CentralAPI.Controllers {
     [ApiController]
     public class CentralReservationsController : ControllerBase {
         private readonly ICentralReservationService _centralReservationService;
-        private readonly IParkingLotService _parkingLotService;
+        //private readonly IParkingLotService _parkingLotService;
         //private readonly ReservationsController _reservationsController;
         //private readonly ParkingSpotController _parkingSpotController;
 
-        public CentralReservationsController(ICentralReservationService centralReservationService, IParkingLotService parkingLotService /*ParkingSpotController parkingSpotController*/) {
+        public CentralReservationsController(ICentralReservationService centralReservationService /*IParkingLotService parkingLotService /*ParkingSpotController parkingSpotController*/) {
             _centralReservationService = centralReservationService;
-            _parkingLotService = parkingLotService;
+            //_parkingLotService = parkingLotService;
             //_parkingSpotController = parkingSpotController;
             //_userService = userService;
         }

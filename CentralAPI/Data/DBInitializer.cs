@@ -34,11 +34,11 @@ namespace CentralAPI.Data
 
             var users = new User[]
             {
-                    new User{userID="1", name="Mariana Gomes", email="marianagomes@gmail.com", nif="221133486"},
-                    new User{userID="2", name="Tiago Azevedo", email="tiagoazevedo@gmail.com", nif="113333986"},
-                    new User{userID="3", name="João Martins", email="joaomartins@gmail.com", nif="231163886"},
-                    new User{userID="4",name="Diego Maradona",email= "dieguito@gmail.com",nif= "554112892"},
-                    new User{userID="5",name="Michael Jordan",email= "air.jordan@gmail.com" ,nif= "554112870"},
+                    new User{userID="1", name="Mariana Gomes", email="marianaribgomes@gmail.com", nif="221133486"},
+                    new User{userID="2", name="Tiago Azevedo", email="tiagomina.azevedo@gmail.com", nif="113333986"},
+                    new User{userID="3", name="João Martins", email="joaom.vodafone@gmail.com", nif="231163886"},
+                    new User{userID="4",name="Diego Maradona",email= "caiocruzeiror@gmail.com",nif= "554112892"},
+                    new User{userID="5",name="Michael Jordan",email= "sergio.valente.pinto@gmail.com" ,nif= "554112870"},
                     new User{userID="6",name="Freddie Mercury",email= "music@gmail.com",nif= "553112870" },
                     new User{userID="7",name="Queen Elizabeth II",email= "the.queen@gmail.com" ,nif= "554112881"},
                     new User{userID="8",name="Afonso Henriques",email= "afonso.rei@gmail.com",nif= "554112894"},
