@@ -43,7 +43,7 @@ namespace CentralAPI.Services.Services
             return userDTO;
         }
 
-        public async Task<ActionResult<UserDTO>> CreateUser(UserDTO userDTO, string currency)
+        public async Task<ActionResult<UserDTO>> CreateUser(UserDTO userDTO)
         {
             var user = _mapper.Map<UserDTO, User>(userDTO);
             await _userRepository.CreateUser(user);

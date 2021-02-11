@@ -11,7 +11,7 @@ namespace PublicParkAPI.Contracts
         Task<ParkingSpot> GetParkingSpot(string id);
         Task<ParkingSpot> FindParkingSpot(string id);
         Task<bool> FindParkingSpotAny(string id);
-        Task<ParkingSpot> PutParkingSpot(string id, ParkingSpot parkingSpot);
+        Task<ParkingSpot> PutParkingSpot(ParkingSpot parkingSpot);
         Task<ParkingSpot> PostParkingSpot(ParkingSpot parkingSpot);
         Task<ParkingSpot> DeleteParkingSpot(string id);
     }
