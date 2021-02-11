@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace PublicParkAPI.Controllers
 {
-    [Authorize]
-    [Route("api/parkingSpots")]
+    //[Authorize]
+    [Route("api/parkingspots")]
     [ApiController]
     public class ParkingSpotsController : Controller
     {
@@ -22,6 +22,7 @@ namespace PublicParkAPI.Controllers
 
         // GET: api/ParkingSpots
         [HttpGet]
+        [Route("~/api/parkingspots/all")]
         public Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots()
         {
             return _parkingSpotService.GetAllParkingSpots();
@@ -84,7 +85,7 @@ namespace PublicParkAPI.Controllers
             }
             try
             {
-                await _parkingSpotService.PutParkingSpot(id, parkingSpotDTO);
+                await _parkingSpotService.PutParkingSpot(parkingSpotDTO);
             }
             catch (Exception)
             {

@@ -44,9 +44,10 @@ namespace PrivateParkAPI.Repositories.Repository
             return await GetAll().Where(p => p.parkingSpotID == id).AnyAsync();
         }
 
-        public async Task<ParkingSpot> PutParkingSpot(string id, ParkingSpot parkingSpot)
+        //  este id não está a ser utilizado
+        public async Task<ParkingSpot> PutParkingSpot(ParkingSpot parkingSpot)
         {
-            await UpdateAsync(parkingSpot);
+            parkingSpot = await UpdateAsync(parkingSpot);
 
             return parkingSpot;
         }
@@ -54,7 +55,7 @@ namespace PrivateParkAPI.Repositories.Repository
         public async Task<ParkingSpot> PostParkingSpot(ParkingSpot parkingSpot)
         {
 
-            await AddAsync(parkingSpot);
+           parkingSpot =  await AddAsync(parkingSpot);
 
             return parkingSpot;
         }
@@ -63,7 +64,7 @@ namespace PrivateParkAPI.Repositories.Repository
         {
             var parkingSpot = GetAll().First(s => s.parkingSpotID == id);
 
-            await DeleteAsync(parkingSpot);
+            parkingSpot = await DeleteAsync(parkingSpot);
 
             return parkingSpot;
         }

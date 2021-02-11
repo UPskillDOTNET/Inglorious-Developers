@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PublicParkAPI.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/testesParkingLots")]
     [ApiController]
     public class ParkingLotsController : ControllerBase
@@ -46,7 +46,7 @@ namespace PublicParkAPI.Controllers
         {
             try
             {
-                await _parkingLotService.PutParkingLot(id, parkingLotDTO);
+                await _parkingLotService.PutParkingLot(parkingLotDTO);
             }
             catch (Exception)
             {

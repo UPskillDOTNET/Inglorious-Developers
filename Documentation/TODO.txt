@@ -1,0 +1,9 @@
+TODO:
+-merge branches
+-feed ParkingLot from PublicAPI to CentralAPI
+-identity
+-Payment - PayPal
+-QR-Code
+-OATH autorization
+-Sublet
+-reservationCentralApi

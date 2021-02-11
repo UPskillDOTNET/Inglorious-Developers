@@ -14,10 +14,5 @@ namespace PrivateParkAPI.Utils
             RuleFor(ParkingLotDTO => ParkingLotDTO.openingTime).NotEmpty();
             RuleFor(ParkingLotDTO => ParkingLotDTO.closingTime).NotEmpty();
         }
-
-
-
-
-
     }
 }

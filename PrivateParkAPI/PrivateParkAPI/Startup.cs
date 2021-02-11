@@ -1,22 +1,17 @@
-using AutoMapper;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
-using PrivateParkAPI.Authentication;
 using PrivateParkAPI.Data;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Repositories.IRepository;
 using PrivateParkAPI.Repositories.Repository;
 using PrivateParkAPI.Services.IServices;
 using PrivateParkAPI.Services.Services;
-using System.Reflection;
-using System.Text;
+using IdentityServer4.AccessTokenValidation;
+
 
 namespace PrivateParkAPI
 {
@@ -42,33 +37,16 @@ namespace PrivateParkAPI
             services.AddTransient<IParkingLotService, ParkingLotService>();
             services.AddTransient<IReservationService, ReservationService>();
 
-            // For Identity  
-            services.AddIdentity<apiUser, IdentityRole>()
-                .AddEntityFrameworkStores<PrivateParkContext>()
-                .AddDefaultTokenProviders();
 
             // Adding Authentication  
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
+            services.AddAuthentication("Bearer")
+                     .AddIdentityServerAuthentication("Bearer", options =>
+                     {
+                         options.ApiName = "PrivateAPI";
+                         options.Authority = "https://localhost:44309";
+                     });
 
-            // Adding Jwt Bearer  
-            .AddJwtBearer(options =>
-            {
-                options.SaveToken = true;
-                options.RequireHttpsMetadata = false;
-                options.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidAudience = Configuration["JWT:ValidAudience"],
-                    ValidIssuer = Configuration["JWT:ValidIssuer"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
-                };
-            });
+
 
             services.AddControllers();
             services.AddAutoMapper(typeof(Maps));
@@ -90,10 +68,7 @@ namespace PrivateParkAPI
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
         }
     }
 }
