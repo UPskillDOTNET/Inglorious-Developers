@@ -36,7 +36,7 @@ namespace CentralAPI.Repositories.Repository
         public async Task<User> CreateUser(User user)
         {
            
-            await AddAsync(user);
+            user = await AddAsync(user);
 
             return user;
         }

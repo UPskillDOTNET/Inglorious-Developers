@@ -69,15 +69,15 @@ namespace CentralAPI.Controllers
         [Route("/api/[controller]/{currency}/")]
         public async Task<ActionResult<UserDTO>> CreateUser (UserDTO userDTO, string currency)
         {
-            var resp = await _userService.CreateUser(userDTO, currency);
-            var UserDTO = resp.Value;
+            var userDto = await _userService.CreateUser(userDTO);
+            
 
-            if(userDTO == null)
+            if(userDto.Value == null)
             {
                 return BadRequest();
             }
 
-            _walletService.CreateWallet(userDTO.userID, currency);
+            await _walletService.CreateWallet(userDto.Value.userID, currency);
 
             return Ok(userDTO);
         }
