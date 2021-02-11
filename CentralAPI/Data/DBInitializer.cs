@@ -54,14 +54,14 @@ namespace CentralAPI.Data
 
             var centralReservations = new CentralReservation[]
             {
-                    new CentralReservation{reservationID="ABC1",isCancelled=false,startTime= DateTime.Parse("2021-05-22 07:00:00"),endTime= DateTime.Parse("2021-05-22 08:00:00"),finalPrice= 10, parkingLotID=1,userID="1"},
-                    new CentralReservation{reservationID="ABC2",isCancelled=true,startTime= DateTime.Parse("2021-01-31 07:00:00"),endTime= DateTime.Parse("2021-08-22 09:00:00"),finalPrice= 10,parkingLotID=2,userID="2"},
-                    new CentralReservation{reservationID="ABC3",isCancelled=false,startTime= DateTime.Parse("2021-09-22 07:00:00"),endTime= DateTime.Parse("2021-09-22 19:00:00"),finalPrice= 10,parkingLotID=1,userID="3"},
-                    new CentralReservation{reservationID="ABC4",isCancelled=false,startTime= DateTime.Parse("2021-10-22 07:00:00"),endTime= DateTime.Parse("2021-10-22 10:00:00"),finalPrice= 10,parkingLotID=2,userID="4"},
-                    new CentralReservation{reservationID="ABC5",isCancelled=false,startTime= DateTime.Parse("2021-09-22 07:00:00"),endTime= DateTime.Parse("2021-09-22 08:00:00"),finalPrice= 10,parkingLotID=2,userID="5"},
-                    new CentralReservation{reservationID="ABC6",isCancelled=false,startTime= DateTime.Parse("2021-08-22 12:00:00"),endTime= DateTime.Parse("2021-08-22 13:00:00"),finalPrice= 10,parkingLotID=1,userID="6"},
-                    new CentralReservation{reservationID="ABC7",isCancelled=true,startTime= DateTime.Parse("2021-07-22 14:00:00"),endTime= DateTime.Parse("2021-07-22 15:00:00"),finalPrice= 10,parkingLotID=2,userID="7"},
-                    new CentralReservation{reservationID="ABC8",isCancelled=false,startTime= DateTime.Parse("2021-06-22 18:00:00"),endTime= DateTime.Parse("2021-06-22 19:00:00"),finalPrice= 10,parkingLotID=1,userID="8"},
+                    new CentralReservation{reservationID="ABC1",isCancelled=false,startTime= DateTime.Parse("2021-05-22 07:00:00"),endTime= DateTime.Parse("2021-05-22 08:00:00"),finalPrice= 10, parkingLotID=1,userID="1", parkingSpotID="A1"},
+                    new CentralReservation{reservationID="ABC2",isCancelled=true,startTime= DateTime.Parse("2021-01-31 07:00:00"),endTime= DateTime.Parse("2021-08-22 09:00:00"),finalPrice= 10,parkingLotID=2,userID="2", parkingSpotID="B2"},
+                    new CentralReservation{reservationID="ABC3",isCancelled=false,startTime= DateTime.Parse("2021-09-22 07:00:00"),endTime= DateTime.Parse("2021-09-22 19:00:00"),finalPrice= 10,parkingLotID=1,userID="3", parkingSpotID="V4"},
+                    new CentralReservation{reservationID="ABC4",isCancelled=false,startTime= DateTime.Parse("2021-10-22 07:00:00"),endTime= DateTime.Parse("2021-10-22 10:00:00"),finalPrice= 10,parkingLotID=2,userID="4", parkingSpotID="D3"},
+                    new CentralReservation{reservationID="ABC5",isCancelled=false,startTime= DateTime.Parse("2021-09-22 07:00:00"),endTime= DateTime.Parse("2021-09-22 08:00:00"),finalPrice= 10,parkingLotID=2,userID="5", parkingSpotID="E2"},
+                    new CentralReservation{reservationID="ABC6",isCancelled=false,startTime= DateTime.Parse("2021-08-22 12:00:00"),endTime= DateTime.Parse("2021-08-22 13:00:00"),finalPrice= 10,parkingLotID=1,userID="6", parkingSpotID="B3"},
+                    new CentralReservation{reservationID="ABC7",isCancelled=true,startTime= DateTime.Parse("2021-07-22 14:00:00"),endTime= DateTime.Parse("2021-07-22 15:00:00"),finalPrice= 10,parkingLotID=2,userID="7", parkingSpotID="P2"},
+                    new CentralReservation{reservationID="ABC8",isCancelled=false,startTime= DateTime.Parse("2021-06-22 18:00:00"),endTime= DateTime.Parse("2021-06-22 19:00:00"),finalPrice= 10,parkingLotID=1,userID="8", parkingSpotID="C9"},
             };
             foreach (CentralReservation r in centralReservations)
             {
@@ -126,24 +126,6 @@ namespace CentralAPI.Data
             }
             context.SaveChanges();
 
-
-            if (context.ParkingSpots.Any())
-            {
-                return;
-            }
-
-            var ParkingSpots = new ParkingSpot[]
-            {
-                 new ParkingSpot{parkingSpotID="A1",priceHour=0.250m,isPrivate=true, floor=1, parkingLotID=1},
-                 new ParkingSpot{parkingSpotID="E1",priceHour=0.5m,isPrivate=false, floor=2, parkingLotID=2},
-                 new ParkingSpot{parkingSpotID="I1",priceHour=0.9m,isPrivate=true, floor=1, parkingLotID=2},
-                 new ParkingSpot{parkingSpotID="O1",priceHour=1.00m,isPrivate=false, parkingLotID=3},
-                 new ParkingSpot{parkingSpotID="A3",priceHour=0.25m,isPrivate=false, parkingLotID=1},
-
-            };
-            context.ParkingSpots.AddRange(ParkingSpots);
-            context.SaveChanges();
-        }
 
             if (context.Payments.Any())
             {
