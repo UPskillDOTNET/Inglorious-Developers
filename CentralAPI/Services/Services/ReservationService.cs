@@ -110,15 +110,15 @@ namespace CentralAPI.Services.Services {
         }
 
         //Method to post a reservation in the Parking Lot API
-        public async Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO, int pLotID)
+        public async Task<ActionResult<CentralReservationDTO>> PostReservation(CentralReservationDTO reservationDTO, int pLotID)
         {
-            await GetEndTimeAndFinalPrice(reservationDTO, pLotID);
-            var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);            
+            //await GetEndTimeAndFinalPrice(reservationDTO, pLotID);
+            //var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);            
             var parkinglot = await _parkingLotService.GetParkingLot(pLotID);
 
             using (var client = new HttpClient())
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(reservation), Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(reservationDTO), Encoding.UTF8, "application/json");
                 string endpoint = parkinglot.Value.myURL + "/reservations";
                 var response = await client.PostAsync(endpoint, content);
             }
@@ -136,26 +136,26 @@ namespace CentralAPI.Services.Services {
         }
 
        //Method to post a Reservation in CENTRAL and PARKING APIs
-        public async Task<ActionResult<CentralReservationDTO>> PostUserReservation([FromBody] CentralReservationDTO reservationDTO, int pLotID)
-        {
-            ReservationDTO privateRes = new ReservationDTO();
-            privateRes.reservationID = reservationDTO.reservationID;
-            privateRes.isCancelled = reservationDTO.isCancelled;
-            privateRes.startTime = reservationDTO.startTime;
-            privateRes.hours = reservationDTO.hours;
-            privateRes.endTime = reservationDTO.endTime;
-            privateRes.finalPrice = reservationDTO.finalPrice;
-            privateRes.parkingSpotID = reservationDTO.parkingSpotID;
-            reservationDTO.parkingLotID = pLotID;
+        //public async Task<ActionResult<CentralReservationDTO>> PostUserReservation([FromBody] CentralReservationDTO reservationDTO, int pLotID)
+        //{
+        //    ReservationDTO privateRes = new ReservationDTO();
+        //    privateRes.reservationID = reservationDTO.reservationID;
+        //    privateRes.isCancelled = reservationDTO.isCancelled;
+        //    privateRes.startTime = reservationDTO.startTime;
+        //    privateRes.hours = reservationDTO.hours;
+        //    privateRes.endTime = reservationDTO.endTime;
+        //    privateRes.finalPrice = reservationDTO.finalPrice;
+        //    privateRes.parkingSpotID = reservationDTO.parkingSpotID;
+        //    reservationDTO.parkingLotID = pLotID;
 
 
-            await PostReservation(privateRes, pLotID);
-            await _centralReservationService.PostCentralReservation(reservationDTO);
+        //    await PostReservation(privateRes, pLotID);
+        //    await _centralReservationService.PostCentralReservation(reservationDTO);
 
 
-            return reservationDTO;
+        //    return reservationDTO;
 
-        }
+        //}
         public ValidationResult Validate(ReservationDTO reservationDTO) {
             ReservationValidator validationRules = new ReservationValidator();
             ValidationResult Results = validationRules.Validate(reservationDTO);

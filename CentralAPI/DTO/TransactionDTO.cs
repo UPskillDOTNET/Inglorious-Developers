@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CentralAPI.Models
 {
@@ -19,6 +14,6 @@ namespace CentralAPI.Models
         public decimal value { get; set; }
 
         public DateTime transactionDate { get; set; }
-        public User User { get; set; }
+        public string userID { get; set; }
     }
 }

@@ -1,6 +1,6 @@
-﻿using CentralAPI.Services.IServices;
+﻿using CentralAPI.DTO;
+using CentralAPI.Services.IServices;
 using Microsoft.AspNetCore.Mvc;
-using PrivateParkAPI.DTO;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,16 +10,13 @@ namespace CentralAPI.Controllers
     [ApiController]
     public class ParkingSpotController : ControllerBase
     {
-        //Please don't delete, a method is using this!
         private readonly IParkingLotService _parkingLotService;
         private readonly IParkingSpotService _parkingSpotService;
-
 
         public ParkingSpotController(IParkingLotService parkingLotService, IParkingSpotService parkingSpotService)
         {
             _parkingLotService = parkingLotService;
             _parkingSpotService = parkingSpotService;
-
         }
 
 

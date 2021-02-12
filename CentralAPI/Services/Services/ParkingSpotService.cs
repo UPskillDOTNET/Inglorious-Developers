@@ -13,7 +13,7 @@ using CentralAPI.Repositories.IRepository;
 using Microsoft.Extensions.Configuration;
 using FluentValidation.Results;
 using CentralAPI.Utils;
-using PrivateParkAPI.DTO;
+using CentralAPI.DTO;
 
 namespace CentralAPI.Services.Services {
     public class ParkingSpotService : IParkingSpotService {
@@ -23,6 +23,7 @@ namespace CentralAPI.Services.Services {
         public ParkingSpotService(IParkingLotService parkingLotService) {
             _parkingLotService = parkingLotService;
         }
+
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots(int id) 
         {
             var parkingSpotsList = new List<ParkingSpotDTO>();

@@ -37,7 +37,6 @@
   <ItemGroup>
     <ProjectReference Include="..\PrivateParkAPI\PrivateParkAPI\PrivateParkAPI.csproj" />
     <ProjectReference Include="..\PublicParkAPI\PublicParkAPI\PublicParkAPI.csproj" />
-    <Folder Include="DTO\" />
   </ItemGroup>
 
 </Project>

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using CentralAPI.DTO;
+using CentralAPI.Services.IServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using CentralAPI.Data;
-using CentralAPI.Models;
-using CentralAPI.Services.IServices;
-using CentralAPI.DTO;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CentralAPI.Controllers
 {
@@ -44,43 +40,13 @@ namespace CentralAPI.Controllers
             return sublet;
         }
 
-        //// PUT: api/Sublets/5
-        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutSublet(string id, Sublet sublet)
-        //{
-        //    if (id != sublet.subletID)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    _context.Entry(sublet).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!SubletExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
 
         // POST: api/Sublets
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<SubletDTO>> PostSublet([FromBody]SubletDTO subletDTO)
+        public async Task<ActionResult<SubletDTO>> PostSublet([FromBody] SubletDTO subletDTO)
         {
-            
+
             try
             {
                 await _subletService.CreateSublet(subletDTO);
@@ -104,10 +70,11 @@ namespace CentralAPI.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<SubletDTO>> CancelSublet(string id)
         {
-            
-            try {
-            
-            return await _subletService.CancelSublet(id);
+
+            try
+            {
+
+                return await _subletService.CancelSublet(id);
             }
 
             catch (Exception ex)
@@ -115,7 +82,7 @@ namespace CentralAPI.Controllers
                 return BadRequest(ex);
             }
 
-           
+
         }
 
         private bool SubletExists(string id)
@@ -126,8 +93,8 @@ namespace CentralAPI.Controllers
             }
             return true;
         }
-      
-       
-            
+
+
+
     }
 }

@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using PrivateParkAPI.DTO;
+using CentralAPI.DTO;
 
 namespace CentralAPI.Utils {
     public class ParkingSpotValidator : AbstractValidator<ParkingSpotDTO> {

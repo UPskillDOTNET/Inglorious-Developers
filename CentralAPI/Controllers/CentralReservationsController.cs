@@ -14,15 +14,11 @@ namespace CentralAPI.Controllers {
     [ApiController]
     public class CentralReservationsController : ControllerBase {
         private readonly ICentralReservationService _centralReservationService;
-        //private readonly IParkingLotService _parkingLotService;
-        //private readonly ReservationsController _reservationsController;
-        //private readonly ParkingSpotController _parkingSpotController;
+        private readonly IReservationService _reservationService;
 
-        public CentralReservationsController(ICentralReservationService centralReservationService /*IParkingLotService parkingLotService /*ParkingSpotController parkingSpotController*/) {
+        public CentralReservationsController(ICentralReservationService centralReservationService, IReservationService reservationService ) {
             _centralReservationService = centralReservationService;
-            //_parkingLotService = parkingLotService;
-            //_parkingSpotController = parkingSpotController;
-            //_userService = userService;
+            _reservationService = reservationService;
         }
 
         [HttpGet]
@@ -46,30 +42,9 @@ namespace CentralAPI.Controllers {
 
         [HttpPost]
         public async Task<ActionResult<CentralReservationDTO>> PostCentralReservation([FromBody] CentralReservationDTO centralReservationDTO) {
-            //var Results = _centralReservationService.Validate(centralReservationDTO);
-            //var parkingLotExists = _parkingLotService.GetParkingLot(centralReservationDTO.parkingLotID);
-            //var parkingSpotPubExists = _parkingSpotController.GetPublicParkingSpot(centralReservationDTO.parkingSpotID);
-            //var parkingSpotPriExists = _parkingSpotController.GetPrivateParkingSpot(centralReservationDTO.parkingSpotID);
-            //var userExists = _userService.Find(centralReservationDTO.userID);
-
-            //if (!Results.IsValid) {
-            //    return BadRequest("Can't create " + Results);
-            //}
-
-            //if (parkingSpotPubExists == null) {
-            //    return BadRequest("Public parkingSpot doesn't exist.");
-            //}
-
-            //if (parkingSpotPriExists == null) {
-            //    return BadRequest("Private parkingSpot doesn't exist.");
-            //}
-
-            //if (user == null) {
-            //    return BadRequest("User doesn't exist.");
-            //}
-
             try {
                 await _centralReservationService.PostCentralReservation(centralReservationDTO);
+                await _reservationService.PostReservation(centralReservationDTO,centralReservationDTO.parkingLotID);
             } catch (Exception) {
                 if (await CentralReservationExists(centralReservationDTO.reservationID) == true) {
                     return Conflict("The CentralReservations already exist");

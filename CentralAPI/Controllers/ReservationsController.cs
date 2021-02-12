@@ -71,30 +71,30 @@ namespace CentralAPI.Controllers
 
 
         //POST Resevation only in ParkAPI
-        [HttpPost]
-        [Route("centralapi/parkinglot/{pLotID}/apireservations")]
-        public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PostReservation([FromBody] PrivateParkAPI.DTO.ReservationDTO reservationDTO, int pLotID)
-        {
-            if (await ParkingLotExists(pLotID) == false)
-            {
-                return NotFound("Parking Lot was not found");
-            }            
-            await _reservationService.PostReservation(reservationDTO, pLotID);
-            return CreatedAtAction("PostReservation", new { id = reservationDTO.reservationID }, reservationDTO);
-        }
+        //[HttpPost]
+        //[Route("centralapi/parkinglot/{pLotID}/apireservations")]
+        //public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> PostReservation([FromBody] PrivateParkAPI.DTO.ReservationDTO reservationDTO, int pLotID)
+        //{
+        //    if (await ParkingLotExists(pLotID) == false)
+        //    {
+        //        return NotFound("Parking Lot was not found");
+        //    }
+        //    await _reservationService.PostReservation(reservationDTO, pLotID);
+        //    return CreatedAtAction("PostReservation", new { id = reservationDTO.reservationID }, reservationDTO);
+        //}
 
         //POST Reservation in Both Central and Park APIs
-        [HttpPost]
-        [Route("centralapi/parkinglot/{pLotID}/reservations")]
-        public async Task<ActionResult<CentralReservationDTO>> PostUserReservation([FromBody] CentralReservationDTO reservationDTO, int pLotID)
-        {
-            if (await ParkingLotExists(pLotID) == false)
-            {
-                return NotFound("Parking Lot was not found");
-            }
-            await _reservationService.PostUserReservation(reservationDTO, pLotID);
-            return CreatedAtAction("PostReservation", new { id = reservationDTO.reservationID }, reservationDTO);
-        }
+        //[HttpPost]
+        //[Route("centralapi/parkinglot/{pLotID}/reservations")]
+        //public async Task<ActionResult<CentralReservationDTO>> PostUserReservation([FromBody] CentralReservationDTO reservationDTO, int pLotID)
+        //{
+        //    if (await ParkingLotExists(pLotID) == false)
+        //    {
+        //        return NotFound("Parking Lot was not found");
+        //    }
+        //    await _reservationService.PostUserReservation(reservationDTO, pLotID);
+        //    return CreatedAtAction("PostReservation", new { id = reservationDTO.reservationID }, reservationDTO);
+        //}
 
         //POST Cancel Reservation by ID
         [HttpPost]
