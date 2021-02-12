@@ -1,0 +1,114 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide methods
+top to bottom direction
+
+class CentralAPI{
+}
+
+class AuthenticationServer{
+}
+
+class Payment{
+  -String paymentID
+  -Decimal finalPrice
+  -DateTime timeStamp
+  -String userID
+}
+
+class QRcode{
+}
+
+class User {
+  -String userID
+  -String name	
+  -String nif
+  -String email
+}
+
+class Wallet {
+  -String walletID
+  -Decimal totalAmount
+  -String currency
+  -String userID
+}
+
+class ParkingLotAPI{
+  -Integer parkingLotID
+  -String name
+  -String companyOwner
+  -String location
+  -Integer capacity
+  -DateTime openingTime
+  -DateTime closingTime
+}
+
+class ParkingSpot {
+  -String parkingSpotID
+  -Decimal priceHour
+  -String floor*
+  -Bool isPrivate*
+  -Bool isCovered*
+  -Integer parkingLotID
+}
+
+class Reservation {
+  -String reservationID
+  -Integer parkingLotID
+  -Bool isCancelled  
+  -DateTime startTime
+  -Integer hours
+  -Decimal finalPrice
+  -DateTime endTime
+  -String parkingSpotID
+}
+
+class CentralReservation {
+  -String centralReservationID
+  -String reservationID
+  -Integer parkingLotID
+  -Bool isCancelled  
+  -DateTime startTime
+  -Integer hours
+  -Decimal finalPrice
+  -DateTime endTime
+  -String parkingSpotID
+  -String userID
+}
+
+class SubLet {
+  -string subLetID
+  -String reservationID
+  -String mainUserID
+  -decimal subUserID
+  -Decimal letPrice
+  -DateTime startDate
+  -DateTime endDate
+  -Bool isCancelled
+}
+
+
+CentralAPI "1" -- "1..*" AuthenticationServer : consumes >
+CentralAPI "1" -- "1..*" User : has >
+CentralAPI "1" -- "1...*" ParkingLotAPI : has >
+CentralAPI "1" -- "1...*" Payment : has >
+
+ParkingLotAPI "1" -- "1...*" ParkingSpot : has >
+
+ParkingSpot "1" -- "1...*" Reservation : has >
+
+CentralReservation "1" -- "1...*" Payment : uses >
+CentralReservation "1" -- "1...*" SubLet : can have >
+CentralReservation "1" -- "1" QRcode : has >
+CentralReservation "1" -- "1" Reservation : represents >
+
+QRcode "1..*" -- "1" User : sent by email >
+
+Wallet "1" -- "1...*" Payment : makes >
+
+User "1" -- "1..*" User: sublets >
+User "1" -- "1..*" SubLet: has >
+User "1" -- "1..*" AuthenticationServer : authenticates >
+User "1" -- "1..*" CentralReservation : makes >
+User "1" -- "1" Wallet : has >
+@enduml
