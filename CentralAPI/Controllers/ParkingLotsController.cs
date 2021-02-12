@@ -35,27 +35,16 @@ namespace CentralAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ParkingLotDTO>> GetParkingLot(int id)
         {
-            if (await ParkingLotExists(id) == false)
+            try
             {
-                return NotFound("ParkingLot not found");
+                return await _parkingLotService.GetParkingLot(id);
             }
-            return await _parkingLotService.GetParkingLot(id);
-        }
-
-
-        private async Task<bool> ParkingLotExists(int id)
-        {
-            var parkingLot = await _parkingLotService.GetParkingLot(id);
-
-            if (parkingLot.Value != null)
+            catch (ArgumentNullException)
             {
-
-                return true;
-            }
-            else
-            {
-                return false;
+                return NotFound("Parking Lot "+id+" not found!");
             }
         }
+
+
     }
 }

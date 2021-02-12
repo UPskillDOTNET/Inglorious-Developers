@@ -49,9 +49,9 @@ namespace CentralAPI.Controllers {
             try {
                 await _reservationService.PostReservation(centralReservationDTO, centralReservationDTO.parkingLotID);
                 await _centralReservationService.PostCentralReservation(centralReservationDTO);                
-            } catch (Exception) {
+            } catch (Exception e) {
                 if (await CentralReservationExists(centralReservationDTO.reservationID) == true) {
-                    return Conflict("The CentralReservations already exist");
+                    return Conflict("The CentralReservations already exist" + e);
                 }
                 throw;
             }
@@ -79,7 +79,11 @@ namespace CentralAPI.Controllers {
             return await _centralReservationService.FindCentralReservationAny(id);
 
         }
+
+
         /* ------------------------------- RESERVATIONS PARK API -------------------------------*/
+
+
 
         //Get All Resevations
         [HttpGet]

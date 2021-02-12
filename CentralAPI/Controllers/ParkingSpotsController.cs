@@ -25,10 +25,10 @@ namespace CentralAPI.Controllers
 
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots(int id)
         {
-            if (await ParkingLotExists(id) == false)
-            {
-                return NotFound("Parking Lot was not found");
-            }
+            //if (await ParkingLotExists(id) == false)
+            //{
+            //    return NotFound("Parking Lot was not found");
+            //}
             return await _parkingSpotService.GetAllParkingSpots(id);
         }
 
@@ -95,10 +95,10 @@ namespace CentralAPI.Controllers
         public async Task<ActionResult<ParkingSpotDTO>> CreateParkingSpot([Bind("parkingSpotID, priceHour, floor, isPrivate, isCovered, parkingLotID")] ParkingSpotDTO parkingSpotDTO, int id)
         {
             var Results = _parkingSpotService.Validate(parkingSpotDTO);
-            if (await ParkingLotExists(id) == false)
-            {
-                return NotFound("Parking Lot was not found");
-            }
+            //if (await ParkingLotExists(id) == false)
+            //{
+            //    return NotFound("Parking Lot was not found");
+            //}
             if (!Results.IsValid)
             {
                 return BadRequest("Can't create " + Results);
