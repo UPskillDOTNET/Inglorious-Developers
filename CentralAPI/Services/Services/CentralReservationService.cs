@@ -72,8 +72,13 @@ namespace CentralAPI.Services.Services {
             return centralReservationDTO;
         }
 
-        public async Task<ActionResult<CentralReservation>> PatchCentralReservation(string id) {
-            return await _centralReservationRepository.PatchCentralReservation(id);
+        public async Task<ActionResult<CentralReservationDTO>> PatchCentralReservation(string id) {
+            var reservation = await _centralReservationRepository.Find(id);
+            reservation.isCancelled = true;            
+            var reservations = await _centralReservationRepository.PatchCentralReservation(reservation);
+            var reservationDTO = _mapper.Map<CentralReservation, CentralReservationDTO>(reservations);
+            return reservationDTO;
+
         }
         public async Task<bool> FindCentralReservationAny(string id) {
             return await _centralReservationRepository.FindCentralReservationAny(id);

@@ -15,7 +15,7 @@ namespace CentralAPI.Services.IServices {
         Task<ActionResult<CentralReservationDTO>> PostCentralReservation(CentralReservationDTO centralReservationDTO);
         Task<ActionResult<CentralReservationDTO>> GetEndTimeandFinalPrice(CentralReservationDTO centralReservation);
         Task<bool> FindCentralReservationAny(string id);
-        Task<ActionResult<CentralReservation>> PatchCentralReservation(string id);
+        Task<ActionResult<CentralReservationDTO>> PatchCentralReservation(string id);
         //ValidationResult Validate(CentralReservationDTO centralReservationDTO);
     }
 }

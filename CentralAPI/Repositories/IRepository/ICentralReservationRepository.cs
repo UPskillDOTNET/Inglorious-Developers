@@ -13,7 +13,7 @@ namespace CentralAPI.Repositories.IRepository {
         Task<IEnumerable<CentralReservation>> GetSpecificCentralReservation(DateTime leaveHour, DateTime entryHour);
         Task<bool> FindCentralReservationAny(string id);
         Task<CentralReservation> GetCentralReservationById(string id);
-        Task<CentralReservation> PatchCentralReservation(string id);
+        Task<CentralReservation> PatchCentralReservation(CentralReservation reservation);
         Task<CentralReservation> PostCentralReservation(CentralReservation centralReservation);
     }
 }

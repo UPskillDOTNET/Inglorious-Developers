@@ -33,23 +33,19 @@ namespace CentralAPI.Repositories.Repository {
         }
 
         public async Task<CentralReservation> GetCentralReservationById(string id) {
-            return await GetAll().Include(p => p.ParkingLot).Include(u => u.User).FirstOrDefaultAsync(r => r.reservationID == id);
+            return await GetAll().Include(p => p.ParkingLot).Include(u => u.User).FirstOrDefaultAsync(r => r.centralReservationID == id);
         }
         public async Task<bool> FindCentralReservationAny(string id) {
-            return await GetAll().Where(p => p.reservationID == id).AnyAsync();
+            return await GetAll().Where(p => p.centralReservationID == id).AnyAsync();
         }
         public async Task<CentralReservation> PostCentralReservation(CentralReservation reservation) {
             await AddAsync(reservation);
             return reservation;
         }
 
-        public async Task<CentralReservation> PatchCentralReservation(string id) {
-            var x = GetAll().Include(l => l.ParkingLot).Include(u => u.User)
-                .FirstOrDefaultAsync(r => r.reservationID == id)
-                .Result;
-            x.isCancelled = true;
-            await UpdateAsync(x);
-            return x;
+        public async Task<CentralReservation> PatchCentralReservation(CentralReservation reservation) {
+            reservation = await UpdateAsync(reservation);
+            return reservation;
         }
     }
 }
