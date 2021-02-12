@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Models
 {
+    [Index(nameof(email), IsUnique = true)]
+    [Index(nameof(nif), IsUnique = true)]
     public class User
     {
         [Key]
+        
         public string userID { get; set; }
 
         [Required]

@@ -16,9 +16,10 @@ namespace CentralAPI.Controllers
         private readonly IUserService _userService;
         private readonly IWalletService _walletService;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, IWalletService walletService)
         {
             _userService = userService;
+            _walletService = walletService;
         }
 
         // GET: Users

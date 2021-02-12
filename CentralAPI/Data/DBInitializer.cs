@@ -34,17 +34,17 @@ namespace CentralAPI.Data
 
             var users = new User[]
             {
-                    new User{userID="1", name="Mariana Gomes", email="marianaribgomes@gmail.com", nif="221133486"},
-                    new User{userID="2", name="Tiago Azevedo", email="tiagomina.azevedo@gmail.com", nif="113333986"},
-                    new User{userID="3", name="João Martins", email="joaom.vodafone@gmail.com", nif="231163886"},
-                    new User{userID="4",name="Diego Maradona",email= "caiocruzeiror@gmail.com",nif= "554112892"},
-                    new User{userID="5",name="Michael Jordan",email= "sergio.valente.pinto@gmail.com" ,nif= "554112870"},
-                    new User{userID="6",name="Freddie Mercury",email= "music@gmail.com",nif= "553112870" },
-                    new User{userID="7",name="Queen Elizabeth II",email= "the.queen@gmail.com" ,nif= "554112881"},
-                    new User{userID="8",name="Afonso Henriques",email= "afonso.rei@gmail.com",nif= "554112894"},
-                    new User{userID="9",name="Elon Musk",email= "spaceX@gmail.com",nif= "583112870"},
-                    new User{userID="10",name="André André",email= "vitoriasc@gmail.com" ,nif= "554112881"},
-                    new User{userID="11",name="Jô Soares",email= "gordo@gmail.com",nif= "154112894"},
+                    new User{userID="1", name="Mariana Gomes", email="marianaribgomes@gmail.com", nif="111111111"},
+                    new User{userID="2", name="Tiago Azevedo", email="tiagomina.azevedo@gmail.com", nif="222222222"},
+                    new User{userID="3", name="João Martins", email="joaom.vodafone@gmail.com", nif="333333333"},
+                    new User{userID="4",name="Diego Maradona",email= "caiocruzeiror@gmail.com",nif= "444444444"},
+                    new User{userID="5",name="Michael Jordan",email= "sergio.valente.pinto@gmail.com" ,nif= "555555555"},
+                    new User{userID="6",name="Freddie Mercury",email= "music@gmail.com",nif= "666666666" },
+                    new User{userID="7",name="Queen Elizabeth II",email= "the.queen@gmail.com" ,nif= "777777777"},
+                    new User{userID="8",name="Afonso Henriques",email= "afonso.rei@gmail.com",nif= "888888888"},
+                    new User{userID="9",name="Elon Musk",email= "spaceX@gmail.com",nif= "999999999"},
+                    new User{userID="10",name="André André",email= "vitoriasc@gmail.com" ,nif= "121121121"},
+                    new User{userID="11",name="Jô Soares",email= "gordo@gmail.com",nif= "131131131"},
             };
             foreach (User u in users)
             {
