@@ -48,11 +48,11 @@ namespace testCentralAPI {
             dbContext.Wallets.Add(new Wallet { walletID = "2", totalAmount = 120, currency = "USD", userID = "2" });
             dbContext.Wallets.Add(new Wallet { walletID = "3", totalAmount = 25, currency = "euro", userID = "3" });
 
-            dbContext.Transactions.Add(new Transaction { operation = "deposit", userID = "1", value = 24.3m, transactionDate = DateTime.Parse("2020-02-22 19:30:00") });
-            dbContext.Transactions.Add(new Transaction { operation = "deposit", userID = "3", value = 14.7m, transactionDate = DateTime.Parse("2020-01-14 19:00:00") });
-            dbContext.Transactions.Add(new Transaction { operation = "withdraw", userID = "2", value = 30.3m, transactionDate = DateTime.Parse("2020-02-03 20:00:00") });
-            dbContext.Transactions.Add(new Transaction { operation = "withdraw", userID = "2", value = 50.3m, transactionDate = DateTime.Parse("2020-02-08 23:00:00") });
-            dbContext.Transactions.Add(new Transaction { operation = "deposit", userID = "2", value = 100.3m, transactionDate = DateTime.Parse("2020-03-08 23:00:00") });
+            //dbContext.Transactions.Add(new Transaction { operation = "deposit", userID = "1", value = 24.3m, transactionDate = DateTime.Parse("2020-02-22 19:30:00") });
+            //dbContext.Transactions.Add(new Transaction { operation = "deposit", userID = "3", value = 14.7m, transactionDate = DateTime.Parse("2020-01-14 19:00:00") });
+            //dbContext.Transactions.Add(new Transaction { operation = "withdraw", userID = "2", value = 30.3m, transactionDate = DateTime.Parse("2020-02-03 20:00:00") });
+            //dbContext.Transactions.Add(new Transaction { operation = "withdraw", userID = "2", value = 50.3m, transactionDate = DateTime.Parse("2020-02-08 23:00:00") });
+            //dbContext.Transactions.Add(new Transaction { operation = "deposit", userID = "2", value = 100.3m, transactionDate = DateTime.Parse("2020-03-08 23:00:00") });
 
             dbContext.Sublets.Add(new Sublet { subletID = "abc4", reservationID = "wtv", mainUserID = "1", subUserID = "2", letPrice = 3.0m, startDate = DateTime.Parse("2020-01-14 19:00:00"), endDate = DateTime.Parse("2020-01-15 19:00:00"), isCancelled = false });
             dbContext.Sublets.Add(new Sublet { subletID = "abc5", reservationID = "wtv2", mainUserID = "2", subUserID = "3", letPrice = 3.0m, startDate = DateTime.Parse("2020-01-14 19:00:00"), endDate = DateTime.Parse("2020-01-15 19:00:00"), isCancelled = false });
