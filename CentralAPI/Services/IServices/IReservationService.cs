@@ -15,8 +15,6 @@ namespace CentralAPI.Services.IServices {
         Task<ActionResult<IEnumerable<ReservationDTO>>> GetAllNotCanceledReservations(int pLotID);
         Task<ActionResult<ReservationDTO>> GetReservationById(string id, int pLotID);        
         Task<ActionResult<CentralReservationDTO>> PostReservation(CentralReservationDTO CentralreservationDTO, int pLotID);
-        //Task<ActionResult<CentralReservationDTO>> PostUserReservation([FromBody] CentralReservationDTO reservationDTO, int pLotID);
-        Task<ActionResult<ReservationDTO>> GetEndTimeAndFinalPrice(ReservationDTO reservationDTO, int id);        
         Task<ActionResult<ReservationDTO>> PatchReservation(string id, int pLotID);
         ValidationResult Validate(ReservationDTO reservationDTO);        
     }

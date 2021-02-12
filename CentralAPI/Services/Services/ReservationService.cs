@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using CentralAPI.Controllers;
-using CentralAPI.DTO;
+﻿using CentralAPI.DTO;
 using CentralAPI.Services.IServices;
 using CentralAPI.Utils;
 using FluentValidation.Results;
@@ -18,12 +16,12 @@ namespace CentralAPI.Services.Services
     public class ReservationService : IReservationService
     {
 
-        public readonly ParkingSpotController parkingSpotController;
+
         private readonly IParkingLotService _parkingLotService;
-        private readonly IParkingSpotService _parkingSpotService;
 
 
-        public ReservationService(IParkingLotService parkingLotService, IMapper mapper)
+
+        public ReservationService(IParkingLotService parkingLotService)
         {
             _parkingLotService = parkingLotService;
         }
@@ -116,16 +114,6 @@ namespace CentralAPI.Services.Services
                 string endpoint = parkinglot.Value.myURL + "/reservations";
                 var response = await client.PostAsync(endpoint, content);
             }
-            return reservationDTO;
-        }
-
-        public async Task<ActionResult<ReservationDTO>> GetEndTimeAndFinalPrice(ReservationDTO reservationDTO, int id)
-        {
-            ParkingSpotController parkingSpotController = new ParkingSpotController(_parkingLotService, _parkingSpotService);
-            var parkingSpotAction = await parkingSpotController.GetParkingSpotById(id, reservationDTO.parkingSpotID);
-            var parkingSpot = parkingSpotAction.Value;
-            reservationDTO.endTime = reservationDTO.startTime.AddHours(reservationDTO.hours);
-            reservationDTO.finalPrice = reservationDTO.hours * parkingSpot.priceHour;
             return reservationDTO;
         }
 
