@@ -1,7 +1,0 @@
-Brief
-
-The user authenticates himself in the platform. The platform confirms his authentication. The user asks the platform to check user dashboard.
-The platform shows him the requested info. The user chooses to read, edit or delete his profile.
-The platform asks the user about his details (Name, NIF and email). The user inserts the requested data.
-The platform shows the data to the user asking him to confirm it. The user confirms.
-The platform saves the data and informs the new user that the operation was successful.
