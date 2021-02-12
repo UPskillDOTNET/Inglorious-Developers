@@ -106,7 +106,7 @@ namespace CentralAPI.Controllers
         {
             var user = await _userService.GetUserById(id);
 
-            if (user != null)
+            if (user.Value != null)
             {
 
                 return true;
