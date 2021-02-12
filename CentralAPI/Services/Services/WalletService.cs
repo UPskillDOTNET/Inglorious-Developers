@@ -16,12 +16,14 @@ namespace CentralAPI.Services.Services
     public class WalletService : IWalletService
     {
         private readonly IWalletRepository _walletRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         //private readonly IWalletPaymentService _paymentService;
 
-        public WalletService(IWalletRepository walletRepository, IMapper mapper)
+        public WalletService(IWalletRepository walletRepository, IMapper mapper, IUserRepository userRepository)
         {
             _walletRepository = walletRepository;
+            _userRepository = userRepository;
             _mapper = mapper;
         }
 
