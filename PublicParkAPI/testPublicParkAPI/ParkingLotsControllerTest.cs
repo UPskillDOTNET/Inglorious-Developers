@@ -76,7 +76,7 @@ namespace testPublicParkAPI
             var result = await theController.GetParkingLot(1000);
 
             //Assert
-            Assert.IsType<NotFoundResult>(result.Result);
+            Assert.IsType<NotFoundObjectResult>(result.Result);
         }
 
         //[Fact]

@@ -96,7 +96,7 @@ namespace PublicParkAPI.Controllers
         {
             var parkingLot = await _parkingLotService.GetParkingLot(id);
 
-            if (parkingLot != null)
+            if (parkingLot.Value != null)
             {
 
                 return true;
