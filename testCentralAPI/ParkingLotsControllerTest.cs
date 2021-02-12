@@ -53,5 +53,23 @@ namespace testCentralAPI {
             var items = Assert.IsType<ParkingLotDTO>(result.Value);
             Assert.Equal("Parque da República", items.name);
         }
+
+        [Fact]
+        public async Task GetParkingLotByID_ShouldReturnNotFound() {
+            //Arrange
+            Thread.Sleep(500);
+            var TestContext = TodoContextMocker.GetCentralAPIContext("GetParkingLotByID");
+            var parkingLotRepository = new ParkingLotRepository(TestContext);
+            var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
+            var mapper = config.CreateMapper();
+            var ParkingLotService = new ParkingLotService(parkingLotRepository, mapper);
+            var theController = new ParkingLotsController(ParkingLotService);
+
+            //Act
+            var result = await theController.GetParkingLot(500);
+
+            //Assert
+            Assert.IsType<NotFoundObjectResult>(result.Result);
+        }
     }
 }
