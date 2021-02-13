@@ -1,27 +1,28 @@
 ﻿using AutoMapper;
 using CentralAPI.Controllers;
+using CentralAPI.Data;
 using CentralAPI.DTO;
+using CentralAPI.Models;
 using CentralAPI.Repositories.Repository;
 using CentralAPI.Services.IServices;
 using CentralAPI.Services.Services;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace testCentralAPI {
-    public class WalletControllerTest {
+namespace testCentralAPI
+{
+    public class WalletControllerTest
+    {
         private IUserService userService;
 
         [Fact]
-        public async Task GetAllWalletsAsync_ShouldReturnAllWallets() {
+        public async Task GetAllWalletsAsync_ShouldReturnAllWallets()
+        {
             // Arrange
-            Thread.Sleep(1000);
-            var TestContext = TodoContextMocker.GetCentralAPIContext("GetAllWallets");
+            var TestContext = CentralAPI_WalletContext.GetCentralAPIContext("GetAllWallets");
             var walletRepository = new WalletRepository(TestContext);
             var userRepository = new UserRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -40,10 +41,10 @@ namespace testCentralAPI {
         }
 
         [Fact]
-        public async Task GetWalletByID_ShouldReturnWalletByID() {
+        public async Task GetWalletByID_ShouldReturnWalletByID()
+        {
             //Arrange
-            Thread.Sleep(500);
-            var TestContext = TodoContextMocker.GetCentralAPIContext("GetWalletByID");
+            var TestContext = CentralAPI_WalletContext.GetCentralAPIContext("GetWalletByID");
             var walletRepository = new WalletRepository(TestContext);
             var userRepository = new UserRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -80,10 +81,11 @@ namespace testCentralAPI {
         //}
 
         [Fact]
-        public async Task GetWalletBalanceAsync_ShouldReturnWalletBalanceAsync() {
+        public async Task GetWalletBalanceAsync_ShouldReturnWalletBalanceAsync()
+        {
 
             // Arrange 
-            var TestContext = TodoContextMocker.GetCentralAPIContext("GetWalletBalance");
+            var TestContext = CentralAPI_WalletContext.GetCentralAPIContext("GetWalletBalance");
             var walletRepository = new WalletRepository(TestContext);
             var userRepository = new UserRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -95,15 +97,16 @@ namespace testCentralAPI {
             var result = await theController.GetBalance("1");
             //Assert
             var items = Assert.IsType<WalletDTO>(result.Value);
-            
+
             Assert.Equal(250, items.totalAmount);
         }
 
         [Fact]
-        public async Task PostValidWalletasync_ShouldReturnCreatedResponse() {
+        public async Task PostValidWalletasync_ShouldReturnCreatedResponse()
+        {
 
             // Arrange 
-            var TestContext = TodoContextMocker.GetCentralAPIContext("postvalidWallet");
+            var TestContext = CentralAPI_WalletContext.GetCentralAPIContext("postvalidWallet");
             var walletRepository = new WalletRepository(TestContext);
             var userRepository = new UserRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -114,15 +117,16 @@ namespace testCentralAPI {
 
             // Act
             var response = await theController.CreateWallet("5", "pounds");
-           
+
             //Assert
             Assert.IsType<OkObjectResult>(response.Result);
         }
 
         [Fact]
-        public async Task DepositToWallet_ShouldReturnUpdatedWallet() {
+        public async Task DepositToWallet_ShouldReturnUpdatedWallet()
+        {
             // Arrange
-            var TestContext = TodoContextMocker.GetCentralAPIContext("depositWallet");
+            var TestContext = CentralAPI_WalletContext.GetCentralAPIContext("depositWallet");
             var walletRepository = new WalletRepository(TestContext);
             var userRepository = new UserRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -139,9 +143,10 @@ namespace testCentralAPI {
         }
 
         [Fact]
-        public async Task DepositZeroToWallet_ShouldReturnNotUpdatedWallet() {
+        public async Task DepositZeroToWallet_ShouldReturnNotUpdatedWallet()
+        {
             // Arrange
-            var TestContext = TodoContextMocker.GetCentralAPIContext("zeroWallet");
+            var TestContext = CentralAPI_WalletContext.GetCentralAPIContext("zeroWallet");
             var walletRepository = new WalletRepository(TestContext);
             var userRepository = new UserRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -158,9 +163,10 @@ namespace testCentralAPI {
         }
 
         [Fact]
-        public async Task DepositNegativeMoneyToWallet_ShouldReturnNotUpdated() {
+        public async Task DepositNegativeMoneyToWallet_ShouldReturnNotUpdated()
+        {
             // Arrange
-            var TestContext = TodoContextMocker.GetCentralAPIContext("negativeWallet");
+            var TestContext = CentralAPI_WalletContext.GetCentralAPIContext("negativeWallet");
             var walletRepository = new WalletRepository(TestContext);
             var userRepository = new UserRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -177,9 +183,10 @@ namespace testCentralAPI {
         }
 
         [Fact]
-        public async Task WithdrawFromWallet_ShouldReturnUpdatedWallet() {
+        public async Task WithdrawFromWallet_ShouldReturnUpdatedWallet()
+        {
             // Arrange
-            var TestContext = TodoContextMocker.GetCentralAPIContext("updateWallet");
+            var TestContext = CentralAPI_WalletContext.GetCentralAPIContext("updateWallet");
             var walletRepository = new WalletRepository(TestContext);
             var userRepository = new UserRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -196,9 +203,10 @@ namespace testCentralAPI {
         }
 
         [Fact]
-        public async Task WithdrawNegativeFromWallet_ShouldReturnNotUpdated() {
+        public async Task WithdrawNegativeFromWallet_ShouldReturnNotUpdated()
+        {
             // Arrange
-            var TestContext = TodoContextMocker.GetCentralAPIContext("negativeWiWallet");
+            var TestContext = CentralAPI_WalletContext.GetCentralAPIContext("negativeWiWallet");
             var walletRepository = new WalletRepository(TestContext);
             var userRepository = new UserRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -215,9 +223,10 @@ namespace testCentralAPI {
         }
 
         [Fact]
-        public async Task WithdrawZeroFromWallet_ShouldReturnNotUpdated() {
+        public async Task WithdrawZeroFromWallet_ShouldReturnNotUpdated()
+        {
             // Arrange
-            var TestContext = TodoContextMocker.GetCentralAPIContext("zeroWiWallet");
+            var TestContext = CentralAPI_WalletContext.GetCentralAPIContext("zeroWiWallet");
             var walletRepository = new WalletRepository(TestContext);
             var userRepository = new UserRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -233,4 +242,29 @@ namespace testCentralAPI {
             Assert.IsType<BadRequestObjectResult>(response.Result);
         }
     }
+    public static class CentralAPI_WalletContext
+    {
+        private static CentralAPIContext walletContext;
+
+        public static CentralAPIContext GetCentralAPIContext(string dbName)
+        {
+            var options = new DbContextOptionsBuilder<CentralAPIContext>()
+                            .UseInMemoryDatabase(databaseName: dbName)
+                            .Options;
+
+            walletContext = new CentralAPIContext(options);
+            Seed();
+            return walletContext;
+        }
+
+        private static void Seed()
+        {
+            walletContext.Wallets.Add(new Wallet { walletID = "1", totalAmount = 250, currency = "euro", userID = "1" });
+            walletContext.Wallets.Add(new Wallet { walletID = "2", totalAmount = 120, currency = "USD", userID = "2" });
+            walletContext.Wallets.Add(new Wallet { walletID = "3", totalAmount = 25, currency = "euro", userID = "3" });
+
+            walletContext.SaveChanges();
+        }
+    }
 }
+
