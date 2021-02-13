@@ -1,20 +1,18 @@
-﻿using System;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PublicParkAPI.Controllers;
+using PublicParkAPI.Data;
+using PublicParkAPI.DTO;
+using PublicParkAPI.Mappings;
+using PublicParkAPI.Models;
+using PublicParkAPI.Repositories;
+using PublicParkAPI.Services.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
-using Microsoft.EntityFrameworkCore;
-using PublicParkAPI.Models;
-using testProject;
-using PublicParkAPI.Controllers;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading;
-using PublicParkAPI.Repositories;
-using AutoMapper;
-using PublicParkAPI.Mappings;
-using PublicParkAPI.Services.Services;
-using PublicParkAPI.DTO;
 
 namespace testPublicParkAPI
 {
@@ -25,7 +23,7 @@ namespace testPublicParkAPI
         public async Task GetAllParkingSpotsAsync_ShouldReturnAllParkingSpotsAsync()
         {
             // Arrange            
-            var testContext = TodoContextMocker.GetPublicParkContext("GetAllParkingSpots");
+            var testContext = PublicPark_ParkingSpotsContext.GetPublicParkContext("GetAllParkingSpots");
             var parkingSpotRepository = new ParkingSpotRepository(testContext);
             var reservationRepository = new ReservationRepository(testContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -45,9 +43,8 @@ namespace testPublicParkAPI
         [Fact]
         public async Task GetParkingSpotAsync_ShouldReturnNotFound()
         {
-            Thread.Sleep(300);
             // Arrange
-            var TestContext = TodoContextMocker.GetPublicParkContext("GetParkingSpotNotFound");
+            var TestContext = PublicPark_ParkingSpotsContext.GetPublicParkContext("GetParkingSpotNotFound");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -66,9 +63,8 @@ namespace testPublicParkAPI
         [Fact]
         public async Task GetParkingSpotAsync_ShouldReturnParkingSpot()
         {
-            Thread.Sleep(3000);
             // Arrange
-            var TestContext = TodoContextMocker.GetPublicParkContext("GetSpecificParkingSpot");
+            var TestContext = PublicPark_ParkingSpotsContext.GetPublicParkContext("GetSpecificParkingSpot");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -87,9 +83,8 @@ namespace testPublicParkAPI
         [Fact]
         public async Task GetParkingSpotAsync_ShouldReturnTheRightItemAsync()
         {
-            Thread.Sleep(300);
             // Arrange
-            var TestContext = TodoContextMocker.GetPublicParkContext("GetRightParkingSpot");
+            var TestContext = PublicPark_ParkingSpotsContext.GetPublicParkContext("GetRightParkingSpot");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -110,15 +105,14 @@ namespace testPublicParkAPI
         [Fact]
         public async Task PostNoPriceParkingSpotAsync_ShouldReturnBadRequest()
         {
-            Thread.Sleep(400);
             // Arrange
-            var TestContext = TodoContextMocker.GetPublicParkContext("PostbadParkingSpot");
+            var TestContext = PublicPark_ParkingSpotsContext.GetPublicParkContext("PostbadParkingSpot");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
             var parkingSpotService = new ParkingSpotService(parkingSpotRepository, mapper, reservationRepository);
-            var theController = new ParkingSpotsController(parkingSpotService); 
+            var theController = new ParkingSpotsController(parkingSpotService);
             var noPriceParkingSpot = new ParkingSpotDTO
             {
                 parkingSpotID = "T1",
@@ -135,9 +129,8 @@ namespace testPublicParkAPI
         [Fact]
         public async Task PostNoParkingLotIDParkingSpotAsync_ShouldReturnBadRequest()
         {
-            Thread.Sleep(900);
             // Arrange
-            var TestContext = TodoContextMocker.GetPublicParkContext("PostNoIdParkingSpot");
+            var TestContext = PublicPark_ParkingSpotsContext.GetPublicParkContext("PostNoIdParkingSpot");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -162,9 +155,9 @@ namespace testPublicParkAPI
         [Fact]
         public async Task PostParkingSpotAsync_ShouldReturnCreatedResponse()
         {
-            Thread.Sleep(300);
             // Arrange
-            var TestContext = TodoContextMocker.GetPublicParkContext("PostParkingSpotReturnCreatedResponse");
+
+            var TestContext = PublicPark_ParkingSpotsContext.GetPublicParkContext("PostParkingSpotReturnCreatedResponse");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -178,19 +171,19 @@ namespace testPublicParkAPI
                 ParkingLotID = 2
             };
 
-                // Act
-                var response = await theController.PostParkingSpot(theNewParkingSpot);
+            // Act
+            var response = await theController.PostParkingSpot(theNewParkingSpot);
 
-                // Assert
-                Assert.IsType<CreatedAtActionResult>(response.Result);
-            }
+            // Assert
+            Assert.IsType<CreatedAtActionResult>(response.Result);
+        }
 
         [Fact]
         public async Task PostParkingSpotAsync_ShouldCreateAnParkingSpotAsync()
         {
-            Thread.Sleep(500);
+        
             // Arrange
-            var TestContext = TodoContextMocker.GetPublicParkContext("PostParkingSpotCreateParkingSpot");
+            var TestContext = PublicPark_ParkingSpotsContext.GetPublicParkContext("PostParkingSpotCreateParkingSpot");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -220,9 +213,8 @@ namespace testPublicParkAPI
         [Fact]
         public async Task PutNoExistingParkingSpotAsync_ShouldReturnNotFound()
         {
-            Thread.Sleep(300);
             // Arrange
-            var TestContext = TodoContextMocker.GetPublicParkContext("PutNotParkingSpotReturnNotFound");
+            var TestContext = PublicPark_ParkingSpotsContext.GetPublicParkContext("PutNotParkingSpotReturnNotFound");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -248,9 +240,8 @@ namespace testPublicParkAPI
         [Fact]
         public async Task PutNoPriceParkingSpot_ShouldReturnBadRequestResult()
         {
-            Thread.Sleep(400);
             // Arrange
-            var TestContext = TodoContextMocker.GetPublicParkContext("PutNoPriceParkingSpotReturnBadRequest");
+            var TestContext = PublicPark_ParkingSpotsContext.GetPublicParkContext("PutNoPriceParkingSpotReturnBadRequest");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -263,7 +254,7 @@ namespace testPublicParkAPI
             {
                 parkingSpotID = testCod,
                 ParkingLotID = 1
-            };            
+            };
 
             // Act
             var response = await theController.PutParkingSpot(testCod, noPriceParkingSpot);
@@ -276,9 +267,8 @@ namespace testPublicParkAPI
         [Fact]
         public async Task PutNoParkingLotIDParkingSpot_ShouldReturnBadRequest()
         {
-            Thread.Sleep(300);
             // Arrange
-            var TestContext = TodoContextMocker.GetPublicParkContext("PutNoParkingLotIDParkingSpotReturnBadRequest");
+            var TestContext = PublicPark_ParkingSpotsContext.GetPublicParkContext("PutNoParkingLotIDParkingSpotReturnBadRequest");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -303,9 +293,8 @@ namespace testPublicParkAPI
         [Fact]
         public async Task PutParkingSpot_ShouldReturnNoContentResult()
         {
-            Thread.Sleep(1000);
             // Arrange
-            var TestContext = TodoContextMocker.GetPublicParkContext("PutParkingSpotReturnNoContentResult");
+            var TestContext = PublicPark_ParkingSpotsContext.GetPublicParkContext("PutParkingSpotReturnNoContentResult");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -367,22 +356,51 @@ namespace testPublicParkAPI
         //    // Assert
         //    Assert.IsType<NotFoundResult>(isTheItemThere.Result);
     }
-        //[Fact]
-        //public async Task DeleteNotExistingCountry_ShouldReturnNotFound()
-        //{
-        //    // Arrange
-        //    var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-        //    var testContext = MockerOMSContext.GetTheOMSContext(dbName);
-        //    var theController = new CountryController(testContext);
-        //    var testCod = "NoExCod";
+    //[Fact]
+    //public async Task DeleteNotExistingCountry_ShouldReturnNotFound()
+    //{
+    //    // Arrange
+    //    var dbName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+    //    var testContext = MockerOMSContext.GetTheOMSContext(dbName);
+    //    var theController = new CountryController(testContext);
+    //    var testCod = "NoExCod";
 
-        //    // Act
-        //    var result = await theController.DeleteCountry(testCod);
+    //    // Act
+    //    var result = await theController.DeleteCountry(testCod);
 
-        //    // Assert
-        //    Assert.IsType<NotFoundResult>(result);
-        //}
+    //    // Assert
+    //    Assert.IsType<NotFoundResult>(result);
+    //}
+
+    public static class PublicPark_ParkingSpotsContext
+    {
+        private static PublicParkContext publicParkingSpotsContext;
+        public static PublicParkContext GetPublicParkContext(string dbName)
+        {
+            var options = new DbContextOptionsBuilder<PublicParkContext>()
+                            .UseInMemoryDatabase(databaseName: dbName)
+                            .Options;
+
+            publicParkingSpotsContext = new PublicParkContext(options);
+            Seed();
+            return publicParkingSpotsContext;
+        }
+
+        private static void Seed()
+        {
+            publicParkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "A1", priceHour = 0.250m, ParkingLotID = 1 });
+            publicParkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "E1", priceHour = 0.5m, ParkingLotID = 2 });
+            publicParkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "I1", priceHour = 0.9m, ParkingLotID = 2 });
+            publicParkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "O1", priceHour = 1.00m, ParkingLotID = 3 });
+            publicParkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "A3", priceHour = 0.25m, ParkingLotID = 1 });
+
+            publicParkingSpotsContext.ParkingLots.Add(new ParkingLot { name = "Parque da República", municipality = "Vila Nova de Gaia", location = "Avenida da República", capacity = 125, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
+            publicParkingSpotsContext.ParkingLots.Add(new ParkingLot { name = "Parque Brito Capelo", municipality = "Matosinhos", location = "Rua Brito Capelo", capacity = 250, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
+            publicParkingSpotsContext.ParkingLots.Add(new ParkingLot { name = "Parque da Liberdade", municipality = "Lisboa", location = "Avenida da Liberdade", capacity = 423, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
+            publicParkingSpotsContext.ParkingLots.Add(new ParkingLot { name = "Parque dos Congregados", municipality = "Braga", location = "Rua dos Congregados", capacity = 588, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
+            publicParkingSpotsContext.ParkingLots.Add(new ParkingLot { name = "Parque Carlos Alberto", municipality = "Porto", location = "Praça Carlos Alberto", capacity = 365, openingTime = DateTime.Parse("2020-02-22 12:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
+
+            publicParkingSpotsContext.SaveChanges();
+        }
     }
-
-
-
+}

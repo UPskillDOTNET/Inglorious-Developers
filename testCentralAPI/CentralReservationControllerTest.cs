@@ -7,6 +7,7 @@ using CentralAPI.Repositories.Repository;
 using CentralAPI.Services.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -34,6 +35,9 @@ namespace testCentralAPI {
 
         private static void Seed()
         {
+            centralReservationContext.ParkingLots.Add(new ParkingLot { parkingLotID = 1, name = "Parque da República", owner = "NorteShopping", location = "Avenida da República", capacity = 125, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00"), myURL = "https://localhost:44350/api" });
+            centralReservationContext.ParkingLots.Add(new ParkingLot { parkingLotID = 2, name = "Parque Brito Capelo", owner = "InRio", location = "Rua Brito Capelo", capacity = 250, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00"), myURL = "https://localhost:44353/api" });
+
             centralReservationContext.CentralReservations.Add(new CentralReservation { reservationID = "ABC1", isCancelled = false, startTime = DateTime.Parse("2021-05-22 07:00:00"), endTime = DateTime.Parse("2021-05-22 08:00:00"), finalPrice = 10, parkingLotID = 1, userID = "1" });
             centralReservationContext.CentralReservations.Add(new CentralReservation { reservationID = "ABC2", isCancelled = true, startTime = DateTime.Parse("2021-01-31 07:00:00"), endTime = DateTime.Parse("2021-08-22 09:00:00"), finalPrice = 10, parkingLotID = 2, userID = "2" });
             centralReservationContext.CentralReservations.Add(new CentralReservation { reservationID = "ABC3", isCancelled = false, startTime = DateTime.Parse("2021-09-22 07:00:00"), endTime = DateTime.Parse("2021-09-22 19:00:00"), finalPrice = 10, parkingLotID = 1, userID = "3" });
