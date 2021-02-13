@@ -16,14 +16,11 @@ namespace CentralAPI.Services.Services
 {
     public class ParkingSpotService : IParkingSpotService
     {
-
-        private readonly IParkingLotService _parkingLotService;
         private readonly ClientHelper _helper;
 
         public ParkingSpotService(ClientHelper helper)
         {
             _helper = helper;
-
         }
 
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots(int id)
@@ -45,17 +42,17 @@ namespace CentralAPI.Services.Services
             return await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
         }
 
-        public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpotById(int pLotId, string id)
-        {
-            var response = await _helper.GetClientAsync(pLotId, "api/parkingspots/" + id);
-            return await response.Content.ReadAsAsync<ParkingSpotDTO>();
-        }
-
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByPrice(int id, decimal priceHour)
         {
             var endpoint = "api/parkingspots/freeSpots/" + priceHour.ToString(CultureInfo.InvariantCulture);
             var response = await _helper.GetClientAsync(id, endpoint);
             return await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
+        }
+
+        public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpotById(int pLotId, string id)
+        {
+            var response = await _helper.GetClientAsync(pLotId, "api/parkingspots/" + id);
+            return await response.Content.ReadAsAsync<ParkingSpotDTO>();
         }
         public async Task<ActionResult<ParkingSpotDTO>> CreateParkingSpot(ParkingSpotDTO parkingSpotDTO, int id)
         {

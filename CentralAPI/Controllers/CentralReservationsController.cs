@@ -1,37 +1,39 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CentralAPI.DTO;
+using CentralAPI.Services.IServices;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using CentralAPI.Services.IServices;
-using CentralAPI.DTO;
-using CentralAPI.Controllers;
 
-namespace CentralAPI.Controllers {
+namespace CentralAPI.Controllers
+{
     [Route("central/reservations")]
     [ApiController]
-    public class CentralReservationsController : ControllerBase {
+    public class CentralReservationsController : ControllerBase
+    {
         private readonly ICentralReservationService _centralReservationService;
         private readonly IReservationService _reservationService;
 
-        public CentralReservationsController(ICentralReservationService centralReservationService, IReservationService reservationService ) {
+        public CentralReservationsController(ICentralReservationService centralReservationService, IReservationService reservationService)
+        {
             _centralReservationService = centralReservationService;
             _reservationService = reservationService;
         }
 
         //Get All Central Reservations
         [HttpGet]
-        public Task<ActionResult<IEnumerable<CentralReservationDTO>>> GetCentralReservations() {
+        public Task<ActionResult<IEnumerable<CentralReservationDTO>>> GetCentralReservations()
+        {
             return _centralReservationService.GetAllCentralReservations();
         }
 
         //Get Central Reservation By Id
         [HttpGet("{id}")]
-        public async Task<ActionResult<CentralReservationDTO>> GetCentralReservationById(string id) {
+        public async Task<ActionResult<CentralReservationDTO>> GetCentralReservationById(string id)
+        {
 
-            if (await CentralReservationExists(id) == false) {
+            if (await CentralReservationExists(id) == false)
+            {
                 return NotFound("CentralReservation was not Found");
             }
             return await _centralReservationService.GetCentralReservationById(id);
@@ -39,18 +41,24 @@ namespace CentralAPI.Controllers {
 
         //Get All Not Canceled Reservation 
         [Route("~/central/reservations/notCancelled")]
-        public async Task<ActionResult<IEnumerable<CentralReservationDTO>>> GetCentralReservationsNotCancelled() {
+        public async Task<ActionResult<IEnumerable<CentralReservationDTO>>> GetCentralReservationsNotCancelled()
+        {
             return await _centralReservationService.GetCentralReservationsNotCancelled();
         }
 
         //Post Reservation in both Park and Central API
         [HttpPost]
-        public async Task<ActionResult<CentralReservationDTO>> PostCentralReservation([FromBody] CentralReservationDTO centralReservationDTO) {
-            try {
-                await _reservationService.PostReservation(centralReservationDTO, centralReservationDTO.parkingLotID);
-                await _centralReservationService.PostCentralReservation(centralReservationDTO);                
-            } catch (Exception e) {
-                if (await CentralReservationExists(centralReservationDTO.reservationID) == true) {
+        public async Task<ActionResult<CentralReservationDTO>> PostCentralReservation([FromBody] CentralReservationDTO centralReservationDTO)
+        {
+            try
+            {
+                var centralReservation = await _centralReservationService.PostCentralReservation(centralReservationDTO);
+                await _reservationService.PostReservation(centralReservation.Value, centralReservation.Value.parkingLotID);
+            }
+            catch (Exception e)
+            {
+                if (await CentralReservationExists(centralReservationDTO.reservationID) == true)
+                {
                     return Conflict("The CentralReservations already exist" + e);
                 }
                 throw;
@@ -58,16 +66,18 @@ namespace CentralAPI.Controllers {
             return CreatedAtAction("PostCentralReservation", new { id = centralReservationDTO.reservationID }, centralReservationDTO);
         }
 
-        [HttpPatch]
-        [Route("~/central/parkinglot/{pLotID}/reservations/{id}")]
-        public async Task<ActionResult<CentralReservationDTO>> PatchCentralReservation(string id, int pLotID) {
+        [HttpPut("{id}")]
+        public async Task<ActionResult<CentralReservationDTO>> PatchCentralReservation(string id)
+        {
             var centralReservationDTO = await _centralReservationService.GetCentralReservationById(id);
 
-            if (await CentralReservationExists(id) == true) {
-                if (centralReservationDTO.Value.isCancelled == false) {
-                    await _centralReservationService.PatchCentralReservation(id);
-                    await _reservationService.PatchReservation(centralReservationDTO.Value.reservationID, pLotID);
-                    return Ok("CentralReservation Cancelled");
+            if (await CentralReservationExists(id) == true)
+            {
+                if (centralReservationDTO.Value.isCancelled == false)
+                {
+                    centralReservationDTO = await _centralReservationService.PatchCentralReservation(id);
+                    await _reservationService.PatchReservation(centralReservationDTO.Value.reservationID, centralReservationDTO.Value.parkingLotID);
+                    return centralReservationDTO;
                 }
                 return BadRequest("Couldn't change value");
             }
@@ -75,7 +85,8 @@ namespace CentralAPI.Controllers {
         }
 
         //CentralReservation exists
-        public async Task<bool> CentralReservationExists(string id) {
+        public async Task<bool> CentralReservationExists(string id)
+        {
             return await _centralReservationService.FindCentralReservationAny(id);
 
         }
@@ -88,7 +99,7 @@ namespace CentralAPI.Controllers {
         //Get All Resevations
         [HttpGet]
         [Route("~/park/parkinglot/{id}/allparkreservations")]
-        public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ReservationDTO>>> GetAllReservations(int id)
+        public async Task<ActionResult<IEnumerable<CentralReservationDTO>>> GetAllReservations(int id)
         {
             return await _reservationService.GetAllReservations(id);
         }
@@ -96,7 +107,7 @@ namespace CentralAPI.Controllers {
         //Get All Not Cancelled Reservations
         [HttpGet]
         [Route("~/park/parkinglot/{id}/parkreservations")]
-        public async Task<ActionResult<IEnumerable<PrivateParkAPI.DTO.ReservationDTO>>> GetAllNotCanceledReservations(int id)
+        public async Task<ActionResult<IEnumerable<CentralReservationDTO>>> GetAllNotCanceledReservations(int id)
         {
             return await _reservationService.GetAllNotCanceledReservations(id);
         }
@@ -104,7 +115,7 @@ namespace CentralAPI.Controllers {
         //Get Resevations by Id
         [HttpGet]
         [Route("~/park/parkinglot/{pLotID}/parkreservations/{id}")]
-        public async Task<ActionResult<PrivateParkAPI.DTO.ReservationDTO>> GetReservationById(string id, int pLotID)
+        public async Task<ActionResult<CentralReservationDTO>> GetReservationById(string id, int pLotID)
         {
             try
             {

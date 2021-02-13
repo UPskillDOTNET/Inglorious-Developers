@@ -77,7 +77,7 @@ namespace PublicParkAPI.Controllers
             return CreatedAtAction("PostReservation", new { id = reservationDTO.reservationID }, reservationDTO);
         }
 
-        [HttpPatch("{id}")]
+        [HttpPut("{id}")]
         public async Task<ActionResult<ReservationDTO>> PatchReservation(string id)
         {
             var reservationDTO = await _reservationService.GetReservation(id);
