@@ -11,113 +11,65 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace CentralAPI.Services.Services
 {
     public class ParkingSpotService : IParkingSpotService
     {
 
         private readonly IParkingLotService _parkingLotService;
+        private readonly ClientHelper _helper;
 
-        public ParkingSpotService(IParkingLotService parkingLotService)
+        public ParkingSpotService(ClientHelper helper)
         {
-            _parkingLotService = parkingLotService;
+            _helper = helper;
+
         }
 
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots(int id)
         {
-            var parkingSpotsList = new List<ParkingSpotDTO>();
-            var parkinglot = await _parkingLotService.GetParkingLot(id);
-            using (var client = new HttpClient())
-            {
-                string endpoint = parkinglot.Value.myURL + "/parkingspots/all";
-                var response = await client.GetAsync(endpoint);
-                response.EnsureSuccessStatusCode();
-                parkingSpotsList = await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
-            }
-            return parkingSpotsList;
+            var response = await _helper.GetClientAsync(id, "api/parkingspots/all");
+            return await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
         }
 
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllFreeSpots(int id)
         {
-            var parkingSpotsList = new List<ParkingSpotDTO>();
-            var parkinglot = await _parkingLotService.GetParkingLot(id);
-            using (var client = new HttpClient())
-            {
-                string endpoint = parkinglot.Value.myURL + "/parkingspots/freeSpots";
-                var response = await client.GetAsync(endpoint);
-                response.EnsureSuccessStatusCode();
-                parkingSpotsList = await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
-            }
-            return parkingSpotsList;
+            var response = await _helper.GetClientAsync(id, "api/parkingspots/freeSpots");
+            return await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
         }
 
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate, int id)
         {
-            var parkingSpotsList = new List<ParkingSpotDTO>();
-            var parkinglot = await _parkingLotService.GetParkingLot(id);
-            using (var client = new HttpClient())
-            {
-                string endpoint = parkinglot.Value.myURL + "/parkingspots/freeSpots/" + startDate.ToString("yyyy-MM-ddTHH:mm:ss") + "/" + endDate.ToString("yyyy-MM-ddTHH:mm:ss");
-                var response = await client.GetAsync(endpoint);
-                response.EnsureSuccessStatusCode();
-                parkingSpotsList = await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
-            }
-            return parkingSpotsList;
+            string endpoint = "api/parkingspots/freeSpots/" + startDate.ToString("yyyy-MM-ddTHH:mm:ss") + "/" + endDate.ToString("yyyy-MM-ddTHH:mm:ss");
+            var response = await _helper.GetClientAsync(id, endpoint);
+            return await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
         }
 
         public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpotById(int pLotId, string id)
         {
-            ParkingSpotDTO parkingSpot;
-            var parkinglot = await _parkingLotService.GetParkingLot(pLotId);
-            using (var client = new HttpClient())
-            {
-
-                string endpoint = parkinglot.Value.myURL + "/parkingspots/" + id;
-                var response = await client.GetAsync(endpoint);
-                response.EnsureSuccessStatusCode();
-                parkingSpot = await response.Content.ReadAsAsync<ParkingSpotDTO>();
-            }
-            return parkingSpot;
+            var response = await _helper.GetClientAsync(pLotId, "api/parkingspots/" + id);
+            return await response.Content.ReadAsAsync<ParkingSpotDTO>();
         }
 
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByPrice(int id, decimal priceHour)
         {
-            var parkingSpotsList = new List<ParkingSpotDTO>();
-            var parkinglot = await _parkingLotService.GetParkingLot(id);
-            using (var client = new HttpClient())
-            {
-                string endpoint = parkinglot.Value.myURL + "/parkingspots/freeSpots/" + priceHour.ToString(CultureInfo.InvariantCulture);
-                var response = await client.GetAsync(endpoint);
-                response.EnsureSuccessStatusCode();
-                parkingSpotsList = await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
-            }
-            return parkingSpotsList;
+            var endpoint = "api/parkingspots/freeSpots/" + priceHour.ToString(CultureInfo.InvariantCulture);
+            var response = await _helper.GetClientAsync(id, endpoint);
+            return await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
         }
         public async Task<ActionResult<ParkingSpotDTO>> CreateParkingSpot(ParkingSpotDTO parkingSpotDTO, int id)
         {
-            var parkinglot = await _parkingLotService.GetParkingLot(id);
-            using (HttpClient client = new HttpClient())
-            {
-
-                parkingSpotDTO.parkingLotID = id;
-                StringContent content = new StringContent(JsonConvert.SerializeObject(parkingSpotDTO), Encoding.UTF8, "application/json");
-                string endpoint = parkinglot.Value.myURL + "/parkingspots";
-                var response = await client.PostAsync(endpoint, content);
-            }
-            return parkingSpotDTO;
+            var content = new StringContent(JsonConvert.SerializeObject(parkingSpotDTO), Encoding.UTF8, "application/json");
+            var response = await _helper.PostClientAsync(id, "api/parkingspots/", content);
+            return await response.Content.ReadAsAsync<ParkingSpotDTO>();
         }
 
         public async Task<ActionResult<ParkingSpotDTO>> EditParkingSpot(string id, ParkingSpotDTO parkingSpotDTO, int pLotId)
         {
-            var parkinglot = await _parkingLotService.GetParkingLot(pLotId);
-            using (HttpClient client = new HttpClient())
-            {
-
-                StringContent content = new StringContent(JsonConvert.SerializeObject(parkingSpotDTO), Encoding.UTF8, "application/json");
-                string endpoint = parkinglot.Value.myURL + "/parkingspots/" + id;
-                var response = await client.PutAsync(endpoint, content);
-            }
-            return parkingSpotDTO;
+            var content = new StringContent(JsonConvert.SerializeObject(parkingSpotDTO), Encoding.UTF8, "application/json");
+            var endpoint = "api/parkingspots/" + id;
+            var response = await _helper.PutClientAsync(pLotId, endpoint, content);
+            return await response.Content.ReadAsAsync<ParkingSpotDTO>();
         }
 
         public ValidationResult Validate(ParkingSpotDTO parkingSpotDTO)

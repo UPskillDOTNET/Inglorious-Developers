@@ -50,6 +50,7 @@ namespace CentralAPI
             services.AddTransient<IParkingLotRepository, ParkingLotRepository>();
             services.AddTransient<QRgenerator>();
             services.AddTransient<EmailService>();
+            services.AddTransient<ClientHelper>();
             services.AddTransient<IParkingLotService, ParkingLotService>();
             services.AddTransient<IParkingSpotService, ParkingSpotService>();
             services.AddTransient<IPaymentRepository, PaymentRepository>();
@@ -64,7 +65,7 @@ namespace CentralAPI
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ISubletService, SubletService>();
             services.AddTransient<ISubletRepository, SubletRepository>();
-
+            
             services.AddControllers().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );

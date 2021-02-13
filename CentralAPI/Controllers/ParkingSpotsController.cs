@@ -44,7 +44,7 @@ namespace CentralAPI.Controllers
         }
 
         [HttpGet]
-        [Route("centralapi/parkinglot/{id}/freeparkingspots/{entryHour}/{leaveHour}")]
+        [Route("centralapi/parkinglot/{id}/freeparkingspots/{startDate}/{endDate}")]
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate, int id)
         {
             if (await ParkingLotExists(id) == false)
@@ -108,7 +108,7 @@ namespace CentralAPI.Controllers
         }
 
         //PUT private
-        [HttpPost]
+        [HttpPut]
         [Route("centralapi/parkinglot/{pLotId}/parkingspots/{id}")]
 
         public async Task<ActionResult<ParkingSpotDTO>> EditParkingSpot(string id, [Bind("parkingSpotID, priceHour, floor, isPrivate, isCovered, parkingLotID")] ParkingSpotDTO parkingSpotDTO, int pLotId)
