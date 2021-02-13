@@ -2,15 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PrivateParkAPI.Controllers;
+using PrivateParkAPI.Data;
 using PrivateParkAPI.DTO;
 using PrivateParkAPI.Models;
 using PrivateParkAPI.Repositories.Repository;
 using PrivateParkAPI.Services.Services;
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-using testProject;
 using Xunit;
 
 namespace testPrivateParkAPI
@@ -20,9 +19,8 @@ namespace testPrivateParkAPI
         [Fact]
         public async Task GetAllnotPrivateAsync_ShouldReturnAllnotPrivateAsync()
         {
-
             // Arrange 
-            var TestContext = TodoContextMocker.GetPrivateParkContext("GetAllnotPrivateParkingSpots");
+            var TestContext = PrivatePark_ParkingSpotsContext.GetPrivateParkContext("GetAllnotPrivateParkingSpots");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -40,7 +38,7 @@ namespace testPrivateParkAPI
         {
 
             // Arrange 
-            var TestContext = TodoContextMocker.GetPrivateParkContext("GetAllAvailableParkingSpots");
+            var TestContext = PrivatePark_ParkingSpotsContext.GetPrivateParkContext("GetAllAvailableParkingSpots");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -58,7 +56,7 @@ namespace testPrivateParkAPI
         {
 
             // Arrange 
-            var TestContext = TodoContextMocker.GetPrivateParkContext("GetAllinHourParkingSpots");
+            var TestContext = PrivatePark_ParkingSpotsContext.GetPrivateParkContext("GetAllinHourParkingSpots");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -74,9 +72,8 @@ namespace testPrivateParkAPI
         [Fact]
         public async Task GetAllAsync_ShouldReturnAllAsync()
         {
-            Thread.Sleep(4000);
             // Arrange 
-            var TestContext = TodoContextMocker.GetPrivateParkContext("GetAllParkingSpots");
+            var TestContext = PrivatePark_ParkingSpotsContext.GetPrivateParkContext("GetAllParkingSpots");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -95,7 +92,7 @@ namespace testPrivateParkAPI
         {
 
             // Arrange 
-            var TestContext = TodoContextMocker.GetPrivateParkContext("notGetParkingSpot");
+            var TestContext = PrivatePark_ParkingSpotsContext.GetPrivateParkContext("notGetParkingSpot");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -114,7 +111,7 @@ namespace testPrivateParkAPI
         {
 
             // Arrange 
-            var TestContext = TodoContextMocker.GetPrivateParkContext("GetParkingSpot");
+            var TestContext = PrivatePark_ParkingSpotsContext.GetPrivateParkContext("GetParkingSpot");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -134,7 +131,7 @@ namespace testPrivateParkAPI
         {
 
             // Arrange 
-            var TestContext = TodoContextMocker.GetPrivateParkContext("GetrightParkingSpot");
+            var TestContext = PrivatePark_ParkingSpotsContext.GetPrivateParkContext("GetrightParkingSpot");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -158,7 +155,7 @@ namespace testPrivateParkAPI
         {
 
             // Arrange 
-            var TestContext = TodoContextMocker.GetPrivateParkContext("postbadParkingSpot");
+            var TestContext = PrivatePark_ParkingSpotsContext.GetPrivateParkContext("postbadParkingSpot");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -186,7 +183,7 @@ namespace testPrivateParkAPI
         {
 
             // Arrange 
-            var TestContext = TodoContextMocker.GetPrivateParkContext("postbadParkingSpot2");
+            var TestContext = PrivatePark_ParkingSpotsContext.GetPrivateParkContext("postbadParkingSpot2");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -214,7 +211,7 @@ namespace testPrivateParkAPI
         {
 
             // Arrange 
-            var TestContext = TodoContextMocker.GetPrivateParkContext("postvalidParkingSpot");
+            var TestContext = PrivatePark_ParkingSpotsContext.GetPrivateParkContext("postvalidParkingSpot");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -240,14 +237,11 @@ namespace testPrivateParkAPI
         }
 
 
-
-
-
         [Fact]
         public async Task PostParkingSlotAsync_ShouldCreateAParkingSlotAsync()
         {
             // Arrange
-            var TestContext = TodoContextMocker.GetPrivateParkContext("postParkingSpotisParkingSpot");
+            var TestContext = PrivatePark_ParkingSpotsContext.GetPrivateParkContext("postParkingSpotisParkingSpot");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -372,7 +366,7 @@ namespace testPrivateParkAPI
         public async Task PutParkingSpot_ShouldReturnCreatedResponse()
         {
             // Arrange
-            var TestContext = TodoContextMocker.GetPrivateParkContext("putParkingisParking");
+            var TestContext = PrivatePark_ParkingSpotsContext.GetPrivateParkContext("putParkingisParking");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -405,7 +399,7 @@ namespace testPrivateParkAPI
         public async Task DeleteNotExistingParkingSpot_ShouldReturnNotFound()
         {
             // Arrange
-            var TestContext = TodoContextMocker.GetPrivateParkContext("deleteParkingNotFound");
+            var TestContext = PrivatePark_ParkingSpotsContext.GetPrivateParkContext("deleteParkingNotFound");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -425,7 +419,7 @@ namespace testPrivateParkAPI
         public async Task DeleteExistingParkingSpotAsync_ShouldReturnOkResult()
         {
             // Arrange
-            var TestContext = TodoContextMocker.GetPrivateParkContext("deleteParkingOK");
+            var TestContext = PrivatePark_ParkingSpotsContext.GetPrivateParkContext("deleteParkingOK");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -445,7 +439,7 @@ namespace testPrivateParkAPI
         public async Task DeleteExistingParkingSpotAsync_ShouldRemovetheParkingSpotAsync()
         {
             // Arrange
-            var TestContext = TodoContextMocker.GetPrivateParkContext("deletedParkIsDeleted");
+            var TestContext = PrivatePark_ParkingSpotsContext.GetPrivateParkContext("deletedParkIsDeleted");
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var reservationRepository = new ReservationRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -461,6 +455,32 @@ namespace testPrivateParkAPI
 
             // Assert
             Assert.IsType<NotFoundObjectResult>(notExists.Result);
+        }
+    }
+    public static class PrivatePark_ParkingSpotsContext
+    {
+        private static PrivateParkContext parkingSpotsContext;
+
+        public static PrivateParkContext GetPrivateParkContext(string dbName)
+        {
+            var options = new DbContextOptionsBuilder<PrivateParkContext>()
+                            .UseInMemoryDatabase(databaseName: dbName)
+                            .Options;
+
+            parkingSpotsContext = new PrivateParkContext(options);
+            Seed();
+            return parkingSpotsContext;
+        }
+
+        private static void Seed()
+        {
+            parkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "A1", priceHour = 0.250m, isCovered = false, isPrivate = true, floor = 1, parkingLotID = 1 });
+            parkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "E1", priceHour = 0.5m, isCovered = true, isPrivate = false, floor = 2, parkingLotID = 2 });
+            parkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "I1", priceHour = 0.9m, isCovered = false, isPrivate = true, floor = 1, parkingLotID = 2 });
+            parkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "O1", priceHour = 1.00m, isCovered = true, isPrivate = false, parkingLotID = 3 });
+            parkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "A3", priceHour = 0.25m, isCovered = false, isPrivate = false, parkingLotID = 1 });
+
+            parkingSpotsContext.SaveChanges();
         }
     }
 }

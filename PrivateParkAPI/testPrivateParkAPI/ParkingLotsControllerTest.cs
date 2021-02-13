@@ -11,9 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using testProject;
 using Xunit;
 using PrivateParkAPI.DTO;
+using PrivateParkAPI.Data;
 
 namespace testPrivateParkAPI
 {
@@ -23,8 +23,7 @@ namespace testPrivateParkAPI
         public async Task GetAllParkingLotsAsync_ShouldReturnAllParkingLots()
         {
             // Arrange
-            Thread.Sleep(1000);
-            var TestContext = TodoContextMocker.GetPrivateParkContext("GetAllParkingLots");
+            var TestContext = PrivatePark_ParkingLotsContext.GetPrivateParkContext("GetAllParkingLots");
             var parkingLotRepository = new ParkingLotRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
@@ -44,8 +43,7 @@ namespace testPrivateParkAPI
         public async Task GetParkingLotByID_ShouldReturnParkingLotByID()
         {
             //Arrange
-            Thread.Sleep(1000);
-            var TestContext = TodoContextMocker.GetPrivateParkContext("GetParkingLot");
+            var TestContext = PrivatePark_ParkingLotsContext.GetPrivateParkContext("GetParkingLot");
             var parkingLotRepository = new ParkingLotRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
@@ -64,8 +62,7 @@ namespace testPrivateParkAPI
         public async Task GetParkingLotByID_ShouldReturnNotFound()
         {
             //Arrange
-            Thread.Sleep(1000);
-            var TestContext = TodoContextMocker.GetPrivateParkContext("NotFoundParkingLotByID");
+            var TestContext = PrivatePark_ParkingLotsContext.GetPrivateParkContext("NotFoundParkingLotByID");
             var parkingLotRepository = new ParkingLotRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
@@ -173,8 +170,7 @@ namespace testPrivateParkAPI
         public async Task PostParkingLot_ShouldCreateNewParkingLot()
         {
             //Arrange
-            Thread.Sleep(1000);
-            var TestContext = TodoContextMocker.GetPrivateParkContext("PostParkingLot");
+            var TestContext = PrivatePark_ParkingLotsContext.GetPrivateParkContext("PostParkingLot");
             var parkingLotRepository = new ParkingLotRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
@@ -206,9 +202,7 @@ namespace testPrivateParkAPI
         public async Task PostBadParkingLot_ShouldReturnBadRequest()
         {
             //Arrange
-            Thread.Sleep(1000);
-
-            var TestContext = TodoContextMocker.GetPrivateParkContext("PostBadRequestParkingLot");
+            var TestContext = PrivatePark_ParkingLotsContext.GetPrivateParkContext("PostBadRequestParkingLot");
             var parkingLotRepository = new ParkingLotRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
@@ -259,6 +253,33 @@ namespace testPrivateParkAPI
         //    Assert
         //    Assert.IsType<NotFoundObjectResult>(result);
         //}
+    }
+
+    public static class PrivatePark_ParkingLotsContext
+    {
+        private static PrivateParkContext parkingLotContext;
+
+        public static PrivateParkContext GetPrivateParkContext(string dbName)
+        {
+            var options = new DbContextOptionsBuilder<PrivateParkContext>()
+                            .UseInMemoryDatabase(databaseName: dbName)
+                            .Options;
+
+            parkingLotContext = new PrivateParkContext(options);
+            Seed();
+            return parkingLotContext;
+        }
+
+        private static void Seed()
+        {
+            parkingLotContext.ParkingLots.Add(new ParkingLot { name = "Parque da República", companyOwner = "NorteShopping", location = "Avenida da República", capacity = 125, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
+            parkingLotContext.ParkingLots.Add(new ParkingLot { name = "Parque Brito Capelo", companyOwner = "InRio", location = "Rua Brito Capelo", capacity = 250, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
+            parkingLotContext.ParkingLots.Add(new ParkingLot { name = "Parque da Liberdade", companyOwner = "CasinoEstoril", location = "Avenida da Liberdade", capacity = 423, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
+            parkingLotContext.ParkingLots.Add(new ParkingLot { name = "Parque dos Congregados", companyOwner = "EuSeiLa", location = "Rua dos Congregados", capacity = 588, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
+            parkingLotContext.ParkingLots.Add(new ParkingLot { name = "Parque Carlos Alberto", companyOwner = "Upskill", location = "Praça Carlos Alberto", capacity = 365, openingTime = DateTime.Parse("2020-02-22 12:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
+
+            parkingLotContext.SaveChanges();
+        }
     }
 }
 

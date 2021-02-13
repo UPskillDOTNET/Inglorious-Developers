@@ -1,19 +1,16 @@
-﻿using System;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PrivateParkAPI.Controllers;
+using PrivateParkAPI.Data;
+using PrivateParkAPI.DTO;
+using PrivateParkAPI.Models;
+using PrivateParkAPI.Repositories.Repository;
+using PrivateParkAPI.Services.Services;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
-using Microsoft.EntityFrameworkCore;
-using PrivateParkAPI.Models;
-using testProject;
-using PrivateParkAPI.Controllers;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading;
-using PrivateParkAPI.Repositories.Repository;
-using AutoMapper;
-using PrivateParkAPI.DTO;
-using PrivateParkAPI.Services.Services;
 
 namespace testPrivateParkAPI
 {
@@ -23,9 +20,8 @@ namespace testPrivateParkAPI
         [Fact]
         public async Task GetAllReservationsAsync_ShouldReturnAllReservationsAsync()
         {
-            Thread.Sleep(300);
             // Arrange 
-            var TestContext = TodoContextMocker.GetPrivateParkContext("getAllReservations");
+            var TestContext = PrivatePark_ReservationsContext.GetPrivateParkContext("getAllReservations");
             var reservationRepository = new ReservationRepository(TestContext);
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -33,7 +29,7 @@ namespace testPrivateParkAPI
             var parkingSpotService = new ParkingSpotService(parkingSpotRepository, reservationRepository, mapper);
             var reservationService = new ReservationService(reservationRepository, parkingSpotRepository, mapper);
             var theController = new ReservationsController(reservationService, parkingSpotService);
-            
+
             //Act
             var result = await theController.GetReservations();
 
@@ -45,8 +41,7 @@ namespace testPrivateParkAPI
         [Fact]
         public async Task GetReservationByID_ShouldReturnNotFound()
         {
-            Thread.Sleep(4000);
-            var TestContext = TodoContextMocker.GetPrivateParkContext("getReservationnotFound");
+            var TestContext = PrivatePark_ReservationsContext.GetPrivateParkContext("getReservationnotFound");
             var reservationRepository = new ReservationRepository(TestContext);
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -64,8 +59,7 @@ namespace testPrivateParkAPI
         public async Task GetReservationByID_ShouldReturnReservationByID()
         {
             //Arrange
-            Thread.Sleep(2000);
-            var TestContext = TodoContextMocker.GetPrivateParkContext("getReservationbyID");
+            var TestContext = PrivatePark_ReservationsContext.GetPrivateParkContext("getReservationbyID");
             var reservationRepository = new ReservationRepository(TestContext);
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -87,8 +81,7 @@ namespace testPrivateParkAPI
         [Fact]
         public async Task PostReservation_ShouldCreateNewReservation()
         {
-            Thread.Sleep(2500);
-            var TestContext = TodoContextMocker.GetPrivateParkContext("postReservation");
+            var TestContext = PrivatePark_ReservationsContext.GetPrivateParkContext("postReservation");
             var reservationRepository = new ReservationRepository(TestContext);
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -119,9 +112,8 @@ namespace testPrivateParkAPI
         [Fact]
         public async Task PostNoStartTImeIDReservationAsync_ShouldReturnBadRequest()
         {
-            Thread.Sleep(2500);
             // Arrange
-            var TestContext = TodoContextMocker.GetPrivateParkContext("postReservationNoDate");
+            var TestContext = PrivatePark_ReservationsContext.GetPrivateParkContext("postReservationNoDate");
             var reservationRepository = new ReservationRepository(TestContext);
             var parkingSpotRepository = new ParkingSpotRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
@@ -322,5 +314,32 @@ namespace testPrivateParkAPI
         //            Assert.Equal("E1", items.parkingSpotID);
         //            Assert.IsType<NoContentResult>(response);
         //        }
+    }
+    public static class PrivatePark_ReservationsContext
+    {
+        private static PrivateParkContext reservationsContext;
+
+        public static PrivateParkContext GetPrivateParkContext(string dbName)
+        {
+            var options = new DbContextOptionsBuilder<PrivateParkContext>()
+                            .UseInMemoryDatabase(databaseName: dbName)
+                            .Options;
+
+            reservationsContext = new PrivateParkContext(options);
+            Seed();
+            return reservationsContext;
+        }
+        private static void Seed()
+        {
+            reservationsContext.Reservations.Add(new Reservation { reservationID = "ABC1", isCancelled = false, startTime = DateTime.Parse("2021-01-28 07:00:00"), hours = 1, endTime = DateTime.Parse("2021-05-22 08:00:00"), parkingSpotID = "A1", });
+            reservationsContext.Reservations.Add(new Reservation { reservationID = "ABC2", isCancelled = true, startTime = DateTime.Parse("2021-02-01 07:00:00"), hours = 2, endTime = DateTime.Parse("2021-09-10 09:00:00"), parkingSpotID = "E1", });
+            reservationsContext.Reservations.Add(new Reservation { reservationID = "ABC3", isCancelled = false, startTime = DateTime.Parse("2021-09-22 07:00:00"), hours = 12, endTime = DateTime.Parse("2021-09-22 19:00:00"), parkingSpotID = "I1" });
+            reservationsContext.Reservations.Add(new Reservation { reservationID = "ABC4", isCancelled = false, startTime = DateTime.Parse("2021-10-22 07:00:00"), hours = 3, endTime = DateTime.Parse("2021-10-22 10:00:00"), parkingSpotID = "O1", });
+            reservationsContext.Reservations.Add(new Reservation { reservationID = "ABC5", isCancelled = false, startTime = DateTime.Parse("2021-09-22 07:00:00"), hours = 1, endTime = DateTime.Parse("2021-09-22 08:00:00"), parkingSpotID = "A3", });
+            reservationsContext.Reservations.Add(new Reservation { reservationID = "ABC6", isCancelled = false, startTime = DateTime.Parse("2021-08-22 12:00:00"), hours = 1, endTime = DateTime.Parse("2021-08-22 13:00:00"), parkingSpotID = "A1", });
+            reservationsContext.Reservations.Add(new Reservation { reservationID = "ABC7", isCancelled = true, startTime = DateTime.Parse("2021-07-22 14:00:00"), hours = 1, endTime = DateTime.Parse("2021-07-22 15:00:00"), parkingSpotID = "A1", });
+            reservationsContext.Reservations.Add(new Reservation { reservationID = "ABC8", isCancelled = false, startTime = DateTime.Parse("2021-06-22 18:00:00"), hours = 1, endTime = DateTime.Parse("2021-06-22 19:00:00"), parkingSpotID = "I1", });
+            reservationsContext.SaveChanges();
+        }
     }
 }
