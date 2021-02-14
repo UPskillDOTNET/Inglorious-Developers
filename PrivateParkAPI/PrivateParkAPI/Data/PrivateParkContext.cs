@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using PrivateParkAPI.Authentication;
+﻿using Microsoft.EntityFrameworkCore;
+
 using PrivateParkAPI.Models;
 
 
 namespace PrivateParkAPI.Data
 {
-    public class PrivateParkContext : IdentityDbContext<apiUser>
+    public class PrivateParkContext : DbContext
     {
         public PrivateParkContext(DbContextOptions<PrivateParkContext> options) : base(options)
         {

@@ -1,18 +1,9 @@
-using AutoMapper;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using PublicParkAPI.Authentication;
 using PublicParkAPI.Contracts;
 using PublicParkAPI.Data;
 using PublicParkAPI.Mappings;
@@ -21,11 +12,6 @@ using PublicParkAPI.Repositories.Repository;
 using PublicParkAPI.Services;
 using PublicParkAPI.Services.IServices;
 using PublicParkAPI.Services.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PublicParkAPI
 {
@@ -46,7 +32,7 @@ namespace PublicParkAPI
             services.AddTransient<IParkingLotRepository, ParkingLotRepository>();
             services.AddTransient<IParkingSpotRepository, ParkingSpotRepository>();
             services.AddTransient<IReservationRepository, ReservationRepository>();
-     
+
             services.AddTransient<IParkingSpotService, ParkingSpotService>();
             services.AddTransient<IParkingLotService, ParkingLotService>();
             services.AddTransient<IReservationService, ReservationService>();

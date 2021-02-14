@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using PublicParkAPI.Authentication;
 using PublicParkAPI.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PublicParkAPI.Data
 {
-    public class PublicParkContext : IdentityDbContext<apiUser>
+    public class PublicParkContext : DbContext
     {
         public PublicParkContext(DbContextOptions<PublicParkContext> options) : base (options)
         {
