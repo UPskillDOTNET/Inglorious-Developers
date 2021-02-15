@@ -31,7 +31,7 @@ namespace CentralAPI.Services.Services
         public async Task<ActionResult<IEnumerable<WalletDTO>>> GetAllWallets()
         {
           
-            var wallets = _walletRepository.GetWallets();
+            var wallets = await _walletRepository.GetWallets();
             var walletsDTO = _mapper.Map<List<Wallet>, List<WalletDTO>>(wallets.ToList());
             return walletsDTO;
         }
@@ -39,14 +39,14 @@ namespace CentralAPI.Services.Services
         public async Task<ActionResult<WalletDTO>> GetBalance(string userID)
         {
          
-            var wallet = _walletRepository.GetBalance(userID);
+            var wallet = await _walletRepository.GetBalance(userID);
             var walletDTO = _mapper.Map<Wallet, WalletDTO>(wallet);
             return walletDTO;
         }
 
         public async Task<ActionResult<WalletDTO>> GetWalletById(string walletID)
         {
-            var wallet = _walletRepository.GetWalletById(walletID);
+            var wallet = await _walletRepository.GetWalletById(walletID);
             var walletDTO = _mapper.Map<Wallet, WalletDTO>(wallet);
             return walletDTO;
         }
@@ -71,7 +71,7 @@ namespace CentralAPI.Services.Services
 
         public async Task<ActionResult<WalletDTOOperation>> DepositToWallet(string walletID, decimal value)
         {
-            var wallet = _walletRepository.GetWalletById(walletID);
+            var wallet =await _walletRepository.GetWalletById(walletID);
             WalletDTOOperation walletDTOOperation;
 
             if (!wallet.deposit(value))
@@ -94,7 +94,7 @@ namespace CentralAPI.Services.Services
         public async Task<ActionResult<WalletDTOOperation>> WithdrawFromWallet(string walletID, decimal value)
         {
 
-            var wallet = _walletRepository.GetWalletById(walletID);
+            var wallet =await _walletRepository.GetWalletById(walletID);
             WalletDTOOperation walletDTOOperation;
 
            if (!wallet.withdraw(value))

@@ -15,19 +15,19 @@ namespace CentralAPI.Repositories.Repository
         {
         }
 
-        public IEnumerable<Wallet> GetWallets()
+        public async Task<IEnumerable<Wallet>> GetWallets()
         {
-            return GetAll().Include(w => w.User).ToList();
+            return  await GetAll().Include(w => w.User).ToListAsync();
         }
 
-        public Wallet GetBalance(string userID)
+        public async Task<Wallet> GetBalance(string userID)
         {
-            return GetAll().Where(w => w.userID == userID).Include(w => w.User).FirstOrDefault();
+            return await GetAll().Where(w => w.userID == userID).Include(w => w.User).FirstOrDefaultAsync();
         }
 
-        public Wallet GetWalletById(string walletID)
+        public async Task<Wallet> GetWalletById(string walletID)
         {
-            return GetAll().Where(w => w.walletID == walletID).Include(w => w.User).FirstOrDefault();
+            return await GetAll().Where(w => w.walletID == walletID).Include(w => w.User).FirstOrDefaultAsync();
         }
 
         public async Task<Wallet> CreateWallet(Wallet wallet)

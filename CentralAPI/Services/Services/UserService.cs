@@ -8,17 +8,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace CentralAPI.Services.Services
 {
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IWalletService _walletService;
         private readonly IMapper _mapper;
 
-        public UserService(IUserRepository userRepository, IMapper mapper)
+
+        public UserService(IUserRepository userRepository,IWalletService walletService , IMapper mapper)
         {
             _userRepository = userRepository;
+            _walletService = walletService;
             _mapper = mapper;
         }
 
@@ -43,10 +47,29 @@ namespace CentralAPI.Services.Services
             return userDTO;
         }
 
-        public async Task<ActionResult<UserDTO>> CreateUser(UserDTO userDTO)
+        public async Task<ActionResult<UserDTO>> CreateUser(UserDTO userDTO, string currency)
         {
             var user = _mapper.Map<UserDTO, User>(userDTO);
-            await _userRepository.CreateUser(user);
+            using (TransactionScope scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            {
+
+            
+                try
+                {
+                    await _userRepository.CreateUser(user);
+                    await _walletService.CreateWallet(user.userID, currency);
+                }
+                catch (Exception ex)
+                {
+                    Transaction.Current.Rollback(ex);
+
+                }
+                scope.Complete();
+            }
+
+
+
+            userDTO = _mapper.Map<User, UserDTO>(user);
             return userDTO;
         }
 

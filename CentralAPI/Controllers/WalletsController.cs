@@ -36,9 +36,14 @@ namespace CentralAPI.Controllers
         [Route("~/api/users/balance/{userID}")]
         public async Task<ActionResult<WalletDTO>> GetBalance(string userID)
         {
-            if (_userService.GetUserById(userID) == null)
+            if ( await _userService.GetUserById(userID) == null)
             {
                 return BadRequest("User not found");
+            }
+
+            if (_walletService.GetWalletById(userID).Result.Value == null)
+            {
+                return NotFound("User not found");
             }
             return await _walletService.GetBalance(userID);
         }
