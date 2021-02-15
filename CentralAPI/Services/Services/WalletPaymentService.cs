@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace CentralAPI.Services.Services
 {
@@ -34,11 +35,11 @@ namespace CentralAPI.Services.Services
         public async Task<ActionResult<ReservationPaymentDTOOperation>> PayReservation(CentralReservationDTO centralReservationDTO)
         {
       
-            // Mapear a reserva para um pagamento
-            var reservationToPayment = _mapper.Map<CentralReservationDTO, ReservationPaymentDTO>(centralReservationDTO);
+            var wallet = _walletService.GetWalletById(centralReservationDTO.userID).Result.Value;
 
-            // Buscar a Wallet
-            var wallet = _walletService.GetWalletById(reservationToPayment.userID).Result.Value;
+            centralReservationDTO = _centralReservationService.GetEndTimeandFinalPrice(centralReservationDTO).Result.Value;
+
+            var reservationToPayment = _mapper.Map<CentralReservationDTO, ReservationPaymentDTO>(centralReservationDTO);
 
             if (wallet.totalAmount < reservationToPayment.finalPrice)
             {
@@ -46,17 +47,35 @@ namespace CentralAPI.Services.Services
                 {
                     message = "Operation not sucessfull, insufficient funds.",
                     isSuccess = false,
+                    reservationID = reservationToPayment.reservationID,
+                    userID = reservationToPayment.userID,
+                    finalPrice = reservationToPayment.finalPrice
                 };
                 return failure;
             }
-            await _walletService.WithdrawFromWallet(wallet.walletID, reservationToPayment.finalPrice);
-
-            // Está a deixar passar, mesmo que o saldo seja 
-            await _centralReservationService.PostCentralReservation(centralReservationDTO);
 
             var reservationPayment = _mapper.Map<ReservationPaymentDTO, ReservationPayment>(reservationToPayment);
 
-            await _reservationPaymentRepository.SaveReservationPayment(reservationPayment);
+            using (TransactionScope scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            {
+
+                try
+                {
+                    await _walletService.WithdrawFromWallet(wallet.walletID, reservationToPayment.finalPrice);
+                    await _centralReservationService.PostCentralReservation(centralReservationDTO);
+                    await _reservationPaymentRepository.SaveReservationPayment(reservationPayment);
+                }
+                catch (Exception ex)
+                {
+                    Transaction.Current.Rollback(ex);
+
+                }
+                scope.Complete();
+            }
+
+            //await _walletService.WithdrawFromWallet(wallet.walletID, reservationToPayment.finalPrice);
+            //await _centralReservationService.PostCentralReservation(centralReservationDTO);
+            //await _reservationPaymentRepository.SaveReservationPayment(reservationPayment);
 
             ReservationPaymentDTOOperation reservationPaymentDTOOperation = new ReservationPaymentDTOOperation
             {
@@ -67,11 +86,6 @@ namespace CentralAPI.Services.Services
                 isSuccess = true,
             };
 
-            //QR Code com os dados da Reserva - check
-
-            //Email enviado para o user
-
-            //Fim do flow
             return reservationPaymentDTOOperation;
         }
     }

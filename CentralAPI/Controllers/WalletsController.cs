@@ -41,9 +41,9 @@ namespace CentralAPI.Controllers
                 return BadRequest("User not found");
             }
 
-            if (_walletService.GetWalletById(userID).Result.Value == null)
+            if (!await WalletExists(userID))
             {
-                return NotFound("User not found");
+                return NotFound("Wallet not found");
             }
             return await _walletService.GetBalance(userID);
         }
@@ -73,7 +73,7 @@ namespace CentralAPI.Controllers
         }
         [HttpPut]
         [Route("/api/[controller]/deposit/{walletID}/{value}/")]
-        public async Task<ActionResult<WalletDTO>> DepositToWallet(string walletID, decimal value)
+        public async Task<ActionResult<WalletDTOOperation>> DepositToWallet(string walletID, decimal value)
         {
 
             if (value == 0)
@@ -83,13 +83,12 @@ namespace CentralAPI.Controllers
             if (value < 0) {
                 return BadRequest("Value is negative.");
             }
-            await _walletService.DepositToWallet(walletID, value);
-            return Ok(value + " euros added to the account sucessfully.");
+           return await _walletService.DepositToWallet(walletID, value);
         }
 
         [HttpPut]
         [Route("/api/[controller]/withdraw/{walletID}/{value}/")]
-        public async Task<ActionResult<WalletDTO>> WithdrawFromWallet(string walletID, decimal value)
+        public async Task<ActionResult<WalletDTOOperation>> WithdrawFromWallet(string walletID, decimal value)
         {
 
             if (value == 0)
@@ -99,8 +98,21 @@ namespace CentralAPI.Controllers
             if (value < 0) {
                 return BadRequest("Value is negative.");
             }
-            await _walletService.WithdrawFromWallet(walletID, value);
-            return Ok(value + " euros withdrawn from the account sucessfully.");
+            return await _walletService.WithdrawFromWallet(walletID, value);
+        }
+
+        private async Task<bool> WalletExists(string id)
+        {
+            var wallet = await _walletService.GetWalletById(id);
+
+            if (wallet.Value != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

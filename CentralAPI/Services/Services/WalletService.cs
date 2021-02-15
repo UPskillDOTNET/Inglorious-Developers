@@ -83,7 +83,7 @@ namespace CentralAPI.Services.Services
             } else
             {
                 walletDTOOperation = _mapper.Map<Wallet, WalletDTOOperation>(wallet);
-                walletDTOOperation.message = "Operation not allowed. Can't charge negative numbers.";
+                walletDTOOperation.message = "Operation allowed.";
                 walletDTOOperation.isSuccess = true;
                 walletDTOOperation.operation = 1;
                 await _walletRepository.DepositToWallet(wallet, value);
