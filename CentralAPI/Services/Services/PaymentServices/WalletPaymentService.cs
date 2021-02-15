@@ -42,12 +42,12 @@ namespace CentralAPI.Services.Services
                     paymentID = paymentDTO.paymentID,
                     userID = paymentDTO.userID,
                     timeStamp = DateTime.Now,
-                    finalPrice = paymentDTO.finalPrice
+                    finalPrice = paymentDTO.finalPrice,
                 };
                 return failure;
             }
 
-            var payment = _mapper.Map<PaymentDTO, ReservationPayment>(paymentDTO);
+            var payment = _mapper.Map<PaymentDTO, Payment>(paymentDTO);
 
             using (TransactionScope scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
@@ -98,7 +98,7 @@ namespace CentralAPI.Services.Services
                 return failure;
             }
 
-            var payment = _mapper.Map<PaymentDTO, ReservationPayment>(paymentDTO);
+            var payment = _mapper.Map<PaymentDTO, Payment>(paymentDTO);
 
             using (TransactionScope scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {

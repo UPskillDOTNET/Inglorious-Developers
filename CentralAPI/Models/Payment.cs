@@ -18,8 +18,8 @@ namespace CentralAPI.Models
         //[ForeignKey("PaymentOption")]
         //public string paymentOptionID { get; set; }
 
-        //[ForeignKey("PaymentMethod")]
-        //public string paymentMethodID { get; set; }
+        [ForeignKey("PaymentMethod")]
+        public string paymentMethodID { get; set; }
 
         [ForeignKey("User")]
         public string userID { get; set; }

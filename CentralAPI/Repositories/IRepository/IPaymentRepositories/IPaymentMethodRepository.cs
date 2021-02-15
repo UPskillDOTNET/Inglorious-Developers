@@ -8,6 +8,6 @@ namespace CentralAPI.Repositories.IRepository
 {
     public interface IPaymentMethodRepository :  IBaseRepository<PaymentMethod>
     {
-        void GetPaymentMethodByID();
+        Task<PaymentMethod> GetPaymentMethodByID(string userID);
     }
 }

@@ -10,13 +10,15 @@ namespace CentralAPI.Models
     public class PaymentMethod
     {
         [Key]
-        public string paymentMethodID;
+        public string paymentMethodID { get; set; }
 
-        public string name;
+        public string name { get; set; }
+
+        public string myUrl { get; set; }
 
         [ForeignKey("UserID")]
-        public string userID;
+        public string userID { get; set; }
 
-        public User user;
+        public User User { get; set; }
     }
 }

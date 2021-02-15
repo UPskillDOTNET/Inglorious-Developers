@@ -21,6 +21,7 @@ namespace CentralAPI.Data
         public DbSet<ReservationPayment> ReservationPayments { get; set; }
         public DbSet<ParkingLot> ParkingLots { get; set; }
         public DbSet<CentralReservation> CentralReservations { get; set; }
+        public DbSet<PaymentMethod> PaymentMethods { get; set; }
 
     }
 }

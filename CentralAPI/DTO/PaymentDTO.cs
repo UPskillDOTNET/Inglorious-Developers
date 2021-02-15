@@ -13,5 +13,7 @@ namespace CentralAPI.DTO
         public decimal finalPrice { get; set; }
         public string userID { get; set; }
         public DateTime timeStamp { get; set; }
+
+        public string paymentMethod { get; set; }
     }
 }
