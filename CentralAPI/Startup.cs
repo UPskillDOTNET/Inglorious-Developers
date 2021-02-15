@@ -21,7 +21,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PrivateParkAPI.Data;
 using PublicParkAPI.Data;
-
+using CentralAPI.Services.IServices.TransactionTest;
 
 namespace CentralAPI
 {
@@ -64,6 +64,7 @@ namespace CentralAPI
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ISubletService, SubletService>();
             services.AddTransient<ISubletRepository, SubletRepository>();
+            services.AddTransient<ITransaction, Transaction>();
 
             services.AddControllers().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
