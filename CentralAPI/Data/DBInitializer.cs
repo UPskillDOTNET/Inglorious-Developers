@@ -108,23 +108,24 @@ namespace CentralAPI.Data
             context.SaveChanges();
 
 
-            if (context.Payments.Any())
+            if (context.PaymentMethods.Any())
             {
                 return;   // DB has been seeded
             }
-            // var Payments = new Payment[]
-            //{
-            //         new Payment {},
-            //         new Payment {},
-            //         new Payment {}
 
-            //};
+            var PaymentMethods = new PaymentMethod[]
+           {
+                     new PaymentMethod{paymentMethodID = "1", name = "Wallet", userID = "1"},
+                     new PaymentMethod{paymentMethodID = "2", name = "MockPayment", userID = "2", myUrl="https://localhost:44327/"},
+                     new PaymentMethod{paymentMethodID = "3", name = "Paypal", userID = "3"}
 
-            // foreach (Payment p in Payments)
-            // {
-            //     context.Sublets.Add(p);
-            // }
-            // context.SaveChanges();
+           };
+
+            foreach (PaymentMethod p in PaymentMethods)
+            {
+                context.PaymentMethods.Add(p);
+            }
+            context.SaveChanges();
         }
 }
 }
