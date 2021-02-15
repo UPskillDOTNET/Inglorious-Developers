@@ -30,13 +30,7 @@ namespace CentralAPI
         {
             services.AddDbContext<CentralAPIContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            //services.AddDbContext<PublicParkContext>(options =>
-            //   options.UseSqlServer(
-            //       Configuration.GetConnectionString("PublicConnection")));
-            //services.AddDbContext<PrivateParkContext>(options =>
-            //   options.UseSqlServer(
-            //       Configuration.GetConnectionString("PrivateConnection")));
+           
             services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddTransient<IParkingLotRepository, ParkingLotRepository>();
             services.AddTransient<QRgenerator>();

@@ -43,6 +43,7 @@ namespace CentralAPI.Services.Services
                     userID = paymentDTO.userID,
                     timeStamp = DateTime.Now,
                     finalPrice = paymentDTO.finalPrice,
+                    paymentMethod = "WalletPayment"
                 };
                 return failure;
             }
@@ -73,8 +74,9 @@ namespace CentralAPI.Services.Services
                 paymentID = paymentDTO.paymentID,
                 userID = paymentDTO.userID,
                 timeStamp = DateTime.Now,
-                finalPrice = paymentDTO.finalPrice
-            };
+                finalPrice = paymentDTO.finalPrice,
+                paymentMethod = "WalletPayment"
+                };
 
             return paymentDTOOperation;
         }
