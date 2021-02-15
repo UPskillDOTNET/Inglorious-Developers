@@ -12,13 +12,13 @@ namespace MockPaymentAPI.Controllers
     public class PaymentController : Controller
     {
         [HttpPost]
-        public ActionResult Pay(ReservationPaymentDTO reservationPaymentDTO)
+        public ActionResult Pay(PaymentDTO PaymentDTO)
         {
-            if (reservationPaymentDTO == null)
+            if (PaymentDTO.finalPrice == 100)
             {
-                return Conflict("Olá Tiago, isto deu mal");
+                return Ok(false);
             }
-            return Ok("Olá Tiago, isto deu certo");
+            return Ok(true);
         }
     }
 }

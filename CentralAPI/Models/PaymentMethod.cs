@@ -14,11 +14,5 @@ namespace CentralAPI.Models
 
         public string name { get; set; }
 
-        public string myUrl { get; set; }
-
-        [ForeignKey("UserID")]
-        public string userID { get; set; }
-
-        public User User { get; set; }
     }
 }

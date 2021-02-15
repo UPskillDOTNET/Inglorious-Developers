@@ -27,6 +27,25 @@ namespace CentralAPI.Data
             }
             context.SaveChanges();
 
+            if (context.PaymentMethods.Any())
+            {
+                return;   // DB has been seeded
+            }
+
+            var PaymentMethods = new PaymentMethod[]
+           {
+                     new PaymentMethod{paymentMethodID = "1", name = "Wallet"},
+                     new PaymentMethod{paymentMethodID = "2", name = "MockPayment"},
+                     new PaymentMethod{paymentMethodID = "3", name = "Paypal"}
+
+           };
+
+            foreach (PaymentMethod p in PaymentMethods)
+            {
+                context.PaymentMethods.Add(p);
+            }
+            context.SaveChanges();
+
             if (context.Users.Any())
             {
                 return; //DB is seeded
@@ -34,17 +53,17 @@ namespace CentralAPI.Data
 
             var users = new User[]
             {
-                    new User{userID="1", name="Mariana Gomes", email="marianaribgomes@gmail.com", nif="111111111"},
-                    new User{userID="2", name="Tiago Azevedo", email="tiagomina.azevedo@gmail.com", nif="222222222"},
-                    new User{userID="3", name="João Martins", email="joaom.vodafone@gmail.com", nif="333333333"},
-                    new User{userID="4",name="Diego Maradona",email= "caiocruzeiror@gmail.com",nif= "444444444"},
-                    new User{userID="5",name="Michael Jordan",email= "sergio.valente.pinto@gmail.com" ,nif= "555555555"},
-                    new User{userID="6",name="Freddie Mercury",email= "music@gmail.com",nif= "666666666" },
-                    new User{userID="7",name="Queen Elizabeth II",email= "the.queen@gmail.com" ,nif= "777777777"},
-                    new User{userID="8",name="Afonso Henriques",email= "afonso.rei@gmail.com",nif= "888888888"},
-                    new User{userID="9",name="Elon Musk",email= "spaceX@gmail.com",nif= "999999999"},
-                    new User{userID="10",name="André André",email= "vitoriasc@gmail.com" ,nif= "121121121"},
-                    new User{userID="11",name="Jô Soares",email= "gordo@gmail.com",nif= "131131131"},
+                    new User{userID="1", name="Mariana Gomes", email="marianaribgomes@gmail.com", nif="111111111", paymentMethodID = "1"},
+                    new User{userID="2", name="Tiago Azevedo", email="tiagomina.azevedo@gmail.com", nif="222222222", paymentMethodID = "1"},
+                    new User{userID="3", name="João Martins", email="joaom.vodafone@gmail.com", nif="333333333", paymentMethodID = "2"},
+                    new User{userID="4",name="Diego Maradona",email= "caiocruzeiror@gmail.com",nif= "444444444", paymentMethodID = "1"},
+                    new User{userID="5",name="Michael Jordan",email= "sergio.valente.pinto@gmail.com" ,nif= "555555555", paymentMethodID = "1"},
+                    new User{userID="6",name="Freddie Mercury",email= "music@gmail.com",nif= "666666666", paymentMethodID = "1" },
+                    new User{userID="7",name="Queen Elizabeth II",email= "the.queen@gmail.com" ,nif= "777777777", paymentMethodID = "1"},
+                    new User{userID="8",name="Afonso Henriques",email= "afonso.rei@gmail.com",nif= "888888888", paymentMethodID = "1"},
+                    new User{userID="9",name="Elon Musk",email= "spaceX@gmail.com",nif= "999999999", paymentMethodID = "1"},
+                    new User{userID="10",name="André André",email= "vitoriasc@gmail.com" ,nif= "121121121", paymentMethodID = "1"},
+                    new User{userID="11",name="Jô Soares",email= "gordo@gmail.com",nif= "131131131", paymentMethodID = "1"}
             };
             foreach (User u in users)
             {
@@ -108,24 +127,7 @@ namespace CentralAPI.Data
             context.SaveChanges();
 
 
-            if (context.PaymentMethods.Any())
-            {
-                return;   // DB has been seeded
-            }
-
-            var PaymentMethods = new PaymentMethod[]
-           {
-                     new PaymentMethod{paymentMethodID = "1", name = "Wallet", userID = "1"},
-                     new PaymentMethod{paymentMethodID = "2", name = "MockPayment", userID = "2", myUrl="https://localhost:44327/"},
-                     new PaymentMethod{paymentMethodID = "3", name = "Paypal", userID = "3"}
-
-           };
-
-            foreach (PaymentMethod p in PaymentMethods)
-            {
-                context.PaymentMethods.Add(p);
-            }
-            context.SaveChanges();
+          
         }
 }
 }

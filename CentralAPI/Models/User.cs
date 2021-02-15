@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -25,5 +26,9 @@ namespace CentralAPI.Models
         [Required]
         [RegularExpression(@"^\\d{9}$", ErrorMessage = "NIF length must be 9 numbers")]
         public string nif { get; set; }
+
+        [ForeignKey("PaymentMethod")]
+        public string paymentMethodID { get; set; }
+        public PaymentMethod paymentMethod { get; set; }
     }
 }

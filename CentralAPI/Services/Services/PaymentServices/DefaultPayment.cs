@@ -2,6 +2,7 @@
 using CentralAPI.Models;
 using CentralAPI.Repositories.IRepository;
 using CentralAPI.Services.IServices;
+using CentralAPI.Services.IServices.IPaymentServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,26 +14,36 @@ namespace CentralAPI.Services.Services
 {
     public class DefaultPayment : IDefaultPayment
     {
+        private readonly IUserRepository _userRepository;
         private readonly IPaymentMethodRepository _paymentMethodRepository;
         private readonly IWalletPaymentService _walletPaymentService;
+        private readonly IMockPaymentService _mockPaymentService;
 
-        public DefaultPayment(IPaymentMethodRepository paymentMethodRepository, IWalletPaymentService walletPaymentService)
+        public DefaultPayment(IUserRepository userRepository, IWalletPaymentService walletPaymentService,IPaymentMethodRepository paymentMethodRepository , IMockPaymentService mockPaymentService)
         {
-            _paymentMethodRepository = paymentMethodRepository;
+            _userRepository = userRepository;
             _walletPaymentService = walletPaymentService;
+            _mockPaymentService = mockPaymentService;
+            _paymentMethodRepository = paymentMethodRepository;
         }
 
-        public async Task<ActionResult<PaymentMethod>> DefaultPayments(string userID, PaymentDTO paymentDTO)
+        public async Task<ActionResult<PaymentDTOOperation>> DefaultPayments(PaymentDTO paymentDTO, string preferedMethod)
         {
-            var paymentMethod = await _paymentMethodRepository.GetAll().Where(p => p.userID == userID).FirstOrDefaultAsync();
-
-            switch (paymentMethod.name)
+            if (preferedMethod == "default")
             {
-                case "wallet":
-                    await _walletPaymentService.Pay(paymentDTO);
-                    break;
-                //case "mock":
-                    //await 
+                var user = await _userRepository.GetAll().Where(p => p.userID == paymentDTO.userID).FirstOrDefaultAsync();
+
+                var paymentMethod = await _paymentMethodRepository.GetPaymentMethodByID(user.paymentMethodID);
+                var paymentMethodName = paymentMethod.name;
+                preferedMethod = paymentMethodName;
+            }
+
+            switch (preferedMethod)
+            {
+                case "Wallet":
+                    return await _walletPaymentService.Pay(paymentDTO);
+                case "MockPayment":
+                    return await _mockPaymentService.MockPay(paymentDTO,"https://localhost:44327/");
                 default:
                     break;
             }

@@ -10,6 +10,6 @@ namespace CentralAPI.Services.IServices
 {
     public interface IDefaultPayment
     {
-        Task<ActionResult<PaymentMethod>> DefaultPayments(string userID, PaymentDTO paymentDTO);
+        Task<ActionResult<PaymentDTOOperation>> DefaultPayments(PaymentDTO paymentDTO, string preferedMethod);
     }
 }

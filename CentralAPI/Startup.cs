@@ -1,27 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+using CentralAPI.Data;
 using CentralAPI.DTO;
 using CentralAPI.Repositories.IRepository;
 using CentralAPI.Repositories.Repository;
+using CentralAPI.Repositories.Repository.PaymentRepositories;
 using CentralAPI.Services.IServices;
+using CentralAPI.Services.IServices.IPaymentServices;
 using CentralAPI.Services.Services;
-using CentralAPI.Data;
+using CentralAPI.Services.Services.PaymentServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
-using PrivateParkAPI.Data;
-using PublicParkAPI.Data;
-
 
 namespace CentralAPI
 {
@@ -65,7 +56,11 @@ namespace CentralAPI
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ISubletService, SubletService>();
             services.AddTransient<ISubletRepository, SubletRepository>();
-            
+            services.AddTransient<IDefaultPayment, DefaultPayment>();
+            services.AddTransient<IMockPaymentService, MockPaymentService>();
+            services.AddTransient<IPaymentMethodRepository, PaymentMethodRepository>();
+
+
             services.AddControllers().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );

@@ -51,5 +51,14 @@ namespace CentralAPI.Services.Services
             response.EnsureSuccessStatusCode();
             return response;
         }
+
+        public async Task<HttpResponseMessage> PayClientAsync(string myUri, string url, StringContent content)
+        { 
+            var client = _clientFactory.CreateClient();
+            client.BaseAddress = new Uri(myUri);
+            var response = await client.PostAsync(url, content);
+            response.EnsureSuccessStatusCode();
+            return response;
+        }
     }
 }

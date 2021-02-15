@@ -15,9 +15,9 @@ namespace CentralAPI.Repositories.Repository.PaymentRepositories
         {
         }
 
-        public async Task<PaymentMethod> GetPaymentMethodByID(string userID)
+        public async Task<PaymentMethod> GetPaymentMethodByID(string ID)
         {
-            return await GetAll().FirstOrDefaultAsync(x => x.userID == userID);
+            return await GetAll().FirstOrDefaultAsync(x => x.paymentMethodID == ID);
         }
     }
 }
