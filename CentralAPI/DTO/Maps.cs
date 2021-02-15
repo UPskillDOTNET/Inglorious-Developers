@@ -17,6 +17,8 @@ namespace CentralAPI.DTO
             CreateMap<ReservationPayment, ReservationPaymentDTO>().ReverseMap();
             CreateMap<CentralReservationDTO, ReservationPaymentDTO>().ReverseMap();
             CreateMap<Wallet, WalletDTOOperation>().ReverseMap();
+            CreateMap<Payment, PaymentDTO>().ReverseMap();
+            CreateMap<PaymentDTO, ReservationPayment>().ReverseMap();
         }
     }
 }

@@ -10,6 +10,11 @@ namespace CentralAPI.Services.Services
 {
     public class DummyPaymentService : IWalletPaymentService
     {
+        public Task<ActionResult<PaymentDTOOperation>> Pay(PaymentDTO paymentDTO)
+        {
+            throw new NotImplementedException();
+        }
+
         public void PayOvertime(string reservationID, DateTime parkingEnd)
         {
         }
@@ -24,6 +29,11 @@ namespace CentralAPI.Services.Services
         }
 
         public Task<ActionResult<ReservationPaymentDTOOperation>> PayReservation(CentralReservationDTO centralReservationDTO)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ActionResult<PaymentDTOOperation>> Refund(PaymentDTO paymentDTO)
         {
             throw new NotImplementedException();
         }

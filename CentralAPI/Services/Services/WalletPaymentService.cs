@@ -16,6 +16,7 @@ namespace CentralAPI.Services.Services
     { 
         private readonly IMapper _mapper;
         private readonly IReservationPaymentRepository _reservationPaymentRepository;
+        //private readonly IPaymentRepository _paymentRepository;
         private readonly IWalletService _walletService;
         private readonly ICentralReservationService _centralReservationService;
 
@@ -27,66 +28,106 @@ namespace CentralAPI.Services.Services
             _centralReservationService = centralReservationService;
         }
 
-        public void PayOvertime(string reservationID, DateTime parkingEnd)
+        public async Task<ActionResult<PaymentDTOOperation>> Pay(PaymentDTO paymentDTO)
         {
-            throw new NotImplementedException();
-        }
+            var wallet = await _walletService.GetWalletById(paymentDTO.userID);
+            var walletDTO = wallet.Value;
 
-        public async Task<ActionResult<ReservationPaymentDTOOperation>> PayReservation(CentralReservationDTO centralReservationDTO)
-        {
-      
-            var wallet = _walletService.GetWalletById(centralReservationDTO.userID).Result.Value;
-
-            centralReservationDTO = _centralReservationService.GetEndTimeandFinalPrice(centralReservationDTO).Result.Value;
-
-            var reservationToPayment = _mapper.Map<CentralReservationDTO, ReservationPaymentDTO>(centralReservationDTO);
-
-            if (wallet.totalAmount < reservationToPayment.finalPrice)
+            if (walletDTO.totalAmount < paymentDTO.finalPrice)
             {
-                ReservationPaymentDTOOperation failure = new ReservationPaymentDTOOperation
+                PaymentDTOOperation failure = new PaymentDTOOperation
                 {
                     message = "Operation not sucessfull, insufficient funds.",
                     isSuccess = false,
-                    reservationID = reservationToPayment.reservationID,
-                    userID = reservationToPayment.userID,
-                    finalPrice = reservationToPayment.finalPrice
+                    paymentID = paymentDTO.paymentID,
+                    userID = paymentDTO.userID,
+                    timeStamp = DateTime.Now,
+                    finalPrice = paymentDTO.finalPrice
                 };
                 return failure;
             }
 
-            var reservationPayment = _mapper.Map<ReservationPaymentDTO, ReservationPayment>(reservationToPayment);
+            var payment = _mapper.Map<PaymentDTO, ReservationPayment>(paymentDTO);
 
             using (TransactionScope scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
-
                 try
                 {
-                    await _walletService.WithdrawFromWallet(wallet.walletID, reservationToPayment.finalPrice);
-                    await _centralReservationService.PostCentralReservation(centralReservationDTO);
-                    await _reservationPaymentRepository.SaveReservationPayment(reservationPayment);
+                    await _walletService.WithdrawFromWallet(walletDTO.walletID, paymentDTO.finalPrice);
+                    await _reservationPaymentRepository.SaveReservationPayment(payment);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    Transaction.Current.Rollback(ex);
 
+                    throw;
+                } finally
+                {
+                    scope.Complete();
                 }
-                scope.Complete();
             }
 
-            //await _walletService.WithdrawFromWallet(wallet.walletID, reservationToPayment.finalPrice);
-            //await _centralReservationService.PostCentralReservation(centralReservationDTO);
-            //await _reservationPaymentRepository.SaveReservationPayment(reservationPayment);
-
-            ReservationPaymentDTOOperation reservationPaymentDTOOperation = new ReservationPaymentDTOOperation
+                PaymentDTOOperation paymentDTOOperation = new PaymentDTOOperation
             {
-                reservationID = reservationPayment.reservationID,
-                finalPrice = reservationPayment.finalPrice,
-                userID = reservationPayment.userID,
-                message = "Operation done",
+                message = "Operation done.",
                 isSuccess = true,
+                paymentID = paymentDTO.paymentID,
+                userID = paymentDTO.userID,
+                timeStamp = DateTime.Now,
+                finalPrice = paymentDTO.finalPrice
             };
 
-            return reservationPaymentDTOOperation;
+            return paymentDTOOperation;
+        }
+
+        public async Task<ActionResult<PaymentDTOOperation>> Refund(PaymentDTO paymentDTO)
+        {
+            var wallet = await _walletService.GetWalletById(paymentDTO.userID);
+            var walletDTO = wallet.Value;
+
+            if (paymentDTO.finalPrice < 0)
+            {
+                PaymentDTOOperation failure = new PaymentDTOOperation
+                {
+                    message = "Operation not sucessfull, negative value.",
+                    isSuccess = false,
+                    paymentID = paymentDTO.paymentID,
+                    userID = paymentDTO.userID,
+                    timeStamp = DateTime.Now,
+                    finalPrice = paymentDTO.finalPrice
+                };
+                return failure;
+            }
+
+            var payment = _mapper.Map<PaymentDTO, ReservationPayment>(paymentDTO);
+
+            using (TransactionScope scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            {
+                try
+                {
+                    await _walletService.DepositToWallet(walletDTO.walletID, paymentDTO.finalPrice);
+                    await _reservationPaymentRepository.SaveReservationPayment(payment);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                } finally
+                {
+                    scope.Complete();
+                }
+            }
+
+            PaymentDTOOperation paymentDTOOperation = new PaymentDTOOperation
+            {
+                message = "Operation done.",
+                isSuccess = true,
+                paymentID = paymentDTO.paymentID,
+                userID = paymentDTO.userID,
+                timeStamp = DateTime.Now,
+                finalPrice = paymentDTO.finalPrice
+            };
+            return paymentDTOOperation;
         }
     }
 }
+

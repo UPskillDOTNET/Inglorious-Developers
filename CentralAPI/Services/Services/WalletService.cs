@@ -94,7 +94,7 @@ namespace CentralAPI.Services.Services
         public async Task<ActionResult<WalletDTOOperation>> WithdrawFromWallet(string walletID, decimal value)
         {
 
-            var wallet =await _walletRepository.GetWalletById(walletID);
+            var wallet = await _walletRepository.GetWalletById(walletID);
             WalletDTOOperation walletDTOOperation;
 
            if (!wallet.withdraw(value))

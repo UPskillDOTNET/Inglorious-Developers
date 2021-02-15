@@ -10,7 +10,7 @@ namespace CentralAPI.Services.IServices
 {
     public interface IWalletPaymentService
     {
-        Task<ActionResult<ReservationPaymentDTOOperation>> PayReservation(CentralReservationDTO centralReservationDTO);
-        void PayOvertime(string reservationID, DateTime parkingEnd);
+        Task<ActionResult<PaymentDTOOperation>> Pay(PaymentDTO paymentDTO);
+        Task<ActionResult<PaymentDTOOperation>> Refund(PaymentDTO paymentDTO);
     }
 }

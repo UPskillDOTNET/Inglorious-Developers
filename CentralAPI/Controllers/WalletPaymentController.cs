@@ -16,16 +16,21 @@ namespace CentralAPI.Controllers
     public class WalletPaymentController : ControllerBase
     {
         private readonly IWalletPaymentService _walletPaymentService;
-        //private readonly IPaymentRepository _paymentRepository;
 
         public WalletPaymentController(IWalletPaymentService walletPaymentService)
         {
             _walletPaymentService = walletPaymentService;
         }
-
-        public async Task<ActionResult<ReservationPaymentDTOOperation>> PayReservation(CentralReservationDTO centralReservationDTO)
+        [Route("/api/[controller]/payment/")]
+        public async Task<ActionResult<PaymentDTOOperation>> PayReservation(PaymentDTO paymentDTO)
         {
-            return await _walletPaymentService.PayReservation(centralReservationDTO);
+            return await _walletPaymentService.Pay(paymentDTO);
+        }
+
+        [Route("/api/[controller]/refund/")]
+        public async Task<ActionResult<PaymentDTOOperation>> RefundReservation(PaymentDTO paymentDTO)
+        {
+            return await _walletPaymentService.Refund(paymentDTO);
         }
 
     }
