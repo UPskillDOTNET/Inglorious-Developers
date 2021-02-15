@@ -29,7 +29,7 @@ namespace CentralAPI.Services.Services
             var client = _clientFactory.CreateClient();
             client.BaseAddress = new Uri(parkingLot.myURL);
             var response = await client.GetAsync(url);  
-            response.EnsureSuccessStatusCode();
+            //response.EnsureSuccessStatusCode();
             return response;
         }
         public async Task<HttpResponseMessage> PostClientAsync(int id, string url, StringContent content)
@@ -38,7 +38,7 @@ namespace CentralAPI.Services.Services
             var client = _clientFactory.CreateClient();
             client.BaseAddress = new Uri(parkingLot.myURL);
             var response = await client.PostAsync(url, content);
-            response.EnsureSuccessStatusCode();
+            //response.EnsureSuccessStatusCode();
             return response;
         }
 
@@ -48,7 +48,7 @@ namespace CentralAPI.Services.Services
             var client = _clientFactory.CreateClient();
             client.BaseAddress = new Uri(parkingLot.myURL);
             var response = await client.PutAsync(url, content);
-            response.EnsureSuccessStatusCode();
+            //response.EnsureSuccessStatusCode();
             return response;
         }
 
@@ -57,7 +57,7 @@ namespace CentralAPI.Services.Services
             var client = _clientFactory.CreateClient();
             client.BaseAddress = new Uri(myUri);
             var response = await client.PostAsync(url, content);
-            response.EnsureSuccessStatusCode();
+            //response.EnsureSuccessStatusCode();
             return response;
         }
     }

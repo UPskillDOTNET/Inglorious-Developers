@@ -10,23 +10,6 @@ namespace CentralAPI.Data
         {
             context.Database.EnsureCreated();
 
-            if (context.ParkingLots.Any())
-            {
-                return; //DB is seeded
-            }
-
-            var parkingLots = new ParkingLot[]
-            {
-                new ParkingLot{name="Parque da República", owner="NorteShopping", location="Avenida da República", capacity=125, openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL="https://localhost:44350/"},
-                new ParkingLot{name="Parque Brito Capelo",owner="InRio",location="Rua Brito Capelo",capacity=250,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL="https://localhost:44353/"},
-
-            };
-            foreach (ParkingLot p in parkingLots)
-            {
-                context.ParkingLots.Add(p);
-            }
-            context.SaveChanges();
-
             if (context.PaymentMethods.Any())
             {
                 return;   // DB has been seeded
@@ -43,6 +26,23 @@ namespace CentralAPI.Data
             foreach (PaymentMethod p in PaymentMethods)
             {
                 context.PaymentMethods.Add(p);
+            }
+            context.SaveChanges();
+
+            if (context.ParkingLots.Any())
+            {
+                return; //DB is seeded
+            }
+
+            var parkingLots = new ParkingLot[]
+            {
+                new ParkingLot{name="Parque Brito Capelo",owner="InRio",location="Rua Brito Capelo",capacity=250,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL="https://localhost:44353/"},
+                new ParkingLot{name="Parque da República", owner="NorteShopping", location="Avenida da República", capacity=125, openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL="https://localhost:44350/"},
+
+            };
+            foreach (ParkingLot p in parkingLots)
+            {
+                context.ParkingLots.Add(p);
             }
             context.SaveChanges();
 

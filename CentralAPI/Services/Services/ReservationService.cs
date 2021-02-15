@@ -46,20 +46,20 @@ namespace CentralAPI.Services.Services
         }
 
         //Method to "Cancel" reservations by ID, this method just turn "isCanceled" to true.
-        public async Task<ActionResult<CentralReservationDTO>> PatchReservation(string id, int pLotID)
+        public async Task<ActionResult<HttpResponseMessage>> PatchReservation(string id, int pLotID)
         {
             var content = new StringContent(JsonConvert.SerializeObject(id), Encoding.UTF8, "application/json");
             var endpoint = "api/reservations/" + id;
             var response = await _helper.PutClientAsync(pLotID, endpoint, content);
-            return await response.Content.ReadAsAsync<CentralReservationDTO>();
+            return response;
         }
 
         //Method to post a reservation in the Parking Lot API
-        public async Task<ActionResult<CentralReservationDTO>> PostReservation(CentralReservationDTO reservationDTO, int pLotID)
+        public async Task<ActionResult<HttpResponseMessage>> PostReservation(CentralReservationDTO reservationDTO, int pLotID)
         {
             var content = new StringContent(JsonConvert.SerializeObject(reservationDTO), Encoding.UTF8, "application/json");
             var response = await _helper.PostClientAsync(pLotID, "api/reservations/", content);
-            return await response.Content.ReadAsAsync<CentralReservationDTO>();
+            return response;
         }
 
         //public ValidationResult Validate(ReservationDTO reservationDTO)

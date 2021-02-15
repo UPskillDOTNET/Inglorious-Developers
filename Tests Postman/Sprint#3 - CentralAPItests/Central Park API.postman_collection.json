@@ -1,0 +1,428 @@
+{
+	"info": {
+		"_postman_id": "8b36a832-6c47-445c-8404-5584db0e55ec",
+		"name": "Central Park API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Reservation",
+			"item": [
+				{
+					"name": "Verify if Reservation already exist in Central API",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Central Reservation was not found.\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"centralReservationID\", getRandomCentralID());\r",
+									"pm.environment.set(\"reservationID\", getRandomID());\r",
+									"\r",
+									"function getRandomCentralID() {\r",
+									"    const centralReservationID = pm.variables.replaceIn(\"{{$randomPassword}}\");\r",
+									"    return centralReservationID;\r",
+									"}\r",
+									"\r",
+									"function getRandomID() {\r",
+									"    const reservationID = pm.variables.replaceIn(\"{{$randomPassword}}\");\r",
+									"    return reservationID;\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44381/central/reservations/{{centralReservationID}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"central",
+								"reservations",
+								"{{centralReservationID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify if Reservation already exist in Park API",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Reservation in Park API was not found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44381/park/parkinglot/2/parkreservations/{{reservationID}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"park",
+								"parkinglot",
+								"2",
+								"parkreservations",
+								"{{reservationID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Reservation in Both APIs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Reservation in Central API was sucessfully created.\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"centralReservationID\": \"{{centralReservationID}}\",\r\n    \"reservationID\": \"{{reservationID}}\",\r\n    \"isCancelled\": false,\r\n    \"startTime\": \"2021-07-22T14:00:00\",\r\n    \"hours\": 2,\r\n    \"parkingSpotID\": \"A3\",\r\n    \"userID\": \"7\",\r\n    \"parkingLotID\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44381/central/reservations/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"central",
+								"reservations",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify if Reservation was created Park API",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Reservation in Park API was found.\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Reservation.isCancelled value is false\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"   pm.expect(jsonData.isCancelled).to.be.false\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44381/park/parkinglot/2/parkreservations/{{reservationID}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"park",
+								"parkinglot",
+								"2",
+								"parkreservations",
+								"{{reservationID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify if Reservation was created in Central APi",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Reservation in Central Park API was found.\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"}),\r",
+									"\r",
+									"pm.test(\"Reservation.isCancelled value is false\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"   pm.expect(jsonData.isCancelled).to.be.false\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44381/central/reservations/{{centralReservationID}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"central",
+								"reservations",
+								"{{centralReservationID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel a Reservation in both APIs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Central Reservation was updated (Cancelled value to true). \", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44381/central/reservations/{{centralReservationID}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"central",
+								"reservations",
+								"{{centralReservationID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify if Reservation isCancelled is true in Central API",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Central API reservation was found.\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"}),\r",
+									"\r",
+									"pm.test(\"Reservation.isCancelled value is true.\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"   pm.expect(jsonData.isCancelled).to.be.true\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44381/central/reservations/{{centralReservationID}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"central",
+								"reservations",
+								"{{centralReservationID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify if Reservation  is Cancelled is true in Park API",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Park API reservation was found.\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Reservation.isCancelled value is true.\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"   pm.expect(jsonData.isCancelled).to.be.true\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44381/park/parkinglot/2/parkreservations/{{reservationID}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"park",
+								"parkinglot",
+								"2",
+								"parkreservations",
+								"{{reservationID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "centralreservID",
+			"value": "0\n"
+		},
+		{
+			"key": "reservID",
+			"value": "0"
+		},
+		{
+			"key": "centralreservID",
+			"value": ""
+		},
+		{
+			"key": "reservID",
+			"value": ""
+		}
+	]
+}

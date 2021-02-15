@@ -123,7 +123,7 @@ namespace CentralAPI.Controllers
             }
             catch (Exception e)
             {
-                return Conflict("Reservation was not found" + e);
+                return NotFound("Reservation was not found" + e);
             }
         }
     }
