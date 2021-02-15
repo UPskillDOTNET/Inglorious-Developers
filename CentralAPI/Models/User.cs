@@ -12,7 +12,6 @@ namespace CentralAPI.Models
     public class User
     {
         [Key]
-        
         public string userID { get; set; }
 
         [Required]

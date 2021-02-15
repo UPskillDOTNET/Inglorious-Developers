@@ -15,15 +15,15 @@ namespace CentralAPI.Services.Services
     public class WalletPaymentService : IWalletPaymentService
     { 
         private readonly IMapper _mapper;
-        private readonly IReservationPaymentRepository _reservationPaymentRepository;
-        //private readonly IPaymentRepository _paymentRepository;
+        //private readonly IReservationPaymentRepository _reservationPaymentRepository;
+        private readonly IPaymentRepository _paymentRepository;
         private readonly IWalletService _walletService;
         private readonly ICentralReservationService _centralReservationService;
 
-        public WalletPaymentService(IMapper mapper, IReservationPaymentRepository reservationPaymentRepository, IWalletService walletService, ICentralReservationService centralReservationService)
+        public WalletPaymentService(IMapper mapper, IPaymentRepository paymentRepository, IWalletService walletService, ICentralReservationService centralReservationService)
         {
             _mapper = mapper;
-            _reservationPaymentRepository = reservationPaymentRepository;
+            _paymentRepository = paymentRepository;
             _walletService = walletService;
             _centralReservationService = centralReservationService;
         }
@@ -54,7 +54,7 @@ namespace CentralAPI.Services.Services
                 try
                 {
                     await _walletService.WithdrawFromWallet(walletDTO.walletID, paymentDTO.finalPrice);
-                    await _reservationPaymentRepository.SaveReservationPayment(payment);
+                    await _paymentRepository.SavePayment(payment);
                 }
                 catch (Exception)
                 {
@@ -105,7 +105,7 @@ namespace CentralAPI.Services.Services
                 try
                 {
                     await _walletService.DepositToWallet(walletDTO.walletID, paymentDTO.finalPrice);
-                    await _reservationPaymentRepository.SaveReservationPayment(payment);
+                    await _paymentRepository.SavePayment(payment);
                 }
                 catch (Exception)
                 {
