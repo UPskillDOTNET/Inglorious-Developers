@@ -1,0 +1,227 @@
+@startuml
+autonumber
+'hide footbox
+actor "User" as USR
+
+
+participant ":PlatformUI" as PUI
+participant ":AuthenticationService" as AUT
+participant ":Platform" as UI
+participant ":WebAPIPCentralReservationController" as RESCTRL
+participant ":WebAPICentralReservationService" as RESSERV
+participant ":WebAPICentralReservationRepository" as RESREPO
+participant ":WebAPIParkingSpotController" as CTRL
+participant ":WebAPIParkingSpotService" as SERV
+participant ":APIHelper" as HELP
+participant ":EmailService" as EMAILSERV
+participant ":UserService" as USERSERV
+participant ":UserRepository" as USERREPO
+participant ":User" as _USER
+participant ":QRcode" as QR
+participant ":ParkingLotService" as PLSE
+participant ":ParkingLotRepository\n:<ParkingLot>" as PLAT
+participant ":ParkAPI\n ParkingSpotController" as PARKCTRL
+participant ":ParkAPI\n ParkingSpotService" as PARKSERV
+participant ":ParkAPI\n ParkingSpotRepository" as PARKREPO
+participant ":ReservationService" as RESV
+participant "ParkAPI\n ReservationController" as PARKRECTRL
+participant "ParkAPI\n ReservationService" as PARKRESV
+participant "ParkAPI\n ReservationRepository" as PARKREREPO
+participant "parkingSpot\n:ParkingSpot" as PSP
+participant "reservation\n:Reservation" as RSV
+participant ":APIContext" as APICTX
+participant ":CentralContext" as CCTX
+
+
+activate USR
+USR -> PUI : asks to be authenticated in the Platform
+activate PUI
+PUI --> USR : asks Login details
+deactivate PUI
+USR -> PUI : inputs login details
+activate PUI
+PUI -> AUT : new login
+activate AUT
+AUT -> AUT : validates user
+AUT --> PUI : login successful
+deactivate AUT
+PUI --> USR : notification successful login
+deactivate PUI
+
+USR -> UI : starts a Reservation registration
+activate UI
+UI --> USR : asks to fill the required data (parkingLot, startTime, hours, parkingSpot)
+deactivate UI
+
+USR -> UI : inputs the required data
+activate UI
+
+UI -> RESCTRL : createCentralReservation()
+activate RESCTRL
+
+RESCTRL -> RESSERV : PostCentralReservation(centralReservationDTO)
+activate RESSERV
+RESSERV -> RESSERV : GetEndTimeandFinalPrice(centralReservationDTO)
+
+RESSERV -> SERV : GetParkingSpotById(pLotId, id)
+activate SERV
+SERV -> HELP : GetClientAsync(id, url)
+activate HELP
+HELP -> PARKCTRL : HttpGetAsync
+activate PARKCTRL
+
+PARKCTRL -> PARKSERV : GetParkingSpot(id)
+activate PARKSERV
+
+PARKSERV -> PARKSERV : ValidatesParkingSpot
+
+PARKSERV -> PARKREPO : GetParkingSpot(id)
+activate PARKREPO
+
+
+
+PARKREPO -> PSP : validateParkingSpot()
+activate PSP
+deactivate PSP
+PARKREPO -> APICTX : GetAsync(parkingSpot)
+activate APICTX
+deactivate APICTX
+
+PARKREPO --> PARKSERV : return parkingSpot
+deactivate PARKREPO
+
+PARKSERV --> PARKCTRL : return parkingSpotDTO
+deactivate PARKSERV
+
+PARKCTRL --> HELP : ActionResult ParkingSpotDTO
+deactivate PARKCTRL
+
+HELP -> SERV : ActionResult code 200
+deactivate HELP
+
+SERV -> HELP : getParkingLot(id)
+activate HELP
+HELP -> PLSE : getParkingLot(id)
+activate PLSE
+
+PLSE -> PLAT : GetAll().(parkingLotID == id)
+activate PLAT
+
+PLAT --> PLSE : return parkingLot
+deactivate PLAT
+
+PLSE --> HELP : return parkingLotDTO
+deactivate PLSE
+
+
+HELP --> SERV : return parkingSpotDTO
+deactivate HELP
+
+SERV --> RESSERV : return parkingSpotDTO
+deactivate SERV
+
+RESSERV -> RESSERV : centralReservationDTO.endTime\n centralReservationDTO.finalPrice
+
+RESSERV -> QR : MakeQR(centralReservationDTO)
+activate QR
+QR -> PLSE : GetParkingLot(centralResevationDTO.parkingLotID)
+activate PLSE
+PLSE -> PLAT : GetAll().(parkingLotID == id)
+activate PLAT
+
+PLAT --> PLSE : return parkingLot
+deactivate PLAT
+
+PLSE --> QR : return parkingLotDTO
+deactivate PLSE
+
+QR -> QR : CreateQrCode(qrText, QRCodeGenerator.ECCLevel.Q)
+
+QR --> RESSERV : return BitmapToBytes(qrCodeImage)
+deactivate QR
+
+RESSERV -> EMAILSERV : SendQRToEmailAsync(*emaildetails)
+activate EMAILSERV
+EMAILSERV -> USERSERV : GetUserById(id)
+activate USERSERV
+
+USERSERV -> USERREPO : GetUsersById(id)
+activate USERREPO
+USERREPO -> _USER : ValidatesUserExists
+activate _USER
+deactivate _USER
+USERREPO ->  CCTX : GetUser
+activate CCTX
+deactivate CCTX
+USERREPO --> USERSERV : return GetAll().(userID == id)
+deactivate USERREPO
+USERSERV --> EMAILSERV : return userDTO
+deactivate USERSERV
+EMAILSERV --> RESSERV : email sent 
+deactivate EMAILSERV
+RESSERV -> RESREPO : PostCentralReservation(centralReservation)
+activate RESREPO
+RESREPO -> RESREPO : AddAsync(reservation)
+
+RESREPO --> RESSERV : return reservation
+deactivate RESREPO
+RESSERV --> RESCTRL : return centralReservationDTO
+deactivate RESSERV
+RESCTRL -> RESV : PostReservation(reservationDTO, pLotID)
+activate RESV
+RESV -> HELP : PostClientAsync
+activate HELP
+HELP -> PLSE : getParkingLot(id)
+activate PLSE
+
+PLSE -> PLAT : GetAll().(parkingLotID == id)
+activate PLAT
+
+PLAT --> PLSE : return parkingLot
+deactivate PLAT
+
+PLSE --> HELP : return parkingLotDTO
+deactivate HELP
+deactivate PLSE
+
+HELP -> PARKRECTRL : HttpPostAsync
+activate HELP
+activate PARKRECTRL
+
+PARKRECTRL -> PARKRESV : PostReservation(reservationDTO)
+activate PARKRESV
+
+PARKRESV -> PARKRESV : ValidatesReservation
+
+
+PARKRESV -> PARKREREPO : PostReservation(reservation)
+activate PARKREREPO
+
+PARKREREPO -> RSV : validateReservation()
+activate RSV
+deactivate RSV
+PARKREREPO -> APICTX : AddAsync(reservation)\n SaveChangesAsync()
+activate APICTX
+deactivate APICTX
+
+PARKREREPO --> PARKRESV : return reservation
+deactivate PARKREREPO
+
+PARKRESV --> PARKRECTRL : return reservationDTO
+deactivate PARKRESV
+
+PARKRECTRL --> HELP : CreatedAtAction newReservationDTO
+deactivate PARKRECTRL
+
+HELP --> RESV : CreatedAtAction code 200
+deactivate HELP
+
+RESV --> RESCTRL : CreatedAtAction("PostCentralReservation")
+deactivate RESV
+RESCTRL --> UI : operation was successful
+deactivate RESCTRL
+
+UI--> USR : informs that the operation was successful
+deactivate USR
+deactivate CTRL
+@enduml
