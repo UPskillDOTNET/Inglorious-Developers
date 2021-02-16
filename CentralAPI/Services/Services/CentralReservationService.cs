@@ -82,11 +82,20 @@ namespace CentralAPI.Services.Services {
 
         }
 
-        public async Task<ActionResult<CentralReservationDTO>> completeCentralReservation(string id)
+        public async Task<ActionResult<CentralReservationDTO>> CompleteCentralReservation(string id)
         {
             var reservation = await _centralReservationRepository.Find(id);
             var result = await GetEndTimeandFinalPriceForComplete(reservation);
             var reservations = await _centralReservationRepository.PatchCentralReservation(result.Value);
+            var reservationDTO = _mapper.Map<CentralReservation, CentralReservationDTO>(reservations);
+            return reservationDTO;
+
+        }
+        public async Task<ActionResult<CentralReservationDTO>> SubletCentralReservation(string id)
+        {
+            var reservation = await _centralReservationRepository.Find(id);
+            reservation.forSublet = true;
+            var reservations = await _centralReservationRepository.PatchCentralReservation(reservation);
             var reservationDTO = _mapper.Map<CentralReservation, CentralReservationDTO>(reservations);
             return reservationDTO;
 

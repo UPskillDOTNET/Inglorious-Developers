@@ -1,4 +1,5 @@
 ﻿using CentralAPI.DTO;
+using CentralAPI.Repositories.IRepository;
 using CentralAPI.Services.IServices;
 using CentralAPI.Utils;
 using FluentValidation.Results;
@@ -7,6 +8,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,10 +19,13 @@ namespace CentralAPI.Services.Services
     public class ParkingSpotService : IParkingSpotService
     {
         private readonly ClientHelper _helper;
+        private readonly ICentralReservationRepository _centralReservationRepository;
 
-        public ParkingSpotService(ClientHelper helper)
+        public ParkingSpotService(ClientHelper helper, ICentralReservationRepository centralReservationRepository)
         {
             _helper = helper;
+            _centralReservationRepository = centralReservationRepository;
+
         }
 
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots(int id)
@@ -31,15 +36,21 @@ namespace CentralAPI.Services.Services
 
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllFreeSpots(int id)
         {
-            var response = await _helper.GetClientAsync(id, "api/parkingspots/freeSpots");
-            return await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
+            var response = await _helper.GetClientAsync(id, "api/parkingspots/all");
+            var parkingspotList = await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
+            var reservationList = await _centralReservationRepository.GetCentralReservationDateTimeNow();
+            var res = from p in parkingspotList where !(from r in reservationList where r.parkingSpotID == p.parkingSpotID select r.parkingSpotID).Contains(p.parkingSpotID) select p;
+
+            return res.ToList();
         }
 
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate, int id)
         {
-            string endpoint = "api/parkingspots/freeSpots/" + startDate.ToString("yyyy-MM-ddTHH:mm:ss") + "/" + endDate.ToString("yyyy-MM-ddTHH:mm:ss");
-            var response = await _helper.GetClientAsync(id, endpoint);
-            return await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
+            var response = await _helper.GetClientAsync(id, "api/parkingspots/all");
+            var parkingspotList = await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
+            var reservationList = await _centralReservationRepository.GetSpecificCentralReservation(startDate, endDate);
+            var res = from p in parkingspotList where !(from r in reservationList where r.parkingSpotID == p.parkingSpotID select r.parkingSpotID).Contains(p.parkingSpotID) select p;
+            return res.ToList();
         }
 
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByPrice(int id, decimal priceHour)
