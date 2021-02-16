@@ -1,0 +1,105 @@
+@startuml
+autonumber
+'hide footbox
+actor "Admin" as ADM
+
+
+participant ":PlatformUI" as PUI
+participant ":AuthenticationService" as AUT
+participant ":Platform" as UI
+participant ":WebAPIParkingSpotController" as CTRL
+participant ":WebAPIParkingSpotService" as SERV
+participant ":APIHelper" as HELP
+participant ":ParkingLotService" as PLSE
+participant ":ParkingLotRepository\n:<ParkingLot>" as PLAT
+participant ":ParkAPI\n ParkingSpotController" as PARKCTRL
+participant ":ParkAPI\n ParkingSpotService" as PARKSERV
+participant ":ParkAPI\n ParkingSpotRepository" as PARKREPO
+participant "parkingSpot\n:ParkingSpot" as PSP
+participant ":publicParkContext" as APICTX
+
+activate ADM
+ADM -> PUI : asks to be authenticated in the Platform
+activate PUI
+PUI --> ADM : asks Login details
+deactivate PUI
+ADM -> PUI : inputs login details
+activate PUI
+PUI -> AUT : new login
+activate AUT
+AUT -> AUT : validates user
+AUT --> PUI : login successful
+deactivate AUT
+PUI --> ADM : notification successful login
+deactivate PUI
+
+ADM -> UI : starts a ParkingSpot registration
+activate UI
+UI --> ADM : asks to fill the required data (parkingLotID, isPrivate, isCovered, floor, priceHour)
+deactivate UI
+
+ADM -> UI : inputs the required data
+activate UI
+
+UI -> CTRL : createParkingSpot()
+activate CTRL
+
+CTRL -> SERV : CreateParkingSpot(parkingSpotDTO, id)
+activate SERV
+SERV -> SERV : ParkingSpotValidator()
+
+SERV -> HELP : PostClientAsync(id, url, content)
+activate HELP
+HELP -> PLSE : getParkingLot(id)
+activate PLSE
+
+PLSE -> PLAT : GetAll().(parkingLotID == id)
+activate PLAT
+
+PLAT --> PLSE : return parkingLot
+deactivate PLAT
+
+PLSE --> HELP : return parkingLotDTO
+deactivate HELP
+deactivate PLSE
+
+HELP -> PARKCTRL : HttpPostAsync
+activate HELP
+activate PARKCTRL
+
+PARKCTRL -> PARKSERV : PostParkingSpot(parkingSpotDTO)
+activate PARKSERV
+
+PARKSERV -> PARKSERV : ValidatesParkingSpot
+
+
+PARKSERV -> PARKREPO : PostParkingSpot(parkingSpot)
+activate PARKREPO
+
+
+PARKREPO -> PSP : validateParkingSpot()
+activate PSP
+deactivate PSP
+PARKREPO -> APICTX : AddAsync(parkingSpot)\n SaveChangesAsync()
+activate APICTX
+deactivate APICTX
+
+PARKREPO --> PARKSERV : return parkingSpot
+deactivate PARKREPO
+
+PARKSERV --> PARKCTRL : return parkingSpotDTO
+deactivate PARKSERV
+
+PARKCTRL --> HELP : CreatedAtAction newParkingSpotDTO
+deactivate PARKCTRL
+
+HELP -> SERV : CreatedAtAction code 200
+deactivate HELP
+
+SERV --> CTRL : CreatedAtAction new parkingSpotDTO
+deactivate SERV
+
+UI--> ADM : informs that the operation was successful
+deactivate ADM
+deactivate CTRL
+@enduml
