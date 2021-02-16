@@ -38,6 +38,14 @@ namespace CentralAPI.Repositories.Repository {
         public async Task<bool> FindCentralReservationAny(string id) {
             return await GetAll().Where(p => p.centralReservationID == id).AnyAsync();
         }
+        public async Task<bool> subletReservationAny(string pid, int PID, DateTime startTime)
+        {
+            return await GetAll().Where(r => r.parkingSpotID == pid&&r.parkingLotID==PID&&r.startTime==startTime&&r.forSublet==true).AnyAsync();
+        }
+        public async Task<CentralReservation> GetsubletReservation(string pid, int PID, DateTime startTime)
+        {
+            return await GetAll().Where(r => r.parkingSpotID == pid && r.parkingLotID == PID && r.startTime == startTime && r.forSublet == true).FirstOrDefaultAsync();
+        }
         public async Task<CentralReservation> PostCentralReservation(CentralReservation reservation) {
             await AddAsync(reservation);
             return reservation;

@@ -16,6 +16,7 @@ namespace CentralAPI.Services.IServices {
         Task<ActionResult<CentralReservationDTO>> PostCentralReservationNotCompleted(CentralReservationDTO centralReservationDTO);
         Task<ActionResult<CentralReservationDTO>> GetEndTimeandFinalPrice(CentralReservationDTO centralReservation);
         Task<bool> FindCentralReservationAny(string id);
+        Task<bool> subletReservationExists(CentralReservationDTO centralReservationDTO);
         Task<ActionResult<CentralReservationDTO>> PatchCentralReservation(string id);
         Task<ActionResult<CentralReservationDTO>> CompleteCentralReservation(string id);
         Task<ActionResult<CentralReservationDTO>> SubletCentralReservation(string id);

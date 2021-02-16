@@ -36,6 +36,11 @@ namespace CentralAPI.Repositories.Repository
             return await GetAll().Where(r => (r.startDate >= startDate && r.endDate <= endDate) || (r.startDate <= endDate && r.endDate >= startDate)).ToListAsync();
         }
 
+        public async Task<bool> subletAny(Sublet sublet)
+        {
+            return await GetAll().Where(r => (r.startDate >= sublet.startDate && r.endDate <= sublet.endDate) || (r.startDate <= sublet.endDate && r.endDate >= sublet.startDate)&& r.reservationID == sublet.reservationID).AnyAsync();
+        }
+
         public async Task<Sublet> CreateSublet(Sublet sublet)
         {
             sublet = await AddAsync(sublet);

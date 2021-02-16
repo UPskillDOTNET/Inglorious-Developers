@@ -43,28 +43,28 @@ namespace CentralAPI.Controllers
 
         // POST: api/Sublets
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<SubletDTO>> PostSublet([FromBody] SubletDTO subletDTO)
-        {
+        //[HttpPost]
+        //public async Task<ActionResult<SubletDTO>> PostSublet([FromBody] SubletDTO subletDTO)
+        //{
 
-            try
-            {
-                await _subletService.CreateSublet(subletDTO);
-            }
-            catch (DbUpdateException)
-            {
-                if (SubletExists(subletDTO.subletID))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await _subletService.CreateSublet(subletDTO);
+        //    }
+        //    catch (DbUpdateException)
+        //    {
+        //        if (SubletExists(subletDTO.subletID))
+        //        {
+        //            return Conflict();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return CreatedAtAction("GetSublet", new { id = subletDTO.subletID }, subletDTO);
-        }
+        //    return CreatedAtAction("GetSublet", new { id = subletDTO.subletID }, subletDTO);
+        //}
 
         // DELETE: api/Sublets/5
         [HttpPut("{id}")]
