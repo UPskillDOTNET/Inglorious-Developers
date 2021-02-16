@@ -15,6 +15,7 @@ namespace PublicParkAPI.Services.IServices
         Task<ActionResult<ReservationDTO>> PostReservation(ReservationDTO reservationDTO);
         Task<bool> FindReservationAny(string id);
         Task<ActionResult<ReservationDTO>> PatchReservation(string id);
+        Task<ActionResult<ReservationDTO>> completeReservation(ReservationDTO reservationDTO);
         ValidationResult Validate(ReservationDTO reservationDTO);
     }
 }

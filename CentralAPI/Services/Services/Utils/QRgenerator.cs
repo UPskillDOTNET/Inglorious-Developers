@@ -38,7 +38,24 @@ namespace CentralAPI.Services.Services
 
             return BitmapToBytes(qrCodeImage);
         }
+        public async Task<ActionResult<byte[]>> MakeQRnotCompleted(CentralReservationDTO centralResevationDTO)
+        {
 
+            var ParkingLot = await _parkingLotService.GetParkingLot(centralResevationDTO.parkingLotID);
+            var qrText = ("ParkingSpot Reservation: \n ReservationID: " + centralResevationDTO.reservationID
+                + "\n\n ParkingLot: " + ParkingLot.Value.name
+                + "\n Location: " + ParkingLot.Value.location
+                + "\n\n ParkingSpotID: " + centralResevationDTO.parkingSpotID
+                + "\n StartTime: " + centralResevationDTO.startTime
+                + "\n Please don't forget to pay the total amount when you leave the parkingSpot!");
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrText, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            Bitmap qrCodeImage = qrCode.GetGraphic(20);
+
+
+            return BitmapToBytes(qrCodeImage);
+        }
 
         private static Byte[] BitmapToBytes(Bitmap img)
         {

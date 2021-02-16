@@ -13,9 +13,13 @@ namespace CentralAPI.Services.IServices {
         Task<ActionResult<CentralReservationDTO>> GetCentralReservationById(string id);
         Task<ActionResult<IEnumerable<CentralReservationDTO>>> GetCentralReservationsNotCancelled();
         Task<ActionResult<CentralReservationDTO>> PostCentralReservation(CentralReservationDTO centralReservationDTO);
+        Task<ActionResult<CentralReservationDTO>> PostCentralReservationNotCompleted(CentralReservationDTO centralReservationDTO);
         Task<ActionResult<CentralReservationDTO>> GetEndTimeandFinalPrice(CentralReservationDTO centralReservation);
         Task<bool> FindCentralReservationAny(string id);
         Task<ActionResult<CentralReservationDTO>> PatchCentralReservation(string id);
+        Task<ActionResult<CentralReservationDTO>> completeCentralReservation(string id);
+        Task<ActionResult<CentralReservation>> GetEndTimeandFinalPriceForComplete(CentralReservation centralReservation);
+
         //ValidationResult Validate(CentralReservationDTO centralReservationDTO);
     }
 }

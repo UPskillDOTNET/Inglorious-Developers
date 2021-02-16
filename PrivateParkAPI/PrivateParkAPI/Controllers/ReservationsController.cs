@@ -97,6 +97,21 @@ namespace PrivateParkAPI.Controllers
             }
             return NotFound("Reservation does not Exist");
         }
+        [HttpPut("~/api/reservations/notCompleted/{id}")]
+        public async Task<ActionResult<ReservationDTO>> completeReservation(string id, ReservationDTO reservationDTO)
+        {
+
+            if (await ReservationExists(id))
+            {
+                if (reservationDTO.isCancelled == false)
+                {
+                    var reservation = await _reservationService.completeReservation(reservationDTO);
+                    return Ok(reservation.Value);
+                }
+                return BadRequest("Couldn't change value");
+            }
+            return NotFound("Reservation does not Exist");
+        }
 
         public async Task<bool> ReservationExists(string id)
         {

@@ -53,6 +53,13 @@ namespace CentralAPI.Services.Services
             var response = await _helper.PutClientAsync(pLotID, endpoint, content);
             return response;
         }
+        public async Task<ActionResult<HttpResponseMessage>> completeReservation(CentralReservationDTO centralReservationDTO)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(centralReservationDTO), Encoding.UTF8, "application/json");
+            var endpoint = "api/reservations/notCompleted/" + centralReservationDTO.reservationID;
+            var response = await _helper.PutClientAsync(centralReservationDTO.parkingLotID, endpoint, content);
+            return response;
+        }
 
         //Method to post a reservation in the Parking Lot API
         public async Task<ActionResult<HttpResponseMessage>> PostReservation(CentralReservationDTO reservationDTO, int pLotID)

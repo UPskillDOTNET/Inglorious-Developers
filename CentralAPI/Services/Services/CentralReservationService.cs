@@ -56,19 +56,20 @@ namespace CentralAPI.Services.Services {
         }
 
         public async Task<ActionResult<CentralReservationDTO>> PostCentralReservation(CentralReservationDTO centralReservationDTO) {
-            var centralReservationX= await GetEndTimeandFinalPrice(centralReservationDTO);
-            centralReservationDTO = centralReservationX.Value;
+            var result= await GetEndTimeandFinalPrice(centralReservationDTO);
+            centralReservationDTO = result.Value;
             var qr = _qRgenerator.MakeQR(centralReservationDTO);
             await _emailService.SendQRToEmailAsync(qr.Result.Value, centralReservationDTO.userID, centralReservationDTO.centralReservationID);
             var centralReservation = _mapper.Map<CentralReservationDTO, CentralReservation>(centralReservationDTO);
             await _centralReservationRepository.PostCentralReservation(centralReservation);
             return centralReservationDTO;
         }
-
-        public async Task<ActionResult<CentralReservationDTO>> GetEndTimeandFinalPrice(CentralReservationDTO centralReservationDTO) {
-            var parkingSpot = await _parkingSpotService.GetParkingSpotById(centralReservationDTO.parkingLotID, centralReservationDTO.parkingSpotID);
-            centralReservationDTO.endTime = centralReservationDTO.startTime.AddHours(centralReservationDTO.hours);
-            centralReservationDTO.finalPrice = centralReservationDTO.hours * parkingSpot.Value.priceHour;
+        public async Task<ActionResult<CentralReservationDTO>> PostCentralReservationNotCompleted(CentralReservationDTO centralReservationDTO)
+        {
+            var qr = _qRgenerator.MakeQRnotCompleted(centralReservationDTO);
+            await _emailService.SendQRToEmailAsync(qr.Result.Value, centralReservationDTO.userID, centralReservationDTO.centralReservationID);
+            var centralReservation = _mapper.Map<CentralReservationDTO, CentralReservation>(centralReservationDTO);
+            await _centralReservationRepository.PostCentralReservation(centralReservation);
             return centralReservationDTO;
         }
 
@@ -79,6 +80,34 @@ namespace CentralAPI.Services.Services {
             var reservationDTO = _mapper.Map<CentralReservation, CentralReservationDTO>(reservations);
             return reservationDTO;
 
+        }
+
+        public async Task<ActionResult<CentralReservationDTO>> completeCentralReservation(string id)
+        {
+            var reservation = await _centralReservationRepository.Find(id);
+            var result = await GetEndTimeandFinalPriceForComplete(reservation);
+            var reservations = await _centralReservationRepository.PatchCentralReservation(result.Value);
+            var reservationDTO = _mapper.Map<CentralReservation, CentralReservationDTO>(reservations);
+            return reservationDTO;
+
+        }
+
+        public async Task<ActionResult<CentralReservationDTO>> GetEndTimeandFinalPrice(CentralReservationDTO centralReservationDTO)
+        {
+            var parkingSpot = await _parkingSpotService.GetParkingSpotById(centralReservationDTO.parkingLotID, centralReservationDTO.parkingSpotID);
+            centralReservationDTO.endTime = centralReservationDTO.startTime.AddHours(centralReservationDTO.hours);
+            centralReservationDTO.finalPrice = centralReservationDTO.hours * parkingSpot.Value.priceHour;
+            return centralReservationDTO;
+        }
+
+        public async Task<ActionResult<CentralReservation>> GetEndTimeandFinalPriceForComplete(CentralReservation centralReservation)
+        {
+            var parkingSpot = await _parkingSpotService.GetParkingSpotById(centralReservation.parkingLotID, centralReservation.parkingSpotID);
+            var hours = DateTime.Now - centralReservation.startTime;
+            centralReservation.endTime = centralReservation.startTime.AddHours(hours.TotalHours);
+            centralReservation.hours = Convert.ToInt32(hours.TotalHours);
+            centralReservation.finalPrice = centralReservation.hours * parkingSpot.Value.priceHour;
+            return centralReservation;
         }
         public async Task<bool> FindCentralReservationAny(string id) {
             return await _centralReservationRepository.FindCentralReservationAny(id);

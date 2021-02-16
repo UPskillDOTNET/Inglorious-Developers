@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Controllers
 {
-    [Route("centralapi/parkinglots")]
+    [Route("central/parkinglots")]
     [ApiController]
     public class ParkingLotsController : Controller
     {

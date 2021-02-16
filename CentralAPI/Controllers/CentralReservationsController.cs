@@ -53,7 +53,26 @@ namespace CentralAPI.Controllers
             try
             {
                 var centralReservation = await _centralReservationService.PostCentralReservation(centralReservationDTO);
-                await _reservationService.PostReservation(centralReservation.Value, centralReservation.Value.parkingLotID);
+                await _reservationService.PostReservation(centralReservation.Value, centralReservationDTO.parkingLotID);
+            }
+            catch (Exception e)
+            {
+                if (await CentralReservationExists(centralReservationDTO.reservationID) == true)
+                {
+                    return Conflict("The CentralReservations already exist" + e);
+                }
+                throw;
+            }
+            return CreatedAtAction("PostCentralReservation", new { id = centralReservationDTO.reservationID }, centralReservationDTO);
+        }
+        [HttpPost]
+        [Route("~/central/reservations/notCompleted")]
+        public async Task<ActionResult<CentralReservationDTO>> PostCentralReservationNotCompleted([FromBody] CentralReservationDTO centralReservationDTO)
+        {
+            try
+            {
+                var centralReservation = await _centralReservationService.PostCentralReservationNotCompleted(centralReservationDTO);
+                await _reservationService.PostReservation(centralReservation.Value, centralReservationDTO.parkingLotID);
             }
             catch (Exception e)
             {
@@ -78,6 +97,24 @@ namespace CentralAPI.Controllers
                     centralReservationDTO = await _centralReservationService.PatchCentralReservation(id);
                     await _reservationService.PatchReservation(centralReservationDTO.Value.reservationID, centralReservationDTO.Value.parkingLotID);
                     return centralReservationDTO;
+                }
+                return BadRequest("Couldn't change value");
+            }
+            return NotFound("Reservation does not exist");
+        }
+
+        [HttpPut("~/central/reservations/notCompleted/{id}")]
+        public async Task<ActionResult<CentralReservationDTO>> CompleteCentralReservation(string id)
+        {
+            var centralReservationDTO = await _centralReservationService.GetCentralReservationById(id);
+
+            if (CentralReservationExists(id).Result == true)
+            {
+                if (centralReservationDTO.Value.isCancelled == false)
+                {
+                    var newcentralReservationDTO = await _centralReservationService.completeCentralReservation(id);
+                    await _reservationService.completeReservation(newcentralReservationDTO.Value);
+                    return newcentralReservationDTO;
                 }
                 return BadRequest("Couldn't change value");
             }

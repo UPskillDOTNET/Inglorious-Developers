@@ -60,6 +60,14 @@ namespace PrivateParkAPI.Services.Services
             var reservationDTO = _mapper.Map<Reservation, ReservationDTO>(reservations);
             return reservationDTO;
         }
+
+        public async Task<ActionResult<ReservationDTO>> completeReservation(ReservationDTO reservationDTO)
+        {
+            var reservation = _mapper.Map<ReservationDTO, Reservation>(reservationDTO);
+            reservation = await _reservationRepository.PatchReservation(reservation);
+            reservationDTO = _mapper.Map<Reservation, ReservationDTO>(reservation);
+            return reservationDTO;
+        }
         public async Task<bool> FindReservationAny(string id)
         {
             return await _reservationRepository.FindReservationAny(id);

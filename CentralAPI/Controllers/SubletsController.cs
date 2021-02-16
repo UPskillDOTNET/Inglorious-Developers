@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("central/[controller]")]
     [ApiController]
     public class SubletsController : ControllerBase
     {

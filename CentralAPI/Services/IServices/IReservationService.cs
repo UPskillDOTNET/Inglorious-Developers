@@ -15,5 +15,6 @@ namespace CentralAPI.Services.IServices
         Task<ActionResult<CentralReservationDTO>> GetReservationById(string id, int pLotID);
         Task<ActionResult<HttpResponseMessage>> PostReservation(CentralReservationDTO CentralreservationDTO, int pLotID);
         Task<ActionResult<HttpResponseMessage>> PatchReservation(string id, int pLotID);
+        Task<ActionResult<HttpResponseMessage>> completeReservation(CentralReservationDTO centralReservationDTO);
     }
 }
