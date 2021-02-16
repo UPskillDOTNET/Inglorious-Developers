@@ -1,0 +1,66 @@
+@startuml
+autonumber
+'hide footbox
+
+actor "User" as USR
+
+participant ":Platform" as PUI
+participant ":AuthenticationService" as AUT
+participant ":UserController" as CTRL
+participant ":WebAPIService" as SERV
+participant ":WebAPIRepository" as REPO
+participant ":CentralAPIContext" as DB
+
+activate USR
+USR -> PUI : asks to be authenticated in the Platform
+activate PUI
+
+PUI --> USR : asks Login details
+deactivate PUI
+
+USR -> PUI : inputs login details
+activate PUI
+
+PUI -> AUT : new login
+activate AUT
+
+AUT -> AUT : validates user
+AUT --> PUI : login successful
+deactivate AUT
+
+PUI --> USR : notification successful login
+deactivate PUI
+
+USR -> PUI : access user dashboard to update User Profile
+activate PUI
+PUI --> USR : Asks to fill the required data he wants to edit (Name, NIF, email or pwd)
+deactivate PUI
+
+USR -> PUI : inputs the required data
+activate PUI
+
+PUI -> CTRL : UserDTO \n(userID, name, nif, email, pwd)
+activate CTRL
+
+CTRL -> SERV : UserDTO \n(userID, name, nif, email, pwd)
+activate SERV
+
+SERV -> REPO : UserDTO = UpdatedUser \n(userID, name, nif, email, pwd)
+activate REPO
+
+REPO -> DB : User(user)
+activate DB
+
+DB -> DB : UpdatedUser() \n(name, nif, email, pwd)
+
+DB --> PUI : UpdatedUser = UserDTO
+deactivate DB
+deactivate CTRL
+deactivate REPO
+deactivate SERV
+
+PUI --> USR : Confirms the user was updated
+
+deactivate PUI
+deactivate USR
+@enduml
