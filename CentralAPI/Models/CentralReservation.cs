@@ -14,6 +14,7 @@ namespace CentralAPI.Models {
         [ForeignKey("ParkingLot")]
         public int parkingLotID { get; set; }        
         public bool isCancelled { get; set; }
+        public bool forSublet { get; set; }
         public DateTime startTime { get; set; }
         public int hours { get; set; }
         public DateTime endTime { get; set; }

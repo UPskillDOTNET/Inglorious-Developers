@@ -25,11 +25,11 @@ namespace CentralAPI.Repositories.Repository {
         }
 
         public async Task<IEnumerable<CentralReservation>> GetCentralReservationDateTimeNow() {
-            return await GetAll().Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now).Where(r => r.isCancelled == true).Include(l => l.ParkingLot).Include(u => u.User).ToListAsync();
+            return await GetAll().Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now).Where(r => r.isCancelled == false).Where(r => r.forSublet == false).Include(l => l.ParkingLot).Include(u => u.User).ToListAsync();
         }
 
         public async Task<IEnumerable<CentralReservation>> GetSpecificCentralReservation(DateTime startDate, DateTime endDate) {
-            return await GetAll().Where(r => (r.startTime >= startDate && r.endTime <= endDate) || (r.startTime <= endDate && r.endTime >= startDate)).Where(r => r.isCancelled == true).Include(l => l.ParkingLot).Include(u => u.User).ToListAsync();
+            return await GetAll().Where(r => (r.startTime >= startDate && r.endTime <= endDate) || (r.startTime <= endDate && r.endTime >= startDate)).Where(r => r.isCancelled == false).Where(r=>r.forSublet== false).Include(l => l.ParkingLot).Include(u => u.User).ToListAsync();
         }
 
         public async Task<CentralReservation> GetCentralReservationById(string id) {

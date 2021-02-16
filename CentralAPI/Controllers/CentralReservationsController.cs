@@ -112,7 +112,7 @@ namespace CentralAPI.Controllers
             {
                 if (centralReservationDTO.Value.isCancelled == false)
                 {
-                    var newcentralReservationDTO = await _centralReservationService.completeCentralReservation(id);
+                    var newcentralReservationDTO = await _centralReservationService.CompleteCentralReservation(id);
                     await _reservationService.completeReservation(newcentralReservationDTO.Value);
                     return newcentralReservationDTO;
                 }
@@ -121,13 +121,28 @@ namespace CentralAPI.Controllers
             return NotFound("Reservation does not exist");
         }
 
+
+        [HttpPut("~/central/reservations/sublet/{id}")]
+        public async Task<ActionResult<CentralReservationDTO>> SubletCentralReservation(string id)
+        {
+            var centralReservationDTO = await _centralReservationService.GetCentralReservationById(id);
+
+            if (CentralReservationExists(id).Result == true)
+            {
+                if (centralReservationDTO.Value.isCancelled == false)
+                {
+                    return await _centralReservationService.SubletCentralReservation(id);
+                }
+                return BadRequest("Couldn't change value");
+            }
+            return NotFound("Reservation does not exist");
+        }
         //CentralReservation exists
         public async Task<bool> CentralReservationExists(string id)
         {
             return await _centralReservationService.FindCentralReservationAny(id);
 
         }
-
 
         /* ------------------------------- RESERVATIONS PARK API -------------------------------*/
 

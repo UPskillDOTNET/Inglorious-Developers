@@ -11,6 +11,7 @@ namespace CentralAPI.DTO {
         public string centralReservationID { get; set; }
         public string reservationID { get; set; }
         public bool isCancelled { get; set; }
+        public bool forSublet { get; set; }
         public DateTime startTime { get; set; }
         public int hours { get; set; }
         public DateTime endTime { get; set; }
