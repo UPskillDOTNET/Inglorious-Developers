@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1270px" preserveAspectRatio="none" style="width:3462px;height:1270px;" version="1.1" viewBox="0 0 3462 1270" width="3462px" zoomAndPan="magnify"><defs><filter height="300%" id="fg5yf84yioc90" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="1069.7813" style="stroke:#A80036;stroke-width:1.0;" width="10" x="18.5" y="98.2969"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="318.5" y="119.4297"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="129.5313" style="stroke:#A80036;stroke-width:1.0;" width="10" x="318.5" y="177.6953"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="71.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="470" y="206.8281"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="615" y="336.3594"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="782.4531" style="stroke:#A80036;stroke-width:1.0;" width="10" x="615" y="394.625"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="116.5313" style="stroke:#A80036;stroke-width:1.0;" width="10" x="847" y="438.8906"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="554.3906" style="stroke:#A80036;stroke-width:1.0;" width="10" x="847" y="584.5547"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="525.2578" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1227" y="584.5547"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="116.5313" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1461" y="613.6875"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="321.3281" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1461" y="759.3516"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="87.3984" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1651" y="468.0234"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="87.3984" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1651" y="642.8203"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1882" y="497.1563"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1882" y="671.9531"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="292.1953" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2074" y="759.3516"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="58.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2439" y="788.4844"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="146.5313" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2439" y="875.8828"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2837" y="817.6172"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="117.3984" style="stroke:#A80036;stroke-width:1.0;" width="10" x="3035.5" y="875.8828"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="30" style="stroke:#A80036;stroke-width:1.0;" width="10" x="3223.5" y="905.0156"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="3368.5" y="964.1484"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="23" x2="23" y1="88.2969" y2="1186.0781"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="323" x2="323" y1="88.2969" y2="1186.0781"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="475" x2="475" y1="88.2969" y2="1186.0781"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="620" x2="620" y1="88.2969" y2="1186.0781"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="851.5" x2="851.5" y1="88.2969" y2="1186.0781"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="1231.5" x2="1231.5" y1="88.2969" y2="1186.0781"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="1466" x2="1466" y1="88.2969" y2="1186.0781"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="1656" x2="1656" y1="88.2969" y2="1186.0781"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="1887" x2="1887" y1="88.2969" y2="1186.0781"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="2079" x2="2079" y1="88.2969" y2="1186.0781"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="2444" x2="2444" y1="88.2969" y2="1186.0781"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="2841.5" x2="2841.5" y1="88.2969" y2="1186.0781"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="3040.5" x2="3040.5" y1="88.2969" y2="1186.0781"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="3228.5" x2="3228.5" y1="88.2969" y2="1186.0781"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="3373.5" x2="3373.5" y1="88.2969" y2="1186.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="31" x="5" y="84.9951">User</text><ellipse cx="23.5" cy="15" fill="#FEFECE" filter="url(#fg5yf84yioc90)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M23.5,23 L23.5,50 M10.5,31 L36.5,31 M23.5,50 L10.5,65 M23.5,50 L36.5,65 " fill="none" filter="url(#fg5yf84yioc90)" style="stroke:#A80036;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="31" x="5" y="1198.0732">User</text><ellipse cx="23.5" cy="1211.375" fill="#FEFECE" filter="url(#fg5yf84yioc90)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M23.5,1219.375 L23.5,1246.375 M10.5,1227.375 L36.5,1227.375 M23.5,1246.375 L10.5,1261.375 M23.5,1246.375 L36.5,1261.375 " fill="none" filter="url(#fg5yf84yioc90)" style="stroke:#A80036;stroke-width:2.0;"/><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="95" x="274" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="81" x="281" y="72.9951">:PlatformUI</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="95" x="274" y="1185.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="81" x="281" y="1205.0732">:PlatformUI</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="180" x="383" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="166" x="390" y="72.9951">:AuthenticationService</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="180" x="383" y="1185.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="166" x="390" y="1205.0732">:AuthenticationService</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="82" x="577" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="68" x="584" y="72.9951">:Platform</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="82" x="577" y="1185.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="68" x="584" y="1205.0732">:Platform</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="237" x="731.5" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="223" x="738.5" y="72.9951">:WebAPIParkingSpotController</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="237" x="731.5" y="1185.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="223" x="738.5" y="1205.0732">:WebAPIParkingSpotController</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="217" x="1121.5" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="203" x="1128.5" y="72.9951">:WebAPIParkingSpotService</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="217" x="1121.5" y="1185.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="203" x="1128.5" y="1205.0732">:WebAPIParkingSpotService</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="90" x="1419" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="76" x="1426" y="72.9951">:APIHelper</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="90" x="1419" y="1185.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="76" x="1426" y="1205.0732">:APIHelper</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="150" x="1579" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="136" x="1586" y="72.9951">:ParkingLotService</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="150" x="1579" y="1185.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="136" x="1586" y="1205.0732">:ParkingLotService</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="46.5938" style="stroke:#A80036;stroke-width:1.5;" width="176" x="1797" y="36.7031"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="162" x="1804" y="56.6982">:ParkingLotRepository</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="105" x="1832.5" y="72.9951">:&lt;ParkingLot&gt;</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="46.5938" style="stroke:#A80036;stroke-width:1.5;" width="176" x="1797" y="1185.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="162" x="1804" y="1205.0732">:ParkingLotRepository</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="105" x="1832.5" y="1221.3701">:&lt;ParkingLot&gt;</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="46.5938" style="stroke:#A80036;stroke-width:1.5;" width="180" x="1987" y="36.7031"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60" x="2047" y="56.6982">:ParkAPI</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="162" x="1998" y="72.9951">ParkingSpotController</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="46.5938" style="stroke:#A80036;stroke-width:1.5;" width="180" x="1987" y="1185.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60" x="2047" y="1205.0732">:ParkAPI</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="162" x="1998" y="1221.3701">ParkingSpotController</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="46.5938" style="stroke:#A80036;stroke-width:1.5;" width="160" x="2362" y="36.7031"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60" x="2412" y="56.6982">:ParkAPI</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="142" x="2373" y="72.9951">ParkingSpotService</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="46.5938" style="stroke:#A80036;stroke-width:1.5;" width="160" x="2362" y="1185.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60" x="2412" y="1205.0732">:ParkAPI</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="142" x="2373" y="1221.3701">ParkingSpotService</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="46.5938" style="stroke:#A80036;stroke-width:1.5;" width="183" x="2748.5" y="36.7031"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60" x="2810" y="56.6982">:ParkAPI</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="165" x="2759.5" y="72.9951">ReservationRepository</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="46.5938" style="stroke:#A80036;stroke-width:1.5;" width="183" x="2748.5" y="1185.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60" x="2810" y="1205.0732">:ParkAPI</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="165" x="2759.5" y="1221.3701">ReservationRepository</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="46.5938" style="stroke:#A80036;stroke-width:1.5;" width="186" x="2945.5" y="36.7031"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60" x="3008.5" y="56.6982">:ParkAPI</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="168" x="2956.5" y="72.9951">ParkingSpotRepository</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="46.5938" style="stroke:#A80036;stroke-width:1.5;" width="186" x="2945.5" y="1185.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60" x="3008.5" y="1205.0732">:ParkAPI</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="168" x="2956.5" y="1221.3701">ParkingSpotRepository</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="46.5938" style="stroke:#A80036;stroke-width:1.5;" width="108" x="3172.5" y="36.7031"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="90" x="3181.5" y="56.6982">parkingSpot</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="94" x="3179.5" y="72.9951">:ParkingSpot</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="46.5938" style="stroke:#A80036;stroke-width:1.5;" width="108" x="3172.5" y="1185.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="90" x="3181.5" y="1205.0732">parkingSpot</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="94" x="3179.5" y="1221.3701">:ParkingSpot</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="154" x="3294.5" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140" x="3301.5" y="72.9951">:publicParkContext</text><rect fill="#FEFECE" filter="url(#fg5yf84yioc90)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="154" x="3294.5" y="1185.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140" x="3301.5" y="1205.0732">:publicParkContext</text><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="1069.7813" style="stroke:#A80036;stroke-width:1.0;" width="10" x="18.5" y="98.2969"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="318.5" y="119.4297"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="129.5313" style="stroke:#A80036;stroke-width:1.0;" width="10" x="318.5" y="177.6953"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="71.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="470" y="206.8281"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="615" y="336.3594"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="782.4531" style="stroke:#A80036;stroke-width:1.0;" width="10" x="615" y="394.625"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="116.5313" style="stroke:#A80036;stroke-width:1.0;" width="10" x="847" y="438.8906"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="554.3906" style="stroke:#A80036;stroke-width:1.0;" width="10" x="847" y="584.5547"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="525.2578" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1227" y="584.5547"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="116.5313" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1461" y="613.6875"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="321.3281" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1461" y="759.3516"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="87.3984" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1651" y="468.0234"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="87.3984" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1651" y="642.8203"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1882" y="497.1563"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1882" y="671.9531"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="292.1953" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2074" y="759.3516"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="58.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2439" y="788.4844"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="146.5313" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2439" y="875.8828"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="2837" y="817.6172"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="117.3984" style="stroke:#A80036;stroke-width:1.0;" width="10" x="3035.5" y="875.8828"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="30" style="stroke:#A80036;stroke-width:1.0;" width="10" x="3223.5" y="905.0156"/><rect fill="#FFFFFF" filter="url(#fg5yf84yioc90)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="3368.5" y="964.1484"/><polygon fill="#A80036" points="306.5,115.4297,316.5,119.4297,306.5,123.4297,310.5,119.4297" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="28.5" x2="312.5" y1="119.4297" y2="119.4297"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="35.5" y="114.3638">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="258" x="48.5" y="114.3638">asks to be authenticated in the Platform</text><polygon fill="#A80036" points="39.5,144.5625,29.5,148.5625,39.5,152.5625,35.5,148.5625" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="33.5" x2="322.5" y1="148.5625" y2="148.5625"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="45.5" y="143.4966">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="113" x="58.5" y="143.4966">asks Login details</text><polygon fill="#A80036" points="306.5,173.6953,316.5,177.6953,306.5,181.6953,310.5,177.6953" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="28.5" x2="312.5" y1="177.6953" y2="177.6953"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="8" x="35.5" y="172.6294">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="119" x="47.5" y="172.6294">inputs login details</text><polygon fill="#A80036" points="458,202.8281,468,206.8281,458,210.8281,462,206.8281" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="328.5" x2="464" y1="206.8281" y2="206.8281"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="335.5" y="201.7622">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="61" x="348.5" y="201.7622">new login</text><line style="stroke:#A80036;stroke-width:1.0;" x1="480" x2="522" y1="235.9609" y2="235.9609"/><line style="stroke:#A80036;stroke-width:1.0;" x1="522" x2="522" y1="235.9609" y2="248.9609"/><line style="stroke:#A80036;stroke-width:1.0;" x1="481" x2="522" y1="248.9609" y2="248.9609"/><polygon fill="#A80036" points="491,244.9609,481,248.9609,491,252.9609,487,248.9609" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="487" y="230.895">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="90" x="500" y="230.895">validates user</text><polygon fill="#A80036" points="339.5,274.0938,329.5,278.0938,339.5,282.0938,335.5,278.0938" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="333.5" x2="474" y1="278.0938" y2="278.0938"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="345.5" y="273.0278">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="101" x="358.5" y="273.0278">login successful</text><polygon fill="#A80036" points="39.5,303.2266,29.5,307.2266,39.5,311.2266,35.5,307.2266" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="33.5" x2="322.5" y1="307.2266" y2="307.2266"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="45.5" y="302.1606">7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="176" x="58.5" y="302.1606">notification successful login</text><polygon fill="#A80036" points="603,332.3594,613,336.3594,603,340.3594,607,336.3594" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="28.5" x2="609" y1="336.3594" y2="336.3594"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="35.5" y="331.2935">8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="247" x="48.5" y="331.2935">starts a Free Parking Spot consultation</text><polygon fill="#A80036" points="39.5,361.4922,29.5,365.4922,39.5,369.4922,35.5,365.4922" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="33.5" x2="619" y1="365.4922" y2="365.4922"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="45.5" y="360.4263">9</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="203" x="58.5" y="360.4263">asks for startDate and endDate</text><polygon fill="#A80036" points="603,390.625,613,394.625,603,398.625,607,394.625" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="28.5" x2="609" y1="394.625" y2="394.625"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19" x="35.5" y="389.5591">10</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="154" x="58.5" y="389.5591">inputs the required data</text><polygon fill="#A80036" points="835,434.8906,845,438.8906,835,442.8906,839,438.8906" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="625" x2="841" y1="438.8906" y2="438.8906"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="632" y="426.2583">11</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="181" x="654" y="418.6919">GetFreeParkingSpotsByDate</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="153" x="654" y="433.8247">(startDate, endDate, id)</text><polygon fill="#A80036" points="1639,464.0234,1649,468.0234,1639,472.0234,1643,468.0234" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="857" x2="1645" y1="468.0234" y2="468.0234"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="864" y="462.9575">12</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="126" x="886" y="462.9575">ParkingLotExists(id)</text><polygon fill="#A80036" points="1870,493.1563,1880,497.1563,1870,501.1563,1874,497.1563" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1661" x2="1876" y1="497.1563" y2="497.1563"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="1668" y="492.0903">13</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="181" x="1689" y="492.0903">GetAll().(parkingLotID == id)</text><polygon fill="#A80036" points="1672,522.2891,1662,526.2891,1672,530.2891,1668,526.2891" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1666" x2="1886" y1="526.2891" y2="526.2891"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="1678" y="521.2231">14</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="110" x="1700" y="521.2231">return parkingLot</text><polygon fill="#A80036" points="863,551.4219,853,555.4219,863,559.4219,859,555.4219" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="857" x2="1655" y1="555.4219" y2="555.4219"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="869" y="550.356">15</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="138" x="891" y="550.356">return parkingLotDTO</text><polygon fill="#A80036" points="1215,580.5547,1225,584.5547,1215,588.5547,1219,584.5547" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="857" x2="1221" y1="584.5547" y2="584.5547"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="864" y="579.4888">16</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="334" x="886" y="579.4888">GetFreeParkingSpotsByDate(startDate, endDate, id)</text><polygon fill="#A80036" points="1449,609.6875,1459,613.6875,1449,617.6875,1453,613.6875" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1237" x2="1455" y1="613.6875" y2="613.6875"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="1244" y="608.6216">17</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="183" x="1266" y="608.6216">GetClientAsync(id, endpoint)</text><polygon fill="#A80036" points="1639,638.8203,1649,642.8203,1639,646.8203,1643,642.8203" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1471" x2="1645" y1="642.8203" y2="642.8203"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="1478" y="637.7544">18</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="139" x="1500" y="637.7544">GetParkingLotDTO(id)</text><polygon fill="#A80036" points="1870,667.9531,1880,671.9531,1870,675.9531,1874,671.9531" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1661" x2="1876" y1="671.9531" y2="671.9531"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="1668" y="666.8872">19</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="111" x="1690" y="666.8872">GetParkingLot(id)</text><polygon fill="#A80036" points="1672,697.0859,1662,701.0859,1672,705.0859,1668,701.0859" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1666" x2="1886" y1="701.0859" y2="701.0859"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19" x="1678" y="696.02">20</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="67" x="1701" y="696.02">ParkingLot</text><polygon fill="#A80036" points="1477,726.2188,1467,730.2188,1477,734.2188,1473,730.2188" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1471" x2="1655" y1="730.2188" y2="730.2188"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="1483" y="725.1528">21</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="95" x="1505" y="725.1528">ParkingLotDTO</text><polygon fill="#A80036" points="2062,755.3516,2072,759.3516,2062,763.3516,2066,759.3516" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1471" x2="2068" y1="759.3516" y2="759.3516"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="1478" y="754.2856">22</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="337" x="1500" y="754.2856">HttpGet ParkingSpotsByDate(startDate, endDate, id)</text><polygon fill="#A80036" points="2427,784.4844,2437,788.4844,2427,792.4844,2431,788.4844" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="2084" x2="2433" y1="788.4844" y2="788.4844"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="2091" y="783.4185">23</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="315" x="2112" y="783.4185">GetFreeParkingSpotsByDate(startDate, endDate)</text><polygon fill="#A80036" points="2825,813.6172,2835,817.6172,2825,821.6172,2829,817.6172" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="2449" x2="2831" y1="817.6172" y2="817.6172"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="2456" y="812.5513">24</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="283" x="2478" y="812.5513">GetSpecificReservation(endDate, startDate)</text><polygon fill="#A80036" points="2455,842.75,2445,846.75,2455,850.75,2451,846.75" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="2449" x2="2841" y1="846.75" y2="846.75"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="2461" y="841.6841">25</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="342" x="2483" y="841.6841">return GetAll().Where(list of conditions).ToListAsync()</text><polygon fill="#A80036" points="3023.5,871.8828,3033.5,875.8828,3023.5,879.8828,3027.5,875.8828" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="2449" x2="3029.5" y1="875.8828" y2="875.8828"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="2456" y="870.8169">26</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="131" x="2478" y="870.8169">GetAllParkingSpots()</text><polygon fill="#A80036" points="3211.5,901.0156,3221.5,905.0156,3211.5,909.0156,3215.5,905.0156" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="3045.5" x2="3217.5" y1="905.0156" y2="905.0156"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="3052.5" y="899.9497">27</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="137" x="3074.5" y="899.9497">validateParkingSpot()</text><polygon fill="#A80036" points="3356.5,960.1484,3366.5,964.1484,3356.5,968.1484,3360.5,964.1484" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="3045.5" x2="3362.5" y1="964.1484" y2="964.1484"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="3052.5" y="959.0825">28</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="114" x="3074.5" y="959.0825">getParkingSpots()</text><polygon fill="#A80036" points="2460,989.2813,2450,993.2813,2460,997.2813,2456,993.2813" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="2454" x2="3039.5" y1="993.2813" y2="993.2813"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="2466" y="988.2153">29</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="182" x="2488" y="988.2153">return GetAll().ToListAsync()</text><polygon fill="#A80036" points="2095,1018.4141,2085,1022.4141,2095,1026.4141,2091,1022.4141" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="2089" x2="2443" y1="1022.4141" y2="1022.4141"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="2101" y="1017.3481">30</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="189" x="2123" y="1017.3481">return List&lt;ParkingSpotDTO&gt;</text><polygon fill="#A80036" points="1482,1047.5469,1472,1051.5469,1482,1055.5469,1478,1051.5469" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1476" x2="2078" y1="1051.5469" y2="1051.5469"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="1488" y="1046.481">31</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="219" x="1509" y="1046.481">return &lt;List&lt;ParkingSpotDTO&gt;&gt;()</text><polygon fill="#A80036" points="1248,1076.6797,1238,1080.6797,1248,1084.6797,1244,1080.6797" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1242" x2="1465" y1="1080.6797" y2="1080.6797"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="1254" y="1075.6138">32</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="130" x="1275" y="1075.6138">return 200 response</text><polygon fill="#A80036" points="868,1105.8125,858,1109.8125,868,1113.8125,864,1109.8125" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="862" x2="1231" y1="1109.8125" y2="1109.8125"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="16" x="874" y="1104.7466">33</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="219" x="894" y="1104.7466">return &lt;List&lt;ParkingSpotDTO&gt;&gt;()</text><polygon fill="#A80036" points="636,1134.9453,626,1138.9453,636,1142.9453,632,1138.9453" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="630" x2="851" y1="1138.9453" y2="1138.9453"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="642" y="1133.8794">34</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="176" x="663" y="1133.8794">&lt;List&lt;ParkingSpotDTO&gt;&gt;()</text><polygon fill="#A80036" points="34.5,1164.0781,24.5,1168.0781,34.5,1172.0781,30.5,1168.0781" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="28.5" x2="614" y1="1168.0781" y2="1168.0781"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="40.5" y="1163.0122">35</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="353" x="61.5" y="1163.0122">successful operation and shows selected parking spots</text><!--MD5=[f9b4803d8e965d87a95cebc388e9842a]
+@startuml
+autonumber
+'hide footbox
+actor "User" as USR
+
+
+participant ":PlatformUI" as PUI
+participant ":AuthenticationService" as AUT
+participant ":Platform" as UI
+participant ":WebAPIParkingSpotController" as CTRL
+participant ":WebAPIParkingSpotService" as SERV
+participant ":APIHelper" as HELP
+participant ":ParkingLotService" as PLSE
+participant ":ParkingLotRepository\n:<ParkingLot>" as PLAT
+
+
+participant ":ParkAPI\n ParkingSpotController" as PARKCTRL
+participant ":ParkAPI\n ParkingSpotService" as PARKSERV
+participant ":ParkAPI\n ReservationRepository" as RESREPO
+participant ":ParkAPI\n ParkingSpotRepository" as PARKREPO
+participant "parkingSpot\n:ParkingSpot" as PSP
+participant ":publicParkContext" as APICTX
+
+activate USR
+USR -> PUI : asks to be authenticated in the Platform
+activate PUI
+PUI - -> USR : asks Login details
+deactivate PUI
+USR -> PUI : inputs login details
+activate PUI
+PUI -> AUT : new login
+activate AUT
+AUT -> AUT : validates user
+AUT - -> PUI : login successful
+deactivate AUT
+PUI - -> USR : notification successful login
+deactivate PUI
+
+USR -> UI : starts a Free Parking Spot consultation
+activate UI
+UI - -> USR : asks for startDate and endDate
+deactivate UI
+
+USR -> UI : inputs the required data
+activate UI
+
+UI -> CTRL : GetFreeParkingSpotsByDate\n(startDate, endDate, id)
+activate CTRL
+
+CTRL -> PLSE : ParkingLotExists(id)
+activate PLSE
+
+PLSE -> PLAT : GetAll().(parkingLotID == id)
+activate PLAT
+
+PLAT - -> PLSE : return parkingLot
+deactivate PLAT
+
+PLSE - -> CTRL : return parkingLotDTO
+deactivate PLSE
+deactivate CTRL
+
+CTRL -> SERV : GetFreeParkingSpotsByDate(startDate, endDate, id)
+activate CTRL
+activate SERV
+
+SERV -> HELP : GetClientAsync(id, endpoint)
+activate HELP
+
+HELP -> PLSE : GetParkingLotDTO(id)
+activate PLSE
+
+PLSE -> PLAT : GetParkingLot(id)
+activate PLAT
+
+PLAT - -> PLSE : ParkingLot
+deactivate PLAT
+
+PLSE - -> HELP : ParkingLotDTO
+deactivate PLSE
+deactivate HELP
+
+HELP -> PARKCTRL : HttpGet ParkingSpotsByDate(startDate, endDate, id)
+activate PARKCTRL
+activate HELP
+
+PARKCTRL -> PARKSERV : GetFreeParkingSpotsByDate(startDate, endDate)
+activate PARKSERV
+
+PARKSERV -> RESREPO : GetSpecificReservation(endDate, startDate)
+activate RESREPO
+
+RESREPO - -> PARKSERV : return GetAll().Where(list of conditions).ToListAsync()
+deactivate RESREPO
+deactivate PARKSERV
+PARKSERV -> PARKREPO : GetAllParkingSpots()
+activate PARKREPO
+activate PARKSERV
+PARKREPO -> PSP : validateParkingSpot()
+activate PSP
+deactivate PSP
+PARKREPO -> APICTX : getParkingSpots()
+activate APICTX
+
+PARKREPO - -> PARKSERV : return GetAll().ToListAsync()
+deactivate PARKREPO
+deactivate APICTX 
+PARKSERV - -> PARKCTRL : return List<ParkingSpotDTO>
+deactivate PARKSERV
+
+PARKCTRL - -> HELP : return <List<ParkingSpotDTO>>()
+deactivate PARKCTRL
+        
+HELP - -> SERV : return 200 response
+deactivate HELP
+
+SERV - -> CTRL : return <List<ParkingSpotDTO>>()
+deactivate SERV
+
+CTRL - -> UI : <List<ParkingSpotDTO>>()
+deactivate CTRL
+
+UI- -> USR : successful operation and shows selected parking spots
+deactivate USR
+deactivate CTRL
+@enduml
+
+@startuml
+autonumber
+actor "User" as USR
+
+
+participant ":PlatformUI" as PUI
+participant ":AuthenticationService" as AUT
+participant ":Platform" as UI
+participant ":WebAPIParkingSpotController" as CTRL
+participant ":WebAPIParkingSpotService" as SERV
+participant ":APIHelper" as HELP
+participant ":ParkingLotService" as PLSE
+participant ":ParkingLotRepository\n:<ParkingLot>" as PLAT
+
+
+participant ":ParkAPI\n ParkingSpotController" as PARKCTRL
+participant ":ParkAPI\n ParkingSpotService" as PARKSERV
+participant ":ParkAPI\n ReservationRepository" as RESREPO
+participant ":ParkAPI\n ParkingSpotRepository" as PARKREPO
+participant "parkingSpot\n:ParkingSpot" as PSP
+participant ":publicParkContext" as APICTX
+
+activate USR
+USR -> PUI : asks to be authenticated in the Platform
+activate PUI
+PUI - -> USR : asks Login details
+deactivate PUI
+USR -> PUI : inputs login details
+activate PUI
+PUI -> AUT : new login
+activate AUT
+AUT -> AUT : validates user
+AUT - -> PUI : login successful
+deactivate AUT
+PUI - -> USR : notification successful login
+deactivate PUI
+
+USR -> UI : starts a Free Parking Spot consultation
+activate UI
+UI - -> USR : asks for startDate and endDate
+deactivate UI
+
+USR -> UI : inputs the required data
+activate UI
+
+UI -> CTRL : GetFreeParkingSpotsByDate\n(startDate, endDate, id)
+activate CTRL
+
+CTRL -> PLSE : ParkingLotExists(id)
+activate PLSE
+
+PLSE -> PLAT : GetAll().(parkingLotID == id)
+activate PLAT
+
+PLAT - -> PLSE : return parkingLot
+deactivate PLAT
+
+PLSE - -> CTRL : return parkingLotDTO
+deactivate PLSE
+deactivate CTRL
+
+CTRL -> SERV : GetFreeParkingSpotsByDate(startDate, endDate, id)
+activate CTRL
+activate SERV
+
+SERV -> HELP : GetClientAsync(id, endpoint)
+activate HELP
+
+HELP -> PLSE : GetParkingLotDTO(id)
+activate PLSE
+
+PLSE -> PLAT : GetParkingLot(id)
+activate PLAT
+
+PLAT - -> PLSE : ParkingLot
+deactivate PLAT
+
+PLSE - -> HELP : ParkingLotDTO
+deactivate PLSE
+deactivate HELP
+
+HELP -> PARKCTRL : HttpGet ParkingSpotsByDate(startDate, endDate, id)
+activate PARKCTRL
+activate HELP
+
+PARKCTRL -> PARKSERV : GetFreeParkingSpotsByDate(startDate, endDate)
+activate PARKSERV
+
+PARKSERV -> RESREPO : GetSpecificReservation(endDate, startDate)
+activate RESREPO
+
+RESREPO - -> PARKSERV : return GetAll().Where(list of conditions).ToListAsync()
+deactivate RESREPO
+deactivate PARKSERV
+PARKSERV -> PARKREPO : GetAllParkingSpots()
+activate PARKREPO
+activate PARKSERV
+PARKREPO -> PSP : validateParkingSpot()
+activate PSP
+deactivate PSP
+PARKREPO -> APICTX : getParkingSpots()
+activate APICTX
+
+PARKREPO - -> PARKSERV : return GetAll().ToListAsync()
+deactivate PARKREPO
+deactivate APICTX 
+PARKSERV - -> PARKCTRL : return List<ParkingSpotDTO>
+deactivate PARKSERV
+
+PARKCTRL - -> HELP : return <List<ParkingSpotDTO>>()
+deactivate PARKCTRL
+        
+HELP - -> SERV : return 200 response
+deactivate HELP
+
+SERV - -> CTRL : return <List<ParkingSpotDTO>>()
+deactivate SERV
+
+CTRL - -> UI : <List<ParkingSpotDTO>>()
+deactivate CTRL
+
+UI- -> USR : successful operation and shows selected parking spots
+deactivate USR
+deactivate CTRL
+@enduml
+
+PlantUML version 1.2021.2beta8(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

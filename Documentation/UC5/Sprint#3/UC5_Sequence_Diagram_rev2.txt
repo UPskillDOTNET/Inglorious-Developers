@@ -1,0 +1,126 @@
+@startuml
+autonumber
+'hide footbox
+actor "User" as USR
+
+
+participant ":PlatformUI" as PUI
+participant ":AuthenticationService" as AUT
+participant ":Platform" as UI
+participant ":WebAPIParkingSpotController" as CTRL
+participant ":WebAPIParkingSpotService" as SERV
+participant ":APIHelper" as HELP
+participant ":ParkingLotService" as PLSE
+participant ":ParkingLotRepository\n:<ParkingLot>" as PLAT
+
+
+participant ":ParkAPI\n ParkingSpotController" as PARKCTRL
+participant ":ParkAPI\n ParkingSpotService" as PARKSERV
+participant ":ParkAPI\n ReservationRepository" as RESREPO
+participant ":ParkAPI\n ParkingSpotRepository" as PARKREPO
+participant "parkingSpot\n:ParkingSpot" as PSP
+participant ":publicParkContext" as APICTX
+
+activate USR
+USR -> PUI : asks to be authenticated in the Platform
+activate PUI
+PUI --> USR : asks Login details
+deactivate PUI
+USR -> PUI : inputs login details
+activate PUI
+PUI -> AUT : new login
+activate AUT
+AUT -> AUT : validates user
+AUT --> PUI : login successful
+deactivate AUT
+PUI --> USR : notification successful login
+deactivate PUI
+
+USR -> UI : starts a Free Parking Spot consultation
+activate UI
+UI --> USR : asks for startDate and endDate
+deactivate UI
+
+USR -> UI : inputs the required data
+activate UI
+
+UI -> CTRL : GetFreeParkingSpotsByDate\n(startDate, endDate, id)
+activate CTRL
+
+CTRL -> PLSE : ParkingLotExists(id)
+activate PLSE
+
+PLSE -> PLAT : GetAll().(parkingLotID == id)
+activate PLAT
+
+PLAT --> PLSE : return parkingLot
+deactivate PLAT
+
+PLSE --> CTRL : return parkingLotDTO
+deactivate PLSE
+deactivate CTRL
+
+CTRL -> SERV : GetFreeParkingSpotsByDate(startDate, endDate, id)
+activate CTRL
+activate SERV
+
+SERV -> HELP : GetClientAsync(id, endpoint)
+activate HELP
+
+HELP -> PLSE : GetParkingLotDTO(id)
+activate PLSE
+
+PLSE -> PLAT : GetParkingLot(id)
+activate PLAT
+
+PLAT --> PLSE : ParkingLot
+deactivate PLAT
+
+PLSE --> HELP : ParkingLotDTO
+deactivate PLSE
+deactivate HELP
+
+HELP -> PARKCTRL : HttpGet ParkingSpotsByDate(startDate, endDate, id)
+activate PARKCTRL
+activate HELP
+
+PARKCTRL -> PARKSERV : GetFreeParkingSpotsByDate(startDate, endDate)
+activate PARKSERV
+
+PARKSERV -> RESREPO : GetSpecificReservation(endDate, startDate)
+activate RESREPO
+
+RESREPO --> PARKSERV : return GetAll().Where(list of conditions).ToListAsync()
+deactivate RESREPO
+deactivate PARKSERV
+PARKSERV -> PARKREPO : GetAllParkingSpots()
+activate PARKREPO
+activate PARKSERV
+PARKREPO -> PSP : validateParkingSpot()
+activate PSP
+deactivate PSP
+PARKREPO -> APICTX : getParkingSpots()
+activate APICTX
+
+PARKREPO --> PARKSERV : return GetAll().ToListAsync()
+deactivate PARKREPO
+deactivate APICTX 
+PARKSERV --> PARKCTRL : return List<ParkingSpotDTO>
+deactivate PARKSERV
+
+PARKCTRL --> HELP : return <List<ParkingSpotDTO>>()
+deactivate PARKCTRL
+        
+HELP --> SERV : return 200 response
+deactivate HELP
+
+SERV --> CTRL : return <List<ParkingSpotDTO>>()
+deactivate SERV
+
+CTRL --> UI : <List<ParkingSpotDTO>>()
+deactivate CTRL
+
+UI--> USR : successful operation and shows selected parking spots
+deactivate USR
+deactivate CTRL
+@enduml
