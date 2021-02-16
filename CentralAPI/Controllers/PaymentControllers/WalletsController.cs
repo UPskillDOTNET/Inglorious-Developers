@@ -83,7 +83,8 @@ namespace CentralAPI.Controllers
             if (value < 0) {
                 return BadRequest("Value is negative.");
             }
-           return await _walletService.DepositToWallet(walletID, value);
+           var result = await _walletService.DepositToWallet(walletID, value);
+            return Ok(result);
         }
 
         [HttpPut]
@@ -98,7 +99,8 @@ namespace CentralAPI.Controllers
             if (value < 0) {
                 return BadRequest("Value is negative.");
             }
-            return await _walletService.WithdrawFromWallet(walletID, value);
+            var result = await _walletService.WithdrawFromWallet(walletID, value);
+            return Ok(result);
         }
 
         private async Task<bool> WalletExists(string id)

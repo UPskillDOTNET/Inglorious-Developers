@@ -22,8 +22,8 @@ namespace testCentralAPI {
             var walletRepository = new WalletRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
-            var UserService = new UserService(userRepository, mapper);
             var WalletService = new WalletService(walletRepository, mapper, userRepository);
+            var UserService = new UserService(userRepository, WalletService, mapper);
             var theController = new UsersController(UserService, WalletService);
 
             // Act
@@ -42,8 +42,8 @@ namespace testCentralAPI {
             var walletRepository = new WalletRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
-            var UserService = new UserService(userRepository, mapper);
             var WalletService = new WalletService(walletRepository, mapper, userRepository);
+            var UserService = new UserService(userRepository, WalletService, mapper);
             var theController = new UsersController(UserService, WalletService);
 
             //Act
@@ -62,8 +62,8 @@ namespace testCentralAPI {
             var walletRepository = new WalletRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
-            var UserService = new UserService(userRepository, mapper);
             var WalletService = new WalletService(walletRepository, mapper, userRepository);
+            var UserService = new UserService(userRepository, WalletService, mapper);
             var theController = new UsersController(UserService, WalletService);
 
             //Act

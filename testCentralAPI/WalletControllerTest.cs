@@ -16,7 +16,6 @@ namespace testCentralAPI
 {
     public class WalletControllerTest
     {
-        private IUserService userService;
 
         [Fact]
         public async Task GetAllWalletsAsync_ShouldReturnAllWallets()
@@ -28,7 +27,7 @@ namespace testCentralAPI
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
             var WalletService = new WalletService(walletRepository, mapper, userRepository);
-            var UserService = new UserService(userRepository, mapper);
+            var UserService = new UserService(userRepository, WalletService, mapper);
             var theController = new WalletsController(WalletService, UserService);
 
             // Act
@@ -50,7 +49,7 @@ namespace testCentralAPI
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
             var WalletService = new WalletService(walletRepository, mapper, userRepository);
-            var UserService = new UserService(userRepository, mapper);
+            var UserService = new UserService(userRepository, WalletService, mapper);
             var theController = new WalletsController(WalletService, UserService);
 
             //Act
@@ -70,7 +69,7 @@ namespace testCentralAPI
         //    var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
         //    var mapper = config.CreateMapper();
         //    var WalletService = new WalletService(walletRepository, mapper, userRepository);
-        //    var UserService = new UserService(userRepository, mapper);
+        //    var UserService = new UserService(userRepository, WalletService, mapper);
         //    var theController = new WalletsController(WalletService, UserService);
 
         //    //Act
@@ -91,7 +90,7 @@ namespace testCentralAPI
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
             var WalletService = new WalletService(walletRepository, mapper, userRepository);
-            var UserService = new UserService(userRepository, mapper);
+            var UserService = new UserService(userRepository, WalletService, mapper);
             var theController = new WalletsController(WalletService, UserService);
             // Act
             var result = await theController.GetBalance("1");
@@ -112,7 +111,7 @@ namespace testCentralAPI
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
             var WalletService = new WalletService(walletRepository, mapper, userRepository);
-            var UserService = new UserService(userRepository, mapper);
+            var UserService = new UserService(userRepository, WalletService, mapper);
             var theController = new WalletsController(WalletService, UserService);
 
             // Act
@@ -132,7 +131,7 @@ namespace testCentralAPI
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
             var WalletService = new WalletService(walletRepository, mapper, userRepository);
-            var UserService = new UserService(userRepository, mapper);
+            var UserService = new UserService(userRepository, WalletService, mapper);
             var theController = new WalletsController(WalletService, UserService);
 
             // Act
@@ -152,7 +151,7 @@ namespace testCentralAPI
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
             var WalletService = new WalletService(walletRepository, mapper, userRepository);
-            var UserService = new UserService(userRepository, mapper);
+            var UserService = new UserService(userRepository, WalletService, mapper);
             var theController = new WalletsController(WalletService, UserService);
 
             // Act
@@ -172,7 +171,7 @@ namespace testCentralAPI
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
             var WalletService = new WalletService(walletRepository, mapper, userRepository);
-            var UserService = new UserService(userRepository, mapper);
+            var UserService = new UserService(userRepository, WalletService, mapper);
             var theController = new WalletsController(WalletService, UserService);
 
             // Act
@@ -192,7 +191,7 @@ namespace testCentralAPI
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
             var WalletService = new WalletService(walletRepository, mapper, userRepository);
-            var UserService = new UserService(userRepository, mapper);
+            var UserService = new UserService(userRepository, WalletService, mapper);
             var theController = new WalletsController(WalletService, UserService);
 
             // Act
@@ -212,7 +211,7 @@ namespace testCentralAPI
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
             var WalletService = new WalletService(walletRepository, mapper, userRepository);
-            var UserService = new UserService(userRepository, mapper);
+            var UserService = new UserService(userRepository, WalletService, mapper);
             var theController = new WalletsController(WalletService, UserService);
 
             // Act
@@ -232,7 +231,7 @@ namespace testCentralAPI
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
             var WalletService = new WalletService(walletRepository, mapper, userRepository);
-            var UserService = new UserService(userRepository, mapper);
+            var UserService = new UserService(userRepository, WalletService, mapper);
             var theController = new WalletsController(WalletService, UserService);
 
             // Act

@@ -446,8 +446,9 @@
 									"\r",
 									"pm.test(\"Added 50 to Total Amount. Total Amount is now equal to 300.\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"   pm.expect(jsonData.totalAmount).to.eql(300.00)\r",
-									"});"
+									"   pm.expect(jsonData.value.totalAmount).to.eql(300)\r",
+									"});\r",
+									"    "
 								],
 								"type": "text/javascript"
 							}
@@ -497,7 +498,7 @@
 									"\r",
 									"pm.test(\"Took 50 to Total Amount. Total Amount is now equal to 250.\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"   pm.expect(jsonData.totalAmount).to.eql(250.00)\r",
+									"   pm.expect(jsonData.value.totalAmount).to.eql(250.00)\r",
 									"});"
 								],
 								"type": "text/javascript"
