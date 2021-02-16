@@ -14,7 +14,7 @@ namespace UserAuthenticationServer.Clients
         {
             new Client
             {
-                ClientId = "oauthClient",
+                ClientId = "IngloriousDevelopersTest",
                 ClientName = "Example client application using client credentials",
                 AllowedGrantTypes = GrantTypes.ClientCredentials,
                 ClientSecrets = new List<Secret> {new Secret("ThIsIsAnotHERsuPerSecretPassWord".Sha256())}, // change me!

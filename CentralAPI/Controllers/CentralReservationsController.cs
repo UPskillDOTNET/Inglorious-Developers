@@ -1,5 +1,6 @@
 ﻿using CentralAPI.DTO;
 using CentralAPI.Services.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Controllers
 {
+    [Authorize]
     [Route("central/reservations")]
     [ApiController]
     public class CentralReservationsController : ControllerBase

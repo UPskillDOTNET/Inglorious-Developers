@@ -1,5 +1,6 @@
 ﻿using CentralAPI.DTO;
 using CentralAPI.Services.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Controllers
 {
+    [Authorize]
     [Route("central/[controller]")]
     [ApiController]
     public class SubletsController : ControllerBase

@@ -6,9 +6,11 @@ using CentralAPI.DTO;
 using CentralAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CentralAPI.Controllers
 {
+    [Authorize]
     [Route("api/users")]
     [ApiController]
     public class UsersController : ControllerBase

@@ -1,5 +1,6 @@
 ﻿using CentralAPI.DTO;
 using CentralAPI.Services.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Controllers
 {
+    [Authorize]
     [Route("central/parkinglots")]
     [ApiController]
     public class ParkingLotsController : Controller
