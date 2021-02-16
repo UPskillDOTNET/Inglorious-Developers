@@ -1,10 +1,542 @@
 {
 	"info": {
-		"_postman_id": "8b36a832-6c47-445c-8404-5584db0e55ec",
-		"name": "Central Park API",
+		"_postman_id": "9838f4d2-775f-4b39-a8cf-4f94c340c0d9",
+		"name": "CentralAPI Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"All users were displayed\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"userID\", getUserID());\r",
+									"pm.environment.set(\"email\", getEmail());\r",
+									"pm.environment.set(\"nif\", _.random(000000000, 999999999))\r",
+									"\r",
+									"function getUserID() {\r",
+									"    const userID = pm.variables.replaceIn(\"{{$randomPassword}}\");\r",
+									"    return userID;\r",
+									"}\r",
+									"\r",
+									"function getEmail() {\r",
+									"    const email = pm.variables.replaceIn(\"{{$randomExampleEmail}}\");\r",
+									"    return email;\r",
+									"}\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44381/api/users",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify if an User Already Exists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"User does not exist\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44381/api/users/{{userID}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"api",
+								"users",
+								"{{userID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"User Profile was created\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userID\": \"{{userID}}\",\r\n    \"name\": \"Test User\",\r\n    \"email\": \"{{email}}\",\r\n    \"nif\": \"{{nif}}\",\r\n    \"paymentMethodID\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44381/api/users/euro/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"api",
+								"users",
+								"euro",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify if an User was created",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"User Profile was created\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Created email value confirmed.\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"   pm.expect(jsonData.email).to.eql(pm.environment.get('email'))\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44381/api/users/{{userID}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"api",
+								"users",
+								"{{userID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an User Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"User Profile was updated\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"email\", getEmail());\r",
+									"\r",
+									"function getEmail() {\r",
+									"    const email = pm.variables.replaceIn(\"{{$randomExampleEmail}}\");\r",
+									"    return email;\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userID\": \"{{userID}}\",\r\n    \"name\": \"Test User Version Updated\",\r\n    \"email\": \"{{email}}\",\r\n    \"nif\": \"{{nif}}\",\r\n    \"paymentMethodID\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44381/api/users/{{userID}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"api",
+								"users",
+								"{{userID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify if an User Profile was updated",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"User Profile was updated\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Updated email value confirmed.\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"   pm.expect(jsonData.email).to.eql(pm.environment.get('email'))\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44381/api/users/{{userID}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"api",
+								"users",
+								"{{userID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "WalletTests",
+			"item": [
+				{
+					"name": "Get All Wallets",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"All Wallets were Found\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44381/api/wallets",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"api",
+								"wallets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Wallet by UserID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"The wallet was found\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"User ID# 1 Wallet found.\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"   pm.expect(jsonData.walletID).to.eql(\"1\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44381/api/wallets/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"api",
+								"wallets",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify if Wallet Exists in a Non Existent User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Wallet not found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44381/api/wallets/batata",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"api",
+								"wallets",
+								"batata"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Wallet Balance",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"All Wallets were Found\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Total Amount is equal to 250.\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"   pm.expect(jsonData.totalAmount).to.eql(250.00)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44381/api/users/balance/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"api",
+								"users",
+								"balance",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Make a Deposit Operation to Wallet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Deposit successful\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Added 50 to Total Amount. Total Amount is now equal to 300.\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"   pm.expect(jsonData.totalAmount).to.eql(300.00)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"totalAmount\": 50.00,\r\n    \"currency\": \"euro\",\r\n    \"userID\": \"5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44381/api/wallets/deposit/1/50/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"api",
+								"wallets",
+								"deposit",
+								"1",
+								"50",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Make a Withdraw Operation to Wallet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Withdrawn successful\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Took 50 to Total Amount. Total Amount is now equal to 250.\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"   pm.expect(jsonData.totalAmount).to.eql(250.00)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"totalAmount\": 50.00,\r\n    \"currency\": \"euro\",\r\n    \"userID\": \"5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44381/api/wallets/withdraw/1/50/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44381",
+							"path": [
+								"api",
+								"wallets",
+								"withdraw",
+								"1",
+								"50",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "Reservation",
 			"item": [
@@ -385,44 +917,6 @@
 					"response": []
 				}
 			]
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
-		{
-			"key": "centralreservID",
-			"value": "0\n"
-		},
-		{
-			"key": "reservID",
-			"value": "0"
-		},
-		{
-			"key": "centralreservID",
-			"value": ""
-		},
-		{
-			"key": "reservID",
-			"value": ""
 		}
 	]
 }

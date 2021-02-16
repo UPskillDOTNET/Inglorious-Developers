@@ -15,5 +15,7 @@ namespace CentralAPI.DTO
         public string email { get; set; }
 
         public string nif { get; set; }
+
+        public string paymentMethodID { get; set; }
     }
 }

@@ -53,7 +53,7 @@ namespace CentralAPI.Controllers
         public async Task<ActionResult<WalletDTO>> GetWalletById(string walletID)
         {
             var wallet = await _walletService.GetWalletById(walletID);
-            if (wallet == null) {
+            if (wallet.Value == null) {
                 return NotFound();
             }
             return await _walletService.GetWalletById(walletID);

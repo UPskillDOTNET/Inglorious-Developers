@@ -74,7 +74,8 @@ namespace CentralAPI.Controllers
             {
                 return BadRequest();
             }
-            return Ok(userDTO);
+            //return Ok(userDTO);
+            return CreatedAtAction("GetUserById", new { id = userDTO.userID }, userDTO);
         }
 
         // DELETE: api/users/5
