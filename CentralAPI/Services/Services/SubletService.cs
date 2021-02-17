@@ -66,16 +66,18 @@ namespace CentralAPI.Services.Services
                 reservationID = centralReservation.reservationID,
                 mainUserID = centralReservation.userID,
                 subUserID = centralReservationDTO.userID,
-                letPrice = centralReservationDTO.finalPrice,
-                startDate = centralReservationDTO.startTime,
-                endDate = centralReservation.endTime,
+                finalPrice = centralReservationDTO.finalPrice,
+                startTime = centralReservationDTO.startTime,
+                endTime = centralReservation.endTime,
                 isCancelled = false
 
             };
+
             if (await _subletRepository.subletAny(sublet))
             {
                 throw new Exception("Sorry, cant make a reservation for that startTime+Duration");
             }
+
             var subletReturn = await _subletRepository.CreateSublet(sublet);
             var subletReturnDTO = _mapper.Map<Sublet, SubletDTO>(subletReturn);
             return subletReturnDTO;

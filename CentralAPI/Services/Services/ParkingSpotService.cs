@@ -34,13 +34,12 @@ namespace CentralAPI.Services.Services
             return await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
         }
 
-        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllFreeSpots(int id)
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllFreeParkingSpots(int id)
         {
             var response = await _helper.GetClientAsync(id, "api/parkingspots/all");
             var parkingspotList = await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
             var reservationList = await _centralReservationRepository.GetCentralReservationDateTimeNow();
             var res = from p in parkingspotList where !(from r in reservationList where r.parkingSpotID == p.parkingSpotID select r.parkingSpotID).Contains(p.parkingSpotID) select p;
-
             return res.ToList();
         }
 

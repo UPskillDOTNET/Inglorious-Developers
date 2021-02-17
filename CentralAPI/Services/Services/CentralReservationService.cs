@@ -62,18 +62,18 @@ namespace CentralAPI.Services.Services {
             var qr = _qRgenerator.MakeQR(centralReservationDTO);
             await _emailService.SendQRToEmailAsync(qr.Result.Value, centralReservationDTO.userID, centralReservationDTO.centralReservationID);
             var centralReservation = _mapper.Map<CentralReservationDTO, CentralReservation>(centralReservationDTO);
-            if (await subletReservationExists(centralReservationDTO))
-            {
-                var subletReservation = await _centralReservationRepository.GetsubletReservation(centralReservation);
-                try { 
-                await _subletService.CreateSublet(centralReservationDTO, subletReservation);
-                return centralReservationDTO;
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-            }
+            //if (await subletReservationExists(centralReservationDTO))
+            //{
+            //    var subletReservation = await _centralReservationRepository.GetsubletReservation(centralReservation);
+            //    try { 
+            //    await _subletService.CreateSublet(centralReservationDTO, subletReservation);
+            //    return centralReservationDTO;
+            //    }
+            //    catch (Exception)
+            //    {
+            //        return null;
+            //    }
+            //}
             await _centralReservationRepository.PostCentralReservation(centralReservation);
             return centralReservationDTO;
         }

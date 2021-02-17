@@ -9,17 +9,15 @@ using System;
 
 namespace CentralAPI.Controllers
 {
-    [Route("api/users")]
+    [Route("central/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly IWalletService _walletService;
 
-        public UsersController(IUserService userService, IWalletService walletService)
+        public UsersController(IUserService userService)
         {
             _userService = userService;
-            _walletService = walletService;
         }
 
         // GET: Users
@@ -64,9 +62,8 @@ namespace CentralAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
-        [HttpPost]
-        [Route("/api/[controller]/{currency}/")]
+        // POST: api/Users/{currency}
+        [HttpPost("{currency}")]
         public async Task<ActionResult<UserDTO>> CreateUser (UserDTO userDTO, string currency)
         {
             var userDto = await _userService.CreateUser(userDTO, currency);
@@ -93,13 +90,7 @@ namespace CentralAPI.Controllers
             }
             return Ok();
         }
-
-        //private bool UserExists(string id)
-        //{
-        //    return _context.Users.Any(e => e.userID == id);
-        //}
-
-        private async Task<bool> UserExists(string id)
+         private async Task<bool> UserExists(string id)
         {
             var user = await _userService.GetUserById(id);
 

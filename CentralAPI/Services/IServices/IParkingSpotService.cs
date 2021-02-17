@@ -12,7 +12,7 @@ namespace CentralAPI.Services.IServices {
 
    
         Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots(int id);
-        Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllFreeSpots(int id);
+        Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllFreeParkingSpots(int id);
         Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate, int id);
         Task<ActionResult<ParkingSpotDTO>> GetParkingSpotById(int pLotId, string id);
         Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByPrice(int id, decimal priceHour);

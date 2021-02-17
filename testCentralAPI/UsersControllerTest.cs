@@ -22,9 +22,9 @@ namespace testCentralAPI {
             var walletRepository = new WalletRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
-            var UserService = new UserService(userRepository, mapper);
             var WalletService = new WalletService(walletRepository, mapper, userRepository);
-            var theController = new UsersController(UserService, WalletService);
+            var UserService = new UserService(userRepository, WalletService, mapper);
+            var theController = new UsersController(UserService);
 
             // Act
             var result = await theController.GetAllUsers();
@@ -42,9 +42,9 @@ namespace testCentralAPI {
             var walletRepository = new WalletRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
-            var UserService = new UserService(userRepository, mapper);
             var WalletService = new WalletService(walletRepository, mapper, userRepository);
-            var theController = new UsersController(UserService, WalletService);
+            var UserService = new UserService(userRepository, WalletService, mapper);
+            var theController = new UsersController(UserService);
 
             //Act
             var result = await theController.GetUserById("1");
@@ -62,9 +62,9 @@ namespace testCentralAPI {
             var walletRepository = new WalletRepository(TestContext);
             var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
             var mapper = config.CreateMapper();
-            var UserService = new UserService(userRepository, mapper);
             var WalletService = new WalletService(walletRepository, mapper, userRepository);
-            var theController = new UsersController(UserService, WalletService);
+            var UserService = new UserService(userRepository, WalletService, mapper);
+            var theController = new UsersController(UserService);
 
             //Act
             var result = await theController.GetUserById("500");
