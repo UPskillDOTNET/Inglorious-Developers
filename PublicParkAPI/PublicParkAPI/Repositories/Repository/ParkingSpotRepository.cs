@@ -17,17 +17,17 @@ namespace PublicParkAPI.Repositories
 
         public async Task<IEnumerable<ParkingSpot>> GetParkingSpotbyPrice(decimal priceHour)
         {
-            return await GetAll().Where(p => p.priceHour <= priceHour).Include(p => p.ParkingLot).ToListAsync();
+            return await GetAll().Where(p => p.priceHour <= priceHour).ToListAsync();
         }
 
         public async Task<IEnumerable<ParkingSpot>> GetAllParkingSpots()
         {
-            return await GetAll().Include(p => p.ParkingLot).ToListAsync();
+            return await GetAll().ToListAsync();
         }
 
         public async Task<ParkingSpot> GetParkingSpot(string id)
         {
-            return await GetAll().Include(p => p.ParkingLot).FirstOrDefaultAsync(s => s.parkingSpotID == id);
+            return await GetAll().FirstOrDefaultAsync(s => s.parkingSpotID == id);
 
         }
 

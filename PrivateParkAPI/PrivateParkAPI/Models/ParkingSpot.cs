@@ -18,9 +18,5 @@ namespace PrivateParkAPI.Models
 #nullable disable
         [Required]
         public bool isPrivate { get; set; }
-        [ForeignKey("ParkingLot")]
-        public int parkingLotID { get; set; }
-        public ParkingLot ParkingLot { get; set; }
-
     }
 }

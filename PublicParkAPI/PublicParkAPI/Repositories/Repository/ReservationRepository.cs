@@ -23,22 +23,22 @@ namespace PublicParkAPI.Repositories
 
         public async Task<IEnumerable<Reservation>> GetReservationsNotCancelled()
         {
-            return await GetAll().Where(r => r.isCancelled == false).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+            return await GetAll().Where(r => r.isCancelled == false).Include(s => s.ParkingSpot).ToListAsync();
         }
 
         public async Task<IEnumerable<Reservation>> GetReservationDateTimeNow()
         {
-            return await GetAll().Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now).Where(r => r.isCancelled == false).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+            return await GetAll().Where(r => r.startTime <= DateTime.Now && r.endTime >= DateTime.Now).Where(r => r.isCancelled == false).Include(s => s.ParkingSpot).ToListAsync();
         }
 
         public async Task<IEnumerable<Reservation>> GetSpecificReservation(DateTime startDate, DateTime endDate)
         {
-            return await GetAll().Where(r => (r.startTime >= startDate && r.endTime <= endDate) || (r.startTime <= endDate && r.endTime >= startDate)).Where(r => r.isCancelled == false).Include(s => s.ParkingSpot).ThenInclude(s => s.ParkingLot).ToListAsync();
+            return await GetAll().Where(r => (r.startTime >= startDate && r.endTime <= endDate) || (r.startTime <= endDate && r.endTime >= startDate)).Where(r => r.isCancelled == false).Include(s => s.ParkingSpot).ToListAsync();
         }
 
         public async Task<Reservation> GetReservation(string id)
         {
-            return await GetAll().Include(s => s.ParkingSpot).ThenInclude(p => p.ParkingLot).FirstOrDefaultAsync(r => r.reservationID == id);
+            return await GetAll().Include(s => s.ParkingSpot).FirstOrDefaultAsync(r => r.reservationID == id);
         }
         public async Task<bool> FindReservationAny(string id)
         {

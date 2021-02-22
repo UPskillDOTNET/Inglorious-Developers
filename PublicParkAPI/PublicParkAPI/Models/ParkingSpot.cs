@@ -14,10 +14,5 @@ namespace PublicParkAPI.Models
         [Required]
         [Range(0.01, 99.9)]
         public decimal priceHour { get; set; }
-
-        [ForeignKey("ParkingSpot")]
-        public int ParkingLotID { get; set; }
-
-        public ParkingLot ParkingLot { get; set; }
     }
 }
