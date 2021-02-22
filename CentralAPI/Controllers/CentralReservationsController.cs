@@ -3,6 +3,7 @@ using CentralAPI.Services.IServices;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace CentralAPI.Controllers
@@ -151,7 +152,18 @@ namespace CentralAPI.Controllers
         [Route("~/park/parkinglot/{id}/allparkreservations")]
         public async Task<ActionResult<IEnumerable<CentralReservationDTO>>> GetAllReservations(int id)
         {
-            return await _reservationService.GetAllReservations(id);
+            try
+            {
+                return await _reservationService.GetAllReservations(id);
+            }
+            catch (HttpRequestException ex)
+            {
+                if (ex.Message == "Not Found")
+                {
+                    return NotFound();
+                }
+            }
+            return BadRequest();
         }
 
         //Get All Not Cancelled Reservations

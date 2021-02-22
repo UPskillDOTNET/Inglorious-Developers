@@ -25,8 +25,14 @@ namespace CentralAPI.Services.Services
         public async Task<ActionResult<IEnumerable<CentralReservationDTO>>> GetAllReservations(int id)
         {
 
-            var response = await _helper.GetClientAsync(id, "api/reservations");
+            var response = await _helper.GetClientAsync(id, "api/reservationse");
+            try { 
             return await response.Content.ReadAsAsync<List<CentralReservationDTO>>();
+            }
+            catch (HttpRequestException)
+            {
+                throw;
+            }
         }
 
         //Method to Get All Reservations that are not cancelled, from a Parking Lot
