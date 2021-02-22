@@ -21,7 +21,7 @@ namespace CentralAPI.Repositories.Repository
         }
         public async Task<IEnumerable<Sublet>> GetSubletsByMainUserId(string id)
         {
-            return await GetAll().Where(x => x.mainUserID == id).ToListAsync();
+            return await GetAll().Where(x => x.userID == id).ToListAsync();
         }
         public async Task<IEnumerable<Sublet>> GetSubletsBySubUserId(string id)
         {

@@ -57,10 +57,6 @@ namespace CentralAPI.Controllers
                 {
                     await _reservationService.PostReservation(centralReservation.Value, centralReservationDTO.parkingLotID);
                 }
-                if (centralReservation == null)
-                {
-                    return BadRequest("Sorry can't make a reservation for that parkingspot+date+duration");
-                }
             }
             catch (Exception)
             {

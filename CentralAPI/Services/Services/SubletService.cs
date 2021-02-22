@@ -60,29 +60,22 @@ namespace CentralAPI.Services.Services
         }
         public async Task<ActionResult<CentralReservationDTO>> CreateSublet(CentralReservationDTO centralReservationDTO, CentralReservation centralReservation)
         {
-            var sublet = new Sublet
-            {
-                subletID = centralReservation.parkingSpotID.ToString() + centralReservationDTO.startTime.ToString("s"),
-                reservationID = centralReservation.reservationID,
-                mainUserID = centralReservation.userID,
-                subUserID = centralReservationDTO.userID,
-                finalPrice = centralReservationDTO.finalPrice,
-                startTime = centralReservationDTO.startTime,
-                endTime = centralReservation.endTime,
-                isCancelled = false
 
-            };
-
+            var sublet = _mapper.Map<CentralReservationDTO, Sublet>(centralReservationDTO);
+            sublet.subUserID = centralReservation.userID;
+            sublet.reservationID = centralReservation.reservationID;
             if (await _subletRepository.subletAny(sublet))
             {
-                throw new Exception("Sorry, cant make a reservation for that startTime+Duration");
+                throw new ArgumentException("Can't make a reservation for that date");
             }
-
-            var subletReturn = await _subletRepository.CreateSublet(sublet);
-            var subletReturnDTO = _mapper.Map<Sublet, SubletDTO>(subletReturn);
-            return subletReturnDTO;
+            sublet = await _subletRepository.CreateSublet(sublet);
+            var subletDTO = _mapper.Map<Sublet, SubletDTO>(sublet);
+            return subletDTO;
 
         }
+
+
+
 
         public async Task<ActionResult<SubletDTO>> CancelSublet(string id)
         {

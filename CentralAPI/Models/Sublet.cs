@@ -9,8 +9,6 @@ namespace CentralAPI.Models
 {
     public class Sublet : CentralReservation
     {
-        public string subletID { get; set; }
-        public string mainUserID { get; set; }
         public string subUserID { get; set; }
 
     }
