@@ -53,18 +53,14 @@ namespace CentralAPI.Controllers
             try
             {
                 var centralReservation = await _centralReservationService.PostCentralReservation(centralReservationDTO);
-                if (!await _centralReservationService.subletReservationExists(centralReservationDTO))
-                {
-                    await _reservationService.PostReservation(centralReservation.Value, centralReservationDTO.parkingLotID);
-                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 if (await CentralReservationExists(centralReservationDTO.reservationID) == true)
                 {
                     return Conflict("The CentralReservations already exist");
                 }
-                throw;
+                return BadRequest(ex);
             }
             return CreatedAtAction("PostCentralReservation", new { id = centralReservationDTO.reservationID }, centralReservationDTO);
         }

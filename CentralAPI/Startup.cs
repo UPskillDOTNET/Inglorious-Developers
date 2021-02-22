@@ -7,12 +7,14 @@ using CentralAPI.Services.IServices;
 using CentralAPI.Services.IServices.IPaymentServices;
 using CentralAPI.Services.Services;
 using CentralAPI.Services.Services.PaymentServices;
+using CentralAPI.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Reflection;
 
 namespace CentralAPI
 {
@@ -30,30 +32,11 @@ namespace CentralAPI
         {
             services.AddDbContext<CentralAPIContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-           
-            services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-            services.AddTransient<IParkingLotRepository, ParkingLotRepository>();
+            services.AddAplicationRepo();
+            services.AddAplicationService();
             services.AddTransient<QRgenerator>();
             services.AddTransient<EmailService>();
             services.AddTransient<ClientHelper>();
-            services.AddTransient<IParkingLotService, ParkingLotService>();
-            services.AddTransient<IParkingSpotService, ParkingSpotService>();
-            services.AddTransient<IPaymentRepository, PaymentRepository>();
-            services.AddTransient<ICentralReservationRepository, CentralReservationRepository>();
-            services.AddTransient<ICentralReservationService, CentralReservationService>();
-            services.AddTransient<IReservationPaymentRepository, ReservationPaymentRepository>();
-            services.AddTransient<IReservationService, ReservationService>();
-            services.AddTransient<IWalletRepository, WalletRepository>();
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IWalletService, WalletService>();
-            services.AddTransient<IWalletPaymentService, WalletPaymentService>();
-            services.AddTransient<IUserService, UserService>();
-            services.AddTransient<ISubletService, SubletService>();
-            services.AddTransient<ISubletRepository, SubletRepository>();
-            services.AddTransient<IDefaultPayment, DefaultPayment>();
-            services.AddTransient<IMockPaymentService, MockPaymentService>();
-            services.AddTransient<IPaymentMethodRepository, PaymentMethodRepository>();
-
 
             services.AddControllers().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
