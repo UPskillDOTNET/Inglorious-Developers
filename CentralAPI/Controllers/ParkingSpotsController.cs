@@ -7,19 +7,21 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Controllers
 {
+    // CONTROLLER: Parking Spots Controller
+
     [Route("central/[controller]")]
     [ApiController]
     public class ParkingSpotsController : ControllerBase
     {
-        private readonly IParkingLotService _parkingLotService;
         private readonly IParkingSpotService _parkingSpotService;
 
-        public ParkingSpotsController(IParkingLotService parkingLotService, IParkingSpotService parkingSpotService)
+        public ParkingSpotsController(IParkingSpotService parkingSpotService)
         {
-            _parkingLotService = parkingLotService;
             _parkingSpotService = parkingSpotService;
         }
 
+        // HTTP GET: Get All Parking Spots
+        // Gets all Parking Spots registered in a specific Parking Lot, with an ID provided in the route endpoint.
 
         [HttpGet("parkinglot/{pLotId}")]
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots(int pLotId)
@@ -34,6 +36,9 @@ namespace CentralAPI.Controllers
             }
         }
 
+        // HTTP GET: Get All Free Parking Spots
+        // Gets all Parking Spots registered in a specific Parking Lot, that are not occupied, with an ID provided in the route endpoint.
+
         [HttpGet("free/parkinglot/{pLotId}")]
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllFreeParkingSpots(int pLotId)
         {
@@ -47,6 +52,10 @@ namespace CentralAPI.Controllers
                 return NotFound();
             }
         }
+
+        // HTTP GET: Get All Free Parking Spots By Date
+        // Gets all Parking Spots registered in a specific Parking Lot, that are not occupied, 
+        // with an ID, a start date and an end date provided in the route endpoint.
 
         [HttpGet("free/parkinglot/{pLotId}/{startDate}/{endDate}")]
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(int pLotId, DateTime startDate, DateTime endDate)
@@ -66,6 +75,10 @@ namespace CentralAPI.Controllers
                 return NotFound();
             }
         }
+
+        // HTTP GET: Get All Free Parking Spots By Price
+        // Gets all Parking Spots registered in a specific Parking Lot, that are not occupied, 
+        // with an ID and a price (decimal) provided in the route endpoint.
 
         [HttpGet("free/parkinglot/{pLotId}/{priceHour}")]
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByPrice(int pLotId, Decimal priceHour)
@@ -87,6 +100,9 @@ namespace CentralAPI.Controllers
             }
         }
 
+        // HTTP GET: Get Parking Spot By ID
+        // Gets a Parking Spot registered in a specific Parking Lot, with a Parking Spot ID and a Parking Lot ID provided in the route endpoint.
+
         [HttpGet("{pSpotId}/parkinglot/{pLotId}")]
         public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpotById(string pSpotId, int pLotId)
         {
@@ -99,6 +115,9 @@ namespace CentralAPI.Controllers
                 return NotFound();
             }
         }
+
+        // HTTP POST: Create a Parking Spot
+        // Adds a Parking Spot on a Parking Lot, with an ID provided in the route endpoint.
 
         [HttpPost("parkinglot/{pLotId}")]
         public async Task<ActionResult<ParkingSpotDTO>> CreateParkingSpot([FromBody] ParkingSpotDTO parkingSpotDTO, int pLotId)
@@ -121,6 +140,10 @@ namespace CentralAPI.Controllers
                 return NotFound();
             }
         }
+
+        // HTTP PUT: Edit a Parking Spot
+        // Edits a Parking Spot, with an ID provided in the route endpoint.
+
 
         [HttpPut("parkinglot/{pLotId}/parkingspot/{pSpotId}")]
         public async Task<ActionResult<ParkingSpotDTO>> EditParkingSpot(string pSpotId, [FromBody]ParkingSpotDTO parkingSpotDTO, int pLotId)
