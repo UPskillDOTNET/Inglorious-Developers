@@ -16,7 +16,7 @@ namespace CentralAPI.Services.IServices
         Task<ActionResult<IEnumerable<SubletDTO>>> GetActiveSublets();
         Task<ActionResult<IEnumerable<SubletDTO>>> GetSubletsbyDate(DateTime startDate, DateTime endDate);
         Task<ActionResult<SubletDTO>> GetSublet(string id);
-        Task<ActionResult<SubletDTO>> CreateSublet(SubletDTO subletDTO);
+        Task<ActionResult<CentralReservationDTO>> CreateSublet(CentralReservationDTO centralReservationDTO, CentralReservation centralReservation);
         Task<ActionResult<SubletDTO>> CancelSublet(string id);
     }
 }

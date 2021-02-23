@@ -3,72 +3,80 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CentralAPI.Services.IServices;
 using CentralAPI.DTO;
-using CentralAPI.Models;
-using Microsoft.EntityFrameworkCore;
 using System;
 using Microsoft.AspNetCore.Authorization;
 
 namespace CentralAPI.Controllers
 {
-    [Authorize]
-    [Route("api/users")]
+    // CONTROLLER: Users Controller
+
+    [Route("central/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly IWalletService _walletService;
 
-        public UsersController(IUserService userService, IWalletService walletService)
+        public UsersController(IUserService userService)
         {
             _userService = userService;
-            _walletService = walletService;
         }
 
-        // GET: Users
+        // HTTP GET: Get All Users
+        // Gets all Users registered in the central API.
+
         [HttpGet]
-        public Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers()
+        public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers()
         {
-            return _userService.GetAllUsers();
+            try
+            {
+                return await _userService.GetAllUsers();
+            }
+            catch (Exception)
+            {
+
+                return NotFound();
+            }
         }
 
-        // GET: api/Users/5
+        // HTTP GET: Get User By ID
+        // Gets a User registered in the central API, with a User ID provided in the route endpoint.
+
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDTO>> GetUserById(string id)
         {
-
-            if (await UserExists(id) == false)
+            try
             {
-                return NotFound("User not Found");
+                return await _userService.GetUserById(id);
             }
-            return await _userService.GetUserById(id);
+            catch (Exception)
+            {
+
+                return NotFound();
+            }
         }
 
-        // O Nif não pode ser alterado, quando não se escreve o nif no body deste método, o nif fica a null
-        // PUT: api/Users/5
+        // HTTP PUT: Updates an User By ID
+        // Gets a User registered in the central API, with a User ID provided in the route endpoint.
+
         [HttpPut("{id}")]
         public async Task<ActionResult<UserDTO>> UpdateUserById(string id, [FromBody] UserDTO userDTO)
         {
             try
             {
                 await _userService.UpdateUserById(id, userDTO);
+                return NoContent();
             }
-            catch (Exception)
+            catch (ArgumentNullException)
             {
-                if (await UserExists(id) == false)
-                {
-                    return NotFound("User not found.");
-                }
-                else
-                {
-                    throw;
-                }
+
+                return NotFound();
             }
-            return NoContent();
         }
 
-        // POST: api/Users
-        [HttpPost]
-        [Route("/api/[controller]/{currency}/")]
+
+
+        // POST: api/Users/{currency}
+        [HttpPost("{currency}")]
         public async Task<ActionResult<UserDTO>> CreateUser (UserDTO userDTO, string currency)
         {
             var userDto = await _userService.CreateUser(userDTO, currency);
@@ -95,13 +103,7 @@ namespace CentralAPI.Controllers
             }
             return Ok();
         }
-
-        //private bool UserExists(string id)
-        //{
-        //    return _context.Users.Any(e => e.userID == id);
-        //}
-
-        private async Task<bool> UserExists(string id)
+         private async Task<bool> UserExists(string id)
         {
             var user = await _userService.GetUserById(id);
 

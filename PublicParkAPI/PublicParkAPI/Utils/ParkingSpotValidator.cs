@@ -8,7 +8,6 @@ namespace PublicParkAPI.Utils
         public ParkingSpotValidator()
         {
             RuleFor(ParkingSpotDTO => ParkingSpotDTO.priceHour).GreaterThan(0).LessThan(100);
-            RuleFor(ParkingSpotDTO => ParkingSpotDTO.ParkingLotID).NotEmpty();
         }
     }
 

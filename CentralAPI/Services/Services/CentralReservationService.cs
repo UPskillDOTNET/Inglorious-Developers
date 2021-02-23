@@ -18,19 +18,23 @@ namespace CentralAPI.Services.Services {
 
         private readonly ICentralReservationRepository _centralReservationRepository;
         private readonly IParkingLotRepository _parkingLotRepository;
+        private readonly IReservationService _reservationService;
         //private readonly ParkingSpotController _parkingSpotsController;
         //private readonly IUserRepository _userRepository;
         private readonly IParkingSpotService _parkingSpotService;
+        private readonly ISubletService _subletService;
         private readonly QRgenerator _qRgenerator;
         private readonly EmailService _emailService;
-
         private readonly IMapper _mapper;
 
-        public CentralReservationService(ICentralReservationRepository centralReservationRepository, IParkingLotRepository parkingLotRepository,QRgenerator qRgenerator, EmailService emailService, IParkingSpotService parkingSpotService , IMapper mapper) {
+        public CentralReservationService(ICentralReservationRepository centralReservationRepository, IReservationService reservationService, IParkingLotRepository parkingLotRepository,QRgenerator qRgenerator, EmailService emailService, IParkingSpotService parkingSpotService,ISubletService subletService , IMapper mapper) {
             _centralReservationRepository = centralReservationRepository;
             _parkingLotRepository = parkingLotRepository;
             _qRgenerator = qRgenerator;
             _emailService = emailService;
+            _subletService = subletService;
+            _reservationService = reservationService;
+           
             //_parkingSpotsController = parkingSpotController;
             //_userRepository = userRepository;
             _parkingSpotService = parkingSpotService;
@@ -55,12 +59,26 @@ namespace CentralAPI.Services.Services {
             return centralReservationDTO;
         }
 
-        public async Task<ActionResult<CentralReservationDTO>> PostCentralReservation(CentralReservationDTO centralReservationDTO) {
+        public async Task<ActionResult<CentralReservationDTO>> PostCentralReservation(CentralReservationDTO centralReservationDTO) {  
             var result= await GetEndTimeandFinalPrice(centralReservationDTO);
             centralReservationDTO = result.Value;
-            var qr = _qRgenerator.MakeQR(centralReservationDTO);
-            await _emailService.SendQRToEmailAsync(qr.Result.Value, centralReservationDTO.userID, centralReservationDTO.centralReservationID);
+            //var qr = _qRgenerator.MakeQR(centralReservationDTO);
+            //await _emailService.SendQRToEmailAsync(qr.Result.Value, centralReservationDTO.userID, centralReservationDTO.centralReservationID);
             var centralReservation = _mapper.Map<CentralReservationDTO, CentralReservation>(centralReservationDTO);
+            if (await subletReservationExists(centralReservationDTO))
+            {
+                var subletReservation = await _centralReservationRepository.GetsubletReservation(centralReservation);
+                try
+                {
+                    await _subletService.CreateSublet(centralReservationDTO, subletReservation);
+                    return centralReservationDTO;
+                }
+                catch (Exception)
+                {
+                    throw new Exception("cant compute");
+                }
+            }
+            await _reservationService.PostReservation(centralReservationDTO, centralReservationDTO.parkingLotID);
             await _centralReservationRepository.PostCentralReservation(centralReservation);
             return centralReservationDTO;
         }
@@ -121,7 +139,11 @@ namespace CentralAPI.Services.Services {
         public async Task<bool> FindCentralReservationAny(string id) {
             return await _centralReservationRepository.FindCentralReservationAny(id);
         }
-
+        public async Task<bool> subletReservationExists(CentralReservationDTO centralReservationDTO)
+        {
+            var reservation = _mapper.Map<CentralReservationDTO, CentralReservation>(centralReservationDTO);
+            return await _centralReservationRepository.subletReservationAny(reservation);
+        }
         //public ValidationResult Validate(CentralReservationDTO centralReservationDTO) {
         //    CentralReservationValidator validationRules = new CentralReservationValidator();
         //    ValidationResult Results = validationRules.Validate(centralReservationDTO);

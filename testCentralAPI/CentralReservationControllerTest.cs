@@ -16,8 +16,28 @@ using Xunit;
 namespace testCentralAPI {
     public class CentralReservationControllerTest {
     }
-    
-    
+
+    //[Fact]
+    //public async Task GetAllCentralReservationsAsync_ShouldReturnAllCentralReservations()
+    //{
+    //    // Arrange
+    //    var TestContext = CentralAPI_UserContext.GetCentralAPIContext("GetAllCentralReservations");
+    //    var userRepository = new UserRepository(TestContext);
+    //    var walletRepository = new WalletRepository(TestContext);
+    //    var config = new MapperConfiguration(cfg => cfg.AddProfile<Maps>());
+    //    var mapper = config.CreateMapper();
+    //    var CentralReservationService = new CentralReservationService();
+    //    var ReservationService = new UserService(userRepository, WalletService, mapper);
+    //    var theController = new UsersController(UserService);
+
+    //    // Act
+    //    var result = await theController.GetAllUsers();
+
+    //    //Assert
+    //    var items = Assert.IsType<List<UserDTO>>(result.Value);
+    //    Assert.Equal(11, items.Count);
+    //}
+
     public static class CentralAPI_CentralReservationContext
     {
         private static CentralAPIContext centralReservationContext;

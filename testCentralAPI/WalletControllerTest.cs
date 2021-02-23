@@ -33,7 +33,6 @@ namespace testCentralAPI
             // Act
             var result = await theController.GetAllWallets();
 
-
             //Assert
             var items = Assert.IsType<List<WalletDTO>>(result.Value);
             Assert.Equal(3, items.Count);

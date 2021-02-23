@@ -21,7 +21,7 @@ namespace CentralAPI.Repositories.Repository
         }
         public async Task<IEnumerable<Sublet>> GetSubletsByMainUserId(string id)
         {
-            return await GetAll().Where(x => x.mainUserID == id).ToListAsync();
+            return await GetAll().Where(x => x.userID == id).ToListAsync();
         }
         public async Task<IEnumerable<Sublet>> GetSubletsBySubUserId(string id)
         {
@@ -29,11 +29,16 @@ namespace CentralAPI.Repositories.Repository
         }
         public async Task<IEnumerable<Sublet>> GetActiveSublets()
         {
-            return await GetAll().Where(x => x.startDate <= DateTime.Now && x.endDate > DateTime.Now).ToListAsync();
+            return await GetAll().Where(x => x.startTime <= DateTime.Now && x.endTime > DateTime.Now).ToListAsync();
         }
-        public async Task<IEnumerable<Sublet>> GetSubletsbyDate(DateTime startDate, DateTime endDate)
+        public async Task<IEnumerable<Sublet>> GetSubletsbyDate(DateTime startTime, DateTime endTime)
         {
-            return await GetAll().Where(r => (r.startDate >= startDate && r.endDate <= endDate) || (r.startDate <= endDate && r.endDate >= startDate)).ToListAsync();
+            return await GetAll().Where(r => (r.startTime >= startTime && r.endTime <= endTime) || (r.startTime <= endTime && r.endTime >= startTime)).ToListAsync();
+        }
+
+        public async Task<bool> subletAny(Sublet sublet)
+        {
+            return await GetAll().Where(r => (r.startTime >= sublet.startTime && r.endTime <= sublet.endTime) || (r.startTime <= sublet.endTime && r.endTime >= sublet.startTime)&& r.reservationID == sublet.reservationID).AnyAsync();
         }
 
         public async Task<Sublet> CreateSublet(Sublet sublet)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CentralAPI.DTO;
 using CentralAPI.Models;
 
 namespace CentralAPI.Repositories.IRepository
@@ -16,5 +17,6 @@ namespace CentralAPI.Repositories.IRepository
         Task<Sublet> GetSublet(string id);
         Task<Sublet> CreateSublet(Sublet sublet);
         Task<Sublet> CancelSublet(Sublet sublet);
+        Task<bool> subletAny(Sublet sublet);
     }
 }

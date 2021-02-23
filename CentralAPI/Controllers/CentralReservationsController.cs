@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace CentralAPI.Controllers
@@ -22,14 +23,14 @@ namespace CentralAPI.Controllers
             _reservationService = reservationService;
         }
 
-        //Get All Central Reservations
+        //Get all Reservations from Central API.
         [HttpGet]
         public Task<ActionResult<IEnumerable<CentralReservationDTO>>> GetCentralReservations()
         {
             return _centralReservationService.GetAllCentralReservations();
         }
 
-        //Get Central Reservation By Id
+        //Get a Reservation By Id from Central API.
         [HttpGet("{id}")]
         public async Task<ActionResult<CentralReservationDTO>> GetCentralReservationById(string id)
         {
@@ -41,29 +42,28 @@ namespace CentralAPI.Controllers
             return await _centralReservationService.GetCentralReservationById(id);
         }
 
-        //Get All Not Canceled Reservation 
+        //Get all Reservations that are not cancelled from Central API.
         [Route("~/central/reservations/notCancelled")]
         public async Task<ActionResult<IEnumerable<CentralReservationDTO>>> GetCentralReservationsNotCancelled()
         {
             return await _centralReservationService.GetCentralReservationsNotCancelled();
         }
 
-        //Post Reservation in both Park and Central API
+        //Post a Reservation in both Park API and Central API.
         [HttpPost]
         public async Task<ActionResult<CentralReservationDTO>> PostCentralReservation([FromBody] CentralReservationDTO centralReservationDTO)
         {
             try
             {
                 var centralReservation = await _centralReservationService.PostCentralReservation(centralReservationDTO);
-                await _reservationService.PostReservation(centralReservation.Value, centralReservationDTO.parkingLotID);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 if (await CentralReservationExists(centralReservationDTO.reservationID) == true)
                 {
-                    return Conflict("The CentralReservations already exist" + e);
+                    return Conflict("The CentralReservations already exist");
                 }
-                throw;
+                return BadRequest(ex);
             }
             return CreatedAtAction("PostCentralReservation", new { id = centralReservationDTO.reservationID }, centralReservationDTO);
         }
@@ -146,16 +146,26 @@ namespace CentralAPI.Controllers
 
         }
 
+
         /* ------------------------------- RESERVATIONS PARK API -------------------------------*/
-
-
 
         //Get All Resevations
         [HttpGet]
         [Route("~/park/parkinglot/{id}/allparkreservations")]
         public async Task<ActionResult<IEnumerable<CentralReservationDTO>>> GetAllReservations(int id)
         {
-            return await _reservationService.GetAllReservations(id);
+            try
+            {
+                return await _reservationService.GetAllReservations(id);
+            }
+            catch (HttpRequestException ex)
+            {
+                if (ex.Message == "Not Found")
+                {
+                    return NotFound();
+                }
+            }
+            return BadRequest();
         }
 
         //Get All Not Cancelled Reservations

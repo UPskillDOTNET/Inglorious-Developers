@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Services.Services
 {
-    public class SubletService:ISubletService
+    public class SubletService : ISubletService
     {
         private readonly ISubletRepository _subletRepository;
         private readonly IMapper _mapper;
 
-        public  SubletService(ISubletRepository subletRepository, IMapper mapper)
+        public SubletService(ISubletRepository subletRepository, IMapper mapper)
         {
             _subletRepository = subletRepository;
             _mapper = mapper;
@@ -58,15 +58,25 @@ namespace CentralAPI.Services.Services
             return subletDTO;
 
         }
-        public async Task<ActionResult<SubletDTO>> CreateSublet(SubletDTO subletDTO)
+        public async Task<ActionResult<CentralReservationDTO>> CreateSublet(CentralReservationDTO centralReservationDTO, CentralReservation centralReservation)
         {
-           var sublet = _mapper.Map<SubletDTO , Sublet>(subletDTO);
-           var subletReturn = await _subletRepository.CreateSublet(sublet);
-           var subletReturnDTO = _mapper.Map<Sublet, SubletDTO>(subletReturn);
-            return subletReturnDTO;
+
+            var sublet = _mapper.Map<CentralReservationDTO, Sublet>(centralReservationDTO);
+            sublet.subUserID = centralReservation.userID;
+            sublet.reservationID = centralReservation.reservationID;
+            if (await _subletRepository.subletAny(sublet))
+            {
+                throw new ArgumentException("Can't make a reservation for that date");
+            }
+            sublet = await _subletRepository.CreateSublet(sublet);
+            var subletDTO = _mapper.Map<Sublet, SubletDTO>(sublet);
+            return subletDTO;
 
         }
-    
+
+
+
+
         public async Task<ActionResult<SubletDTO>> CancelSublet(string id)
         {
             var sublet = await _subletRepository.Find(id);
@@ -74,10 +84,8 @@ namespace CentralAPI.Services.Services
             await _subletRepository.CancelSublet(sublet);
             var subletDTO = _mapper.Map<Sublet, SubletDTO>(sublet);
             return subletDTO;
-
-
-
-
         }
+
+
     }
 }

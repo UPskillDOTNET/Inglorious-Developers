@@ -10,13 +10,6 @@ namespace PublicParkAPI.DTO
     public class ParkingSpotDTO
     {
         public string parkingSpotID { get; set; }
-
-        [Required]
         public decimal priceHour { get; set; }
-
-        [Required]
-        public int ParkingLotID { get; set; }
-
-        public ParkingLot ParkingLot { get; set; }
     }
 }

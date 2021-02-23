@@ -35,6 +35,12 @@ namespace CentralAPI.Services.Services
 
         public async Task<ActionResult<UserDTO>> GetUserById(string id)
         {
+
+            if (await find(id) == false)
+            {
+                throw new ArgumentNullException(nameof(id), "Not Found");
+            }
+
             var user = await _userRepository.GetUsersById(id);
             var userDTO = _mapper.Map<User, UserDTO>(user);
             return userDTO;
@@ -42,6 +48,9 @@ namespace CentralAPI.Services.Services
 
         public async Task<ActionResult<UserDTO>> UpdateUserById(string id, UserDTO userDTO)
         {
+
+            // validação para não ser possivel alterar o nif desta pessoa?
+
             var user = _mapper.Map<UserDTO, User>(userDTO);
             await _userRepository.UpdateUserById(id, user);
             return userDTO;
@@ -53,7 +62,6 @@ namespace CentralAPI.Services.Services
             using (TransactionScope scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
 
-            
                 try
                 {
                     await _userRepository.CreateUser(user);
@@ -71,6 +79,18 @@ namespace CentralAPI.Services.Services
 
             userDTO = _mapper.Map<User, UserDTO>(user);
             return userDTO;
+        }
+
+        public async Task<bool> find(string id)
+        {
+            var user = await _userRepository.GetUsersById(id);
+
+
+            if (user == null)
+            {
+                return false;
+            }
+            return true;
         }
 
         public async Task<ActionResult<UserDTO>> DeleteUserProfile(string id)

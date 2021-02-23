@@ -8,139 +8,169 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Controllers
 {
-    [Authorize]
+    // CONTROLLER: Parking Spots Controller
+
+    [Route("central/[controller]")]
     [ApiController]
-    public class ParkingSpotController : ControllerBase
+    public class ParkingSpotsController : ControllerBase
     {
-        private readonly IParkingLotService _parkingLotService;
         private readonly IParkingSpotService _parkingSpotService;
 
-        public ParkingSpotController(IParkingLotService parkingLotService, IParkingSpotService parkingSpotService)
+        public ParkingSpotsController(IParkingSpotService parkingSpotService)
         {
-            _parkingLotService = parkingLotService;
             _parkingSpotService = parkingSpotService;
         }
 
+        // HTTP GET: Get All Parking Spots
+        // Gets all Parking Spots registered in a specific Parking Lot, with an ID provided in the route endpoint.
 
-        [HttpGet]
-        [Route("central/parkinglot/{id}/parkingspots")]
-        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots(int id)
+        [HttpGet("parkinglot/{pLotId}")]
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots(int pLotId)
         {
-            //if (await ParkingLotExists(id) == false)
-            //{
-            //    return NotFound("Parking Lot was not found");
-            //}
-            return await _parkingSpotService.GetAllParkingSpots(id);
+            try
+            {
+                return await _parkingSpotService.GetAllParkingSpots(pLotId);
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
         }
 
-        [HttpGet]
-        [Route("central/parkinglot/{id}/freeparkingspots")]
-        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllFreeSpots(int id)
+        // HTTP GET: Get All Free Parking Spots
+        // Gets all Parking Spots registered in a specific Parking Lot, that are not occupied, with an ID provided in the route endpoint.
+
+        [HttpGet("free/parkinglot/{pLotId}")]
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllFreeParkingSpots(int pLotId)
         {
-            if (await ParkingLotExists(id) == false)
+            try
             {
-                return NotFound("Parking Lot was not found");
+                return await _parkingSpotService.GetAllFreeParkingSpots(pLotId);
             }
-            return await _parkingSpotService.GetAllFreeSpots(id);
+            catch (Exception)
+            {
+
+                return NotFound();
+            }
         }
 
-        [HttpGet]
-        [Route("central/parkinglot/{id}/freeparkingspots/{startDate}/{endDate}")]
-        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate, int id)
+        // HTTP GET: Get All Free Parking Spots By Date
+        // Gets all Parking Spots registered in a specific Parking Lot, that are not occupied, 
+        // with an ID, a start date and an end date provided in the route endpoint.
+
+        [HttpGet("free/parkinglot/{pLotId}/{startDate}/{endDate}")]
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(int pLotId, DateTime startDate, DateTime endDate)
         {
-            if (await ParkingLotExists(id) == false)
-            {
-                return NotFound("Parking Lot was not found");
-            }
             if (startDate > endDate)
             {
                 return BadRequest("Dates are not correct");
             }
-            return await _parkingSpotService.GetFreeParkingSpotsByDate(startDate, endDate, id);
-        }
-        [HttpGet]
-        [Route("central/parkinglot/{id}/freeparkingspots/{priceHour}")]
-        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByPrice(int id, Decimal priceHour)
-        {
-            if (await ParkingLotExists(id) == false)
+
+            try
             {
-                return NotFound("Parking Lot was not found");
+                return await _parkingSpotService.GetFreeParkingSpotsByDate(startDate, endDate, pLotId);
             }
+            catch (Exception)
+            {
+
+                return NotFound();
+            }
+        }
+
+        // HTTP GET: Get All Free Parking Spots By Price
+        // Gets all Parking Spots registered in a specific Parking Lot, that are not occupied, 
+        // with an ID and a price (decimal) provided in the route endpoint.
+
+        [HttpGet("free/parkinglot/{pLotId}/{priceHour}")]
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByPrice(int pLotId, Decimal priceHour)
+        {
+
             if (priceHour <= 0)
             {
                 return BadRequest("Can't input a negative price");
             }
-            return await _parkingSpotService.GetFreeParkingSpotsByPrice(id, priceHour);
+
+            try
+            {
+                return await _parkingSpotService.GetFreeParkingSpotsByPrice(pLotId, priceHour);
+            }
+            catch (Exception)
+            {
+
+                return NotFound();
+            }
         }
 
-        //GetByIdPrivate
-        [HttpGet]
-        [Route("central/parkinglot/{pLotId}/parkingspots/{id}")]
-        public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpotById(int pLotId, string id)
+        // HTTP GET: Get Parking Spot By ID
+        // Gets a Parking Spot registered in a specific Parking Lot, with a Parking Spot ID and a Parking Lot ID provided in the route endpoint.
+
+        [HttpGet("{pSpotId}/parkinglot/{pLotId}")]
+        public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpotById(string pSpotId, int pLotId)
         {
-            if (await ParkingLotExists(pLotId) == false)
+            try
             {
-                return NotFound("Parking Lot was not found");
+                return await _parkingSpotService.GetParkingSpotById(pLotId, pSpotId);
             }
-            if (id == null)
+            catch (Exception)
             {
                 return NotFound();
             }
-            return await _parkingSpotService.GetParkingSpotById(pLotId, id);
         }
 
-        //POST private
-        [HttpPost]
-        [Route("central/parkinglot/{id}/parkingspots")]
-        public async Task<ActionResult<ParkingSpotDTO>> CreateParkingSpot([Bind("parkingSpotID, priceHour, floor, isPrivate, isCovered, parkingLotID")] ParkingSpotDTO parkingSpotDTO, int id)
+        // HTTP POST: Create a Parking Spot
+        // Adds a Parking Spot on a Parking Lot, with an ID provided in the route endpoint.
+
+        [HttpPost("parkinglot/{pLotId}")]
+        public async Task<ActionResult<ParkingSpotDTO>> CreateParkingSpot([FromBody] ParkingSpotDTO parkingSpotDTO, int pLotId)
         {
             var Results = _parkingSpotService.Validate(parkingSpotDTO);
+
             if (!Results.IsValid)
             {
                 return BadRequest("Can't create " + Results);
             }
-            await _parkingSpotService.CreateParkingSpot(parkingSpotDTO, id);
-            return CreatedAtAction("GetParkingSpot", new { id = parkingSpotDTO.parkingSpotID }, parkingSpotDTO);
+
+            try
+            {
+                await _parkingSpotService.CreateParkingSpot(parkingSpotDTO, pLotId);
+                return CreatedAtAction("GetParkingSpot", new { id = parkingSpotDTO.parkingSpotID }, parkingSpotDTO);
+            }
+            catch (Exception)
+            {
+
+                return NotFound();
+            }
         }
 
-        //PUT private
-        [HttpPut]
-        [Route("central/parkinglot/{pLotId}/parkingspots/{id}")]
-        public async Task<ActionResult<ParkingSpotDTO>> EditParkingSpot(string id, [Bind("parkingSpotID, priceHour, floor, isPrivate, isCovered, parkingLotID")] ParkingSpotDTO parkingSpotDTO, int pLotId)
+        // HTTP PUT: Edit a Parking Spot
+        // Edits a Parking Spot, with an ID provided in the route endpoint.
+
+
+        [HttpPut("parkinglot/{pLotId}/parkingspot/{pSpotId}")]
+        public async Task<ActionResult<ParkingSpotDTO>> EditParkingSpot(string pSpotId, [FromBody]ParkingSpotDTO parkingSpotDTO, int pLotId)
         {
 
             var Results = _parkingSpotService.Validate(parkingSpotDTO);
-            if (await ParkingLotExists(pLotId) == false)
-            {
-                return NotFound("Parking Lot was not found");
-            }
+    
             if (!Results.IsValid)
             {
                 return BadRequest("Can't update " + Results);
             }
 
-            if (id != parkingSpotDTO.parkingSpotID)
+            if (pSpotId != parkingSpotDTO.parkingSpotID)
             {
                 return BadRequest();
             }
-            await _parkingSpotService.EditParkingSpot(id, parkingSpotDTO, pLotId);
-            return NoContent();
-        }
 
-
-
-        private async Task<bool> ParkingLotExists(int id)
-        {
-            var parkingLot = await _parkingLotService.GetParkingLot(id);
-
-            if (parkingLot.Value != null)
+            try
             {
-
-                return true;
+                await _parkingSpotService.EditParkingSpot(pSpotId, parkingSpotDTO, pLotId);
+                return NoContent();
             }
-            else
+            catch (Exception)
             {
-                return false;
+
+                return NotFound();
             }
         }
     }

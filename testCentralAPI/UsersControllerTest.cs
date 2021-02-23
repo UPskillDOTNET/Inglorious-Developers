@@ -24,7 +24,7 @@ namespace testCentralAPI {
             var mapper = config.CreateMapper();
             var WalletService = new WalletService(walletRepository, mapper, userRepository);
             var UserService = new UserService(userRepository, WalletService, mapper);
-            var theController = new UsersController(UserService, WalletService);
+            var theController = new UsersController(UserService);
 
             // Act
             var result = await theController.GetAllUsers();
@@ -44,7 +44,7 @@ namespace testCentralAPI {
             var mapper = config.CreateMapper();
             var WalletService = new WalletService(walletRepository, mapper, userRepository);
             var UserService = new UserService(userRepository, WalletService, mapper);
-            var theController = new UsersController(UserService, WalletService);
+            var theController = new UsersController(UserService);
 
             //Act
             var result = await theController.GetUserById("1");
@@ -64,7 +64,7 @@ namespace testCentralAPI {
             var mapper = config.CreateMapper();
             var WalletService = new WalletService(walletRepository, mapper, userRepository);
             var UserService = new UserService(userRepository, WalletService, mapper);
-            var theController = new UsersController(UserService, WalletService);
+            var theController = new UsersController(UserService);
 
             //Act
             var result = await theController.GetUserById("500");

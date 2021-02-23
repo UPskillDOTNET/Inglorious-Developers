@@ -168,7 +168,6 @@ namespace testPrivateParkAPI
                 floor = 1,
                 isCovered = false,
                 isPrivate = true,
-                parkingLotID = 1
             };
 
             // Act
@@ -225,7 +224,6 @@ namespace testPrivateParkAPI
                 floor = 1,
                 isCovered = false,
                 isPrivate = true,
-                parkingLotID = 1
 
             };
             // Act
@@ -256,7 +254,6 @@ namespace testPrivateParkAPI
                 floor = 0,
                 isCovered = false,
                 isPrivate = false,
-                parkingLotID = 2
 
             };
 
@@ -381,7 +378,6 @@ namespace testPrivateParkAPI
                 floor = 1,
                 isCovered = true,
                 isPrivate = true,
-                parkingLotID = 1
 
             };
 
@@ -474,11 +470,11 @@ namespace testPrivateParkAPI
 
         private static void Seed()
         {
-            parkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "A1", priceHour = 0.250m, isCovered = false, isPrivate = true, floor = 1, parkingLotID = 1 });
-            parkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "E1", priceHour = 0.5m, isCovered = true, isPrivate = false, floor = 2, parkingLotID = 2 });
-            parkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "I1", priceHour = 0.9m, isCovered = false, isPrivate = true, floor = 1, parkingLotID = 2 });
-            parkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "O1", priceHour = 1.00m, isCovered = true, isPrivate = false, parkingLotID = 3 });
-            parkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "A3", priceHour = 0.25m, isCovered = false, isPrivate = false, parkingLotID = 1 });
+            parkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "A1", priceHour = 0.250m, isCovered = false, isPrivate = true, floor = 1});
+            parkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "E1", priceHour = 0.5m, isCovered = true, isPrivate = false, floor = 2});
+            parkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "I1", priceHour = 0.9m, isCovered = false, isPrivate = true, floor = 1});
+            parkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "O1", priceHour = 1.00m, isCovered = true, isPrivate = false});
+            parkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "A3", priceHour = 0.25m, isCovered = false, isPrivate = false});
 
             parkingSpotsContext.ParkingLots.Add(new ParkingLot { name = "Parque da República", companyOwner = "NorteShopping", location = "Avenida da República", capacity = 125, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
             parkingSpotsContext.ParkingLots.Add(new ParkingLot { name = "Parque Brito Capelo", companyOwner = "InRio", location = "Rua Brito Capelo", capacity = 250, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });

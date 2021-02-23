@@ -16,22 +16,22 @@ namespace PrivateParkAPI.Repositories.Repository
         public async Task<IEnumerable<ParkingSpot>> GetnotPrivateParkingSpots()
         {
 
-            return await GetAll().Where(p => p.isPrivate == false).Include(p => p.ParkingLot).ToListAsync();
+            return await GetAll().Where(p => p.isPrivate == false).ToListAsync();
         }
 
         public async Task<IEnumerable<ParkingSpot>> GetParkingSpotbyPrice(decimal priceHour)
         {
-            return await GetAll().Where(p => p.priceHour <= priceHour).Where(p => p.isPrivate == false).Include(p => p.ParkingLot).ToListAsync();
+            return await GetAll().Where(p => p.priceHour <= priceHour).Where(p => p.isPrivate == false).ToListAsync();
         }
 
         public async Task<IEnumerable<ParkingSpot>> GetAllParkingSpots()
         {
-            return await GetAll().Include(p => p.ParkingLot).ToListAsync();
+            return await GetAll().ToListAsync();
         }
 
         public async Task<ParkingSpot> GetParkingSpot(string id)
         {
-            return await GetAll().Include(p => p.ParkingLot).FirstOrDefaultAsync(s => s.parkingSpotID == id);
+            return await GetAll().FirstOrDefaultAsync(s => s.parkingSpotID == id);
         }
 
         public async Task<ParkingSpot> FindParkingSpot(string id)
@@ -44,7 +44,6 @@ namespace PrivateParkAPI.Repositories.Repository
             return await GetAll().Where(p => p.parkingSpotID == id).AnyAsync();
         }
 
-        //  este id não está a ser utilizado
         public async Task<ParkingSpot> PutParkingSpot(ParkingSpot parkingSpot)
         {
             parkingSpot = await UpdateAsync(parkingSpot);
