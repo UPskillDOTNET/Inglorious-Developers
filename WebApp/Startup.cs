@@ -12,6 +12,7 @@ using WebApp.DTO;
 using WebApp.Services.IServices;
 using WebApp.Services.Services;
 using System.Reflection;
+using WebApp.Utils;
 
 namespace WebApp
 {
@@ -27,9 +28,7 @@ namespace WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddAplicationService();
-            services.AddTransient<WebApp_ParkingLotService>();
-            services.AddTransient<WebApp_ParkingSpotService>();
+            services.AddAplicationService();
             services.AddControllersWithViews();
         }
 
@@ -58,6 +57,7 @@ namespace WebApp
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }
