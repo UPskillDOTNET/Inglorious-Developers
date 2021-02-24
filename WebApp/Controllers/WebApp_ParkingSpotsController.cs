@@ -20,7 +20,6 @@ namespace WebApp.Controllers {
             _helper = helper;
         }
 
-        [HttpGet("parkinglot/{pLotId}")]
         public async Task<ActionResult<IEnumerable<WebApp_ParkingSpotDTO>>> GetAllParkingSpots(int pLotId) {
             try {
                 return View(await _parkingSpotService.GetAllParkingSpots(pLotId));
@@ -29,7 +28,6 @@ namespace WebApp.Controllers {
             }
         }
 
-        [HttpGet("{pSpotId}/parkinglot/{pLotId}")]
         public async Task<ActionResult<WebApp_ParkingSpotDTO>> GetParkingSpotById(string pSpotId, int pLotId) {
             try {
                 return View(await _parkingSpotService.GetParkingSpotById(pLotId, pSpotId));

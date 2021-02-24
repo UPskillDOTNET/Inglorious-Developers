@@ -28,6 +28,8 @@ namespace WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddAplicationService();
+            services.AddTransient<WebApp_ParkingLotService>();
+            services.AddTransient<WebApp_ParkingSpotService>();
             services.AddControllersWithViews();
         }
 
