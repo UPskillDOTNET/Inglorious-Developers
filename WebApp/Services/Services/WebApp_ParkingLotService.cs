@@ -28,9 +28,9 @@ namespace WebApp.Services.Services
             return await response.Content.ReadAsAsync<List<WebApp_ParkingLotDTO>>();
         }
 
-        public async Task<ActionResult<WebApp_ParkingLotDTO>> GetParkingLotById(string pSpotId)
+        public async Task<ActionResult<WebApp_ParkingLotDTO>> GetParkingLotById(int? pLotId)
         {
-            var response = await _helper.GetClientAsync("api/parkingspots/" + pSpotId);
+            var response = await _helper.GetClientAsync("api/parkingspots/" + pLotId);
             return await response.Content.ReadAsAsync<WebApp_ParkingLotDTO>();
         }
     }
