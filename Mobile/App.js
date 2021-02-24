@@ -2,14 +2,25 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { Button, ThemeProvider } from "react-native-elements";
+
+const theme = {
+  Button: {
+    titleStyle: {
+      color: "red",
+    },
+  },
+};
 
 export default function App() {
   return (
     <SafeAreaProvider>
-      <View style={styles.container}>
-        <Text>WORK asd</Text>
-        <StatusBar style="auto" />
-      </View>
+      <ThemeProvider theme={theme}>
+        <Button title="Hey! Click me" />
+        <Text>How you doing?</Text>
+        <Button title="My Button" />
+        <Button title="My 2nd Button" titleStyle={{ color: "pink" }} />
+      </ThemeProvider>
     </SafeAreaProvider>
   );
 }
