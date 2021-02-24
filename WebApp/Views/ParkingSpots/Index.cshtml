@@ -1,0 +1,35 @@
+﻿@model IEnumerable<WebApp.DTO.WebApp_ParkingSpotDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">ParkingSpot Designation</a>
+            </th>
+            <th style="text-align:right;">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["ParkingLotSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">ParkingLot Name</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td class="tablehover" onclick="location.href = '@Url.Action("Details", new { id=item.parkingSpotID })'">
+                    @Html.DisplayFor(modelItem => item.parkingSpotID)
+                </td>
+                <td style="text-align:right;">
+                    @Html.DisplayFor(modelItem => item.parkingLotID)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -8,6 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApp.DTO;
+using WebApp.Services.IServices;
+using WebApp.Services.Services;
+using System.Reflection;
 
 namespace WebApp
 {
@@ -23,6 +27,7 @@ namespace WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddAplicationService();
             services.AddControllersWithViews();
         }
 
