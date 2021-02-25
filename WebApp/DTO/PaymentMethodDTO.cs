@@ -4,9 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebApp.DTO {
-    public enum WebApp_PaymentTypeDTO
+    public class PaymentMethodDTO
     {
-        PayAsYouUse,
-        PrePaid
+        public string paymentMethodID { get; set; }
+
+        public string name { get; set; }
     }
 }

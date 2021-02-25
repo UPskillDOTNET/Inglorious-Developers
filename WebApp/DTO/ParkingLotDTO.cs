@@ -2,7 +2,7 @@
 
 namespace WebApp.DTO
 {
-    public class WebApp_ParkingLotDTO
+    public class ParkingLotDTO
     {
         public int parkingLotID { get; set; }
 

@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace WebApp.DTO {
-    public class WebApp_PaymentDTO
+    public class PaymentDTO
     {
         public string paymentID { get; set; }
         

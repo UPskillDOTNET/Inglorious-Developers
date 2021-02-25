@@ -8,26 +8,26 @@ using WebApp.Services.Services.Utils;
 
 namespace WebApp.Services.Services
 {
-    public class WebApp_UserService : IWebApp_UserService
+    public class UserService : IUserService
     {
 
         private readonly APIHelper _helper;
 
-        public WebApp_UserService(APIHelper helper)
+        public UserService(APIHelper helper)
         {
             _helper = helper;
         }
 
-        public async Task<ActionResult<IEnumerable<WebApp_UserDTO>>> GetAllUsers()
+        public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers()
         {
             var response = await _helper.GetClientAsync("central/users");
-            return await response.Content.ReadAsAsync<List<WebApp_UserDTO>>();
+            return await response.Content.ReadAsAsync<List<UserDTO>>();
         }
 
-        public async Task<ActionResult<WebApp_UserDTO>> GetUserById(string id)
+        public async Task<ActionResult<UserDTO>> GetUserById(string id)
         {
             var response = await _helper.GetClientAsync("api/users/" + id);
-            return await response.Content.ReadAsAsync<WebApp_UserDTO>();
+            return await response.Content.ReadAsAsync<UserDTO>();
         }
     }
 }

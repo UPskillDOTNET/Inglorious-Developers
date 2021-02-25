@@ -14,6 +14,7 @@ using WebApp.Services.Services;
 using System.Reflection;
 using WebApp.Utils;
 using WebApp.Services.Services.Utils;
+using System.Net.Http;
 
 namespace WebApp
 {
@@ -29,11 +30,15 @@ namespace WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) 
         {
-           
+
+            //services.AddHttpClient<APIHelper>();
+            //services.AddSingleton<IHttpClientFactory>();
             services.AddHttpClient<APIHelper>();
             services.AddAplicationService();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

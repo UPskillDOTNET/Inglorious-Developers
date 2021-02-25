@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using WebApp.DTO;
 
 namespace WebApp.Services.IServices {
-    public interface IWebApp_ParkingSpotService {
-        Task<ActionResult<IEnumerable<WebApp_ParkingSpotDTO>>> GetAllParkingSpots(int id);
+    public interface IParkingSpotService {
+        Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots(int id);
         //Task<ActionResult<IEnumerable<WebApp_ParkingSpotDTO>>> GetAllFreeParkingSpots(int id);
         //Task<ActionResult<IEnumerable<WebApp_ParkingSpotDTO>>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate, int id);
-        Task<ActionResult<WebApp_ParkingSpotDTO>> GetParkingSpotById(int pLotId, string pSpotId);
+        Task<ActionResult<ParkingSpotDTO>> GetParkingSpotById(int pLotId, string pSpotId);
         //Task<ActionResult<IEnumerable<WebApp_ParkingSpotDTO>>> GetFreeParkingSpotsByPrice(int id, decimal priceHour);
         //Task<ActionResult<WebApp_ParkingSpotDTO>> CreateParkingSpot(WebApp_ParkingSpotDTO parkingSpotDTO, int id);
         //Task<ActionResult<WebApp_ParkingSpotDTO>> EditParkingSpot(string id, WebApp_ParkingSpotDTO parkingSpotDTO, int pLotId);

@@ -6,7 +6,7 @@ using WebApp.DTO;
 
 namespace WebApp.DTO
 {
-    public class WebApp_ReservationDTO
+    public class ReservationDTO
     {
         public string centralReservationID { get; set; }
 
@@ -30,8 +30,8 @@ namespace WebApp.DTO
 
         public string userID { get; set; }
         
-        public WebApp_UserDTO User { get; set; }
+        public UserDTO User { get; set; }
 
-        public WebApp_ParkingLotDTO ParkingLot { get; set; }
+        public ParkingLotDTO ParkingLot { get; set; }
     }
 }

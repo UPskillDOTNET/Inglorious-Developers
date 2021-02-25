@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApp.DTO
 {
-    public class WebApp_UserDTO
+    public class UserDTO
     {
         public string userID { get; set; }
 

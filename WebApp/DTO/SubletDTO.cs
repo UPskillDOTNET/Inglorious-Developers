@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApp.DTO
 {
-    public class WebApp_SubletDTO
+    public class SubletDTO
     {
         public string subletID { get; set; }
         public string reservationID { get; set; }

@@ -5,11 +5,11 @@ using WebApp.DTO;
 
 namespace WebApp.Services.IServices
 {
-    public interface IWebApp_UserService
+    public interface IUserService
     {
-        Task<ActionResult<IEnumerable<WebApp_UserDTO>>> GetAllUsers();
+        Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers();
 
-        Task<ActionResult<WebApp_UserDTO>> GetUserById(string id);
+        Task<ActionResult<UserDTO>> GetUserById(string id);
 
         //Task<ActionResult<WebApp_UserDTO>> UpdateUserById(string id, WebApp_UserDTO userDTO);
 

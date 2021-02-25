@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApp.DTO
 {
-    public class WebApp_ParkingSpotDTO
+    public class ParkingSpotDTO
     {
         public string parkingSpotID { get; set; }
         public decimal priceHour { get; set; }

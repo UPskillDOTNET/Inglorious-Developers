@@ -8,11 +8,11 @@ using WebApp.Services.IServices;
 
 namespace WebApp.Controllers
 {
-    public class WebApp_ParkingLotsController : Controller
+    public class ParkingLotsController : Controller
     {
-        private readonly IWebApp_ParkingLotService _webParkingLotService;
+        private readonly IParkingLotService _webParkingLotService;
 
-        public WebApp_ParkingLotsController(IWebApp_ParkingLotService parkingLotService)
+        public ParkingLotsController(IParkingLotService parkingLotService)
         {
             _webParkingLotService = parkingLotService;
         }
@@ -20,7 +20,7 @@ namespace WebApp.Controllers
         {await _webParkingLotService.GetAllParkingLots();
             try
             {
-                return View(await _webParkingLotService.GetAllParkingLots());
+                return View( _webParkingLotService.GetAllParkingLots().Result.Value);
             }
             catch
             {
@@ -32,7 +32,7 @@ namespace WebApp.Controllers
         {
             try
             {
-                return View(await _webParkingLotService.GetParkingLotById(id));
+                return View(_webParkingLotService.GetParkingLotById(id).Result.Value);
             }
             catch
             {

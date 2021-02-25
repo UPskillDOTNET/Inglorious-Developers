@@ -13,25 +13,25 @@ using System.Net.Http;
 
 namespace WebApp.Services.Services
 {
-    public class WebApp_ParkingLotService : IWebApp_ParkingLotService
+    public class ParkingLotService : IParkingLotService
     {
         private readonly APIHelper _helper;
 
-        public WebApp_ParkingLotService(APIHelper helper)
+        public ParkingLotService(APIHelper helper)
         {
             _helper = helper;
 
         }
-        public async Task<ActionResult<IEnumerable<WebApp_ParkingLotDTO>>> GetAllParkingLots()
+        public async Task<ActionResult<IEnumerable<ParkingLotDTO>>> GetAllParkingLots()
         {
             var response = await _helper.GetClientAsync("central/parkinglots");
-            return await response.Content.ReadAsAsync<List<WebApp_ParkingLotDTO>>();
+            return await response.Content.ReadAsAsync<List<ParkingLotDTO>>();
         }
 
-        public async Task<ActionResult<WebApp_ParkingLotDTO>> GetParkingLotById(int? pLotId)
+        public async Task<ActionResult<ParkingLotDTO>> GetParkingLotById(int? pLotId)
         {
             var response = await _helper.GetClientAsync("api/parkingspots/" + pLotId);
-            return await response.Content.ReadAsAsync<WebApp_ParkingLotDTO>();
+            return await response.Content.ReadAsAsync<ParkingLotDTO>();
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApp.DTO
 {
-    public class WebApp_WalletDTO
+    public class WalletDTO
     {
         public string walletID { get; set; }
 
@@ -15,6 +15,6 @@ namespace WebApp.DTO
 
         public string userID { get; set; }
 
-        public WebApp_UserDTO User { get; set; }
+        public UserDTO User { get; set; }
     }
 }
