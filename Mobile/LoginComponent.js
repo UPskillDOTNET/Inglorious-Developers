@@ -1,6 +1,14 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import { Button } from "react-native-elements";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export default function LoginComponent() {
   return (
@@ -9,16 +17,24 @@ export default function LoginComponent() {
         style={{ width: 250, height: 250 }}
         source={require("./assets/Park_Around.png")}
       />
-      <TextInput placeholder="Username" style={styles.input} />
-      <TextInput
-        placeholder="Password"
-        secureTextEntry={true}
-        style={styles.input}
-      />
-      <View style={styles.test}>
-        <Button title="Login" />
-        <Button title="Register" />
+      <View style={styles.general}>
+        <TextInput placeholder="Username" style={styles.input} />
+        <TextInput
+          placeholder="Password"
+          secureTextEntry={true}
+          style={styles.input}
+        />
+        <View style={styles.test}>
+          <View>
+            <Button style={styles.loginButtons} title="Login" />
+          </View>
+          <TouchableOpacity onPress={() => Linking.openURL("")}>
+            <Text style={styles.forgetPassword}>Forgot your password?</Text>
+          </TouchableOpacity>
+        </View>
       </View>
+      {/* <Icon name="facebook" />
+      <Icon name="google" /> */}
     </View>
   );
 }
@@ -27,9 +43,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#24305e",
-    // backgroundColor: "#2e789e",
     alignItems: "center",
     justifyContent: "center",
+  },
+  general: {
+    width: 300,
+    alignItems: "center",
   },
   input: {
     backgroundColor: "white",
@@ -37,7 +56,6 @@ const styles = StyleSheet.create({
     padding: 8,
     margin: 10,
     width: 300,
-    fontWeight: "bold",
     textAlign: "center",
     textTransform: "uppercase",
   },
@@ -46,8 +64,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
-  test: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+  loginButtons: {
+    margin: 20,
+    textTransform: "uppercase",
+    width: 300,
+  },
+  forgetPassword: {
+    color: "white",
+    textAlign: "center",
   },
 });
