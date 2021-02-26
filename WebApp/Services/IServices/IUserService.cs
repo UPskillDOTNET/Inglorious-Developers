@@ -11,7 +11,7 @@ namespace WebApp.Services.IServices
 
         public Task<ActionResult<UserDTO>> GetUserById(string id);
 
-        //Task<ActionResult<WebApp_UserDTO>> UpdateUserById(string id, WebApp_UserDTO userDTO);
+        //public Task<ActionResult<UserDTO>> UpdateUserById(string id);
 
         //Task<ActionResult<WebApp_UserDTO>> CreateUser(WebApp_UserDTO userDTO, string currency);
 
