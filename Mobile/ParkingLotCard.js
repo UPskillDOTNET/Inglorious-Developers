@@ -1,4 +1,8 @@
+import { Text,View ,StyleSheet } from "react-native";
+import { Card, Button, Icon, ThemeProvider } from "react-native-elements";
 import React from "react";
+import ParkingLot from './Service/ParkingLotTesting'
+
 
 // const styles = StyleSheet.create({
 //   container: {
@@ -29,19 +33,19 @@ import React from "react";
 //   },
 // });
 
-export default function ParkingLot(props) {
+export default function PParkingLot(props) {
   const displayParkingLot = (props) => {
     const { parkingLots } = props;
 
-    if (parkingLots.length > 0) {
+    // if (parkingLots.length > 0) {
       return parkingLots.map((parkingLot, index) => {
-        console.log(parkingLot);
+        console.log(parkingLots);
         return (
           <Card containerStyle={styles.container} key={parkingLot.id}>
             <Card.Image source={require("./assets/parque.jpeg")} />
-            <Text style={styles.title}>{parkingLot.name}</Text>
-            <Text style={styles.location}>{parkingLot.location}</Text>
-            <Text style={styles.location}>{parkingLot.capacity}</Text>
+            <Text style={styles.title}>{parkingLots.name}</Text>
+            <Text style={styles.location}>{parkingLots.location}</Text>
+            <Text style={styles.location}>{parkingLots.capacity}</Text>
             <Button
               buttonStyle={{
                 backgroundColor: "#53a9d6",
@@ -54,11 +58,12 @@ export default function ParkingLot(props) {
               title="Book now"
             />
           </Card>
-        );
-      });
-    } else {
-      return <View>No Parking Lots yet</View>;
-    }
-  };
-  return <View>{displayParkingLot(props)}</View>;
-}
+        )})}}
+      
+//     }
+//      else {
+//       return (<View>No Parking Lots yet</View>)
+//     }
+//   }
+//   return( <View>{displayParkingLot(props)}</View>)
+// }

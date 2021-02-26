@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import axios from "axios";
+import axios from 'axios';
 import CardTest from "../CardTest";
+import PParkingLot from "../ParkingLotCard";
 
 export default function Parent() {
-  const [parkingLots, getAllParkingLots] = useState("");
+  const [parkingLots, getParkingLots] = useState("");
 
   const url = "https://localhost:44381/";
 
@@ -16,10 +17,10 @@ export default function Parent() {
       .get(`${url}central/parkinglots`)
       .then((response) => {
         const allParkingLots = response.data.parkingLots.allParkingLots;
-        getAllParkingLots(allParkingLots);
+        getParkingLots(allParkingLots);
       })
       .catch((error) => console.error(`Error: ${error}`));
   };
 
-  return <CardTest parkingLots={parkingLots}></CardTest>;
+  return <PParkingLot parkingLots={parkingLots}></PParkingLot>;
 }
