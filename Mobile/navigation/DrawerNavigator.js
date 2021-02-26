@@ -9,10 +9,10 @@ import UserDasboard from "../screens/userdashboard";
 
 const Drawer = createDrawerNavigator();
 
+
 function DrawerNavigator() {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Explore" component={TabNavigator} />
+    <Drawer.Navigator drawerPosition="right">
       <Drawer.Screen name="UserDashboard" component={UserDasboard} />
     </Drawer.Navigator>
   );

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, TextInput } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { Button, ThemeProvider } from "react-native-elements";
-import getParksFromApi from "../Service/ParkingLotService";
+import Parent from "../Service/ParkingLotTesting";
 
 const theme = {
   Button: {
@@ -41,7 +41,7 @@ function Register() {
               style={styles.test2}
               title="Submit"
               onPress={() => {
-                getParksFromApi();
+                Parent() ;
               }}
             />
 

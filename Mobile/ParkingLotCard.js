@@ -1,7 +1,7 @@
 import { Text,View ,StyleSheet } from "react-native";
 import { Card, Button, Icon, ThemeProvider } from "react-native-elements";
 import React from "react";
-import ParkingLot from './Service/ParkingLotTesting'
+import Parent from './Service/ParkingLotTesting'
 
 
 // const styles = StyleSheet.create({
@@ -33,19 +33,21 @@ import ParkingLot from './Service/ParkingLotTesting'
 //   },
 // });
 
-export default function PParkingLot(props) {
-  const displayParkingLot = (props) => {
-    const { parkingLots } = props;
 
-    // if (parkingLots.length > 0) {
-      return parkingLots.map((parkingLot, index) => {
-        console.log(parkingLots);
+
+
+export default function ParkingLot() {
+  const ParkingLotList = Parent();
+    if (ParkingLotList.length = 0) {
+      console.log(ParkingLotList)
+      return ParkingLotList.map((ParkingLotList) => {
+        console.log(ParkingLotList);
         return (
-          <Card containerStyle={styles.container} key={parkingLot.id}>
+          <Card containerStyle={styles.container} key={Parent().ParkingLotList.id}>
             <Card.Image source={require("./assets/parque.jpeg")} />
-            <Text style={styles.title}>{parkingLots.name}</Text>
-            <Text style={styles.location}>{parkingLots.location}</Text>
-            <Text style={styles.location}>{parkingLots.capacity}</Text>
+            <Text style={styles.title}>{Parent().ParkingLot.name}</Text>
+            <Text style={styles.location}>{Parent().ParkingLotList.location}</Text>
+            <Text style={styles.location}>{Parent().ParkingLotList.capacity}</Text>
             <Button
               buttonStyle={{
                 backgroundColor: "#53a9d6",
@@ -58,12 +60,10 @@ export default function PParkingLot(props) {
               title="Book now"
             />
           </Card>
-        )})}}
+        )})
       
-//     }
-//      else {
-//       return (<View>No Parking Lots yet</View>)
-//     }
-//   }
-//   return( <View>{displayParkingLot(props)}</View>)
-// }
+    }
+    //  else {
+    //   return (<View>No Parking Lots yet</View>)
+    // }
+  };
