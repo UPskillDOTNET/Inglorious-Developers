@@ -23,28 +23,6 @@ export default function CardTest(props) {
     </Card>
   );
 }
-// const CardTest = (props) => {
-//   return (
-//     <Card containerStyle={styles.container}>
-//       <Card.Image source={require("./assets/parque.jpeg")} />
-//       <Text text={styles.title}>{this.props.name}</Text>
-//       <Text text>{this.props.city}</Text>
-//       <Button
-//         buttonStyle={{
-//           backgroundColor: "#53a9d6",
-//           borderRadius: 0,
-//           marginLeft: 0,
-//           marginRight: 0,
-//           marginBottom: 0,
-//         }}
-//         icon={<Icon name="check" size={30} color="white" />}
-//         title="Book now"
-//       />
-//     </Card>
-//   );
-// };
-
-// export default CardTest;
 
 const styles = StyleSheet.create({
   container: {

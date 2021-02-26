@@ -20,6 +20,8 @@ namespace CentralAPI
 {
     public class Startup
     {
+
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -33,7 +35,7 @@ namespace CentralAPI
             services.AddDbContext<CentralAPIContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddCors(action =>
-            action.AddPolicy("AllowSpecificOrigin", builder =>
+            action.AddPolicy(name: MyAllowSpecificOrigins, builder =>
                 builder
                 .AllowAnyMethod()
                 .AllowAnyHeader()
@@ -75,6 +77,7 @@ namespace CentralAPI
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthentication();
             app.UseAuthorization();
