@@ -7,9 +7,9 @@ namespace WebApp.Services.IServices
 {
     public interface IUserService
     {
-        Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers();
+        public Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers();
 
-        Task<ActionResult<UserDTO>> GetUserById(string id);
+        public Task<ActionResult<UserDTO>> GetUserById(string id);
 
         //Task<ActionResult<WebApp_UserDTO>> UpdateUserById(string id, WebApp_UserDTO userDTO);
 

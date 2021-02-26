@@ -14,11 +14,10 @@ namespace WebApp.Controllers
                 _webUserService = userService;
             }
             public async Task<IActionResult> Index()
-            {
-                await _webUserService.GetAllUsers();
+            {await _webUserService.GetAllUsers();
                 try
                 {
-                    return View(await _webUserService.GetAllUsers());
+                    return View(_webUserService.GetAllUsers().Result.Value);
                 }
                 catch
                 {
@@ -30,7 +29,7 @@ namespace WebApp.Controllers
             {
                 try
                 {
-                    return View(await _webUserService.GetUserById(id));
+                    return View(_webUserService.GetUserById(id).Result.Value);
                 }
                 catch
                 {
