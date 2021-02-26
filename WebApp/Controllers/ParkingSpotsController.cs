@@ -12,26 +12,25 @@ using System.Net.Http;
 namespace WebApp.Controllers {
     public class ParkingSpotsController : Controller {
 
-        private readonly APIHelper _helper;
         private readonly IParkingSpotService _parkingSpotService;
 
-        public ParkingSpotsController(IParkingSpotService parkingSpotService, APIHelper helper) {
+        public ParkingSpotsController(IParkingSpotService parkingSpotService) 
+        {
             _parkingSpotService = parkingSpotService;
-            _helper = helper;
         }
 
-        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots(int pLotId) {
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> Index(int pLotId) {
             try {
-                return View(await _parkingSpotService.GetAllParkingSpots(pLotId));
-            } catch (Exception) {
+                return View( _parkingSpotService.GetAllParkingSpots(pLotId).Result.Value);
+            } catch {
                 return NotFound();
             }
         }
 
-        public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpotById(string pSpotId, int pLotId) {
+        public async Task<ActionResult<ParkingSpotDTO>> Details(string pSpotId) {
             try {
-                return View(await _parkingSpotService.GetParkingSpotById(pLotId, pSpotId));
-            } catch (Exception) {
+                return View( _parkingSpotService.GetParkingSpotById(pSpotId).Result.Value);
+            } catch {
                 return NotFound();
             }
         }
