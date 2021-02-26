@@ -26,7 +26,7 @@ namespace WebApp.Services.Services
 
         public async Task<ActionResult<UserDTO>> GetUserById(string id)
         {
-            var response = await _helper.GetClientAsync("api/users/" + id);
+            var response = await _helper.GetClientAsync("central/users/" + id);
             return await response.Content.ReadAsAsync<UserDTO>();
         }
     }
