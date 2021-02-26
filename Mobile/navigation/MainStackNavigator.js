@@ -16,9 +16,9 @@ const screenOptionStyle = {
 
 function MainStackNavigator() {
   return (
-    <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Register" component={Register} />
+    <Stack.Navigator mode="modal" screenOptions={screenOptionStyle}>
+      <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+      <Stack.Screen name="Register" component={Register}  options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
 }

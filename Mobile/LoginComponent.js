@@ -8,9 +8,14 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Button } from "react-native-elements";
+import { useNavigation } from '@react-navigation/native';
 import Icon from "react-native-vector-icons/FontAwesome";
+import Register from './screens/register'
 
 export default function LoginComponent() {
+  const navigation = useNavigation();
+
+
   return (
     <View style={styles.container}>
       <Image
@@ -30,6 +35,9 @@ export default function LoginComponent() {
           </View>
           <TouchableOpacity onPress={() => Linking.openURL("")}>
             <Text style={styles.forgetPassword}>Forgot your password?</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate(Register)}>
+            <Text style={styles.forgetPassword}>New Account</Text>
           </TouchableOpacity>
         </View>
       </View>
