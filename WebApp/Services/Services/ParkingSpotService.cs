@@ -30,8 +30,8 @@ namespace WebApp.Services.Services {
             return await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
         }
 
-        public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpotById(string pSpotId) {
-            var response = await _helper.GetClientAsync("central/parkingSpots/" + pSpotId + "/parkinglot/");
+        public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpotById(int pLotId, string pSpotId) {
+            var response = await _helper.GetClientAsync("central/parkingSpots/" + pSpotId + "/parkinglot/" + pLotId);
             return await response.Content.ReadAsAsync<ParkingSpotDTO>();
         }
     }

@@ -12,12 +12,6 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.parkingLotID)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.parkingLotID)
-        </dd>
-        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.name)
         </dt>
         <dd class="col-sm-10">
@@ -53,18 +47,12 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.closingTime)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.myURL)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.myURL)
-        </dd>
         <dd class="col-sm-2">
-            <a class="nav-link text-dark" asp-area="" asp-controller="ParkingSpots" asp-action="Index">ParkingSpots</a>
+            @Html.ActionLink("ParkingSpots", "Index", "ParkingSpots", new { id = Model.parkingLotID })
         </dd>
     </dl>
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Back to List", "Index")
 </div>

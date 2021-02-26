@@ -15,10 +15,16 @@
             @Html.DisplayNameFor(model => model.parkingSpotID)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.parkingLotID)
+            @Html.DisplayFor(model => model.parkingSpotID)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.floor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.floor)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.isCovered)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.isCovered)
@@ -27,11 +33,18 @@
             @Html.DisplayNameFor(model => model.isPrivate)
         </dt>
         <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.isPrivate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.priceHour)
+        </dt>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.priceHour)
         </dd>
     </dl>
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Back to List", "Index", new { id = ViewData["parkingLotId"] })
+
 </div>

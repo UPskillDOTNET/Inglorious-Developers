@@ -23,7 +23,7 @@
     <tbody>
         @foreach (var item in Model) {
             <tr>
-                <td class="tablehover" onclick="location.href = '@Url.Action("Details", new { id=item.parkingSpotID })'">
+                <td class="tablehover" onclick="location.href = '@Url.Action("Details", new { id = ViewData["parkingLotId"], pSpotId=item.parkingSpotID })'">
                     @Html.DisplayFor(modelItem => item.parkingSpotID)
                 </td>
                 <td style="text-align:right;">
@@ -31,5 +31,10 @@
                 </td>
             </tr>
         }
+    <tr>
+        <td>
+            @Html.ActionLink("Back to List", "Details", "ParkingLots", new { id = ViewData["parkingLotId"] })
+        </td>        
+    </tr>
     </tbody>
 </table>
