@@ -4,6 +4,7 @@
  import { SafeAreaProvider } from "react-native-safe-area-context";
  import { useNavigation } from '@react-navigation/native';
  import { Button, ThemeProvider } from "react-native-elements";
+ import getParksFromApi from '../Service/ParkingLotService'
  
  
  const theme = {
@@ -29,21 +30,15 @@
              source={require("../assets/Park_Around.png")}
            />
  
-           <Text style={styles.login}>USERNAME </Text>
-           <TextInput style={styles.input} />
-           <Text Text style={styles.login}>
-             PASSWORD{" "}
-           </Text>
-           <TextInput secureTextEntry={true} style={styles.input} />
-           <Text Text style={styles.login}>
-            NIF
-           </Text>
-           <TextInput style={styles.input} />
-           <Text style={styles.login}>FULL NAME</Text>
-           <TextInput style={styles.input} />
+           <TextInput style={styles.input} placeholder="UserName"/>
+           <TextInput secureTextEntry={true} style={styles.input} placeholder="Password"/>
+           <TextInput style={styles.input} placeholder="NIF"/>
+           <TextInput style={styles.input} placeholder="Full Name"/>
+
          
            <View style={styles.test}>
-             <Button style={styles.test2} title="Submit" />
+             <Button style={styles.test2} title="Submit" onPress={() => {getParksFromApi()}}/>
+           
          <Button style={styles.test2} onPress={() => navigation.goBack()} title="Cancel" />
        </View>
        </View>
@@ -52,7 +47,7 @@
      );
    }
  
- 
+   
  export default Register;
   
  
@@ -73,6 +68,8 @@
      padding: 8,
      margin: 10,
      width: 300,
+     textAlign: "center",
+     textTransform:'upperCase',
    },
    login: {
      color: "white",
@@ -84,7 +81,7 @@
      justifyContent: "space-between",
    },
    test2:{
-       width:200,
+       width:150,
        margin:5,
    }
  });

@@ -37,7 +37,7 @@ export default function LoginComponent() {
             <Text style={styles.forgetPassword}>Forgot your password?</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate(Register)}>
-            <Text style={styles.forgetPassword}>New Account</Text>
+            <Text style={[styles.forgetPassword,styles.registerLink]}>New Account</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -78,7 +78,14 @@ const styles = StyleSheet.create({
     width: 300,
   },
   forgetPassword: {
+    flex:1,
     color: "white",
     textAlign: "center",
+    flexDirection:'column',
+  },
+  registerLink:{
+    marginVertical:10,
+    textDecorationLine:'underline'
   },
 });
+

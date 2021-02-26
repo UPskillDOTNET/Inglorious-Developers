@@ -32,6 +32,13 @@ namespace CentralAPI
         {
             services.AddDbContext<CentralAPIContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddCors(action =>
+            action.AddPolicy("AllowSpecificOrigin", builder =>
+                builder
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .WithOrigins("http://localhost:19006")
+                .AllowCredentials()));
             services.AddAplicationRepo();
             services.AddAplicationService();
             services.AddTransient<QRgenerator>();

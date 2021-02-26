@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("central/parkinglots")]
     [ApiController]
     public class ParkingLotsController : Controller
