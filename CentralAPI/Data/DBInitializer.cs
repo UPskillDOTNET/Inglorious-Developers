@@ -36,8 +36,10 @@ namespace CentralAPI.Data
 
             var parkingLots = new ParkingLot[]
             {
-                new ParkingLot{name="Parque Brito Capelo",owner="InRio",location="Rua Brito Capelo",capacity=250,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL="https://localhost:44353/"},
-                new ParkingLot{name="Parque da República", owner="NorteShopping", location="Avenida da República", capacity=125, openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL="https://localhost:44350/"},
+                new ParkingLot{name="Parque Brito Capelo",owner="InRio",location="Rua Brito Capelo",capacity=250,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL="https://localhost:44353/", imageURL="https://www.cm-matosinhos.pt/thumbs/cmmatosinhos2020/uploads/writer_file/image/14215/not2_parque_estacionamento_1_1250_2500.jpg"},
+                new ParkingLot{name="Parque da República", owner="NorteShopping", location="Avenida da República", capacity=125, openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL="https://localhost:44350/", imageURL="https://sonaesierracms-v2.cdnpservers.net/wp-content/uploads/sites/32/2020/10/variossc_sonae-anuncio_hero-desktop_1920x590.jpg"},
+                new ParkingLot{name="Parque do Gil Eanes", owner="Municipio de Viana do Castelo", location="Viana do Castelo", capacity=300, openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL="", imageURL="https://1.bp.blogspot.com/-7yi-CYsJU7k/Xk7J8SNpH0I/AAAAAAAAVNI/Rkz354pO5G45LKzb8D73wVIoukhgQuFwQCLcBGAsYHQ/s1600/Parque%2BEstacionamento%252C%2BViana%2Bdo%2BCastelo.jpeg"},
+
 
             };
             foreach (ParkingLot p in parkingLots)
