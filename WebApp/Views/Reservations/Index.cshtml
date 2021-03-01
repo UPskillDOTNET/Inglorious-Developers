@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Index</h1>
@@ -13,12 +14,14 @@
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["ReservationID"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Reservation</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["ParkingLotID"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Parking Lot ID</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["ParkingSpotID"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Parking Spot</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["ParkingLotID"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Parking Lot</a>
             </th>
             <th style="text-align:right;">
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["EndTime"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">End Time</a>
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -26,6 +29,9 @@
         {
             <tr class="table-hover">
                 <td onclick="location.href ='@Url.Action("Details", new {id = item.reservationID})'">
+                    @Html.DisplayFor(modelItem => item.reservationID)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.parkingSpotID)
                 </td>
                 <td>

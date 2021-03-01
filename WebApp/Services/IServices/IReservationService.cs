@@ -12,6 +12,7 @@ namespace WebApp.Services.IServices
     {
         Task<ActionResult<IEnumerable<ReservationDTO>>> GetAllReservations();
         Task<ActionResult<ReservationDTO>> GetReservationById(string id);
+        Task<ActionResult<List<ReservationDTO>>> GetAllReservationsByUser(string id);
         //Task<ActionResult<IEnumerable<ReservationDTO>>> GetCentralReservationsNotCancelled();
         //Task<ActionResult<ReservationDTO>> PostCentralReservation(ReservationDTO ReservationDTO);
         //Task<ActionResult<ReservationDTO>> PostCentralReservationNotCompleted(ReservationDTO ReservationDTO);

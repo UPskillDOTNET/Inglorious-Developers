@@ -33,5 +33,10 @@ namespace WebApp.Services.Services
             return await response.Content.ReadAsAsync<ReservationDTO>();
         }
 
+        public async Task<ActionResult<List<ReservationDTO>>> GetAllReservationsByUser(string id)
+        {
+            var response = await _helper.GetClientAsync("/reservations/users/" + id);
+            return await response.Content.ReadAsAsync<List<ReservationDTO>>();
+        }
     }
 }

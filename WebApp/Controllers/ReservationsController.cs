@@ -17,7 +17,7 @@ namespace WebApp.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            await _webReservationService.GetAllReservations();
+            //await _webReservationService.GetAllReservations();
             try
             {
                 return View(_webReservationService.GetAllReservations().Result.Value);
@@ -33,6 +33,19 @@ namespace WebApp.Controllers
             try
             {
                 return View(_webReservationService.GetReservationById(id).Result.Value);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        public async Task<IActionResult> UserIndex(string id)
+        {
+            try
+            {
+                //ViewData["userID"] = id;
+                return View(_webReservationService.GetAllReservationsByUser(id).Result.Value);
             }
             catch
             {
