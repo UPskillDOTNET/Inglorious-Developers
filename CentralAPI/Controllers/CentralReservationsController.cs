@@ -30,6 +30,12 @@ namespace CentralAPI.Controllers
             return _centralReservationService.GetAllCentralReservations();
         }
 
+        [HttpGet("users/{id}")]
+        public Task<ActionResult<IEnumerable<CentralReservationDTO>>> GetCentralReservationsById(string id)
+        {
+            return _centralReservationService.GetAllCentralReservationsById(id);
+        }
+
         //Get a Reservation By Id from Central API.
         [HttpGet("{id}")]
         public async Task<ActionResult<CentralReservationDTO>> GetCentralReservationById(string id)

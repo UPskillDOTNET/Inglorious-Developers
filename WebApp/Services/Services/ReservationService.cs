@@ -35,7 +35,7 @@ namespace WebApp.Services.Services
 
         public async Task<ActionResult<List<ReservationDTO>>> GetAllReservationsByUser(string id)
         {
-            var response = await _helper.GetClientAsync("/reservations/users/" + id);
+            var response = await _helper.GetClientAsync("central/reservations/users/" + id);
             return await response.Content.ReadAsAsync<List<ReservationDTO>>();
         }
     }

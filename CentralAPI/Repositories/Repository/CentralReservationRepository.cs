@@ -20,6 +20,10 @@ namespace CentralAPI.Repositories.Repository
         {
             return await GetAll().ToListAsync();
         }
+        public async Task<IEnumerable<CentralReservation>> GetAllCentralReservationsById(string id)
+        {
+            return await GetAll().Where(p => p.userID == id).ToListAsync();
+        }
 
         public async Task<IEnumerable<CentralReservation>> GetCentralReservationsNotCancelled()
         {

@@ -10,6 +10,7 @@ using System.ComponentModel.DataAnnotations;
 namespace CentralAPI.Services.IServices {
     public interface ICentralReservationService {
         Task<ActionResult<IEnumerable<CentralReservationDTO>>> GetAllCentralReservations();
+        Task<ActionResult<IEnumerable<CentralReservationDTO>>> GetAllCentralReservationsById(string id);
         Task<ActionResult<CentralReservationDTO>> GetCentralReservationById(string id);
         Task<ActionResult<CentralReservationDTO>> GetCentralReservationByUserId(string userID);
         Task<ActionResult<IEnumerable<CentralReservationDTO>>> GetCentralReservationsNotCancelled();

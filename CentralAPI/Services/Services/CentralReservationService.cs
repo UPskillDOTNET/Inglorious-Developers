@@ -46,6 +46,12 @@ namespace CentralAPI.Services.Services {
             var centralReservationsDTO = _mapper.Map<List<CentralReservation>, List<CentralReservationDTO>>(centralReservations.ToList());
             return centralReservationsDTO;
         }
+        public async Task<ActionResult<IEnumerable<CentralReservationDTO>>> GetAllCentralReservationsById(string id)
+        {
+            var centralReservations = await _centralReservationRepository.GetAllCentralReservationsById(id);
+            var centralReservationsDTO = _mapper.Map<List<CentralReservation>, List<CentralReservationDTO>>(centralReservations.ToList());
+            return centralReservationsDTO;
+        }
 
         public async Task<ActionResult<IEnumerable<CentralReservationDTO>>> GetCentralReservationsNotCancelled() {
             var centralReservations = await _centralReservationRepository.GetCentralReservationsNotCancelled();
@@ -155,6 +161,7 @@ namespace CentralAPI.Services.Services {
             var reservation = _mapper.Map<CentralReservationDTO, CentralReservation>(centralReservationDTO);
             return await _centralReservationRepository.subletReservationAny(reservation);
         }
+
         //public ValidationResult Validate(CentralReservationDTO centralReservationDTO) {
         //    CentralReservationValidator validationRules = new CentralReservationValidator();
         //    ValidationResult Results = validationRules.Validate(centralReservationDTO);

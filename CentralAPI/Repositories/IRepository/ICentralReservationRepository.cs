@@ -8,6 +8,7 @@ using CentralAPI.DTO;
 namespace CentralAPI.Repositories.IRepository {
     public interface ICentralReservationRepository : IBaseRepository<CentralReservation> {
         Task<IEnumerable<CentralReservation>> GetAllCentralReservations();
+        Task <IEnumerable<CentralReservation>> GetAllCentralReservationsById(string id);
         Task<IEnumerable<CentralReservation>> GetCentralReservationDateTimeNow();
         Task<IEnumerable<CentralReservation>> GetCentralReservationsNotCancelled();
         Task<IEnumerable<CentralReservation>> GetSpecificCentralReservation(DateTime leaveHour, DateTime entryHour);
