@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("central/reservations")]
     [ApiController]
     public class CentralReservationsController : ControllerBase
@@ -40,6 +40,16 @@ namespace CentralAPI.Controllers
                 return NotFound("CentralReservation was not Found");
             }
             return await _centralReservationService.GetCentralReservationById(id);
+        }
+
+        //Get a Reservation By UserId from Central API.
+        [HttpGet("~/reservations/users/{userid}")]
+        public async Task<ActionResult<CentralReservationDTO>> GetCentralReservationByUserId(string userID) {
+
+            if (await UserHasReservations(userID) == false) {
+                return NotFound("User's CentralReservation were not Found");
+            }
+            return await _centralReservationService.GetCentralReservationByUserId(userID);
         }
 
         //Get all Reservations that are not cancelled from Central API.
@@ -146,6 +156,11 @@ namespace CentralAPI.Controllers
 
         }
 
+        //CentralReservation exists
+        public async Task<bool> UserHasReservations(string userID) {
+            return await _centralReservationService.FindCentralReservationAnyByUser(userID);
+
+        }
 
         /* ------------------------------- RESERVATIONS PARK API -------------------------------*/
 

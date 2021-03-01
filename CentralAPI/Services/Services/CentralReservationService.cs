@@ -59,6 +59,12 @@ namespace CentralAPI.Services.Services {
             return centralReservationDTO;
         }
 
+        public async Task<ActionResult<CentralReservationDTO>> GetCentralReservationByUserId(string userID) {
+            var centralReservation = await _centralReservationRepository.GetCentralReservationByUserId(userID);
+            var centralReservationDTO = _mapper.Map<CentralReservation, CentralReservationDTO>(centralReservation);
+            return centralReservationDTO;
+        }
+
         public async Task<ActionResult<CentralReservationDTO>> PostCentralReservation(CentralReservationDTO centralReservationDTO) {  
             var result= await GetEndTimeandFinalPrice(centralReservationDTO);
             centralReservationDTO = result.Value;
@@ -139,6 +145,11 @@ namespace CentralAPI.Services.Services {
         public async Task<bool> FindCentralReservationAny(string id) {
             return await _centralReservationRepository.FindCentralReservationAny(id);
         }
+
+        public async Task<bool> FindCentralReservationAnyByUser(string userID) {
+            return await _centralReservationRepository.FindCentralReservationAnyByUser(userID);
+        }
+
         public async Task<bool> subletReservationExists(CentralReservationDTO centralReservationDTO)
         {
             var reservation = _mapper.Map<CentralReservationDTO, CentralReservation>(centralReservationDTO);
