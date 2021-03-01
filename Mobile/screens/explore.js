@@ -2,7 +2,7 @@ import * as React from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import CardTest from "../CardTest";
-import ParkingLot from "../ParkingLotCard";
+import Test from '../ParkingLotCard'
 import parkingLotCard from "../ParkingLotCard"
 
 export default function Explore() {
@@ -10,10 +10,7 @@ export default function Explore() {
     <View style={styles.container}>
       <Text style={styles.title}>PARKING LOTS</Text>
       <ScrollView>
-      <Button onPress={() => {
-                ParkingLot() ;
-              }}/>
-       <ParkingLot/>
+      <Test/>
       </ScrollView>
     </View>
   );

@@ -1,37 +1,10 @@
-import React, { useEffect, useState, Object } from "react";
-import axios from 'axios';
-import CardTest from "../CardTest";
-import PParkingLot from "../ParkingLotCard";
-import Explore from "../screens/explore";
+import React, { Component, button } from "react";
+import API from './ApiHelper';
+import { Text,View ,StyleSheet } from "react-native";
+import { Card, Button, Icon, ThemeProvider } from "react-native-elements";
 
 
-export default function Parent() {
-  // const [parkingLots, getParkingLots] = useState("");
-
-  const url = "https://localhost:44381/";
-
-  // useEffect(() => {
-  //   getAllParkingLots();
-  // }, []);
-
-
-    axios
-      .get(`${url}central/parkinglots`)
-      .then((response) => {
-        console.log(response.data);
-        const ParkingLotList = response.data;
-        const ParkingLots = ParkingLotList.map(function(item,index){
-          return {
-            key: item.parkingLotID,
-            name: item.name,
-            capacity: item.capacity,
-          }
-        })
-        console.log(ParkingLots);
-      })
-      .catch((error) => console.error(`Error: ${error}`));
-
-      return ParkingLots;
-  
-  
-}
+export default async function GetParkinglot() {
+    let data =  await API.get('central/parkinglots').then(({data}) => data);
+    console.log(data);
+    return data};
