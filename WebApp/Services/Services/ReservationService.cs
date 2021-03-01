@@ -23,7 +23,7 @@ namespace WebApp.Services.Services
         public async Task<ActionResult<IEnumerable<ReservationDTO>>> GetAllReservations()
         {
             //var parkingLot = _parkingLotService.GetParkingLotById(pLotId);
-            var response = await _helper.GetClientAsync("central/reservations/");
+            var response = await _helper.GetClientAsync("central/reservations");
             return await response.Content.ReadAsAsync<List<ReservationDTO>>();
         }
 

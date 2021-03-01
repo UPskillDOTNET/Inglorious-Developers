@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WebApp.DTO.ReservationDTO>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["ReservationID"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Reservation</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["ParkingLotID"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Parking Lot ID</a>
+            </th>
+            <th style="text-align:right;">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["EndTime"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">End Time</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-hover">
+                <td onclick="location.href ='@Url.Action("Details", new {id = item.reservationID})'">
+                    @Html.DisplayFor(modelItem => item.parkingSpotID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.parkingLotID)
+                </td>
+                <td style="text-align:right;">
+                    @Html.DisplayFor(modelItem => item.endTime)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

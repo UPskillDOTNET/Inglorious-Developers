@@ -15,9 +15,29 @@ namespace WebApp.Controllers
         {
             _webReservationService = reservationService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            await _webReservationService.GetAllReservations();
+            try
+            {
+                return View(_webReservationService.GetAllReservations().Result.Value);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        public async Task<IActionResult> Details(string id)
+        {
+            try
+            {
+                return View(_webReservationService.GetReservationById(id).Result.Value);
+            }
+            catch
+            {
+                return NotFound();
+            }
         }
     }
 }
