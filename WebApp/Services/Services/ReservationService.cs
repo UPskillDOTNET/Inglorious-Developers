@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using WebApp.DTO;
 using WebApp.Services.IServices;
@@ -37,6 +39,20 @@ namespace WebApp.Services.Services
         {
             var response = await _helper.GetClientAsync("central/reservations/users/" + id);
             return await response.Content.ReadAsAsync<List<ReservationDTO>>();
+        }
+
+        public async Task<ActionResult<ReservationDTO>> PostCentralReservation(ReservationDTO reservationDTO)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(reservationDTO), Encoding.UTF8, "application/json");
+            var response = await _helper.PostClientAsync("central/reservations", content);
+            return await response.Content.ReadAsAsync<ReservationDTO>();
+        }
+
+        public async Task<ActionResult<ReservationDTO>> PatchCentralReservation(string id)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(id), Encoding.UTF8, "application/json");
+            var response = await _helper.PutClientAsync("central/reservations" + id, content);
+            return await response.Content.ReadAsAsync<ReservationDTO>();
         }
     }
 }

@@ -77,7 +77,7 @@ namespace CentralAPI.Controllers
             {
                 if (await CentralReservationExists(centralReservationDTO.reservationID) == true)
                 {
-                    return Conflict("The CentralReservations already exist");
+                    return Conflict("This Reservations already exist");
                 }
                 return BadRequest(ex);
             }

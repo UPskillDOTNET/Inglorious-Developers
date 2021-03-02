@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApp.DTO;
 using WebApp.Services.IServices;
 
 namespace WebApp.Controllers
@@ -50,6 +51,30 @@ namespace WebApp.Controllers
             catch
             {
                 return NotFound();
+            }
+        }
+
+        public async Task<IActionResult> Create([Bind("centralReservationID,reservationID,parkingLotID,isCancelled,forSublet,startTime,hours,endTime,finalPrice,parkingSpotID,userID")] ReservationDTO resevationDTO)
+        {
+            try
+            {
+                return View(_webReservationService.PostCentralReservation(resevationDTO).Result.Value);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        public async Task<IActionResult> Edit(string id)
+        {
+            try
+            {
+                return View(_webReservationService.PatchCentralReservation(id).Result.Value);
+            }
+            catch
+            {
+                return BadRequest();
             }
         }
     }

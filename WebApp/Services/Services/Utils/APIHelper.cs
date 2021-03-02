@@ -52,7 +52,6 @@ namespace WebApp.Services.Services.Utils
             }
             throw new HttpRequestException(response.ReasonPhrase);
         }
-
         ////its gonna be used?
         public async Task<HttpResponseMessage> PayClientAsync(string url, StringContent content)
         {

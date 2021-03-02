@@ -14,12 +14,12 @@ namespace WebApp.Services.IServices
         Task<ActionResult<ReservationDTO>> GetReservationById(string id);
         Task<ActionResult<List<ReservationDTO>>> GetAllReservationsByUser(string id);
         //Task<ActionResult<IEnumerable<ReservationDTO>>> GetCentralReservationsNotCancelled();
-        //Task<ActionResult<ReservationDTO>> PostCentralReservation(ReservationDTO ReservationDTO);
+        Task<ActionResult<ReservationDTO>> PostCentralReservation(ReservationDTO ReservationDTO);
         //Task<ActionResult<ReservationDTO>> PostCentralReservationNotCompleted(ReservationDTO ReservationDTO);
         //Task<ActionResult<ReservationDTO>> GetEndTimeandFinalPrice(ReservationDTO centralReservation);
         //Task<bool> FindCentralReservationAny(string id);
         //Task<bool> subletReservationExists(ReservationDTO ReservationDTO);
-        //Task<ActionResult<ReservationDTO>> PatchCentralReservation(string id);
+        Task<ActionResult<ReservationDTO>> PatchCentralReservation(string id);
         //Task<ActionResult<ReservationDTO>> CompleteCentralReservation(string id);
         //Task<ActionResult<ReservationDTO>> SubletCentralReservation(string id);
         //Task<ActionResult<CentralReservation>> GetEndTimeandFinalPriceForComplete(CentralReservation centralReservation);
