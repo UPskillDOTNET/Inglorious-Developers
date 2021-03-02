@@ -53,17 +53,17 @@ namespace CentralAPI.Data
 
             var users = new User[]
             {
-                    new User{userID="1", name="Mariana Gomes", email="marianaribgomes@gmail.com", nif="111111111", paymentMethodID = "1"},
-                    new User{userID="2", name="Tiago Azevedo", email="tiagomina.azevedo@gmail.com", nif="222222222", paymentMethodID = "1"},
-                    new User{userID="3", name="João Martins", email="joaom.vodafone@gmail.com", nif="333333333", paymentMethodID = "2"},
-                    new User{userID="4",name="Diego Maradona",email= "caiocruzeiror@gmail.com",nif= "444444444", paymentMethodID = "1"},
-                    new User{userID="5",name="Michael Jordan",email= "sergio.valente.pinto@gmail.com" ,nif= "555555555", paymentMethodID = "1"},
-                    new User{userID="6",name="Freddie Mercury",email= "music@gmail.com",nif= "666666666", paymentMethodID = "1" },
-                    new User{userID="7",name="Queen Elizabeth II",email= "the.queen@gmail.com" ,nif= "777777777", paymentMethodID = "1"},
-                    new User{userID="8",name="Afonso Henriques",email= "afonso.rei@gmail.com",nif= "888888888", paymentMethodID = "1"},
-                    new User{userID="9",name="Elon Musk",email= "spaceX@gmail.com",nif= "999999999", paymentMethodID = "1"},
-                    new User{userID="10",name="André André",email= "vitoriasc@gmail.com" ,nif= "121121121", paymentMethodID = "1"},
-                    new User{userID="11",name="Jô Soares",email= "gordo@gmail.com",nif= "131131131", paymentMethodID = "1"}
+                    new User{UserName="Mariana", Email="marianaribgomes@gmail.com", EmailConfirmed=true, FirstName="Mariana", LastName="Gomes", userID="1", PasswordHash="wtvwtvwtv", nif="111111111", paymentMethodID = "1"},
+                    //new User{userID="2", name="Tiago Azevedo", email="tiagomina.azevedo@gmail.com", nif="222222222", paymentMethodID = "1"},
+                    //new User{userID="3", name="João Martins", email="joaom.vodafone@gmail.com", nif="333333333", paymentMethodID = "2"},
+                    //new User{userID="4",name="Diego Maradona",email= "caiocruzeiror@gmail.com",nif= "444444444", paymentMethodID = "1"},
+                    //new User{userID="5",name="Michael Jordan",email= "sergio.valente.pinto@gmail.com" ,nif= "555555555", paymentMethodID = "1"},
+                    //new User{userID="6",name="Freddie Mercury",email= "music@gmail.com",nif= "666666666", paymentMethodID = "1" },
+                    //new User{userID="7",name="Queen Elizabeth II",email= "the.queen@gmail.com" ,nif= "777777777", paymentMethodID = "1"},
+                    //new User{userID="8",name="Afonso Henriques",email= "afonso.rei@gmail.com",nif= "888888888", paymentMethodID = "1"},
+                    //new User{userID="9",name="Elon Musk",email= "spaceX@gmail.com",nif= "999999999", paymentMethodID = "1"},
+                    //new User{userID="10",name="André André",email= "vitoriasc@gmail.com" ,nif= "121121121", paymentMethodID = "1"},
+                    //new User{userID="11",name="Jô Soares",email= "gordo@gmail.com",nif= "131131131", paymentMethodID = "1"}
             };
             foreach (User u in users)
             {
