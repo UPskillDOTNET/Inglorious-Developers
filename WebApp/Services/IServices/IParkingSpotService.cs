@@ -8,12 +8,12 @@ using WebApp.DTO;
 namespace WebApp.Services.IServices {
     public interface IParkingSpotService {
         Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots(int pLotId);
-        //Task<ActionResult<IEnumerable<WebApp_ParkingSpotDTO>>> GetAllFreeParkingSpots(int id);
-        //Task<ActionResult<IEnumerable<WebApp_ParkingSpotDTO>>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate, int id);
+        Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllFreeParkingSpots(int id);
+        Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate, int id);
         Task<ActionResult<ParkingSpotDTO>> GetParkingSpotById(int pLotId, string pSpotId);
-        //Task<ActionResult<IEnumerable<WebApp_ParkingSpotDTO>>> GetFreeParkingSpotsByPrice(int id, decimal priceHour);
-        //Task<ActionResult<WebApp_ParkingSpotDTO>> CreateParkingSpot(WebApp_ParkingSpotDTO parkingSpotDTO, int id);
-        //Task<ActionResult<WebApp_ParkingSpotDTO>> EditParkingSpot(string id, WebApp_ParkingSpotDTO parkingSpotDTO, int pLotId);
-        //ValidationResult Validate(WebApp_ParkingSpotDTO parkingSpotDTO);
+        //Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByPrice(int id, decimal priceHour);
+        //Task<ActionResult<ParkingSpotDTO>> CreateParkingSpot(ParkingSpotDTO parkingSpotDTO, int id);
+        //Task<ActionResult<ParkingSpotDTO>> EditParkingSpot(string id, ParkingSpotDTO parkingSpotDTO, int pLotId);
+        //ValidationResult Validate(ParkingSpotDTO parkingSpotDTO);
     }
 }

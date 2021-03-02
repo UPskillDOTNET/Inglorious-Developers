@@ -1,0 +1,35 @@
+﻿@model IEnumerable<WebApp.DTO.ParkingSpotDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Free Parking Spots</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Free" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">ParkingSpot Designation</a>
+            </th>
+            <th style="text-align:right;">
+                <a asp-action="Free" asp-route-sortOrder="@ViewData["ParkingLotSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Price/hour</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.parkingSpotID)
+            </td>
+            <td style="text-align:right;">
+                €@Html.DisplayFor(modelItem => item.priceHour)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>

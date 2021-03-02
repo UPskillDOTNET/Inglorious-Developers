@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using WebApp.DTO;
 using WebApp.Services.IServices;
 using System.Threading.Tasks;
-
+using System;
 
 namespace WebApp.Controllers
 {
@@ -23,6 +23,23 @@ namespace WebApp.Controllers
                 ViewBag.parkLotName = _parkingLotService.GetParkingLotById(id).Result.Value.name;
                 return View( _parkingSpotService.GetAllParkingSpots(id).Result.Value);
             } catch {
+                return NotFound();
+            }
+        }
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> Free(int id) {
+            try {
+                return View( _parkingSpotService.GetAllFreeParkingSpots(id).Result.Value);
+            } catch (Exception) 
+            {
+                return NotFound();
+            }
+        }
+
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> FreeDate(DateTime startDate, DateTime endDate, int id) {
+            try {
+                return await _parkingSpotService.GetFreeParkingSpotsByDate(startDate, endDate, id);
+            } catch (Exception) 
+            {
                 return NotFound();
             }
         }
