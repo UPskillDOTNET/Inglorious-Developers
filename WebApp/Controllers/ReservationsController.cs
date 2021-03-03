@@ -54,23 +54,31 @@ namespace WebApp.Controllers
             }
         }
 
-        public async Task<IActionResult> Create([Bind("centralReservationID,reservationID,parkingLotID,isCancelled,forSublet,startTime,hours,endTime,finalPrice,parkingSpotID,userID")] ReservationDTO resevationDTO)
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(ReservationDTO resevationDTO)
         {
             try
             {
-                return View(_webReservationService.PostCentralReservation(resevationDTO).Result.Value);
+                var create = _webReservationService.PostCentralReservation(resevationDTO).Result.Value; 
+                return View("Reservations/UserIndex/"+ create.userID);
             }
             catch (Exception ex)
             {
                 return BadRequest();
             }
         }
-
+        
         public async Task<IActionResult> Edit(string id)
         {
             try
             {
-                return View(_webReservationService.PatchCentralReservation(id).Result.Value);
+                var cancel = _webReservationService.PatchCentralReservation(id).Result.Value;
+                return View(nameof(Index));
             }
             catch
             {

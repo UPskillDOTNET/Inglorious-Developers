@@ -28,7 +28,7 @@
         @foreach (var item in Model)
         {
             <tr class="table-hover">
-                <td onclick="location.href ='@Url.Action("Details", new {id = item.reservationID})'">
+                <td onclick="location.href ='@Url.Action("Details", new {id = item.centralReservationID})'">
                     @Html.DisplayFor(modelItem => item.reservationID)
                 </td>
                 <td>

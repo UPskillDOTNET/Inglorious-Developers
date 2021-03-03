@@ -51,7 +51,7 @@ namespace WebApp.Services.Services
         public async Task<ActionResult<ReservationDTO>> PatchCentralReservation(string id)
         {
             var content = new StringContent(JsonConvert.SerializeObject(id), Encoding.UTF8, "application/json");
-            var response = await _helper.PutClientAsync("central/reservations" + id, content);
+            var response = await _helper.PutClientAsync("central/reservations/" + id, content);
             return await response.Content.ReadAsAsync<ReservationDTO>();
         }
     }
