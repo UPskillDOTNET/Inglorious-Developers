@@ -1,16 +1,14 @@
 import * as React from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import CardTest from "../CardTest";
-import Test from '../ParkingLotCard'
-import parkingLotCard from "../ParkingLotCard"
+import ParkingLotCard from "../ParkingLotCard";
 
 export default function Explore() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>PARKING LOTS</Text>
       <ScrollView>
-      <Test/>
+        <ParkingLotCard />
       </ScrollView>
     </View>
   );

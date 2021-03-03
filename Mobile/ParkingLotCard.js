@@ -1,17 +1,23 @@
-import React, { Component, useRef } from "react";
+import React, { Component } from "react";
 import { Text, View, StyleSheet, TouchableOpacity, Modal } from "react-native";
 import { Card, Button, Icon } from "react-native-elements";
 import GetParkinglot from "./Service/ParkingLotTesting";
-import { Modalize } from "react-native-modalize";
 
 export default class ParkingLotCard extends Component {
-  state = {
-    parkingLots: [],
-    modalVisible: false,
-  };
+  // state = {
+  //   parkingLots: [],
+  //   modalVisible: false,
+  // };
 
   constructor() {
     super();
+    this.state = {
+      parkingLots: [],
+      modalVisible: false,
+    };
+  }
+
+  componentDidMount() {
     this.getParkinglots();
   }
 
@@ -124,7 +130,9 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
-    padding: 35,
+    width: "100%",
+    height: "30%",
+    bottom: 0,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
