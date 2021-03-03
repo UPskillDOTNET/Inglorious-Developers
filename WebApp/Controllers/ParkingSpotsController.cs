@@ -20,6 +20,7 @@ namespace WebApp.Controllers
 
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> Index(int id) {
             try {
+                ViewData["parkingLotId"] = id;
                 ViewBag.parkLotName = _parkingLotService.GetParkingLotById(id).Result.Value.name;
                 return View( _parkingSpotService.GetAllParkingSpots(id).Result.Value);
             } catch {
@@ -28,6 +29,7 @@ namespace WebApp.Controllers
         }
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> Free(int id) {
             try {
+                ViewData["parkingLotId"] = id;
                 return View( _parkingSpotService.GetAllFreeParkingSpots(id).Result.Value);
             } catch (Exception) 
             {
