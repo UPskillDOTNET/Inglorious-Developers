@@ -44,7 +44,7 @@ namespace WebApp.Services.Services
         public async Task<ActionResult<ReservationDTO>> PostCentralReservation(ReservationDTO reservationDTO)
         {
             var content = new StringContent(JsonConvert.SerializeObject(reservationDTO), Encoding.UTF8, "application/json");
-            var response = await _helper.PostClientAsync("central/reservations", content);
+            var response = await _helper.PostClientAsync("central/reservations/", content);
             return await response.Content.ReadAsAsync<ReservationDTO>();
         }
 

@@ -8,7 +8,6 @@ namespace PrivateParkAPI.DTO
         public Maps()
         {
             CreateMap<ParkingSpot, ParkingSpotDTO>().ReverseMap();
-            CreateMap<ParkingLot, ParkingLotDTO>().ReverseMap();
             CreateMap<Reservation, ReservationDTO>().ReverseMap();
         }
     }

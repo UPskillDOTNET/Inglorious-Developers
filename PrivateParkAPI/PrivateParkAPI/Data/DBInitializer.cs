@@ -7,25 +7,6 @@ namespace PrivateParkAPI.Data {
         public static void Initialize(PrivateParkContext context) {
             context.Database.EnsureCreated();
 
-            if (context.ParkingLots.Any()) {
-                return; //DB is seeded
-            }
-
-            // Look for any destinations.
-            var parkingLots = new ParkingLot[]
-            {
-                    new ParkingLot{name="Parque da República", companyOwner="NorteShopping",location="Avenida da República",capacity=125,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
-                    new ParkingLot{name="Parque Brito Capelo",companyOwner="InRio",location="Rua Brito Capelo",capacity=250,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
-                    new ParkingLot{name="Parque da Liberdade", companyOwner="CasinoEstoril",location="Avenida da Liberdade",capacity=423,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
-                    new ParkingLot{name="Parque dos Congregados", companyOwner="EuSeiLa",location="Rua dos Congregados",capacity=588,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
-                    new ParkingLot{name="Parque Carlos Alberto", companyOwner="Upskill",location="Praça Carlos Alberto",capacity=365,openingTime= DateTime.Parse("2020-02-22 12:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
-            };
-            foreach (ParkingLot p in parkingLots) {
-                context.ParkingLots.Add(p);
-            }
-            context.SaveChanges();
-
-
             if (context.ParkingSpots.Any()) {
                 return;   // DB has been seeded
             }

@@ -476,12 +476,6 @@ namespace testPrivateParkAPI
             parkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "O1", priceHour = 1.00m, isCovered = true, isPrivate = false});
             parkingSpotsContext.ParkingSpots.Add(new ParkingSpot { parkingSpotID = "A3", priceHour = 0.25m, isCovered = false, isPrivate = false});
 
-            parkingSpotsContext.ParkingLots.Add(new ParkingLot { name = "Parque da República", companyOwner = "NorteShopping", location = "Avenida da República", capacity = 125, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
-            parkingSpotsContext.ParkingLots.Add(new ParkingLot { name = "Parque Brito Capelo", companyOwner = "InRio", location = "Rua Brito Capelo", capacity = 250, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
-            parkingSpotsContext.ParkingLots.Add(new ParkingLot { name = "Parque da Liberdade", companyOwner = "CasinoEstoril", location = "Avenida da Liberdade", capacity = 423, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
-            parkingSpotsContext.ParkingLots.Add(new ParkingLot { name = "Parque dos Congregados", companyOwner = "EuSeiLa", location = "Rua dos Congregados", capacity = 588, openingTime = DateTime.Parse("2020-02-22 07:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
-            parkingSpotsContext.ParkingLots.Add(new ParkingLot { name = "Parque Carlos Alberto", companyOwner = "Upskill", location = "Praça Carlos Alberto", capacity = 365, openingTime = DateTime.Parse("2020-02-22 12:00:00"), closingTime = DateTime.Parse("2999-02-22 19:00:00") });
-
             parkingSpotsContext.SaveChanges();
         }
     }

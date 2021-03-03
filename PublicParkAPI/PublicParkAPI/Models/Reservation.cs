@@ -10,6 +10,7 @@ namespace PublicParkAPI.Models
     public class Reservation
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string reservationID { get; set; }
         [Required]
         public DateTime startTime { get; set; }

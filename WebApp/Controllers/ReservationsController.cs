@@ -64,8 +64,8 @@ namespace WebApp.Controllers
         {
             try
             {
-                var create = _webReservationService.PostCentralReservation(resevationDTO).Result.Value; 
-                return View("Reservations/UserIndex/"+ create.userID);
+                await _webReservationService.PostCentralReservation(resevationDTO);
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {

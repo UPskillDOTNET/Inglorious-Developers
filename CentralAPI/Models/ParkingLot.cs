@@ -6,6 +6,7 @@ namespace CentralAPI.Models
 {
     public class ParkingLot
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Key]
         public int parkingLotID { get; set; }
         [Required]
