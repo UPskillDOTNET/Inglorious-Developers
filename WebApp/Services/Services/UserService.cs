@@ -29,5 +29,17 @@ namespace WebApp.Services.Services
             var response = await _helper.GetClientAsync("central/users/" + id);
             return await response.Content.ReadAsAsync<UserDTO>();
         }
+
+        //public async Task<ActionResult<UserDTO>> UpdateUserById(string id)
+        //{
+        //    var response = await _helper.GetClientAsync("central/users/" + id);
+        //    return await response.Content.ReadAsAsync<UserDTO>();
+        //}
+
+        public async Task<ActionResult<UserDTO>> CreateUser(UserDTO userDTO, string currency)
+        {
+            var response = await _helper.GetClientAsync("central/users/currency");
+            return await response.Content.ReadAsAsync<UserDTO>();
+        }
     }
 }

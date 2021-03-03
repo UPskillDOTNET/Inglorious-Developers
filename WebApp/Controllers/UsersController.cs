@@ -49,6 +49,11 @@ namespace WebApp.Controllers
         //        return NotFound();
         //    }
         //}
+
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
     }
 }
 
