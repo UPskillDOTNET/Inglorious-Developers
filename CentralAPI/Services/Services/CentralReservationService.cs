@@ -77,6 +77,7 @@ namespace CentralAPI.Services.Services {
             //var qr = _qRgenerator.MakeQR(centralReservationDTO);
             //await _emailService.SendQRToEmailAsync(qr.Result.Value, centralReservationDTO.userID, centralReservationDTO.centralReservationID);
             var centralReservation = _mapper.Map<CentralReservationDTO, CentralReservation>(centralReservationDTO);
+            //If returns true when should return false?
             if (await subletReservationExists(centralReservationDTO))
             {
                 var subletReservation = await _centralReservationRepository.GetsubletReservation(centralReservation);
@@ -156,6 +157,7 @@ namespace CentralAPI.Services.Services {
             return await _centralReservationRepository.FindCentralReservationAnyByUser(userID);
         }
 
+        //Erro do Parking Lot 2
         public async Task<bool> subletReservationExists(CentralReservationDTO centralReservationDTO)
         {
             var reservation = _mapper.Map<CentralReservationDTO, CentralReservation>(centralReservationDTO);
