@@ -10,17 +10,18 @@ using System.Threading.Tasks;
 namespace CentralAPI.Models
 {
     [Index(nameof(nif), IsUnique = true)]
-    public class User:IdentityUser
+    public class User
 
     {
+        [Key]
         public string userID { get; set; }
 
         [Required]
-        public override string UserName { get; set; }
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
 
         [Required]
-        [DataType(DataType.EmailAddress)]
-        public override string Email { get; set; }
+        public string password { get; set; }
 
         [Required]
         [RegularExpression(@"^([a-zA-Z]{2,}\\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?)", ErrorMessage = "Valid Characters include (A-Z) (a-z) (', space and -)")]

@@ -55,6 +55,20 @@ namespace CentralAPI.Controllers
             }
         }
 
+        [HttpGet("email/{Email}")]
+        public async Task<ActionResult<UserDTO>> GetUserByEmail(string Email)
+        {
+            try
+            {
+                return await _userService.GetUserEmail(Email);
+            }
+            catch (Exception)
+            {
+
+                return NotFound();
+            }
+        }
+
         // HTTP PUT: Updates an User By ID
         // Gets a User registered in the central API, with a User ID provided in the route endpoint.
 
@@ -72,6 +86,7 @@ namespace CentralAPI.Controllers
                 return NotFound();
             }
         }
+
 
 
 

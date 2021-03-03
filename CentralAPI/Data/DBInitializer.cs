@@ -53,17 +53,13 @@ namespace CentralAPI.Data
 
             var users = new User[]
             {
-                    new User{UserName="Mariana", Email="marianaribgomes@gmail.com", EmailConfirmed=true, FirstName="Mariana", LastName="Gomes", userID="1", PasswordHash="wtvwtvwtv", nif="111111111", paymentMethodID = "1"},
-                    //new User{userID="2", name="Tiago Azevedo", email="tiagomina.azevedo@gmail.com", nif="222222222", paymentMethodID = "1"},
-                    //new User{userID="3", name="João Martins", email="joaom.vodafone@gmail.com", nif="333333333", paymentMethodID = "2"},
-                    //new User{userID="4",name="Diego Maradona",email= "caiocruzeiror@gmail.com",nif= "444444444", paymentMethodID = "1"},
-                    //new User{userID="5",name="Michael Jordan",email= "sergio.valente.pinto@gmail.com" ,nif= "555555555", paymentMethodID = "1"},
-                    //new User{userID="6",name="Freddie Mercury",email= "music@gmail.com",nif= "666666666", paymentMethodID = "1" },
-                    //new User{userID="7",name="Queen Elizabeth II",email= "the.queen@gmail.com" ,nif= "777777777", paymentMethodID = "1"},
-                    //new User{userID="8",name="Afonso Henriques",email= "afonso.rei@gmail.com",nif= "888888888", paymentMethodID = "1"},
-                    //new User{userID="9",name="Elon Musk",email= "spaceX@gmail.com",nif= "999999999", paymentMethodID = "1"},
-                    //new User{userID="10",name="André André",email= "vitoriasc@gmail.com" ,nif= "121121121", paymentMethodID = "1"},
-                    //new User{userID="11",name="Jô Soares",email= "gordo@gmail.com",nif= "131131131", paymentMethodID = "1"}
+                    new User{userID="1", Email="marianaribgomes@gmail.com",  FirstName="Mariana", LastName="Gomes",  password="1078c9f4efa5678ab69f942e537fbe41", nif="111111111", paymentMethodID = "1"},
+                    new User{userID="2", Email="tiagomina.azevedo@gmail.com",  FirstName="Tiago", LastName="Azevedo",  password="1078c9f4efa5678ab69f942e537fbe41", nif="222222222", paymentMethodID = "1"},
+                    new User{userID="3", Email="joaom.vodafone@gmail.com",  FirstName="João", LastName="Martins",  password="1078c9f4efa5678ab69f942e537fbe41", nif="333333333", paymentMethodID = "1"},
+                    new User{userID="4", Email="caiocruzeiror@gmail.com",  FirstName="Caio", LastName="Reis",  password="1078c9f4efa5678ab69f942e537fbe41", nif="444444444", paymentMethodID = "1"},
+                    new User{userID="5", Email="sergio.valente.pinto@gmail.com",  FirstName="Sergio", LastName="Pinto",  password="1078c9f4efa5678ab69f942e537fbe41", nif="555555555", paymentMethodID = "1"},
+                    new User{userID="6", Email="gordo@gmail.com",  FirstName="Jô", LastName="Soares",  password="1078c9f4efa5678ab69f942e537fbe41", nif="666666666", paymentMethodID = "1"},
+
             };
             foreach (User u in users)
             {
@@ -79,8 +75,8 @@ namespace CentralAPI.Data
                     new CentralReservation{centralReservationID="ABC4",reservationID="ABC4",isCancelled=false,forSublet=false,startTime= DateTime.Parse("2021-10-22 07:00:00"),endTime= DateTime.Parse("2021-10-22 10:00:00"),finalPrice= 10,hours = 1,parkingLotID=2,userID="4", parkingSpotID="E1"},
                     new CentralReservation{centralReservationID="ABC5",reservationID="ABC5",isCancelled=false,forSublet=false,startTime= DateTime.Parse("2021-09-22 07:00:00"),endTime= DateTime.Parse("2021-09-22 08:00:00"),finalPrice= 10,hours = 1,parkingLotID=2,userID="5", parkingSpotID="I1"},
                     new CentralReservation{centralReservationID="ABC6",reservationID="ABC6",isCancelled=false,forSublet=false,startTime= DateTime.Parse("2021-08-22 12:00:00"),endTime= DateTime.Parse("2021-08-22 13:00:00"),finalPrice= 10,hours = 1,parkingLotID=1,userID="6", parkingSpotID="A3"},
-                    new CentralReservation{centralReservationID="ABC7",reservationID="ABC7",isCancelled=true, forSublet=false,startTime= DateTime.Parse("2021-07-22 14:00:00"),endTime= DateTime.Parse("2021-07-22 15:00:00"),finalPrice= 10,hours = 1,parkingLotID=2,userID="7", parkingSpotID="A1"},
-                    new CentralReservation{centralReservationID="ABC8",reservationID="ABC8",isCancelled=false,forSublet=false,startTime= DateTime.Parse("2021-06-22 18:00:00"),endTime= DateTime.Parse("2021-06-22 19:00:00"),finalPrice= 10,hours = 1,parkingLotID=1,userID="8", parkingSpotID="I1"},
+                    new CentralReservation{centralReservationID="ABC7",reservationID="ABC7",isCancelled=true, forSublet=false,startTime= DateTime.Parse("2021-07-22 14:00:00"),endTime= DateTime.Parse("2021-07-22 15:00:00"),finalPrice= 10,hours = 1,parkingLotID=2,userID="6", parkingSpotID="A1"},
+                    new CentralReservation{centralReservationID="ABC8",reservationID="ABC8",isCancelled=false,forSublet=false,startTime= DateTime.Parse("2021-06-22 18:00:00"),endTime= DateTime.Parse("2021-06-22 19:00:00"),finalPrice= 10,hours = 1,parkingLotID=1,userID="5", parkingSpotID="I1"},
                     new CentralReservation{centralReservationID="ABC9",reservationID="ABC9",isCancelled=false,forSublet=false,startTime= DateTime.Parse("2021-02-17 10:00:00"),endTime= DateTime.Parse("2021-02-19 19:00:00"),finalPrice= 10,hours = 1,parkingLotID=1,userID="1", parkingSpotID="A1"}
             };
             foreach (CentralReservation r in centralReservations)

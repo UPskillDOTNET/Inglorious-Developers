@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 
@@ -46,6 +48,14 @@ namespace CentralAPI.Services.Services
             return userDTO;
         }
 
+
+        public async Task<ActionResult<UserDTO>> GetUserEmail(string Email)
+        {
+
+            var user = await _userRepository.GetUsersByEmail(Email);
+            var userDTO = _mapper.Map<User, UserDTO>(user);
+            return userDTO;
+        }
         public async Task<ActionResult<UserDTO>> UpdateUserById(string id, UserDTO userDTO)
         {
 
@@ -59,9 +69,10 @@ namespace CentralAPI.Services.Services
         public async Task<ActionResult<UserDTO>> CreateUser(UserDTO userDTO, string currency)
         {
             var user = _mapper.Map<UserDTO, User>(userDTO);
+            user.password = GetMD5(userDTO.password);
+            user.paymentMethodID = "1";
             using (TransactionScope scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
-
                 try
                 {
                     await _userRepository.CreateUser(user);
@@ -80,6 +91,23 @@ namespace CentralAPI.Services.Services
             userDTO = _mapper.Map<User, UserDTO>(user);
             return userDTO;
         }
+
+
+        public static string GetMD5(string str)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] fromData = Encoding.UTF8.GetBytes(str);
+            byte[] targetData = md5.ComputeHash(fromData);
+            string byte2String = null;
+
+            for (int i = 0; i < targetData.Length; i++)
+            {
+                byte2String += targetData[i].ToString("x2");
+
+            }
+            return byte2String;
+        }
+
 
         public async Task<bool> find(string id)
         {

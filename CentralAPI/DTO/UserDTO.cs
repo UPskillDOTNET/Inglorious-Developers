@@ -10,12 +10,13 @@ namespace CentralAPI.DTO
     {
         public string userID { get; set; }
 
-        public string name { get; set; }
+        public string Email { get; set; }
 
-        public string email { get; set; }
+        public string password { get; set; }
+        public string FirstName { get; set; }
 
+        public string LastName { get; set; }
+       
         public string nif { get; set; }
-
-        public string paymentMethodID { get; set; }
     }
 }

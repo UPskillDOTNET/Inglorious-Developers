@@ -13,7 +13,10 @@ namespace CentralAPI.Repositories.IRepository
        Task<IEnumerable<User>> GetUsers();
 
        Task<User> GetUsersById(string id);
-       
+
+       Task<User> GetUsersByEmail(string Email);
+
+
        Task<User> UpdateUserById(string id, User user);
 
        Task<User> CreateUser(User user);
