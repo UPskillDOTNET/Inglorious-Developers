@@ -96,3 +96,10 @@ body {
     margin-top: 200px;
 }
 
+td .pointer :hover {
+    cursor: pointer !important;
+}
+
+.pointer {
+    cursor: pointer !important;
+}
