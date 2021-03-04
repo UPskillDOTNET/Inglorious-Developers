@@ -24,7 +24,6 @@ export default class ParkingLotCard extends Component {
   async getParkinglots() {
     let parkingLot = await GetParkinglot();
     this.setState({ parkingLots: parkingLot });
-    console.log(this.state);
   }
 
   setModalVisible = (visible) => {
@@ -70,7 +69,7 @@ export default class ParkingLotCard extends Component {
         </Modal>
         {this.state.parkingLots.map((parkingLot, index) => (
           <Card Style={styles.container} key={index}>
-            <Card.Image source={parkingLot.imageURL} />
+            <Card.Image source={{ uri: parkingLot.imageURL }} />
             <Text style={styles.title}>{parkingLot.name}</Text>
             <Text style={styles.location}>{parkingLot.location}</Text>
             <Text style={styles.location}>{parkingLot.capacity}</Text>

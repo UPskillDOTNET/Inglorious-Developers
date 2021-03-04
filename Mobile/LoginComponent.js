@@ -8,13 +8,12 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Button } from "react-native-elements";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import Register from './screens/register'
+import Register from "./screens/register";
 
 export default function LoginComponent() {
   const navigation = useNavigation();
-
 
   return (
     <View style={styles.container}>
@@ -33,11 +32,13 @@ export default function LoginComponent() {
           <View>
             <Button style={styles.loginButtons} title="Login" />
           </View>
-          <TouchableOpacity onPress={() => Linking.openURL("")}>
+          <TouchableOpacity>
             <Text style={styles.forgetPassword}>Forgot your password?</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate(Register)}>
-            <Text style={[styles.forgetPassword,styles.registerLink]}>New Account</Text>
+            <Text style={[styles.forgetPassword, styles.registerLink]}>
+              New Account
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -78,14 +79,13 @@ const styles = StyleSheet.create({
     width: 300,
   },
   forgetPassword: {
-    flex:1,
+    flex: 1,
     color: "white",
     textAlign: "center",
-    flexDirection:'column',
+    flexDirection: "column",
   },
-  registerLink:{
-    marginVertical:10,
-    textDecorationLine:'underline'
+  registerLink: {
+    marginVertical: 10,
+    textDecorationLine: "underline",
   },
 });
-
