@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
 using System.Net.Http;
 using System.Text;
-
+using Newtonsoft.Json;
 
 namespace WebApp.Services.Services {
     public class ParkingSpotService : IParkingSpotService {
@@ -42,6 +42,12 @@ namespace WebApp.Services.Services {
 
         public async Task<ActionResult<ParkingSpotDTO>> GetParkingSpotById(int pLotId, string pSpotId) {
             var response = await _helper.GetClientAsync("central/parkingSpots/" + pSpotId + "/parkinglot/" + pLotId);
+            return await response.Content.ReadAsAsync<ParkingSpotDTO>();
+        }
+
+        public async Task<ActionResult<ParkingSpotDTO>> CreateParkingSpot(ParkingSpotDTO parkingSpotDTO, int pLotId) {
+            var content = new StringContent(JsonConvert.SerializeObject(parkingSpotDTO), Encoding.UTF8, "application/json");
+            var response = await _helper.PostClientAsync("central/parkingSpots/parkinglot/" + pLotId, content);
             return await response.Content.ReadAsAsync<ParkingSpotDTO>();
         }
     }
