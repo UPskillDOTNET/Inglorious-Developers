@@ -34,7 +34,7 @@ namespace PrivateParkAPI.Data {
                     new Reservation{reservationID="ABC6",isCancelled=false,startTime= DateTime.Parse("2021-08-22 12:00:00"),hours=1,endTime= DateTime.Parse("2021-08-22 13:00:00"),parkingSpotID="A1",},
                     new Reservation{reservationID="ABC7",isCancelled=true,startTime= DateTime.Parse("2021-07-22 14:00:00"),hours=1,endTime= DateTime.Parse("2021-07-22 15:00:00"),parkingSpotID="A1",},
                     new Reservation{reservationID="ABC8",isCancelled=false,startTime= DateTime.Parse("2021-06-22 18:00:00"),hours=1,endTime= DateTime.Parse("2021-06-22 19:00:00"),parkingSpotID="I1",},
-
+                    new Reservation{reservationID="ABC9",isCancelled=false,startTime= DateTime.Parse("2021-02-17 10:00:00"),hours=1,endTime= DateTime.Parse("2021-02-19 19:00:00"), parkingSpotID="A1"}
             };
             foreach (Reservation r in reservations) {
                 context.Reservations.Add(r);

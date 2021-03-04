@@ -65,7 +65,7 @@ namespace WebApp.Controllers
             try
             {
                 await _webReservationService.PostCentralReservation(resevationDTO);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Reservation");
             }
             catch (Exception ex)
             {
@@ -73,17 +73,41 @@ namespace WebApp.Controllers
             }
         }
         
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Cancel (string id)
         {
             try
             {
-                var cancel = _webReservationService.PatchCentralReservation(id).Result.Value;
-                return View(nameof(Index));
-            }
-            catch
+                var cancelReser = _webReservationService.PatchCentralReservation(id).Result.Value;
+                return RedirectToAction("Details", "Reservations",new {id});
+            } catch
             {
                 return BadRequest();
             }
         }
+        //public async Task<IActionResult> Edit (string? id)
+        //{
+        //    try
+        //    {
+        //        return View(_webReservationService.GetReservationById(id).Result.Value);
+        //    }
+        //    catch
+        //    {
+        //        return BadRequest();
+        //    }
+        //}
+
+        //[HttpPost]
+        //public async Task<IActionResult> Edit(string id)
+        //{
+        //    try
+        //    {
+        //        var cancel = _webReservationService.PatchCentralReservation(id).Result.Value;
+        //        return View();
+        //    }
+        //    catch
+        //    {
+        //        return BadRequest();
+        //    }
+        //}
     }
 }

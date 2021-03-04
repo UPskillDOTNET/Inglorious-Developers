@@ -161,7 +161,8 @@ namespace CentralAPI.Services.Services {
         public async Task<bool> subletReservationExists(CentralReservationDTO centralReservationDTO)
         {
             var reservation = _mapper.Map<CentralReservationDTO, CentralReservation>(centralReservationDTO);
-            return await _centralReservationRepository.subletReservationAny(reservation);
+            var result = await _centralReservationRepository.subletReservationAny(reservation);
+            return result;
         }
 
         //public ValidationResult Validate(CentralReservationDTO centralReservationDTO) {

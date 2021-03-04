@@ -60,9 +60,10 @@ namespace CentralAPI.Repositories.Repository
 
         public async Task<bool> subletReservationAny(CentralReservation centralReservation)
         {
-            return await GetAll().Where(r => ((r.startTime >= centralReservation.startTime && r.endTime <= centralReservation.endTime)
+            var result = await GetAll().Where(r => ((r.startTime >= centralReservation.startTime && r.endTime <= centralReservation.endTime)
                                         || (r.startTime <= centralReservation.endTime && r.endTime >= centralReservation.startTime))
                                         && r.parkingLotID == centralReservation.parkingLotID && r.parkingSpotID == centralReservation.parkingSpotID && r.forSublet == true).AnyAsync();
+            return result;
         }
         public async Task<CentralReservation> GetsubletReservation(CentralReservation centralReservation)
         {

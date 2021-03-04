@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Reservation List</h1>
 
 <table class="table">
     <thead>
@@ -27,7 +27,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr class="table-hover">
+            <tr style='background-color: @(item.isCancelled == false ? "white": "grey")';class="table-hover">
                 <td onclick="location.href ='@Url.Action("Details", new {id = item.centralReservationID})'">
                     @Html.DisplayFor(modelItem => item.reservationID)
                 </td>
