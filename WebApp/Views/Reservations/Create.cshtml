@@ -25,16 +25,6 @@
         </div>*@
             @Html.HiddenFor(model => model.parkingLotID)
             @Html.HiddenFor(model => model.parkingSpotID)
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="isCancelled" /> @Html.DisplayNameFor(model => model.isCancelled)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="forSublet" /> @Html.DisplayNameFor(model => model.forSublet)
-                </label>
-            </div>
             <div class="form-group">
                 <label asp-for="startTime" class="control-label"></label>
                 <input asp-for="startTime" class="form-control" />
