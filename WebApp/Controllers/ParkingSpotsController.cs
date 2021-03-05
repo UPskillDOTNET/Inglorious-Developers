@@ -51,9 +51,11 @@ namespace WebApp.Controllers
         }
 
         public async Task<ActionResult<ParkingSpotDTO>> Details(int id, string pSpotId) {
-            try {
-                ViewData["parkingLotId"] = id;
-                return View( _parkingSpotService.GetParkingSpotById(id, pSpotId).Result.Value);
+            try 
+            {
+                var parkingSpot = _parkingSpotService.GetParkingSpotById(id, pSpotId).Result.Value;
+                parkingSpot.parkingLotID = id;
+                return View(parkingSpot);
             } catch {
                 return NotFound();
             }

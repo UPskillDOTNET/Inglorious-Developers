@@ -54,9 +54,15 @@ namespace WebApp.Controllers
             }
         }
 
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(int id , string pSpotId)
         {
-            return View();
+            ReservationDTO reservationDTO = new ReservationDTO()
+            {
+                parkingLotID = id,
+                parkingSpotID = pSpotId,
+                startTime = DateTime.Now
+            };
+            return View(reservationDTO);
         }
 
         [HttpPost]
@@ -65,7 +71,7 @@ namespace WebApp.Controllers
             try
             {
                 await _webReservationService.PostCentralReservation(resevationDTO);
-                return RedirectToAction("Index", "Reservations");
+                return RedirectToAction("Free", "ParkingSpots", new { id = resevationDTO.parkingLotID });
             }
             catch (Exception ex)
             {

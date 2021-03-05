@@ -43,8 +43,9 @@
         </dd>
     </dl>
 </div>
+
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index", new { id = ViewData["parkingLotId"] })
+    @Html.ActionLink("Reserve Now", "Create", "Reservations", new { id = Model.parkingLotID, pSpotId = Model.parkingSpotID })|
+    @Html.ActionLink("Back to List", "Free", new { id = Model.parkingLotID })
 
 </div>
