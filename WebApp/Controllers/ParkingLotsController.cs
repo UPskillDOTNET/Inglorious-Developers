@@ -16,8 +16,23 @@ namespace WebApp.Controllers
         {
             _webParkingLotService = parkingLotService;
         }
-        public async Task<IActionResult> Index()
-        {await _webParkingLotService.GetAllParkingLots();
+        public async Task<IActionResult> Index(string sortOrder)
+        {
+
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["LocationSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            var parkingLots = _webParkingLotService.GetAllParkingLots().Result.Value;
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    parkingLots = parkingLots.OrderByDescending(p => p.name);
+                    break;
+                default:
+                    parkingLots = parkingLots.OrderBy(p => p.name);
+                    break;
+            }
             try
             {
                 return View( _webParkingLotService.GetAllParkingLots().Result.Value);

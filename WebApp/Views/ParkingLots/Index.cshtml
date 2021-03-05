@@ -5,13 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Parking Lot List</h1>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">ParkingLot Name</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.name)</a>
+            </th>
+            <th style="text-align:right;">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocationSortParm"]">@Html.DisplayNameFor(model => model.location)</a>
             </th>
         </tr>
     </thead>
