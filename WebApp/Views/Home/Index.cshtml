@@ -1,15 +1,20 @@
 ﻿@{
     ViewData["Title"] = "Home";
 }
-
-<body class="home">
+<div id="overlay">
+<body class="home" >
     <div class="landing">
-        <div class="landtext text-right">
-            <h1 class="title">park around</h1>
-            <h4 class="catch">worried about parking?</h4>
-            <h4 class="catch">We figured it out for you!</h4>
-            <button class="btn"<a class="nav-link text-dark" asp-area="" asp-controller="ParkingLots" asp-action="Index">CHECK ParkingLots</a></button>
-            <button class="btn"<a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Create">Register</a></button>
+            <div class="landtext text-right">
+                <h1 class="title">park around</h1>
+                <h4 class="catch">worried about parking?</h4>
+                <h4 class="catch">we figured it out for you!</h4>
+                <a class="about-btn" asp-area="" asp-controller="ParkingLots" asp-action="Index">PARKS</a>
+                <a class="about-btn" asp-area="" asp-controller="Users" asp-action="Create">SIGN IN</a>
+            </div>
         </div>
-    </div>
 </body>
+
+</div>
+
+
+

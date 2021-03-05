@@ -19,7 +19,7 @@ a {
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
+  color: white;
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
@@ -64,10 +64,15 @@ body {
 }
 .footer {
   position: absolute;
+  color: white !important;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+a .footer {
+    color: white !important;
 }
 
 
@@ -78,6 +83,20 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.home .overlay {
+    background-color: rgba(0, 0, 0, 0.35) !important;
+}
+
+.landing {
+    z-index: -1000;
+    background-color: rgba(0, 0, 0, 0.35) !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .landing img {
@@ -93,6 +112,82 @@ body {
 
 .landtext {
     color: white;
-    margin-top: 200px;
+    margin-top: 18em;
+    z-index: -800;
+    padding-right: 100px;
 }
 
+
+td .pointer :hover {
+    cursor: pointer !important;
+}
+
+.pointer {
+    cursor: pointer !important;
+}
+#navbar {
+    min-height: 77px;
+    transition: all 0.3s;
+    /*    background-color: #212831 !important;*/
+    background-color: #fce373 !important;
+}
+.homenav {
+    background-color: #fce373 !important;
+}
+
+.text-dark {
+    color: #4a4a4a !important;
+    font-weight: 600 !important;
+    font-family: Arial;
+    justify-content: space-between;
+    font-size: 16px;
+    padding: 0px 10px;
+    cursor: pointer;
+}
+
+    a .text-dark :hover {
+        color: white !important;
+        font-weight: 900;
+        background-color: #a385bd;
+    }
+
+.nav-link :hover {
+    color: white !important;
+    font-weight: 900;
+    background-color: #a385bd;
+}
+
+
+.navbar-light .navbar-nav .nav-link {
+    color: #a385bd;
+}
+
+    .navbar-light .navbar-nav .nav-link :hover {
+        color: #a385bd;
+        background-color: #a385bd;
+    }
+
+
+.landing .about-btn {
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: 50px;
+    transition: 0.5s;
+    line-height: 1;
+    margin: 10px;
+    color: #FCE373 !important;
+    -webkit-animation-delay: 0.8s;
+    animation-delay: 0.8s;
+    border: 2px solid #FCE373;
+}
+
+    .landing .about-btn:hover {
+        background: #FCE373;
+        font-weight: 500;
+        color: black !important;
+        text-decoration: none;
+    }

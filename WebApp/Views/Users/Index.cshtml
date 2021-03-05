@@ -20,7 +20,7 @@
         @foreach (var item in Model)
         {
             <tr class="table-hover">
-                <td onclick="location.href ='@Url.Action("Details", new {id = item.userID})'">
+                <td class="pointer" onclick="location.href ='@Url.Action("Details", new {id = item.userID})'">
                     @Html.DisplayFor(modelItem => item.name)
                 </td>
                 <td style="text-align:right;">

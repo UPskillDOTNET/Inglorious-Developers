@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using WebApp.DTO;
 using WebApp.Services.IServices;
@@ -38,7 +40,8 @@ namespace WebApp.Services.Services
 
         public async Task<ActionResult<UserDTO>> CreateUser(UserDTO userDTO, string currency)
         {
-            var response = await _helper.GetClientAsync("central/users/currency");
+            var content = new StringContent(JsonConvert.SerializeObject(userDTO), Encoding.UTF8, "application/json");
+            var response = await _helper.PostClientAsync("central/users/currency", content);
             return await response.Content.ReadAsAsync<UserDTO>();
         }
     }

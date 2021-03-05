@@ -29,7 +29,7 @@
     <tbody>
         @foreach (var item in Model) {
             <tr class="table-hover">
-                <td class="tablehover" onclick="location.href = '@Url.Action("Details", new { id = ViewData["parkingLotId"], pSpotId=item.parkingSpotID })'">
+                <td class="tablehover pointer" onclick="location.href = '@Url.Action("Details", new { id = ViewData["parkingLotId"], pSpotId=item.parkingSpotID })'">
                     @Html.DisplayFor(modelItem => item.parkingSpotID)
                 </td>
                 <td style="text-align:right;">
