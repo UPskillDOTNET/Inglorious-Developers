@@ -65,7 +65,7 @@ namespace WebApp.Controllers
             try
             {
                 await _webReservationService.PostCentralReservation(resevationDTO);
-                return RedirectToAction("Index", "Reservation");
+                return RedirectToAction("Index", "Reservations");
             }
             catch (Exception ex)
             {
