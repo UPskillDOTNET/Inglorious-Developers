@@ -19,7 +19,7 @@ a {
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
+  color: white;
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
@@ -64,10 +64,15 @@ body {
 }
 .footer {
   position: absolute;
+  color: white !important;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+a .footer {
+    color: white !important;
 }
 
 
@@ -78,6 +83,20 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.home .overlay {
+    background-color: rgba(0, 0, 0, 0.40);
+}
+
+.landing {
+    z-index: -1000;
+    background-color: rgba(0, 0, 0, 0.50);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .landing img {
@@ -93,8 +112,11 @@ body {
 
 .landtext {
     color: white;
-    margin-top: 200px;
+    margin-top: 18em;
+    z-index: -800;
+    padding-right: 100px;
 }
+
 
 td .pointer :hover {
     cursor: pointer !important;
@@ -102,4 +124,43 @@ td .pointer :hover {
 
 .pointer {
     cursor: pointer !important;
+}
+#navbar {
+    min-height: 77px;
+    transition: all 0.3s;
+    /*    background-color: #212831 !important;*/
+    background-color: #ffffff00 !important;
+}
+.homenav {
+    background-color: #66FCF1 !important;
+}
+
+
+.landing .about-btn {
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: 50px;
+    transition: 0.5s;
+    line-height: 1;
+    margin: 10px;
+    color: #66FCF1;
+    -webkit-animation-delay: 0.8s;
+    animation-delay: 0.8s;
+    border: 2px solid #66FCF1;
+}
+
+    .landing .about-btn:hover {
+        background: #66FCF1;
+        font-weight: 500;
+        color: dimgrey;
+        text-decoration: none;
+    }
+
+.navbar-nav li {
+    color: white;
+    nav-link
 }
