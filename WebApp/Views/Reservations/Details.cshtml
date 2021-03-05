@@ -94,7 +94,7 @@
 <div>
     
     @*@Html.ActionLink("Cancel", "Edit", new { id = Model.centralReservationID }) |*@
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Details", "User",new { id = Model.userID })
 </div>
 
 @section Scripts{
