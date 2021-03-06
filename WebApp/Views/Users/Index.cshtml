@@ -5,28 +5,37 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>List of Registered Users</h1>
 
 
 <table class="table">
     <thead>
         <tr>
             <th>
-            <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Users</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Users</a>
+            </th>
+            <th style="text-align:center;">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">NIF</a>
+            </th>
+            <th style="text-align:right;">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Email</a>
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr class="table-hover">
-                <td class="pointer" onclick="location.href ='@Url.Action("Details", new {id = item.userID})'">
-                    @Html.DisplayFor(modelItem => item.name)
-                </td>
-                <td style="text-align:right;">
-                    @Html.DisplayFor(modelItem => item.email)
-                </td>
-            </tr>
+        <tr class="table-hover">
+            <td class="pointer" onclick="location.href ='@Url.Action("Details", new {id = item.userID})'">
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td style="text-align:center;">
+                @Html.DisplayFor(modelItem => item.nif)
+            </td>
+            <td style="text-align:right;">
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+        </tr>
         }
     </tbody>
 </table>
