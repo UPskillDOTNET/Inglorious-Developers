@@ -7,35 +7,42 @@
 
 <h1>List of Registered Users</h1>
 
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name or NIF: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Users</a>
+                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
             </th>
             <th style="text-align:center;">
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">NIF</a>
+                @Html.ActionLink("NIF", "Index", new { sortOrder = ViewBag.NifSortParm })
             </th>
             <th style="text-align:right;">
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Email</a>
+                @Html.ActionLink("Email", "Index", new { sortOrder = ViewBag.EmailSortParm })
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-        <tr class="table-hover">
-            <td class="pointer" onclick="location.href ='@Url.Action("Details", new {id = item.userID})'">
-                @Html.DisplayFor(modelItem => item.name)
-            </td>
-            <td style="text-align:center;">
-                @Html.DisplayFor(modelItem => item.nif)
-            </td>
-            <td style="text-align:right;">
-                @Html.DisplayFor(modelItem => item.email)
-            </td>
-        </tr>
+            <tr class="table-hover">
+                <td class="pointer" onclick="location.href ='@Url.Action("Details", new {id = item.userID})'">
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td style="text-align:center;">
+                    @Html.DisplayFor(modelItem => item.nif)
+                </td>
+                <td style="text-align:right;">
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+            </tr>
         }
     </tbody>
 </table>

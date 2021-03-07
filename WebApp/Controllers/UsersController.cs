@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using WebApp.DTO;
 using WebApp.Services.IServices;
@@ -15,18 +16,42 @@ namespace WebApp.Controllers
         {
             _webUserService = userService;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            await _webUserService.GetAllUsers();
-            try
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.NifSortParm = sortOrder == "Nif" ? "nif_desc" : "Nif";
+            ViewBag.EmailSortParm = sortOrder == "Email" ? "email_desc" : "email";
+
+
+            var users = from u in _webUserService.GetAllUsers().Result.Value
+                        select u;
+
+            if (!String.IsNullOrEmpty(searchString))
             {
-                return View(_webUserService.GetAllUsers().Result.Value);
+                users = users.Where(u => u.name.Contains(searchString)
+                                || u.nif.Contains(searchString));
             }
-            catch
+
+            switch (sortOrder)
             {
-                return NotFound();
+                case "name_desc":
+                    users = users.OrderBy(u => u.name);
+                    break;
+                case "nif_desc":
+                    users = users.OrderBy(u => u.nif);
+                    break;
+                case "email_desc":
+                    users = users.OrderBy(u => u.email);
+                    break;
+                default:
+                    users = users.OrderBy(u => u.name);
+                    break;
             }
-        }
+
+            return View(users.ToList());
+            }
+        
+            
 
         public async Task<IActionResult> Details(string id)
         {
