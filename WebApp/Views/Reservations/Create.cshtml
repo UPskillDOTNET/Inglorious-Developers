@@ -35,7 +35,8 @@
                 <input asp-for="hours" class="form-control" />
                 <span asp-validation-for="hours" class="text-danger"></span>
             </div>
-             @User.FindFirst("sub")
+            @Html.HiddenFor(model => model.userID)
+             @User.FindFirst("name")?.Value
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

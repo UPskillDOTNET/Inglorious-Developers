@@ -20,10 +20,11 @@ namespace WebApp.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            //await _webReservationService.GetAllReservations();
+            var id = HttpContext.User.FindFirst("sub")?.Value;
             try
             {
-                return View(_webReservationService.GetAllReservations().Result.Value);
+                var vm = await _webReservationService.GetAllReservationsByUser(id);
+                return View(vm.Value);
             }
             catch
             {
@@ -34,8 +35,8 @@ namespace WebApp.Controllers
         public async Task<IActionResult> Details(string id)
         {
             try
-            {
-                return View(_webReservationService.GetReservationById(id).Result.Value);
+            { var vm = await _webReservationService.GetReservationById(id);
+                return View(vm.Value);
             }
             catch
             {
@@ -43,26 +44,14 @@ namespace WebApp.Controllers
             }
         }
 
-        public async Task<IActionResult> UserIndex(string id)
-        {
-            try
-            {
-                //ViewData["userID"] = id;
-                return View(_webReservationService.GetAllReservationsByUser(id).Result.Value);
-            }
-            catch
-            {
-                return NotFound();
-            }
-        }
-
-        public async Task<IActionResult> Create(int id , string pSpotId)
+        public IActionResult Create(int id, string pSpotId)
         {
             ReservationDTO reservationDTO = new ReservationDTO()
             {
                 parkingLotID = id,
                 parkingSpotID = pSpotId,
-                startTime = DateTime.Now
+                startTime = DateTime.Now,
+                userID = HttpContext.User.FindFirst("sub")?.Value
             };
             return View(reservationDTO);
         }
@@ -77,7 +66,7 @@ namespace WebApp.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex);
             }
         }
         
@@ -85,7 +74,7 @@ namespace WebApp.Controllers
         {
             try
             {
-                var cancelReser = _webReservationService.PatchCentralReservation(id).Result.Value;
+                await _webReservationService.PatchCentralReservation(id);
                 return RedirectToAction("Details", "Reservations",new {id});
             } catch
             {
