@@ -20,14 +20,10 @@ namespace CentralAPI.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly UserManager<User> userManager;
-        private readonly IConfiguration _configuration;
 
         public UsersController(IUserService userService, UserManager<User> userManager, IConfiguration configuration)
         {
             _userService = userService;
-            this.userManager = userManager;
-            _configuration = configuration;
         }
 
         // HTTP GET: Get All Users
@@ -65,28 +61,11 @@ namespace CentralAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register([FromBody]UserDTO userDTO)
+        public async Task<ActionResult<UserDTO>> Register([FromBody]UserDTO userDTO)
         {
-            var userExists = await userManager.FindByNameAsync(userDTO.UserName);
-            if (userExists != null)
-                return BadRequest("User " + userDTO.UserName + " already exists!");
-
-           User user = new User()
-            {
-                Email = userDTO.Email,
-                SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = userDTO.UserName,
-                name = userDTO.name,
-                nif = userDTO.nif,
-
-                
-            };
-          
-            var result = await userManager.CreateAsync(user, userDTO.Password);
-            if (!result.Succeeded)
-                return BadRequest("User creation failed! Please check user details and try again." );
-
-            return Ok();
+            var user = await _userService.CreateUser(userDTO);
+           
+            return Ok(user.Value);
         }
 
 

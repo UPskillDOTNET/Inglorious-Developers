@@ -13,7 +13,7 @@ namespace WebApp.Services.IServices
 
         //public Task<ActionResult<UserDTO>> UpdateUserById(string id);
 
-        public Task<ActionResult<UserDTO>> CreateUser(UserDTO userDTO, string currency);
+        public Task<ActionResult<UserDTO>> CreateUser(UserDTO userDTO);
 
         //Task<ActionResult<WebApp_UserDTO>> DeleteUserProfile(string id);
     }

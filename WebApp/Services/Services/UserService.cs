@@ -38,10 +38,10 @@ namespace WebApp.Services.Services
         //    return await response.Content.ReadAsAsync<UserDTO>();
         //}
 
-        public async Task<ActionResult<UserDTO>> CreateUser(UserDTO userDTO, string currency)
+        public async Task<ActionResult<UserDTO>> CreateUser(UserDTO userDTO)
         {
             var content = new StringContent(JsonConvert.SerializeObject(userDTO), Encoding.UTF8, "application/json");
-            var response = await _helper.PostClientAsync("central/users/currency", content);
+            var response = await _helper.PostClientAsync("central/users", content);
             return await response.Content.ReadAsAsync<UserDTO>();
         }
     }

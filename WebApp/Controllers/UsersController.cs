@@ -61,11 +61,11 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(UserDTO userDTO, string currency)
+        public async Task<IActionResult> Create(UserDTO userDTO)
         {
             try
             {
-                await _webUserService.CreateUser(userDTO, currency);
+                await _webUserService.CreateUser(userDTO);
                 return RedirectToAction("Index", "Users");
             }
             catch (Exception)

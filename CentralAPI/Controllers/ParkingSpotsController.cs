@@ -28,6 +28,7 @@ namespace CentralAPI.Controllers
         [HttpGet("parkinglot/{pLotId}")]
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots(int pLotId)
         {
+
             try
             {
                 return await _parkingSpotService.GetAllParkingSpots(pLotId);

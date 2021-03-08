@@ -60,9 +60,9 @@ namespace CentralAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<WalletDTO>> CreateWallet(string userID, string currency)
+        public async Task<ActionResult<WalletDTO>> CreateWallet(string userID)
         {
-            var resp = await _walletService.CreateWallet(userID, currency);
+            var resp = await _walletService.CreateWallet(userID);
             var walletDTO = resp.Value;
 
             if (walletDTO == null)

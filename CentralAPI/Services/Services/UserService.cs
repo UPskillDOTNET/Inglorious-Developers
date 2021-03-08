@@ -3,6 +3,7 @@ using CentralAPI.DTO;
 using CentralAPI.Models;
 using CentralAPI.Repositories.IRepository;
 using CentralAPI.Services.IServices;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,14 +17,16 @@ namespace CentralAPI.Services.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly IWalletService _walletService;
+        private readonly UserManager<User> userManager;
         private readonly IMapper _mapper;
 
 
-        public UserService(IUserRepository userRepository,IWalletService walletService , IMapper mapper)
+        public UserService(IUserRepository userRepository,IWalletService walletService , IMapper mapper, UserManager<User> userManager)
         {
             _userRepository = userRepository;
             _walletService = walletService;
             _mapper = mapper;
+            this.userManager = userManager;
         }
 
         public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers()
@@ -56,16 +59,31 @@ namespace CentralAPI.Services.Services
             return userDTO;
         }
 
-        public async Task<ActionResult<UserDTO>> CreateUser(UserDTO userDTO, string currency)
-        {
-            var user = _mapper.Map<UserDTO, User>(userDTO);
+        public async Task<ActionResult<UserDTO>> CreateUser(UserDTO userDTO)
+        {    
             using (TransactionScope scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
 
                 try
                 {
-                    await _userRepository.CreateUser(user);
-                    await _walletService.CreateWallet(user.Id, currency);
+                    var userExists = await userManager.FindByNameAsync(userDTO.UserName);
+                    if (userExists != null)
+                        throw new Exception("User " + userDTO.UserName + " already exists!");
+
+                    User user = new User()
+                    {
+                        Email = userDTO.Email,
+                        SecurityStamp = Guid.NewGuid().ToString(),
+                        UserName = userDTO.UserName,
+                        name = userDTO.name,
+                        nif = userDTO.nif,
+                    };
+
+                    var result = await userManager.CreateAsync(user, userDTO.Password);
+                    if (!result.Succeeded)
+                        throw new AggregateException("User creation failed! Please check user details and try again.");
+                   
+                    await _walletService.CreateWallet(user.Id);
                 }
                 catch (Exception ex)
                 {
@@ -73,11 +91,8 @@ namespace CentralAPI.Services.Services
 
                 }
                 scope.Complete();
+
             }
-
-
-
-            userDTO = _mapper.Map<User, UserDTO>(user);
             return userDTO;
         }
 

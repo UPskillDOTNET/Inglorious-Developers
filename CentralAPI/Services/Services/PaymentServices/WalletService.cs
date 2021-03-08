@@ -51,12 +51,9 @@ namespace CentralAPI.Services.Services
             return walletDTO;
         }
         
-        public async Task<ActionResult<WalletDTO>> CreateWallet(string userID, string currency)
+        public async Task<ActionResult<WalletDTO>> CreateWallet(string userID)
         {
-            if (currency == null)
-            {
-                currency = "euro";
-            }
+            var currency = "Euro";
 
             Wallet wallet = new Wallet {
                 walletID = userID,
