@@ -38,6 +38,16 @@ namespace CentralAPI.Data
             {
                 new ParkingLot{parkingLotID=1, name="Parque Brito Capelo",owner="InRio",location="Rua Brito Capelo",capacity=250,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL="https://localhost:44353/"},
                 new ParkingLot{parkingLotID=2, name="Parque da República", owner="Matosinhos", location="Avenida da República", capacity=125, openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL="https://localhost:44350/"},
+                new ParkingLot{parkingLotID=3, name="Parque do Palácio da Justiça", owner="Porto", location="Rua Campo dos Mártires da Pátria", capacity=235, openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL=""},
+                new ParkingLot{parkingLotID=4, name="Parque da Ribeira", owner="Porto", location="Praça Infante D. Henrique", capacity=155, openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL=""},
+                new ParkingLot{parkingLotID=5, name="Parque do Castelo do Queijo", owner="Porto", location="Praça Gonçalves Zarco", capacity=103, openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL=""},
+                new ParkingLot{parkingLotID=6, name="Parque da Estação Ferroviária", owner="Lisboa", location="Estação Santa Apolónia", capacity=95, openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL=""},
+                new ParkingLot{parkingLotID=7, name="Parque da Baixa-Chiado", owner="Lisboa", location="Baixa-Chiado", capacity=185, openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL=""},
+                new ParkingLot{parkingLotID=8, name="Parque da Avenida Central", owner="Braga", location="Avenida Central", capacity=75, openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL=""},
+                new ParkingLot{parkingLotID=9, name="Parque do Marquês", owner="Porto", location="Rua de João Pedro Ribeiro", capacity=109, openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL=""},
+                new ParkingLot{parkingLotID=10, name="Parque da Trindade", owner="Porto", location="Rua de Fernandes Tomás", capacity=176, openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL=""},
+                new ParkingLot{parkingLotID=11, name="Parque do Palácio de Cristal", owner="Porto", location="Rua Jorge de Viterbo Ferreira", capacity=54, openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00"),myURL=""},
+
 
             };
             foreach (ParkingLot p in parkingLots)
