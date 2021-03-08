@@ -1,5 +1,6 @@
 using CentralAPI.Data;
 using CentralAPI.DTO;
+using CentralAPI.Models;
 using CentralAPI.Repositories.IRepository;
 using CentralAPI.Repositories.Repository;
 using CentralAPI.Repositories.Repository.PaymentRepositories;
@@ -10,6 +11,7 @@ using CentralAPI.Services.Services.PaymentServices;
 using CentralAPI.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,12 +34,15 @@ namespace CentralAPI
         {
             services.AddDbContext<CentralAPIContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<User, IdentityRole>()
+               .AddEntityFrameworkStores<CentralAPIContext>()
+               .AddDefaultTokenProviders();
             services.AddAplicationRepo();
             services.AddAplicationService();
             services.AddTransient<QRgenerator>();
             services.AddTransient<EmailService>();
             services.AddTransient<ClientHelper>();
-
+          
             services.AddControllers().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
@@ -46,7 +51,8 @@ namespace CentralAPI
                     .AddIdentityServerAuthentication("Bearer", options =>
                     {
                         options.ApiName = "CentralAPI";
-                        options.Authority = "https://localhost:44309";
+                        options.Authority = "https://localhost:5001";
+                        options.RequireHttpsMetadata = false;
                     });
             services.AddControllers();
         }

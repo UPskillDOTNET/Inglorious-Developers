@@ -1,8 +1,12 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+
 
 namespace WebApp.Services.Services.Utils
 {
@@ -14,10 +18,26 @@ namespace WebApp.Services.Services.Utils
             _clientFactory = clientFactory;
         }
 
-        public async Task<HttpResponseMessage> GetClientAsync(string url)
+        public async Task<HttpResponseMessage> GetClientAsync2(string url, string accessToken)
         {
+
             var client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:44381/");
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            var response = await client.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                return response;
+            }
+            throw new HttpRequestException(response.ReasonPhrase);
+
+        }
+        public async Task<HttpResponseMessage> GetClientAsync(string url)
+        {
+
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:44381/");
+     
             var response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {

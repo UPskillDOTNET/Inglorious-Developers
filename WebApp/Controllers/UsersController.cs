@@ -16,45 +16,9 @@ namespace WebApp.Controllers
         {
             _webUserService = userService;
         }
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public async Task<IActionResult> Index()
         {
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.NifSortParm = String.IsNullOrEmpty(sortOrder) ? "nif_desc" : "";
-            ViewBag.EmailSortParm = String.IsNullOrEmpty(sortOrder) ? "email_desc" : "";
-
-
-            var users = from u in _webUserService.GetAllUsers().Result.Value
-                        select u;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                users = users.Where(u => u.name.Contains(char.ToUpper(searchString[0]) + searchString.Substring(1))
-                                || u.nif.Contains(searchString));
-            }
-
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    users = users.OrderByDescending(u => u.name);
-                    break;
-                case "nif_desc":
-                    users = users.OrderByDescending(u => u.nif);
-                    break;
-                case "email_desc":
-                    users = users.OrderByDescending(u => u.email);
-                    break;
-                default:
-                    users = users.OrderBy(u => u.name);
-                    break;
-            }
-
-            return View(users.ToList());
-            }
-        
-            
-
-        public async Task<IActionResult> Details(string id)
-        {
+            var id = HttpContext.User.FindFirst("sub")?.Value;
             try
             {
                 return View(_webUserService.GetUserById(id).Result.Value);
@@ -64,6 +28,9 @@ namespace WebApp.Controllers
                 return NotFound();
             }
         }
+        
+            
+
 
         //public async Task<IActionResult> Edit(string id)
         //{

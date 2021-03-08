@@ -19,7 +19,7 @@ namespace CentralAPI.Services.Services
         {
             var user = await _userService.GetUserById(id);
             string from = "ingloriousdevelopers.upskill@gmail.com";
-            string to = user.Value.email.ToString();
+            string to = user.Value.Email.ToString();
             var attachment = new Attachment(new MemoryStream(qr), "QrForReservation", "image/png");
             using (MailMessage mail = new MailMessage(from, to))
             {

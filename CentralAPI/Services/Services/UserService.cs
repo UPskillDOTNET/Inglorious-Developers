@@ -65,7 +65,7 @@ namespace CentralAPI.Services.Services
                 try
                 {
                     await _userRepository.CreateUser(user);
-                    await _walletService.CreateWallet(user.userID, currency);
+                    await _walletService.CreateWallet(user.Id, currency);
                 }
                 catch (Exception ex)
                 {

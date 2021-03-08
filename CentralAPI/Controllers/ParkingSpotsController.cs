@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CentralAPI.Controllers
 {
     // CONTROLLER: Parking Spots Controller
-
+    [Authorize]
     [Route("central/[controller]")]
     [ApiController]
     public class ParkingSpotsController : ControllerBase

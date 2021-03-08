@@ -15,6 +15,8 @@ using System.Reflection;
 using WebApp.Utils;
 using WebApp.Services.Services.Utils;
 using System.Net.Http;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authentication;
 
 namespace WebApp
 {
@@ -31,14 +33,48 @@ namespace WebApp
         public void ConfigureServices(IServiceCollection services) 
         {
 
-            //services.AddHttpClient<APIHelper>();
-            //services.AddSingleton<IHttpClientFactory>();
+          
             services.AddHttpClient<APIHelper>();
             services.AddAplicationService();
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-           
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "oidc";
+            })
+                .AddCookie("Cookies")
+                .AddOpenIdConnect("oidc", options =>
+                {
+                    options.SignInScheme = "Cookies";
+
+                    options.Authority = "https://localhost:5001";
+                    options.RequireHttpsMetadata = false;
+
+                    options.ClientId = "mvc";
+                    options.ClientSecret = "Secret";
+                    options.ResponseType = "code id_token";
+                    options.UsePkce = false;
+
+
+                    options.SaveTokens = true;
+                    options.GetClaimsFromUserInfoEndpoint = true;
+
+                    options.Scope.Add("PrivAPI.read");
+                    options.Scope.Add("PrivAPI.write");
+                    options.Scope.Add("PubAPI.read");
+                    options.Scope.Add("PubAPI.write");
+                    options.Scope.Add("CAPI.read");
+                    options.Scope.Add("CAPI.write");
+                    options.Scope.Add("offline_access");
+                    options.ClaimActions.MapJsonKey("website", "website");
+                });
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +93,7 @@ namespace WebApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseAuthentication();
             app.UseRouting();
 
             app.UseAuthorization();

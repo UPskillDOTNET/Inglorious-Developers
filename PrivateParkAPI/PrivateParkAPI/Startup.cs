@@ -41,7 +41,8 @@ namespace PrivateParkAPI
                      .AddIdentityServerAuthentication("Bearer", options =>
                      {
                          options.ApiName = "PrivateAPI";
-                         options.Authority = "https://localhost:44309";
+                         options.Authority = "https://localhost:5001";
+                         options.RequireHttpsMetadata = false;
                      });
 
 

@@ -24,7 +24,7 @@ namespace CentralAPI.Repositories.Repository
 
         public async Task<User> GetUsersById(string id)
         {
-            return await GetAll().FirstOrDefaultAsync(l => l.userID == id);
+            return await GetAll().FirstOrDefaultAsync(l => l.Id == id);
         }
 
         public async Task<User> UpdateUserById(string id, User user)
@@ -43,7 +43,7 @@ namespace CentralAPI.Repositories.Repository
 
         public async Task<User> DeleteUserProfile(string id)
         {
-            var user = GetAll().FirstOrDefault(u => u.userID == id);
+            var user = GetAll().FirstOrDefault(u => u.Id == id);
 
             await DeleteAsync(user);
 

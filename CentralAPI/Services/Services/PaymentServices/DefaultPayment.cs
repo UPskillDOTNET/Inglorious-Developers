@@ -31,7 +31,7 @@ namespace CentralAPI.Services.Services
         {
             if (preferedMethod == "default")
             {
-                var user = await _userRepository.GetAll().Where(p => p.userID == paymentDTO.userID).FirstOrDefaultAsync();
+                var user = await _userRepository.GetAll().Where(p => p.Id== paymentDTO.userID).FirstOrDefaultAsync();
 
                 var paymentMethod = await _paymentMethodRepository.GetPaymentMethodByID(user.paymentMethodID);
                 var paymentMethodName = paymentMethod.name;

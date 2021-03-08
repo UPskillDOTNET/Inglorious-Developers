@@ -5,6 +5,11 @@ using CentralAPI.Services.IServices;
 using CentralAPI.DTO;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Identity;
+using CentralAPI.Models;
+using Microsoft.AspNetCore.Http;
+using System.Security.Cryptography;
 
 namespace CentralAPI.Controllers
 {
@@ -15,10 +20,14 @@ namespace CentralAPI.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly UserManager<User> userManager;
+        private readonly IConfiguration _configuration;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, UserManager<User> userManager, IConfiguration configuration)
         {
             _userService = userService;
+            this.userManager = userManager;
+            _configuration = configuration;
         }
 
         // HTTP GET: Get All Users
@@ -55,38 +64,33 @@ namespace CentralAPI.Controllers
             }
         }
 
-        // HTTP PUT: Updates an User By ID
-        // Gets a User registered in the central API, with a User ID provided in the route endpoint.
-
-        [HttpPut("{id}")]
-        public async Task<ActionResult<UserDTO>> UpdateUserById(string id, [FromBody] UserDTO userDTO)
+        [HttpPost]
+        public async Task<IActionResult> Register([FromBody]UserDTO userDTO)
         {
-            try
-            {
-                await _userService.UpdateUserById(id, userDTO);
-                return NoContent();
-            }
-            catch (ArgumentNullException)
-            {
+            var userExists = await userManager.FindByNameAsync(userDTO.UserName);
+            if (userExists != null)
+                return BadRequest("User " + userDTO.UserName + " already exists!");
 
-                return NotFound();
-            }
+           User user = new User()
+            {
+                Email = userDTO.Email,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                UserName = userDTO.UserName,
+                name = userDTO.name,
+                nif = userDTO.nif,
+
+                
+            };
+          
+            var result = await userManager.CreateAsync(user, userDTO.Password);
+            if (!result.Succeeded)
+                return BadRequest("User creation failed! Please check user details and try again." );
+
+            return Ok();
         }
 
 
 
-        // POST: api/Users/{currency}
-        [HttpPost("{currency}")]
-        public async Task<ActionResult<UserDTO>> CreateUser (UserDTO userDTO, string currency)
-        {
-            var userDto = await _userService.CreateUser(userDTO, currency);
-            if(userDto.Value == null)
-            {
-                return BadRequest();
-            }
-            //return Ok(userDTO);
-            return CreatedAtAction("GetUserById", new { id = userDTO.userID }, userDTO);
-        }
 
         // DELETE: api/users/5
         [HttpDelete("{id}")]
@@ -117,5 +121,7 @@ namespace CentralAPI.Controllers
                 return false;
             }
         }
+
+  
     }
 }

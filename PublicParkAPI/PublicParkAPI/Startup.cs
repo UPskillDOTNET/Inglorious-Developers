@@ -40,7 +40,8 @@ namespace PublicParkAPI
                      .AddIdentityServerAuthentication("Bearer", options =>
                      {
                          options.ApiName = "PublicAPI";
-                         options.Authority = "https://localhost:44309";
+                         options.Authority = "https://localhost:5001";
+                         options.RequireHttpsMetadata = false;
                      });
 
             services.AddControllers().AddNewtonsoftJson();

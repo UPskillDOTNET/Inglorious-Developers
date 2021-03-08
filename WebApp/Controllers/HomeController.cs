@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -17,15 +19,20 @@ namespace WebApp.Controllers
         {
             _logger = logger;
         }
-
+        
         public IActionResult Index()
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();
+        }
+        public async Task Logout()
+        {
+            await HttpContext.SignOutAsync("Cookies");
+            await HttpContext.SignOutAsync("oidc");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

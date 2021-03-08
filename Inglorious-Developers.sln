@@ -25,7 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer", "IdentityS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAuthenticationServer", "UserAuthenticationServer\UserAuthenticationServer.csproj", "{6BCFBA99-E58C-4BC4-8258-47245E1FD063}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{AA771F39-5B1D-41E9-A83F-FE69B1828476}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{AA771F39-5B1D-41E9-A83F-FE69B1828476}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
