@@ -81,8 +81,9 @@ a .footer {
 
 /*Home*/
 .home {
-    background: url("https://res.cloudinary.com/du4r5hykw/image/upload/v1614866659/cover8_pjsp3n.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
+    background: url("https://res.cloudinary.com/du4r5hykw/image/upload/v1615207863/cover8main2_vnnwng.png") no-repeat center center fixed;
+    /*background: url("https://res.cloudinary.com/du4r5hykw/image/upload/v1614866659/cover8_pjsp3n.jpg") no-repeat center center fixed;*/
+    /*background: url("https://res.cloudinary.com/du4r5hykw/image/upload/v1615216953/cover83_idubna.png") no-repeat center center fixed; -webkit-background-size: cover;*/*/
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
