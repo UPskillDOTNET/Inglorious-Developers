@@ -19,8 +19,8 @@ namespace WebApp.Controllers
         public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.NifSortParm = sortOrder == "Nif" ? "nif_desc" : "Nif";
-            ViewBag.EmailSortParm = sortOrder == "Email" ? "email_desc" : "email";
+            ViewBag.NifSortParm = String.IsNullOrEmpty(sortOrder) ? "nif_desc" : "";
+            ViewBag.EmailSortParm = String.IsNullOrEmpty(sortOrder) ? "email_desc" : "";
 
 
             var users = from u in _webUserService.GetAllUsers().Result.Value
@@ -28,20 +28,20 @@ namespace WebApp.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                users = users.Where(u => u.name.Contains(searchString)
+                users = users.Where(u => u.name.Contains(char.ToUpper(searchString[0]) + searchString.Substring(1))
                                 || u.nif.Contains(searchString));
             }
 
             switch (sortOrder)
             {
                 case "name_desc":
-                    users = users.OrderBy(u => u.name);
+                    users = users.OrderByDescending(u => u.name);
                     break;
                 case "nif_desc":
-                    users = users.OrderBy(u => u.nif);
+                    users = users.OrderByDescending(u => u.nif);
                     break;
                 case "email_desc":
-                    users = users.OrderBy(u => u.email);
+                    users = users.OrderByDescending(u => u.email);
                     break;
                 default:
                     users = users.OrderBy(u => u.name);
