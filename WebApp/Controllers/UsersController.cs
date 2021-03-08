@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,20 +18,29 @@ namespace WebApp.Controllers
         {
             _webUserService = userService;
         }
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var id = HttpContext.User.FindFirst("sub")?.Value;
+           
             try
             {
-                return View(_webUserService.GetUserById(id).Result.Value);
+                var vm = await _webUserService.GetUserById(id);
+                ViewData["user"] = vm.Value;
+                return View(vm.Value);
             }
             catch
             {
                 return NotFound();
             }
         }
-        
-            
+
+        public async Task Logout()
+        {
+            await HttpContext.SignOutAsync("Cookies");
+            await HttpContext.SignOutAsync("oidc");
+        }
+
 
 
         //public async Task<IActionResult> Edit(string id)

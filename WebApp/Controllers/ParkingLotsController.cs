@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,6 +7,7 @@ using WebApp.Services.IServices;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class ParkingLotsController : Controller
     {
         private readonly IParkingLotService _webParkingLotService;

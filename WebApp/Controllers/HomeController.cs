@@ -29,11 +29,6 @@ namespace WebApp.Controllers
         {
             return View();
         }
-        public async Task Logout()
-        {
-            await HttpContext.SignOutAsync("Cookies");
-            await HttpContext.SignOutAsync("oidc");
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

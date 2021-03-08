@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PublicParkAPI.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/reservations")]
     [ApiController]
     public class ReservationsController : ControllerBase

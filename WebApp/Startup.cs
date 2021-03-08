@@ -17,6 +17,9 @@ using WebApp.Services.Services.Utils;
 using System.Net.Http;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
 namespace WebApp
 {
@@ -33,7 +36,7 @@ namespace WebApp
         public void ConfigureServices(IServiceCollection services) 
         {
 
-          
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddHttpClient<APIHelper>();
             services.AddAplicationService();
             services.AddControllersWithViews();
@@ -71,6 +74,7 @@ namespace WebApp
                     options.Scope.Add("CAPI.write");
                     options.Scope.Add("offline_access");
                     options.ClaimActions.MapJsonKey("website", "website");
+                    options.AuthenticationMethod = OpenIdConnectRedirectBehavior.FormPost;
                 });
 
 

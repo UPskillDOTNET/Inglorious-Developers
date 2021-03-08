@@ -48,12 +48,12 @@ namespace CentralAPI
             );
             services.AddAutoMapper(typeof(Maps));
             services.AddAuthentication("Bearer")
-                    .AddIdentityServerAuthentication("Bearer", options =>
-                    {
-                        options.ApiName = "CentralAPI";
-                        options.Authority = "https://localhost:5001";
-                        options.RequireHttpsMetadata = false;
-                    });
+                 .AddIdentityServerAuthentication("Bearer", options =>
+                {
+                 options.ApiName = "CentralAPI";
+                 options.Authority = "https://localhost:5001";
+                 options.RequireHttpsMetadata = false;
+                 });
             services.AddControllers();
         }
 
