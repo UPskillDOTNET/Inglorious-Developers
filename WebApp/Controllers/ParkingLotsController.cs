@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApp.DTO;
 using WebApp.Services.IServices;
 
 namespace WebApp.Controllers
@@ -16,13 +14,20 @@ namespace WebApp.Controllers
         {
             _webParkingLotService = parkingLotService;
         }
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
 
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["LocationSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 
-            var parkingLots = _webParkingLotService.GetAllParkingLots().Result.Value;
+            var parkingLots = from p in _webParkingLotService.GetAllParkingLots().Result.Value
+                              select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                parkingLots = parkingLots.Where(p => p.name.Contains(char.ToUpper(searchString[0]) + searchString.Substring(1))
+                                || p.location.Contains(char.ToUpper(searchString[0]) + searchString.Substring(1)));
+            }
 
             switch (sortOrder)
             {
@@ -33,15 +38,11 @@ namespace WebApp.Controllers
                     parkingLots = parkingLots.OrderBy(p => p.name);
                     break;
             }
-            try
-            {
-                return View( _webParkingLotService.GetAllParkingLots().Result.Value);
-            }
-            catch
-            {
-                return NotFound();
-            }
+            
+            return View(parkingLots.ToList());
         }
+
+
 
         public async Task<IActionResult> Details(int id)
         {

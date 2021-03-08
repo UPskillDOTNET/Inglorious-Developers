@@ -7,6 +7,14 @@
 
 <h1>Parking Lot List</h1>
 
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -21,14 +29,14 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr class="table-hover">
-            <td class="pointer" onclick="location.href ='@Url.Action("Details", new {id = item.parkingLotID})'">
-                @Html.DisplayFor(modelItem => item.name)
-            </td>
-            <td style="text-align:right;">
-                @Html.DisplayFor(modelItem => item.location)
-            </td>
-        </tr>
+            <tr class="table-hover">
+                <td class="pointer" onclick="location.href ='@Url.Action("Details", new {id = item.parkingLotID})'">
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td style="text-align:right;">
+                    @Html.DisplayFor(modelItem => item.location)
+                </td>
+            </tr>
         }
     </tbody>
 </table>
