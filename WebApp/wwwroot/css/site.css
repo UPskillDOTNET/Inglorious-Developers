@@ -41,9 +41,6 @@ html {
 .border-top {
   border-top: 1px solid #e5e5e5;
 }
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
 
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
@@ -64,6 +61,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  font-family: Roboto
 }
 .footer {
   position: absolute;
@@ -81,12 +79,14 @@ a .footer {
 
 /*Home*/
 .home {
-    background: url("https://res.cloudinary.com/du4r5hykw/image/upload/v1615207863/cover8main2_vnnwng.png") no-repeat center center fixed;
+    /*background: url("https://res.cloudinary.com/du4r5hykw/image/upload/v1615218742/cover8_no_bg_w2ll3n.png") no-repeat center center fixed;*/
     /*background: url("https://res.cloudinary.com/du4r5hykw/image/upload/v1614866659/cover8_pjsp3n.jpg") no-repeat center center fixed;*/
-    /*background: url("https://res.cloudinary.com/du4r5hykw/image/upload/v1615216953/cover83_idubna.png") no-repeat center center fixed; -webkit-background-size: cover;*/*/
+    background: url("https://res.cloudinary.com/du4r5hykw/image/upload/v1615224104/beetle_vector_pinkbpdf_extended_sszsqv.png");
+    -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: darkslateblue
 }
 
 .home .overlay {
@@ -95,7 +95,6 @@ a .footer {
 
 .landing {
     z-index: -1000;
-    background-color: rgba(0, 0, 0, 0.35) !important;
     position: absolute;
     top: 0;
     left: 0;
@@ -110,9 +109,9 @@ a .footer {
 .landing img {
     background-size: cover;
     top: 0;
-    width: 100%;
+    width: 250px;
     height: auto;
-    position: absolute;
+    /*position: absolute;*/
     left: 0;
     z-index: -1000;
 }
@@ -120,7 +119,6 @@ a .footer {
 
 .landtext {
     color: white;
-    margin-top: 18em;
     z-index: -800;
     padding: 2rem;
 }
@@ -136,8 +134,7 @@ td .pointer :hover {
 #navbar {
     min-height: 50px;
     transition: all 0.3s;
-    /*    background-color: #212831 !important;*/
-    background-color: #8165A6 !important;
+    background-color: #d83f87 !important;
 }
 .homenav {
     background-color: #fce373 !important;
@@ -146,18 +143,17 @@ td .pointer :hover {
 .text-dark {
     color: #4a4a4a !important;
     font-weight: 600 !important;
-    font-family: IBM Plex Serif;
     justify-content: space-between;
     font-size: 16px;
     padding: 0px 10px;
     cursor: pointer;
 }
 .text-white {
-    color: #ffff !important;
-    font-weight: 600 !important;
-    font-family: IBM Plex Serif;
+    color: white !important;
+    font-weight: 500 !important;
+    text-transform: uppercase;
     justify-content: space-between;
-    font-size: 16px;
+    font-size: 18px;
     padding: 0px 10px;
     cursor: pointer;
 }
@@ -183,11 +179,11 @@ td .pointer :hover {
         color: #a385bd;
         background-color: #a385bd;
         border-radius: 10px;
+        transition: 0.5s;
     }
 
 
 .landing .about-btn {
-    font-family: "Robot", sans-serif;
     font-weight: 500;
     font-size: 14px;
     letter-spacing: 1px;
@@ -205,7 +201,7 @@ td .pointer :hover {
 }
 
     .landing .about-btn:hover {
-        background: #c8bcd8;
+        background: rgb(200,188,216,0.3);
         font-weight: 500;
         color: #f1eef5 !important;
         text-decoration: none;
@@ -219,17 +215,19 @@ th {
     background: white;
 }
 
-.testing-display-column {
+/*.testing-display-column {
     display: flex;
     flex-direction: column;
-}
+}*/
 
-.landing-card {
+.landing-card-background {
     background-color: rgba(190, 176, 209, 0.5);
-    height: 100%;
-    width: 30%
+    max-height: 100%
+}
+.landing-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
 }
 
-.landing-card-logo {
-
-}
