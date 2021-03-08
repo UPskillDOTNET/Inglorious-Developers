@@ -126,10 +126,10 @@ td .pointer :hover {
     cursor: pointer !important;
 }
 #navbar {
-    min-height: 77px;
+    min-height: 50px;
     transition: all 0.3s;
     /*    background-color: #212831 !important;*/
-    background-color: #fce373 !important;
+    background-color: #8165A6 !important;
 }
 .homenav {
     background-color: #fce373 !important;
@@ -137,6 +137,15 @@ td .pointer :hover {
 
 .text-dark {
     color: #4a4a4a !important;
+    font-weight: 600 !important;
+    font-family: Arial;
+    justify-content: space-between;
+    font-size: 16px;
+    padding: 0px 10px;
+    cursor: pointer;
+}
+.text-white {
+    color: #ffff !important;
     font-weight: 600 !important;
     font-family: Arial;
     justify-content: space-between;
@@ -191,3 +200,11 @@ td .pointer :hover {
         color: black !important;
         text-decoration: none;
     }
+
+tr:hover, tr:hover td{
+    background: #9aa4ad;
+}
+
+th {
+    background: white;
+}
