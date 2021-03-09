@@ -111,15 +111,12 @@ a .footer {
     top: 0;
     width: 250px;
     height: auto;
-    /*position: absolute;*/
     left: 0;
-    z-index: -1000;
 }
 
 
 .landtext {
     color: white;
-    z-index: -800;
     padding: 2rem;
 }
 
@@ -177,7 +174,7 @@ td .pointer :hover {
 
     .navbar-light .navbar-nav .nav-link :hover {
         color: #a385bd;
-        background-color: #a385bd;
+        background-color: rgb(200,188,216,0.3);
         border-radius: 10px;
         transition: 0.5s;
     }
