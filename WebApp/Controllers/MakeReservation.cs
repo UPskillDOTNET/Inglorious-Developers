@@ -13,14 +13,16 @@ namespace WebApp.Controllers
         private readonly IParkingLotService _webParkingLotService;
         private readonly IParkingSpotService _parkingSpotService;
         private readonly IReservationService _reservationService;
+        private readonly IPaymentService _paymentService;
 
-        public MakeReservation(IParkingLotService parkingLotService, IParkingSpotService parkingSpotService, IReservationService reservationService)
+        public MakeReservation(IParkingLotService parkingLotService, IParkingSpotService parkingSpotService, IReservationService reservationService, IPaymentService paymentService)
         {
             _webParkingLotService = parkingLotService;
             _parkingSpotService = parkingSpotService;
             _reservationService = reservationService;
+            _paymentService = paymentService;
         }
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+          public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
 
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -101,7 +103,8 @@ namespace WebApp.Controllers
                 parkingLotID = id,
                 parkingSpotID = pSpotId,
                 startTime = DateTime.Now,
-                userID = HttpContext.User.FindFirst("sub")?.Value
+                userID = HttpContext.User.FindFirst("sub")?.Value,
+                
 
             };
             return View(reservationDTO);
@@ -132,6 +135,7 @@ namespace WebApp.Controllers
                 endTime = endDate,
                 userID = HttpContext.User.FindFirst("sub")?.Value
             };
+
             var reservation = await _reservationService.GetDurationAndFinalPrice(reservationDTO);
             reservationDTO = reservation.Value;
             return View(reservationDTO);
@@ -140,10 +144,36 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateLater(ReservationDTO resevationDTO)
         {
+            var preferedMethod = "MockPayment";
+
             try
             {
+                await Pay(resevationDTO, preferedMethod);
                 await _reservationService.PostCentralReservation(resevationDTO);
                 return RedirectToAction("Free", "ParkingSpots", new { id = resevationDTO.parkingLotID });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+
+
+        public async Task<ActionResult<PaymentDTOOperation>> Pay(ReservationDTO reservationDTO, string preferedMethod)
+        {
+            PaymentDTO paymentDTO = new PaymentDTO
+            {
+                paymentID = reservationDTO.reservationID,
+                reservationID = reservationDTO.reservationID,
+                finalPrice = reservationDTO.finalPrice,
+                userID = reservationDTO.userID,
+
+            };
+            try
+            {
+               var paymentOperation =  await _paymentService.PayReservation(paymentDTO, preferedMethod);
+                return paymentOperation;
             }
             catch (Exception ex)
             {

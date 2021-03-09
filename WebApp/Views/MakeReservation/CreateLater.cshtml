@@ -57,13 +57,20 @@
             @Html.HiddenFor(model => model.finalPrice)
         </dd>
         @Html.HiddenFor(model => model.userID)
+        </dd>
+        <Select>
+        <option value = "Wallet"> Wallet </option>
+        <option value = "MockPayment"> MockPayment </option>
+        </Select>
+        </dd>
     </dl>
+
             <div class="form-group">
                 <input type="submit" value="Confirm" class="btn btn-primary" />
             </div>
         </form>
   
-
+      
 <div>
     <a asp-action="Index">Back to List</a>
 </div>

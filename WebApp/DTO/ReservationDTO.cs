@@ -31,7 +31,6 @@ namespace WebApp.DTO
         public string parkingSpotID { get; set; }
 
         public string userID { get; set; }
-        
         public UserDTO User { get; set; }
 
         public ParkingLotDTO ParkingLot { get; set; }
