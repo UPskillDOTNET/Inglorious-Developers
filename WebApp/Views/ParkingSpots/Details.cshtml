@@ -46,6 +46,6 @@
 
 <div>
     @Html.ActionLink("Reserve Now", "Create", "Reservations", new { id = Model.parkingLotID, pSpotId = Model.parkingSpotID })|
+    @Html.ActionLink("Edit Parking Spot", "Edit", "ParkingSpots", new { id = Model.parkingLotID, pSpotId = Model.parkingSpotID })|
     @Html.ActionLink("Back to List", "Free", new { id = Model.parkingLotID })
-
 </div>

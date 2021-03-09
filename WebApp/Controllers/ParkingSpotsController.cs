@@ -82,5 +82,28 @@ namespace WebApp.Controllers
                 return BadRequest();
             }
         }
+
+        public async Task<IActionResult> Edit(int id, string pSpotId) {
+            ViewData["parkingLotId"] = id;
+            ViewBag.parkLotName = _parkingLotService.GetParkingLotById(id).Result.Value.name;
+            ViewData["parkingSpotId"] = pSpotId;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ParkingSpotDTO>> Edit(int id, ParkingSpotDTO parkingSpotDTO, string pSpotId) {
+
+            try {
+                parkingSpotDTO.parkingLotID = id;
+                parkingSpotDTO.parkingSpotID = pSpotId;
+                await _parkingSpotService.EditParkingSpot(id, parkingSpotDTO, pSpotId);
+
+                return RedirectToAction("Details", "ParkingSpots", new { id, pSpotId });
+            } catch (Exception) {
+
+                return BadRequest();
+            }
+        }
+
     }
 }
