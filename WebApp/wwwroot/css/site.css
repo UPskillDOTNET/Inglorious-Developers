@@ -239,5 +239,55 @@ th {
     padding-right: 15px;
     padding-left: 15px;
 }
+.register-card-background {
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background-color: rgba(190, 176, 209, 0.5);
+    max-height: 100%;
+    margin-right: 5rem;
+    padding: 4.2755rem;
 }
 
+.register-card-text{
+    font-size:1rem;
+    color:antiquewhite;
+}
+
+.register-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+h2.register-h2{
+    font-size: 2.025rem;
+    text-decoration-color:antiquewhite;
+}
+
+.register-form {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: rgba(190, 176, 209, 0.5);
+    background-clip: padding-box;
+    border: 1px solid #2a1b3d;
+    border-radius: 0.25rem;
+    /*transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;*/
+}
+
+:-webkit-autofill,
+:-webkit-autofill:hover,
+:-webkit-autofill:focus {
+    border: 1px solid #2a1b3d;
+    -webkit-text-fill-color: #495057;
+    -webkit-box-shadow: 0 0 0px 1000px rgba(190, 176, 209, 0.5) inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
