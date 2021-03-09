@@ -16,10 +16,12 @@ namespace WebApp.Services.Services
     {
         private readonly APIHelper _helper;
         private readonly IParkingLotService _parkingLotService;
+        private readonly IParkingSpotService _parkingSpotService;
 
-        public ReservationService(IParkingLotService parkingLotService, APIHelper helper)
+        public ReservationService(IParkingLotService parkingLotService, IParkingSpotService parkingSpotService , APIHelper helper)
         {
             _parkingLotService = parkingLotService;
+            _parkingSpotService = parkingSpotService;
             _helper = helper;
         }
         public async Task<ActionResult<IEnumerable<ReservationDTO>>> GetAllReservations()
@@ -54,5 +56,16 @@ namespace WebApp.Services.Services
             var response = await _helper.PutClientAsync("central/reservations/" + id, content);
             return await response.Content.ReadAsAsync<ReservationDTO>();
         }
+        public async Task<ActionResult<ReservationDTO>> GetDurationAndFinalPrice(ReservationDTO reservationDTO)
+        {
+            var parkingSpot = await _parkingSpotService.GetParkingSpotById(reservationDTO.parkingLotID, reservationDTO.parkingSpotID);
+            var hours = reservationDTO.endTime - reservationDTO.startTime;
+            reservationDTO.hours = Convert.ToInt32(hours.TotalHours);
+            reservationDTO.finalPrice = reservationDTO.hours * parkingSpot.Value.priceHour;
+            return reservationDTO;
+
+        }
+
+
     }
 }

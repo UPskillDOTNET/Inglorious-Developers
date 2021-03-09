@@ -1,0 +1,70 @@
+﻿@model WebApp.DTO.ReservationDTO
+@using Microsoft.AspNetCore.Authentication
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>ReservationDTO</h4>
+<hr />
+
+        <form asp-action="CreateLater">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.parkingLotID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.parkingLotID)
+            @Html.HiddenFor(model => model.parkingLotID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.parkingSpotID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.parkingSpotID)
+            @Html.HiddenFor(model => model.parkingSpotID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.startTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.startTime)
+            @Html.HiddenFor(model => model.startTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.endTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.endTime)
+            @Html.HiddenFor(model => model.endTime)
+        </dd>
+         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.hours)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.hours)
+            @Html.HiddenFor(model => model.hours)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.finalPrice)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.finalPrice)
+            @Html.HiddenFor(model => model.finalPrice)
+        </dd>
+        @Html.HiddenFor(model => model.userID)
+    </dl>
+            <div class="form-group">
+                <input type="submit" value="Confirm" class="btn btn-primary" />
+            </div>
+        </form>
+  
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

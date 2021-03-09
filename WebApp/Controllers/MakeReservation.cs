@@ -79,6 +79,9 @@ namespace WebApp.Controllers
          
             try
             {
+                ViewData["startTime"] = reservationDTO.startTime;
+                ViewData["endTime"] = reservationDTO.endTime;
+                ViewData["plotID"] = reservationDTO.parkingLotID;
                 var vm = await _parkingSpotService.GetFreeParkingSpotsByDate(reservationDTO);
                 return View(vm.Value);
             }
@@ -96,12 +99,43 @@ namespace WebApp.Controllers
                 parkingSpotID = pSpotId,
                 startTime = DateTime.Now,
                 userID = HttpContext.User.FindFirst("sub")?.Value
+
             };
             return View(reservationDTO);
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(ReservationDTO resevationDTO)
+        {
+            try
+            {
+                await _reservationService.PostCentralReservation(resevationDTO);
+                
+                return RedirectToAction("Free", "ParkingSpots", new { id = resevationDTO.parkingLotID });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        public async Task<IActionResult> CreateLater(int id,  DateTime startDate, DateTime endDate, string pSpotId)
+        {
+            ReservationDTO reservationDTO = new ReservationDTO()
+            {
+                parkingLotID = id,
+                parkingSpotID = pSpotId,
+                startTime = startDate,
+                endTime = endDate,
+                userID = HttpContext.User.FindFirst("sub")?.Value
+            };
+            var reservation = await _reservationService.GetDurationAndFinalPrice(reservationDTO);
+            reservationDTO = reservation.Value;
+            return View(reservationDTO);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateLater(ReservationDTO resevationDTO)
         {
             try
             {

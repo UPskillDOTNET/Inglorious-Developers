@@ -22,6 +22,6 @@ namespace WebApp.Services.IServices
         Task<ActionResult<ReservationDTO>> PatchCentralReservation(string id);
         //Task<ActionResult<ReservationDTO>> CompleteCentralReservation(string id);
         //Task<ActionResult<ReservationDTO>> SubletCentralReservation(string id);
-        //Task<ActionResult<CentralReservation>> GetEndTimeandFinalPriceForComplete(CentralReservation centralReservation);
+        Task<ActionResult<ReservationDTO>> GetDurationAndFinalPrice(ReservationDTO reservationDTO);
     }
 }
