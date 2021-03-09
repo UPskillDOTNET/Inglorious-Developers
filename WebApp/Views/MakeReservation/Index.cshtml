@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebApp.DTO.ParkingLotDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Parking Lot List</h1>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.name)</a>
+            </th>
+            <th style="text-align:right;">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocationSortParm"]">@Html.DisplayNameFor(model => model.location)</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-hover">
+                <td class="pointer" onclick="location.href ='@Url.Action("Details", new {id = item.parkingLotID})'">
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td style="text-align:right;">
+                    @Html.DisplayFor(modelItem => item.location)
+                </td>
+                
+            </tr>
+            <tr>
+                  <td>
+                @Html.ActionLink("Now", "Now", new {id = item.parkingLotID}) |
+                @Html.ActionLink("Later", "Later", new {id = item.parkingLotID}) 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

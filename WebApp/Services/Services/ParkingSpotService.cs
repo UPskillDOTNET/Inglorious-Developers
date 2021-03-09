@@ -34,8 +34,8 @@ namespace WebApp.Services.Services {
             var response = await _helper.GetClientAsync("central/parkingSpots/free/parkinglot/" + id);
             return await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
         }
-        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate, int pLotId) {
-            var response = await _helper.GetClientAsync("central/parkingSpots/free/parkinglot/" + pLotId + "/" + startDate + "/" + endDate );
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(ReservationDTO reservationDTO) {
+            var response = await _helper.GetClientAsync("central/parkingSpots/free/parkinglot/" + reservationDTO.parkingLotID + "/" + reservationDTO.startTime.ToString("yyyy-MM-ddTHH:mm:ss") + "/" + reservationDTO.endTime.ToString("yyyy-MM-ddTHH:mm:ss"));
             return await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
         }
 

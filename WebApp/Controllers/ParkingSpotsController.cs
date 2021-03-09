@@ -41,14 +41,14 @@ namespace WebApp.Controllers
             }
         }
 
-        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> FreeDate(DateTime startDate, DateTime endDate, int id) {
-            try {
-                return await _parkingSpotService.GetFreeParkingSpotsByDate(startDate, endDate, id);
-            } catch (Exception) 
-            {
-                return NotFound();
-            }
-        }
+        //public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> FreeDate(DateTime startDate, DateTime endDate, int id) {
+        //    try {
+        //        return await _parkingSpotService.GetFreeParkingSpotsByDate(startDate, endDate, id);
+        //    } catch (Exception) 
+        //    {
+        //        return NotFound();
+        //    }
+        //}
 
         public async Task<ActionResult<ParkingSpotDTO>> Details(int id, string pSpotId) {
             try 

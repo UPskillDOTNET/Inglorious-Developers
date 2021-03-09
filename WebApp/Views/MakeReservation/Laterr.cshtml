@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebApp.DTO.ParkingSpotDTO>
+
+@{
+    ViewData["Title"] = "Laterr";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewBag.parkLotName</h1>
+<h1>Free Parking Spots</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Free" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">ParkingSpot Designation</a>
+            </th>
+            <th style="text-align:right;">
+                <a asp-action="Free" asp-route-sortOrder="@ViewData["ParkingLotSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Price/hour</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr class="table-hover">
+                <td class="tablehover pointer" onclick="location.href = '@Url.Action("Details", new { id = ViewData["parkingLotId"], pSpotId=item.parkingSpotID })'">
+                    @Html.DisplayFor(modelItem => item.parkingSpotID)
+                </td>
+                <td style="text-align:right;">
+                    €@Html.DisplayFor(modelItem => item.priceHour)
+                </td>
+            </tr>
+        }
+        <tr>
+            <td>
+                @Html.ActionLink("Back to List", "Details", "ParkingLots", new { id = ViewData["parkingLotId"] })
+            </td>
+        </tr>
+    </tbody>
+</table>
