@@ -24,7 +24,7 @@ namespace WebApp.Controllers
         {
 
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewData["LocationSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["LocationSortParm"] = String.IsNullOrEmpty(sortOrder) ? "location_desc" : "";
        
             var parkingLots = from p in (await _webParkingLotService.GetAllParkingLots()).Value
                               select p;
@@ -39,6 +39,9 @@ namespace WebApp.Controllers
             {
                 case "name_desc":
                     parkingLots = parkingLots.OrderByDescending(p => p.name);
+                    break;
+                case "location_desc":
+                    parkingLots = parkingLots.OrderByDescending(p => p.location);
                     break;
                 default:
                     parkingLots = parkingLots.OrderBy(p => p.name);
