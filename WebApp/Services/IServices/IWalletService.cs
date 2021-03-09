@@ -6,5 +6,6 @@ namespace WebApp.Services.IServices
 {
     public interface IWalletService
     {
+        public Task<ActionResult<WalletDTO>> GetUserWalletById(string id);
     }
 }

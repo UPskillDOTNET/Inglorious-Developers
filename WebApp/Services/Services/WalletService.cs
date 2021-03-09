@@ -10,7 +10,18 @@ using WebApp.Services.Services.Utils;
 
 namespace WebApp.Services.Services
 {
-    public class WalletService
+    public class WalletService:IWalletService
     {
+        private readonly APIHelper _helper;
+
+        public WalletService(APIHelper helper)
+        {
+            _helper = helper;
+        }
+        public async Task<ActionResult<WalletDTO>> GetUserWalletById(string id)
+        {
+            var response = await _helper.GetClientAsync("central/Wallets/balance/" + id);
+            return await response.Content.ReadAsAsync<WalletDTO>();
+        }
     }
 }
