@@ -59,9 +59,10 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-  font-family: Roboto
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    font-family: Roboto;
+    background: #E3E2DE;
 }
 .footer {
   position: absolute;
@@ -317,7 +318,6 @@ input:-webkit-autofill:focus {
     font-weight: 500;
     font-size: 14px;
     letter-spacing: 1px;
-    display: inline-block;
     padding: 12px 32px;
     border-radius: 50px;
     transition: 0.5s;
@@ -327,16 +327,17 @@ input:-webkit-autofill:focus {
     -webkit-animation-delay: 0.8s;
     animation-delay: 0.8s;
     border: 2px solid #beb0d1;
-    text-align: center;
     background: rgb(200,188,216,0.3);
+    display: inline-block;
+    vertical-align: top;
 }
 
-    .reservation-about-btn:hover {
-        background: #2A1B3D;
-        font-weight: 500;
-        color: #fff !important;
-        text-decoration: none;
-    }
+.reservation-about-btn:hover {
+    background: #2A1B3D;
+    font-weight: 500;
+    color: #fff !important;
+    text-decoration: none;
+}
 
 .card-img-top {
     width: 100%;
@@ -347,4 +348,5 @@ input:-webkit-autofill:focus {
 .parking-spot-hover :hover {
     background-color: #E98074;
 }
+
 
