@@ -6,7 +6,7 @@
 }
 
 <h1>@ViewBag.parkLotName</h1>
-<h1>Free Parking Spots</h1>
+<h1>Choose your Parking Spot</h1>
 
 <table class="table">
     <thead>
@@ -33,7 +33,7 @@
         }
         <tr>
             <td>
-                @Html.ActionLink("Back to List", "Details", "ParkingLots", new { id = ViewData["parkingLotId"] })
+                @Html.ActionLink("Back to List", "Later", "MakeReservation")
             </td>
         </tr>
     </tbody>
