@@ -35,15 +35,16 @@
                 <div class="card-body">
                     <p>@Html.DisplayFor(modelItem => item.name)</p>
                     <p>@Html.DisplayFor(modelItem => item.location)</p>
-                    <div class="parking-lot-reservation-card-buttons">
-                        <p>@Html.ActionLink("Reserve Now", "Now", new { id = item.parkingLotID })</p>
-                        <p>@Html.ActionLink("Reserve Later", "Later", new { id = item.parkingLotID })</p>
+                    
+                        <div class="parking-lot-reservation-card-buttons"><a class="reservation-about-btn" asp-area="" asp-controller="MakeReservation" asp-action="Now">NOW</a></div>
+                        <div class="parking-lot-reservation-card-buttons"><a class="reservation-about-btn" asp-area="" asp-controller="MakeReservation" asp-action="Later">LATER</a></div>
                     </div>
                 </div>
             </div>
 
 
-        </div>
+        
     }
+</div>
 
 
