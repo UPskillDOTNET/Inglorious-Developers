@@ -55,6 +55,7 @@ namespace WebApp.Controllers
             try 
             {
                 ViewData["parkingSpotId"] = pSpotId;
+                ViewBag.parkLotName = _parkingLotService.GetParkingLotById(id).Result.Value.name;
                 var parkingSpot = _parkingSpotService.GetParkingSpotById(id, pSpotId).Result.Value;
                 parkingSpot.parkingLotID = id;
                 return View(parkingSpot);
