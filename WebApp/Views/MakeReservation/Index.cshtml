@@ -36,8 +36,8 @@
                     <p>@Html.DisplayFor(modelItem => item.name)</p>
                     <p>@Html.DisplayFor(modelItem => item.location)</p>
                     <div class="parking-lot-reservation-card-buttons">
-                        <p>@Html.ActionLink("Now", "Now", new { id = item.parkingLotID })</p>
-                        <p>@Html.ActionLink("Later", "Later", new { id = item.parkingLotID })</p>
+                        <p>@Html.ActionLink("Reserve Now", "Now", new { id = item.parkingLotID })</p>
+                        <p>@Html.ActionLink("Reserve Later", "Later", new { id = item.parkingLotID })</p>
                     </div>
                 </div>
             </div>
