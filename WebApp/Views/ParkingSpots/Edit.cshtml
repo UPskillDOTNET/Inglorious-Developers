@@ -14,7 +14,8 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label>@Html.DisplayNameFor(model => model.parkingSpotID)</label>
-                <p class="readonly">@Html.TextBox("ParkingSpotID", ViewData["parkingSpotId"], new { @readonly = "readonly" })</p>
+                @*<p class="readonly">@Html.TextBox("ParkingSpotID", ViewData["parkingSpotId"], new { @readonly = "readonly" })</p>*@
+                <p><strong><asp:TextBox ReadOnly="True">@ViewData["parkingSpotId"]</asp:TextBox></strong></p>
             </div>
             <div class="form-group">
                 <label asp-for="priceHour" class="control-label"></label>
