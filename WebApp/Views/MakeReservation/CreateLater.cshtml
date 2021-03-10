@@ -58,7 +58,7 @@
         </dd>
         @Html.HiddenFor(model => model.userID)
         </dd>
-        <Select>
+        <Select asp-for="preferedMethod">
         <option value = "Wallet"> Wallet </option>
         <option value = "MockPayment"> MockPayment </option>
         </Select>

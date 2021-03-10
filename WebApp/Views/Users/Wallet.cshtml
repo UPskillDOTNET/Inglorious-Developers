@@ -14,9 +14,7 @@
             @Html.DisplayFor(model => model.walletDTO.totalAmount)
             @Html.HiddenFor(model => model.walletDTO.totalAmount)
         </dd>
-            <div class="form-group">
-                <input type="submit" value="Deposit" class="btn btn-primary" />
-            </div>
+           @Html.ActionLink("Deposit", "Deposit", "Users")
         </form>
   
 

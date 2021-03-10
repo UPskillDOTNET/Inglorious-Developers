@@ -73,7 +73,7 @@ namespace CentralAPI.Controllers
             return Ok(walletDTO);
         }
         [HttpPut]
-        [Route("/api/[controller]/deposit/{walletID}/{value}/")]
+        [Route("deposit/{walletID}/{value}/")]
         public async Task<ActionResult<WalletDTOOperation>> DepositToWallet(string walletID, decimal value)
         {
 

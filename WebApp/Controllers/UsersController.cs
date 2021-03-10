@@ -84,6 +84,22 @@ namespace WebApp.Controllers
             var vm = await _walletService.GetUserWalletById(id);
             return vm;
         }
+
+        public IActionResult Deposit()
+        {
+            
+            return PartialView();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Deposit(WalletDTO walletDTO)
+        {
+            var id = HttpContext.User.FindFirst("sub")?.Value;
+            var value = walletDTO.totalAmount;
+            await _walletService.Deposit(id, value);
+            return RedirectToAction("Index", "Users");
+           
+        }
     }
 }
 
