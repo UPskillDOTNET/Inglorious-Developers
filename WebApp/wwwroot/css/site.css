@@ -249,6 +249,9 @@ th {
     margin-right: 5rem;
     padding: 4.2755rem;
 }
+.readonly {
+    color: grey !important;
+}
 
 .register-card-text{
     font-size:1rem;
@@ -260,11 +263,7 @@ th {
     flex-direction: column;
     align-items: center;
     margin-top: 1rem;
-
-.readonly {
-    color: grey !important;
 }
-
 h2.register-h2{
     font-size: 2.025rem;
     text-decoration-color:antiquewhite;
