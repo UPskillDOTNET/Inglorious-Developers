@@ -7,6 +7,7 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Web;
+using System.Globalization;
 
 namespace WebApp.Controllers
 {
@@ -53,6 +54,7 @@ namespace WebApp.Controllers
         public async Task<ActionResult<ParkingSpotDTO>> Details(int id, string pSpotId) {
             try 
             {
+                ViewData["parkingSpotId"] = pSpotId;
                 var parkingSpot = _parkingSpotService.GetParkingSpotById(id, pSpotId).Result.Value;
                 parkingSpot.parkingLotID = id;
                 return View(parkingSpot);
@@ -62,6 +64,7 @@ namespace WebApp.Controllers
         }
 
         public async Task<IActionResult> Create() {
+            ViewBag.allPlotsNames = _parkingLotService.GetAllParkingLots().Result.Value;
             return View();
         }
 
@@ -96,6 +99,8 @@ namespace WebApp.Controllers
             try {
                 parkingSpotDTO.parkingLotID = id;
                 parkingSpotDTO.parkingSpotID = pSpotId;
+
+                //parkingSpotDTO.priceHour.ToString(CultureInfo.InvariantCulture);
                 await _parkingSpotService.EditParkingSpot(id, parkingSpotDTO, pSpotId);
 
                 return RedirectToAction("Details", "ParkingSpots", new { id, pSpotId });

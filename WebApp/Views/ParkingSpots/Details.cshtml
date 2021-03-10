@@ -6,37 +6,37 @@
 }
 
 <h1>Details</h1>
+<h4>Parking Spot @ViewData["parkingSpotId"]</h4>
 
 <div>
-    <h4>Parking Spots</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.parkingSpotID)
+            <p>Designation</p>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.parkingSpotID)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.floor)
+            <p>Floor</p>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.floor)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.isCovered)
+            <p>Covered</p>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.isCovered)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.isPrivate)
+            <p>Private</p>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.isPrivate)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.priceHour)
+            <p>Price/hour</p>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.priceHour)
