@@ -36,8 +36,8 @@
                     <p>@Html.DisplayFor(modelItem => item.name)</p>
                     <p>@Html.DisplayFor(modelItem => item.location)</p>
                     
-                        <div class="parking-lot-reservation-card-buttons"><a class="reservation-about-btn" asp-area="" asp-controller="MakeReservation" asp-action="Now">NOW</a></div>
-                        <div class="parking-lot-reservation-card-buttons"><a class="reservation-about-btn" asp-area="" asp-controller="MakeReservation" asp-action="Later">LATER</a></div>
+                        <div class="parking-lot-reservation-card-buttons"><a class="reservation-about-btn" asp-area="" asp-controller="MakeReservation" asp-action="Now" asp-route-id="@item.parkingLotID">NOW</a></div>
+                        <div class="parking-lot-reservation-card-buttons"><a class="reservation-about-btn" asp-area="" asp-controller="MakeReservation" asp-action="Later"  asp-route-id="@item.parkingLotID">LATER</a></div>
                     </div>
                 </div>
             </div>
