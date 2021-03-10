@@ -195,7 +195,8 @@ td .pointer :hover {
     -webkit-animation-delay: 0.8s;
     animation-delay: 0.8s;
     border: 2px solid #beb0d1;
-    text-align: center
+    text-align: center;
+    min-width: 256px;
 }
 
     .landing .about-btn:hover {
@@ -348,5 +349,3 @@ input:-webkit-autofill:focus {
 .parking-spot-hover :hover {
     background-color: #E98074;
 }
-
-
