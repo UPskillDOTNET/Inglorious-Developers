@@ -44,31 +44,31 @@ namespace WebApp.Controllers
             }
         }
 
-        public IActionResult Create(int id, string pSpotId)
-        {
-            ReservationDTO reservationDTO = new ReservationDTO()
-            {
-                parkingLotID = id,
-                parkingSpotID = pSpotId,
-                startTime = DateTime.Now,
-                userID = HttpContext.User.FindFirst("sub")?.Value
-            };
-            return View(reservationDTO);
-        }
+        //public IActionResult Create(int id, string pSpotId)
+        //{
+        //    ReservationDTO reservationDTO = new ReservationDTO()
+        //    {
+        //        parkingLotID = id,
+        //        parkingSpotID = pSpotId,
+        //        startTime = DateTime.Now,
+        //        userID = HttpContext.User.FindFirst("sub")?.Value
+        //    };
+        //    return View(reservationDTO);
+        //}
 
-        [HttpPost]
-        public async Task<IActionResult> Create(ReservationDTO resevationDTO)
-        {
-            try
-            {
-                await _webReservationService.PostCentralReservation(resevationDTO);
-                return RedirectToAction("Free", "ParkingSpots", new { id = resevationDTO.parkingLotID });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> Create(ReservationDTO resevationDTO)
+        //{
+        //    try
+        //    {
+        //        await _webReservationService.PostCentralReservation(resevationDTO);
+        //        return RedirectToAction("Free", "ParkingSpots", new { id = resevationDTO.parkingLotID });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex);
+        //    }
+        //}
         
         public async Task<IActionResult> Cancel (string id)
         {
@@ -77,6 +77,19 @@ namespace WebApp.Controllers
                 await _webReservationService.PatchCentralReservation(id);
                 return RedirectToAction("Details", "Reservations",new {id});
             } catch
+            {
+                return BadRequest();
+            }
+        }
+
+        public async Task<IActionResult> PutForSublet(string id)
+        {
+            try
+            {
+                await _webReservationService.PutForSublet(id);
+                return RedirectToAction("Details", "Reservations", new { id });
+            }
+            catch
             {
                 return BadRequest();
             }

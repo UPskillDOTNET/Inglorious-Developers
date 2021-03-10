@@ -52,22 +52,10 @@ namespace WebApp.Controllers
 
             return View(parkingLots.ToList());
         }
-        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> Now(int id)
-        {
-            try
-            {
-                ViewData["parkingLotId"] = id;
-                ViewBag.parkLotName = _webParkingLotService.GetParkingLotById(id).Result.Value.name;
-                return View(_parkingSpotService.GetAllFreeParkingSpots(id).Result.Value);
-            }
-            catch (Exception)
-            {
-                return NotFound();
-            }
-        }
 
 
 
+        //method for view endDate pick
         public IActionResult Later(int id)
         {
             ReservationDTO reservationDTO = new ReservationDTO()
@@ -77,9 +65,9 @@ namespace WebApp.Controllers
             return View(reservationDTO);
         }
 
-
+        //Method for view parkingSpot pick
         [HttpPost]
-        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> Laterr(ReservationDTO reservationDTO)
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> ReserveLater(ReservationDTO reservationDTO)
         {
          
             try
@@ -96,8 +84,24 @@ namespace WebApp.Controllers
             }
         }
 
-        public IActionResult Create(int id, string pSpotId)
+        //Method for view parkingSpot pick
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> Now(int id)
         {
+            try
+            {
+                ViewData["parkingLotId"] = id;
+                ViewBag.parkLotName = _webParkingLotService.GetParkingLotById(id).Result.Value.name;
+                return View(_parkingSpotService.GetAllFreeParkingSpots(id).Result.Value);
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+        }
+        //method for view endDate pick
+        public IActionResult ReserveNow(int id, string pSpotId)
+        {
+
             ReservationDTO reservationDTO = new ReservationDTO()
             {
                 parkingLotID = id,
@@ -109,23 +113,27 @@ namespace WebApp.Controllers
             };
             return View(reservationDTO);
         }
-
+  
+        //view for ReserveNow
         [HttpPost]
-        public async Task<IActionResult> Create(ReservationDTO resevationDTO)
+        public async Task<IActionResult> Confirm(ReservationDTO reservationDTO)
         {
-            try
+             reservationDTO = new ReservationDTO()
             {
-                await _reservationService.PostCentralReservation(resevationDTO);
-                
-                return RedirectToAction("Free", "ParkingSpots", new { id = resevationDTO.parkingLotID });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
+                parkingLotID = reservationDTO.parkingLotID,
+                parkingSpotID = reservationDTO.parkingSpotID,
+                startTime = reservationDTO.startTime,
+                endTime = reservationDTO.endTime,
+                userID = HttpContext.User.FindFirst("sub")?.Value
+            };
+
+            var reservation = await _reservationService.GetDurationAndFinalPrice(reservationDTO);
+            reservationDTO = reservation.Value;
+            return View(reservationDTO);
         }
 
-        public async Task<IActionResult> CreateLater(int id,  DateTime startDate, DateTime endDate, string pSpotId)
+        //View for ReserveLater - view is the same, model for rendering is diferent
+        public async Task<IActionResult> Confirm(int id,  DateTime startDate, DateTime endDate, string pSpotId)
         {
             ReservationDTO reservationDTO = new ReservationDTO()
             {
@@ -141,16 +149,18 @@ namespace WebApp.Controllers
             return View(reservationDTO);
         }
 
+
+        //Method to post and create reservation - now and later end here!
         [HttpPost]
-        public async Task<IActionResult> CreateLater(ReservationDTO resevationDTO)
+        public async Task<IActionResult> Create(ReservationDTO reservationDTO)
         {
            
 
             try
             {
-                await Pay(resevationDTO);
-                await _reservationService.PostCentralReservation(resevationDTO);
-                return RedirectToAction("Free", "ParkingSpots", new { id = resevationDTO.parkingLotID });
+                await Pay(reservationDTO);
+                await _reservationService.PostCentralReservation(reservationDTO);
+                return RedirectToAction("Index", "Reservations", new { id = reservationDTO.userID });
             }
             catch (Exception ex)
             {

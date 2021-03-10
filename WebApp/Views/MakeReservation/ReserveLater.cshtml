@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<WebApp.DTO.ParkingSpotDTO>
 
 @{
-    ViewData["Title"] = "Laterr";
+    ViewData["Title"] = "ReserveLater";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>@ViewBag.parkLotName</h1>
-<h1>Choose your Parking Spot</h1>
+<h1>Free Parking Spots</h1>
 
 <table class="table">
     <thead>
@@ -23,7 +23,7 @@
     <tbody>
         @foreach (var item in Model) {
             <tr class="table-hover">
-                <td class="tablehover pointer" onclick="location.href = '@Url.Action("CreateLater", "MakeReservation", new { id = ViewData["plotID"], startDate = ViewData["startTime"], endDate = ViewData["endTime"], pSpotId = item.parkingSpotID})'">
+                <td class="tablehover pointer" onclick="location.href = '@Url.Action("Confirm", "MakeReservation", new { id = ViewData["plotID"], startDate = ViewData["startTime"], endDate = ViewData["endTime"], pSpotId = item.parkingSpotID})'">
                     @Html.DisplayFor(modelItem => item.parkingSpotID)
                 </td>
                 <td style="text-align:right;">
@@ -33,7 +33,7 @@
         }
         <tr>
             <td>
-                @Html.ActionLink("Back to List", "Later", "MakeReservation")
+                @Html.ActionLink("Back to List", "Details", "ParkingLots", new { id = ViewData["parkingLotId"] })
             </td>
         </tr>
     </tbody>

@@ -20,6 +20,7 @@ namespace WebApp.Services.IServices
         //Task<bool> FindCentralReservationAny(string id);
         //Task<bool> subletReservationExists(ReservationDTO ReservationDTO);
         Task<ActionResult<ReservationDTO>> PatchCentralReservation(string id);
+        Task<ActionResult<ReservationDTO>> PutForSublet(string id);
         //Task<ActionResult<ReservationDTO>> CompleteCentralReservation(string id);
         //Task<ActionResult<ReservationDTO>> SubletCentralReservation(string id);
         Task<ActionResult<ReservationDTO>> GetDurationAndFinalPrice(ReservationDTO reservationDTO);

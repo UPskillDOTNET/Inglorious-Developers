@@ -79,19 +79,5 @@ namespace WebApp.Services.Services.Utils
             }
             throw new HttpRequestException(response.ReasonPhrase);
         }
-        ////its gonna be used?
-        public async Task<HttpResponseMessage> PayClientAsync(string url, StringContent content)
-        {
-            var client = new HttpClient();
-            var accessToken = await HttpContext.GetTokenAsync("access_token");
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-            client.BaseAddress = new Uri("https://localhost:44312/");
-            var response = await client.PostAsync(url, content);
-            if (response.IsSuccessStatusCode)
-            {
-                return response;
-            }
-            throw new HttpRequestException(response.ReasonPhrase);
-        }
     }
 }
