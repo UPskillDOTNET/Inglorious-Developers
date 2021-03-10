@@ -349,3 +349,12 @@ input:-webkit-autofill:focus {
 .parking-spot-hover :hover {
     background-color: #E98074;
 }
+
+.card-body-buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.box-shadow-card {
+    box-shadow: 7px 9px 11px -1px rgba(89,89,89,0.4);
+}
