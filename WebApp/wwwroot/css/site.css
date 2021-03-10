@@ -285,11 +285,36 @@ h2.register-h2{
     /*transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;*/
 }
 
-:-webkit-autofill,
-:-webkit-autofill:hover,
-:-webkit-autofill:focus {
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
     border: 1px solid #2a1b3d;
     -webkit-text-fill-color: #495057;
     -webkit-box-shadow: 0 0 0px 1000px rgba(190, 176, 209, 0.5) inset;
     transition: background-color 5000s ease-in-out 0s;
+}
+
+/*MAKE a RESERVATION STYLING*/
+
+.parking-lot-reservation-card {
+    border: 1px black solid;
+    border-radius: 10px;
+    margin: 2rem;
+    display: flex;
+    flex-direction: column
+}
+
+.parking-lot-reservation-card-buttons {
+    flex-direction: row;
+}
+
+.make-a-reservation-grid {
+    display: flex;
+
+}
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
 }

@@ -10,40 +10,40 @@
 @using (Html.BeginForm())
 {
     <p>
-        Search a Parking Lot by Name or Location: @Html.TextBox("SearchString")
+        @Html.TextBox("SearchStringReservation", "Search a Parking Lot by Name or Location")
         <input type="submit" value="Search" />
     </p>
 }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.name)</a>
-            </th>
-            <th style="text-align:right;">
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocationSortParm"]">@Html.DisplayNameFor(model => model.location)</a>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr class="table-hover">
-                <td class="pointer" onclick="location.href ='@Url.Action("Details", new {id = item.parkingLotID})'">
-                    @Html.DisplayFor(modelItem => item.name)
-                </td>
-                <td style="text-align:right;">
-                    @Html.DisplayFor(modelItem => item.location)
-                </td>
-                
-            </tr>
-            <tr>
-                  <td>
-                @Html.ActionLink("Now", "Now", new {id = item.parkingLotID}) |
-                @Html.ActionLink("Later", "Later", new {id = item.parkingLotID}) 
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        @*<div class="parking-lot-reservation-card">
+                <p>Parking Lot Name: @Html.DisplayFor(modelItem => item.name)</p>
+                <p>Location: @Html.DisplayFor(modelItem => item.location)</p>
+                <div class="parking-lot-reservation-card-buttons">
+                    <p>@Html.ActionLink("Now", "Now", new { id = item.parkingLotID })</p>
+                    <p>@Html.ActionLink("Later", "Later", new { id = item.parkingLotID })</p>
+                </div>
+            </div>*@
+
+        <div class="col-sm-6">
+
+
+            <div class="card mb-3 card text-center">
+                <img src="@Html.DisplayFor(modelItem => item.imageURL)" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p>@Html.DisplayFor(modelItem => item.name)</p>
+                    <p>@Html.DisplayFor(modelItem => item.location)</p>
+                    <div class="parking-lot-reservation-card-buttons">
+                        <p>@Html.ActionLink("Now", "Now", new { id = item.parkingLotID })</p>
+                        <p>@Html.ActionLink("Later", "Later", new { id = item.parkingLotID })</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    }
+
+
