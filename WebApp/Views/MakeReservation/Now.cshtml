@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WebApp.DTO.ParkingSpotDTO>
 
 @{
-    ViewData["Title"] = "Now";
+    ViewData["Title"] = "ParkingLotsNow";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -15,7 +15,7 @@
 
 
         <div class="col-sm-2">
-            <div class="parking-spot-hover" onclick="location.href = '@Url.Action("Create", new { id = ViewData["parkingLotId"], pSpotId=item.parkingSpotID })'">
+            <div class="parking-spot-hover" onclick="location.href = '@Url.Action("ReserveNow", new { id = ViewData["parkingLotId"], pSpotId=item.parkingSpotID })'">
                 <div class="card mb-3 card text-center">
                     <div class="card-body">
                         <p>@Html.DisplayFor(modelItem => item.parkingSpotID)</p>

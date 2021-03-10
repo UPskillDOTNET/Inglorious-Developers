@@ -8,25 +8,7 @@
 
 <div>
     <hr />
-    @if (Model.isCancelled == false)
-    {
-        <div>
-            <form method="post" asp-action="Cancel" asp-route-id="@Model.centralReservationID">
-                <span id="confirmCancel_@Model.centralReservationID" style="display:none">
-                    <span>Are you sure you want to cancel your reservation?</span>
-                    <br />
-                    <button type="submit" class="btn btn-primary">Yes</button>
-                    <a href="#" class="btn btn-danger" onclick="confirmCancel('@Model.centralReservationID', false)">No</a>
-                </span>
-                <span id="cancelReservation_@Model.centralReservationID">
-                    <a href="#" class="btn btn-danger" onclick="confirmCancel('@Model.centralReservationID', true)">
-                        Cancel Reservation
-                    </a>
-
-                </span>
-            </form>
-        </div>
-    }
+   
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.centralReservationID)
@@ -88,6 +70,44 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.userID)
         </dd>
+         @if (Model.isCancelled == false)
+    {
+        <div class = "row">
+            <form method="post" asp-action="Cancel" asp-route-id="@Model.centralReservationID">
+                <span id="confirmCancel_@Model.centralReservationID" style="display:none">
+                    <span>Are you sure you want to cancel your reservation?</span>
+                    <br />
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                    <a href="#" class="btn btn-danger" onclick="confirmCancel('@Model.centralReservationID', false)">No</a>
+                </span>
+                <span id="cancelReservation_@Model.centralReservationID">
+                    <a href="#" class="btn btn-danger" onclick="confirmCancel('@Model.centralReservationID', true)">
+                        Cancel Reservation
+                    </a>
+                </span>
+            </form>
+             <br/>
+    <br/>
+     @if (Model.forSublet == false)
+            {
+             <form method="post" asp-action="PutForSublet" asp-route-id="@Model.centralReservationID">
+                 <span id="confirmSublet_@Model.centralReservationID" style="display:none">
+                    <span>Are you sure you want to Sublet your reservation?</span>
+                    <br />
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                    <a href="#" class="btn btn-danger" onclick="confirmSublet('@Model.centralReservationID', false)">No</a>
+                     </span>
+                    <span id="subletReservation_@Model.centralReservationID">
+                    <a href="#" class="btn btn-danger" onclick="confirmSublet('@Model.centralReservationID', true)">
+                        Sublet Reservation
+                    </a>
+                </span>
+            </form>
+          
+             }
+        </div>
+    }
+  
     </dl>
 </div>
 <div>

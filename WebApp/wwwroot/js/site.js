@@ -14,3 +14,16 @@ function confirmCancel(id, isCancel) {
         $('#' + confirmCancel).hide();
     }
 }
+
+function confirmSublet(id, forSublet) {
+    var confirmSublet = 'confirmSublet_' + id;
+    var subletReservation = 'subletReservation_' + id;
+
+    if (forSublet) {
+        $('#' + subletReservation).hide();
+        $('#' + confirmSublet).show();
+    } else {
+        $('#' + subletReservation).show();
+        $('#' + confirmSublet).hide();
+    }
+}

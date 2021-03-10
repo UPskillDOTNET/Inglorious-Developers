@@ -49,7 +49,12 @@ namespace WebApp.Services.Services
             var response = await _helper.PostClientAsync("central/reservations/", content);
             return await response.Content.ReadAsAsync<ReservationDTO>();
         }
-
+        public async Task<ActionResult<ReservationDTO>> PutForSublet(string id)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(id), Encoding.UTF8, "application/json");
+            var response = await _helper.PutClientAsync("central/reservations/sublet/" + id, content);
+            return await response.Content.ReadAsAsync<ReservationDTO>();
+        }
         public async Task<ActionResult<ReservationDTO>> PatchCentralReservation(string id)
         {
             var content = new StringContent(JsonConvert.SerializeObject(id), Encoding.UTF8, "application/json");
