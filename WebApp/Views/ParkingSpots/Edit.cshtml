@@ -13,8 +13,8 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                @Html.DisplayNameFor(model => model.parkingSpotID)
-                @Html.TextBox("ParkingSpotID", ViewData["parkingSpotId"], new { @readonly = "readonly" })
+                <label>@Html.DisplayNameFor(model => model.parkingSpotID)</label>
+                <p class="readonly">@Html.TextBox("ParkingSpotID", ViewData["parkingSpotId"], new { @readonly = "readonly" })</p>
             </div>
             <div class="form-group">
                 <label asp-for="priceHour" class="control-label"></label>
@@ -38,9 +38,10 @@
             </div>
             <div class="form-group">
                 <p><strong>@ViewBag.parkLotName</strong></p>
-                <p class="hide">@Html.DisplayFor(model => model.parkingLotID)</p>
-                <p class="hide">@Html.TextBox("ParkingLotID", ViewData["parkingLotId"], new { @readonly = "readonly" })</p>
-</div>
+                <p  type="hidden" class="hidden readonly">@Html.DisplayFor(model => model.parkingLotID)</p>
+                
+                <p asp:HiddenField type="hidden" style="visibility: hidden;" class="hidden readonly">@Html.TextBox("ParkingLotID", ViewData["parkingLotId"], new { @readonly = "readonly" })</p>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

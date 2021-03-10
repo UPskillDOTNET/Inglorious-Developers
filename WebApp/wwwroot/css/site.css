@@ -239,5 +239,8 @@ th {
     padding-right: 15px;
     padding-left: 15px;
 }
+
+.readonly {
+    color: grey !important;
 }
 
