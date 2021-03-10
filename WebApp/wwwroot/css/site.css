@@ -260,6 +260,9 @@ th {
     flex-direction: column;
     align-items: center;
     margin-top: 1rem;
+
+.readonly {
+    color: grey !important;
 }
 
 h2.register-h2{

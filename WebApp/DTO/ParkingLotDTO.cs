@@ -23,5 +23,6 @@ namespace WebApp.DTO
         public DateTime closingTime { get; set; }
 
         public string myURL { get; set; }
+        public string imageURL { get; set; }
     }
 }

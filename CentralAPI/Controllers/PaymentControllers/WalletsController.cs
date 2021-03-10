@@ -9,10 +9,13 @@ using CentralAPI.Data;
 using CentralAPI.Models;
 using CentralAPI.Services.IServices;
 using CentralAPI.DTO;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CentralAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Route("central/[controller]")]
     [ApiController]
     public class WalletsController : Controller
     {
@@ -32,11 +35,10 @@ namespace CentralAPI.Controllers
             return _walletService.GetAllWallets();
         }
 
-        [HttpGet]
-        [Route("~/api/users/balance/{userID}")]
+        [HttpGet("balance/{userID}")]
         public async Task<ActionResult<WalletDTO>> GetBalance(string userID)
         {
-            if ( await _userService.GetUserById(userID) == null)
+            if (await _userService.GetUserById(userID) == null)
             {
                 return BadRequest("User not found");
             }
@@ -48,8 +50,7 @@ namespace CentralAPI.Controllers
             return await _walletService.GetBalance(userID);
         }
 
-        [HttpGet]
-        [Route("/api/[controller]/{walletID}")]
+        [HttpGet("{WalletID}")]
         public async Task<ActionResult<WalletDTO>> GetWalletById(string walletID)
         {
             var wallet = await _walletService.GetWalletById(walletID);

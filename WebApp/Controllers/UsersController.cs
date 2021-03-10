@@ -13,10 +13,12 @@ namespace WebApp.Controllers
     {
 
         private readonly IUserService _webUserService;
+        private readonly IWalletService _walletService;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, IWalletService walletService)
         {
             _webUserService = userService;
+            _walletService = walletService;
         }
         [Authorize]
         public async Task<IActionResult> Index()
@@ -27,6 +29,8 @@ namespace WebApp.Controllers
             {
                 var vm = await _webUserService.GetUserById(id);
                 ViewData["user"] = vm.Value;
+                var wallet = await Wallet();
+                vm.Value.walletDTO = wallet.Value;
                 return View(vm.Value);
             }
             catch
@@ -55,7 +59,7 @@ namespace WebApp.Controllers
         //    }
         //}
 
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -72,6 +76,13 @@ namespace WebApp.Controllers
             {
                 return BadRequest();
             }
+        }
+
+        public async Task<ActionResult<WalletDTO>> Wallet()
+        {
+            var id = HttpContext.User.FindFirst("sub")?.Value;
+            var vm = await _walletService.GetUserWalletById(id);
+            return vm;
         }
     }
 }

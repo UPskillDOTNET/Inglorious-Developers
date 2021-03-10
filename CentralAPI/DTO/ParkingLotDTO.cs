@@ -15,5 +15,6 @@ namespace CentralAPI.DTO
         public DateTime openingTime { get; set; }
         public DateTime closingTime { get; set; }
         public string myURL { get; set; }
+        public string imageURL { get; set; }
     }
 }

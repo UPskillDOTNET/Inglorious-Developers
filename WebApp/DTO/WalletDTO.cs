@@ -12,9 +12,5 @@ namespace WebApp.DTO
         public decimal totalAmount { get; set; }
 
         public string currency { get; set; }
-
-        public string userID { get; set; }
-
-        public UserDTO User { get; set; }
     }
 }

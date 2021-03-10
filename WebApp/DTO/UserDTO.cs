@@ -17,5 +17,7 @@ namespace WebApp.DTO
         public string nif { get; set; }
 
         public string paymentMethodID { get; set; }
+
+        public WalletDTO walletDTO { get; set; }
     }
 }

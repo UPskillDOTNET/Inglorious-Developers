@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Services.IServices
 {
-    public interface IDefaultPayment
+    public interface IDefaultPaymentService
     {
         Task<ActionResult<PaymentDTOOperation>> DefaultPayments(PaymentDTO paymentDTO, string preferedMethod);
     }

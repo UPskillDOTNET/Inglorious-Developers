@@ -49,5 +49,11 @@ namespace WebApp.Services.Services {
             var response = await _helper.PostClientAsync("central/parkingSpots/parkinglot/" + pLotId, content);
             return await response.Content.ReadAsAsync<ParkingSpotDTO>();
         }
+
+        public async Task<ActionResult<ParkingSpotDTO>> EditParkingSpot(int id, ParkingSpotDTO parkingSpotDTO, string pSpotId) {
+            var content = new StringContent(JsonConvert.SerializeObject(parkingSpotDTO), Encoding.UTF8, "application/json");
+            var response = await _helper.PutClientAsync("central/parkingSpots/parkinglot/" + id + "/parkingspot/" + pSpotId, content);
+            return await response.Content.ReadAsAsync<ParkingSpotDTO>();
+        }
     }
 }

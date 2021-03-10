@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Services.Services
 {
-    public class DefaultPayment : IDefaultPayment
+    public class DefaultPaymentService : IDefaultPaymentService
     {
         private readonly IUserRepository _userRepository;
         private readonly IPaymentMethodRepository _paymentMethodRepository;
         private readonly IWalletPaymentService _walletPaymentService;
         private readonly IMockPaymentService _mockPaymentService;
 
-        public DefaultPayment(IUserRepository userRepository, IWalletPaymentService walletPaymentService,IPaymentMethodRepository paymentMethodRepository , IMockPaymentService mockPaymentService)
+        public DefaultPaymentService(IUserRepository userRepository, IWalletPaymentService walletPaymentService,IPaymentMethodRepository paymentMethodRepository , IMockPaymentService mockPaymentService)
         {
             _userRepository = userRepository;
             _walletPaymentService = walletPaymentService;

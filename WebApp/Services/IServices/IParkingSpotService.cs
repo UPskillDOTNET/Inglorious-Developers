@@ -13,7 +13,7 @@ namespace WebApp.Services.IServices {
         Task<ActionResult<ParkingSpotDTO>> GetParkingSpotById(int pLotId, string pSpotId);
         //Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByPrice(int id, decimal priceHour);
         Task<ActionResult<ParkingSpotDTO>> CreateParkingSpot(ParkingSpotDTO parkingSpotDTO, int pLotId);
-        //Task<ActionResult<ParkingSpotDTO>> EditParkingSpot(string id, ParkingSpotDTO parkingSpotDTO, int pLotId);
+        Task<ActionResult<ParkingSpotDTO>> EditParkingSpot(int id, ParkingSpotDTO parkingSpotDTO, string pSpotId);
         //ValidationResult Validate(ParkingSpotDTO parkingSpotDTO);
     }
 }

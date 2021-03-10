@@ -3,6 +3,8 @@ using CentralAPI.Models;
 using CentralAPI.Repositories.IRepository;
 using CentralAPI.Services.IServices;
 using CentralAPI.Services.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,26 +13,27 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Controllers
 {
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("central/[controller]")]
     public class PaymentController : ControllerBase
     {
-        private readonly IDefaultPayment _defaultPayment;
+        private readonly IDefaultPaymentService _defaultPayment;
         private readonly IWalletPaymentService _walletPaymentService;
 
-        public PaymentController(IDefaultPayment defaultPayment, IWalletPaymentService walletPaymentService)
+        public PaymentController(IDefaultPaymentService defaultPayment, IWalletPaymentService walletPaymentService)
         {
             _defaultPayment = defaultPayment;
             _walletPaymentService = walletPaymentService;
         }
 
-        [Route("/api/payment/{preferedMethod}")]
+        [Route("/central/payment/{preferedMethod}")]
         public async Task<ActionResult<PaymentDTOOperation>> PayReservation(PaymentDTO paymentDTO, string preferedMethod)
         {
             return await _defaultPayment.DefaultPayments(paymentDTO, preferedMethod );
         }
 
-        [Route("/api/refund/")]
+        [Route("/central/refund/")]
         public async Task<ActionResult<PaymentDTOOperation>> RefundReservation(PaymentDTO paymentDTO)
         {
             return await _walletPaymentService.Refund(paymentDTO);
