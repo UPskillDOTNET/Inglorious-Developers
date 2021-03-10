@@ -23,5 +23,11 @@ namespace WebApp.Services.Services
             var response = await _helper.GetClientAsync("central/Wallets/balance/" + id);
             return await response.Content.ReadAsAsync<WalletDTO>();
         }
+        public async Task<ActionResult<WalletDTO>> Deposit(string id, decimal value)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(value), Encoding.UTF8, "application/json");
+            var response = await _helper.PutClientAsync("central/Wallets/deposit/" +id + "/" + value, content);
+            return await response.Content.ReadAsAsync<WalletDTO>();
+        }
     }
 }

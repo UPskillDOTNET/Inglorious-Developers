@@ -144,11 +144,11 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateLater(ReservationDTO resevationDTO)
         {
-            var preferedMethod = "MockPayment";
+           
 
             try
             {
-                await Pay(resevationDTO, preferedMethod);
+                await Pay(resevationDTO);
                 await _reservationService.PostCentralReservation(resevationDTO);
                 return RedirectToAction("Free", "ParkingSpots", new { id = resevationDTO.parkingLotID });
             }
@@ -160,7 +160,7 @@ namespace WebApp.Controllers
 
 
 
-        public async Task<ActionResult<PaymentDTOOperation>> Pay(ReservationDTO reservationDTO, string preferedMethod)
+        public async Task<ActionResult<PaymentDTOOperation>> Pay(ReservationDTO reservationDTO)
         {
             PaymentDTO paymentDTO = new PaymentDTO
             {
@@ -170,6 +170,7 @@ namespace WebApp.Controllers
                 userID = reservationDTO.userID,
 
             };
+            var preferedMethod = reservationDTO.preferedMethod;
             try
             {
                var paymentOperation =  await _paymentService.PayReservation(paymentDTO, preferedMethod);

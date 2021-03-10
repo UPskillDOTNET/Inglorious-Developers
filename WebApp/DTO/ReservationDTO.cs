@@ -34,5 +34,7 @@ namespace WebApp.DTO
         public UserDTO User { get; set; }
 
         public ParkingLotDTO ParkingLot { get; set; }
+
+        public string preferedMethod { get; set; }
     }
 }
