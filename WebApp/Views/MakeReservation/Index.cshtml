@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     <p>
-        @Html.TextBox("SearchStringReservation", "Search a Parking Lot by Name or Location")
+        Find by name: @Html.TextBox("SearchString")
         <input type="submit" value="Search" />
     </p>
 }
@@ -43,9 +43,6 @@
                     </div>
                 </div>
             </div>
-
-
-        
     }
 </div>
 
