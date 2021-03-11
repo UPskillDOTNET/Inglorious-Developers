@@ -320,7 +320,7 @@ input:-webkit-autofill:focus {
     transition: 0.5s;
     line-height: 1;
     margin: 10px;
-    color: #2A1B3D !important;
+    color: #fff !important;
     -webkit-animation-delay: 0.8s;
     animation-delay: 0.8s;
     border: 2px solid #beb0d1;
@@ -329,12 +329,12 @@ input:-webkit-autofill:focus {
     vertical-align: top;
 }
 
-.reservation-about-btn:hover {
-  background: #2a1b3d;
-  font-weight: 500;
-  color: #fff !important;
-  text-decoration: none;
-}
+    .reservation-about-btn:hover {
+        background: #fff;
+        font-weight: 500;
+        color: #2a1b3d !important;
+        text-decoration: none;
+    }
 
 .card-img-top {
     width: 100%;
