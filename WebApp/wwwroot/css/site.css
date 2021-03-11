@@ -358,3 +358,29 @@ input:-webkit-autofill:focus {
 .box-shadow-card {
     box-shadow: 7px 9px 11px -1px rgba(89,89,89,0.4);
 }
+
+#SearchStringReservation {
+    border-radius: 10px;
+    width: 100%;
+    line-height: 2rem;
+    font-style: italic;
+}
+
+.userboard-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 3rem;
+}
+
+.no-margin-left {
+    margin-left: 0px
+}
+
+.userboard-body-header-text {
+    text-transform:uppercase;
+}
+
+.userboard-title {
+    padding: 1rem
+}
