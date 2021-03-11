@@ -348,7 +348,7 @@ input:-webkit-autofill:focus {
 
     .card-img-top:hover {
         cursor: pointer;
-        filter: grayscale(10%) brightness(100%);
+        filter: grayscale(20%) brightness(60%);
         transition: .5s;
     }
 
