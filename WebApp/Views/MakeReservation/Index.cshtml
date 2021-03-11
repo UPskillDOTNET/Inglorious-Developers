@@ -7,17 +7,15 @@
 
 <h1>Parking Lot List</h1>
 
-@using (Html.BeginForm())
-{
+@using (Html.BeginForm()) {
     <p>
-        @Html.TextBox("SearchStringReservation", "Search a Parking Lot by Name or Location")
+        Find by name: @Html.TextBox("SearchString")
         <input type="submit" value="Search" />
     </p>
 }
 
 <div class="row">
-    @foreach (var item in Model)
-    {
+    @foreach (var item in Model) {
         @*<div class="parking-lot-reservation-card">
                 <p>Parking Lot Name: @Html.DisplayFor(modelItem => item.name)</p>
                 <p>Location: @Html.DisplayFor(modelItem => item.location)</p>
@@ -27,26 +25,20 @@
                 </div>
             </div>*@
 
-        <div class="col-sm-6">
+    <div class="col-sm-6 ctr">
 
 
-            <div class="card mb-3 card text-center box-shadow-card">
-                <img src="@Html.DisplayFor(modelItem => item.imageURL)" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p>@Html.DisplayFor(modelItem => item.name)</p>
-                    <p>@Html.DisplayFor(modelItem => item.location)</p>
-                    
-                    <div class="card-body-buttons">
-                        <div class="parking-lot-reservation-card-buttons"><a class="reservation-about-btn" asp-area="" asp-controller="MakeReservation" asp-action="Now" asp-route-id="@item.parkingLotID">BOOK NOW</a></div>
-                        <div class="parking-lot-reservation-card-buttons"><a class="reservation-about-btn" asp-area="" asp-controller="MakeReservation" asp-action="Later" asp-route-id="@item.parkingLotID">BOOK FOR LATER</a></div>
-                    </div>
-                    </div>
+        <div class="card mb-3 card text-center box-shadow-card">
+            <img src="@Html.DisplayFor(modelItem => item.imageURL)" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h2 class="centered">@Html.DisplayFor(modelItem => item.name)</h2>
+                <p class="centered2">@Html.DisplayFor(modelItem => item.location)</p>
+                <div class="card-body-buttons">
+                    <div class="parking-lot-reservation-card-buttons"><a class="reservation-about-btn" asp-area="" asp-controller="MakeReservation" asp-action="Now" asp-route-id="@item.parkingLotID">BOOK NOW</a></div>
+                    <div class="parking-lot-reservation-card-buttons"><a class="reservation-about-btn" asp-area="" asp-controller="MakeReservation" asp-action="Later" asp-route-id="@item.parkingLotID">BOOK FOR LATER</a></div>
                 </div>
             </div>
-
-
-        
-    }
-</div>
-
-
+        </div>
+    </div>
+}
+    </div>
