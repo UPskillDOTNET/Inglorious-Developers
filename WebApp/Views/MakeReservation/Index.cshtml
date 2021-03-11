@@ -14,7 +14,7 @@
     </p>
 }
 
-<div class="row">
+<div class="page-content">
     @foreach (var item in Model) {
         @*<div class="parking-lot-reservation-card">
                 <p>Parking Lot Name: @Html.DisplayFor(modelItem => item.name)</p>
@@ -25,20 +25,19 @@
                 </div>
             </div>*@
 
-    <div class="col-sm-6 ctr">
 
 
-        <div class="card mb-3 card text-center box-shadow-card">
+
+        <div class="card-content">
             <img src="@Html.DisplayFor(modelItem => item.imageURL)" class="card-img-top" alt="...">
-            <div class="card-body">
+            <div class="card-body-content">
                 <h2 class="centered">@Html.DisplayFor(modelItem => item.name)</h2>
                 <p class="centered2">@Html.DisplayFor(modelItem => item.location)</p>
-                <div class="card-body-buttons">
-                    <div class="parking-lot-reservation-card-buttons"><a class="reservation-about-btn" asp-area="" asp-controller="MakeReservation" asp-action="Now" asp-route-id="@item.parkingLotID">BOOK NOW</a></div>
-                    <div class="parking-lot-reservation-card-buttons"><a class="reservation-about-btn" asp-area="" asp-controller="MakeReservation" asp-action="Later" asp-route-id="@item.parkingLotID">BOOK FOR LATER</a></div>
+                <div id="buttons" class="card-body-buttons">
+                    <div class="parking-lot-reservation-card-buttons"><a id="btn-now" class="reservation-about-btn" asp-area="" asp-controller="MakeReservation" asp-action="Now" asp-route-id="@item.parkingLotID">BOOK NOW</a></div>
+                    <div class="parking-lot-reservation-card-buttons"><a id="btn-later" class="reservation-about-btn" asp-area="" asp-controller="MakeReservation" asp-action="Later" asp-route-id="@item.parkingLotID">BOOK FOR LATER</a></div>
                 </div>
             </div>
         </div>
-    </div>
 }
     </div>
