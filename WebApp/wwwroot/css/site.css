@@ -369,7 +369,10 @@ input:-webkit-autofill:focus {
 }
 
 .parking-spot-hover:hover {
-  background-color: #e98074;
+    background: #2a1b3d;
+    font-weight: 500;
+    color: #fff !important;
+    text-decoration: none;
 }
 
 .card-body-buttons {
@@ -406,3 +409,34 @@ input:-webkit-autofill:focus {
 .userboard-title {
   padding: 1rem;
 }
+
+.text-transform-uppercase {
+    text-transform: uppercase
+}
+
+/*Choose a Parking Spot Stylings*/
+
+.parking-spot-about-btn {
+    font-size: 14px;
+    letter-spacing: 1px;
+    border-radius: 15px;
+    transition: 0.5s;
+    line-height: 1;
+    color: #2a1b3d !important;
+    -webkit-animation-delay: 0.8s;
+    animation-delay: 0.8s;
+    border: 2px solid #beb0d1;
+    background: rgb(200, 188, 216, 0.3);
+    display: inline-block;
+    vertical-align: top;
+    margin: 1rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+    .parking-spot-about-btn:hover {
+        background: #2a1b3d;
+        font-weight: 500;
+        color: #fff !important;
+        text-decoration: none;
+    }

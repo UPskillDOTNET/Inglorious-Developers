@@ -5,30 +5,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>@ViewBag.parkLotName</h1>
-<h2>Free Parking Spots Currently</h2>
-
+<div class="text-transform-uppercase">
+    <h1>@ViewBag.parkLotName</h1>
+    <h3>Free Parking Spots Currently</h3>
+</div>
 
 <div class="row">
     @foreach (var item in Model)
     {
-
-
         <div class="col-sm-2">
-            <div class="parking-spot-hover" onclick="location.href = '@Url.Action("ReserveNow", new { id = ViewData["parkingLotId"], pSpotId=item.parkingSpotID })'">
-                <div class="card mb-3 card text-center">
-                    <div class="card-body">
+                    <div class="parking-spot-about-btn parking-spot-about-btn:hover" onclick="location.href = '@Url.Action("ReserveNow", new { id = ViewData["parkingLotId"], pSpotId=item.parkingSpotID })'">
                         <p>@Html.DisplayFor(modelItem => item.parkingSpotID)</p>
                         <p>€@Html.DisplayFor(modelItem => item.priceHour) / hour</p>
                     </div>
-                </div>
-            </div>
         </div>
     }
     </div>
 
-        <p>
-            @Html.ActionLink("Back to List", "Index", "MakeReservation")
-        </p>
+<div class="card-body-buttons">
+    <div class="parking-lot-reservation-card-buttons"><a class="reservation-about-btn no-margin-left" asp-area="" asp-controller="MakeReservation" asp-action="Index" asp-route-id="">Back to Parking Lot List</a></div>
+</div>
+
 
   
