@@ -4,17 +4,21 @@
     Layout = null;
 }
 
-        <form asp-action="CreateLater">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <h4>Wallet</h4>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.walletDTO.totalAmount)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.walletDTO.totalAmount)
-            @Html.HiddenFor(model => model.walletDTO.totalAmount)
-        </dd>
-           @Html.ActionLink("Deposit", "Deposit", "Users")
-        </form>
+<form asp-action="CreateLater">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <h5 class="userboard-body-header-text">
+        Wallet
+    </h5>
+    <h6 class="userboard-body-header-text">
+        @Html.DisplayNameFor(model => model.walletDTO.totalAmount)
+    </h6>
+    <p>
+        @Html.DisplayFor(model => model.walletDTO.totalAmount)
+        @Html.HiddenFor(model => model.walletDTO.totalAmount)
+    </p>
+    <div class="card-body-buttons">
+        <div class="parking-lot-reservation-card-buttons"><a class="reservation-about-btn no-margin-left" asp-area="" asp-controller="Users" asp-action="Deposit" asp-route-id="">Deposit</a></div>
+    </div>
+</form>
   
 
