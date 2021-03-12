@@ -82,8 +82,10 @@ namespace CentralAPI.Services.Services
                     var result = await userManager.CreateAsync(user, userDTO.Password);
                     if (!result.Succeeded)
                         throw new AggregateException("User creation failed! Please check user details and try again.");
+                    
                    
                     await _walletService.CreateWallet(user.Id);
+                    await userManager.AddToRoleAsync(user, "user");
                 }
                 catch (Exception ex)
                 {

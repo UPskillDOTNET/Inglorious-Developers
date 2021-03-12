@@ -91,7 +91,8 @@ namespace CentralAPI.Controllers
             try
             {
                 var centralReservation = await _centralReservationService.PostCentralReservationNotCompleted(centralReservationDTO);
-                await _reservationService.PostReservation(centralReservation.Value, centralReservationDTO.parkingLotID);
+
+                //await _reservationService.PostReservation(centralReservation.Value, centralReservationDTO.parkingLotID);
             }
             catch (Exception e)
             {
@@ -114,7 +115,7 @@ namespace CentralAPI.Controllers
                 if (centralReservationDTO.Value.isCancelled == false)
                 {
                     centralReservationDTO = await _centralReservationService.PatchCentralReservation(id);
-                    await _reservationService.PatchReservation(centralReservationDTO.Value.reservationID, centralReservationDTO.Value.parkingLotID);
+                    await _reservationService.PatchReservation(id, centralReservationDTO.Value.parkingLotID);
                     return centralReservationDTO;
                 }
                 return BadRequest("Couldn't change value");

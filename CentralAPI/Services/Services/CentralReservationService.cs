@@ -91,8 +91,11 @@ namespace CentralAPI.Services.Services {
                     throw new Exception("cant compute");
                 }
             }
-            await _reservationService.PostReservation(centralReservationDTO, centralReservationDTO.parkingLotID);
-            await _centralReservationRepository.PostCentralReservation(centralReservation);
+           
+            centralReservation = await _centralReservationRepository.PostCentralReservation(centralReservation);
+            centralReservation.reservationID = centralReservation.centralReservationID;
+            await _reservationService.PostReservation(centralReservation, centralReservation.parkingLotID);
+            
             return centralReservationDTO;
         }
         public async Task<ActionResult<CentralReservationDTO>> PostCentralReservationNotCompleted(CentralReservationDTO centralReservationDTO)
