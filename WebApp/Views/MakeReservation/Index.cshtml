@@ -5,14 +5,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Parking Lot List</h1>
 
+<h1>Parking Lot List</h1>
+<form class="search1">
+    <div class="search__wrapper">
+        @Html.TextBox("SearchString", "", new { @class = "search__field" })
+        <button type="submit" class="fa fa-search search__icon"></button>
+    </div>
+</form>
 @using (Html.BeginForm()) {
-    <p>
-        Find by name: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
-    </p>
+    @*<div class="input-group" id="searchbar">
+            @Html.TextBox("SearchString", "", new { @class = "form-control rounded" })
+            <button type="submit" class="btn btn-outline-primary" value="Search" placeholder="Search...">search</button>
+        </div>*@
+
+
+
 }
+
+
 
 <div class="page-content">
     @foreach (var item in Model) {
@@ -39,5 +50,5 @@
                 </div>
             </div>
         </div>
-}
-    </div>
+    }
+</div>
