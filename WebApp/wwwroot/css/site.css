@@ -411,12 +411,13 @@ input:-webkit-autofill:focus {
 /*Choose a Parking Spot Stylings*/
 
 .parking-spot-about-btn {
-    height: 145px;
-    width: 145px;
-    line-height: 145px;
-    border-radius: 50%;
+    height: 130px;
+    width: 130px;
+    line-height: 125px;
+    padding-bottom: 2px;
+    border-radius: 10%;
     text-align: center;
-    background-color: rgb(68, 167, 235);
+    background-color: #8265A7;
     overflow: hidden;
 }
 
@@ -436,9 +437,9 @@ input:-webkit-autofill:focus {
 
 #park-price {
     position: absolute;
-    top: 70px;
+    top: 65px;
     font-weight: 500;
-    left: 30%;
+    left: 25%;
     color: white;
 }
 
