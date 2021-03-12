@@ -26,7 +26,7 @@ namespace PrivateParkAPI.Controllers
         [HttpGet]
         public Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllNotPrivate()
         {
-            return _parkingSpotService.GetAllnotPrivate();
+            return _parkingSpotService.GetAllParkingSpots();
         }
 
         //Get All ParkingSpots (private and not Private)
@@ -34,7 +34,7 @@ namespace PrivateParkAPI.Controllers
         [Route("~/api/parkingspots/all")]
         public Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots()
         {
-            return _parkingSpotService.GetAllParkingSpots();
+            return _parkingSpotService.GetAllnotPrivate();
         }
 
         //Get All Available ParkingSpots 
