@@ -1,5 +1,7 @@
 ﻿using CentralAPI.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CentralAPI.Data
@@ -9,6 +11,8 @@ namespace CentralAPI.Data
         public static void Initialize(CentralAPIContext context)
         {
             context.Database.EnsureCreated();
+
+
 
             if (context.PaymentMethods.Any())
             {
@@ -137,9 +141,90 @@ namespace CentralAPI.Data
                 context.Sublets.Add(s);
             }
             context.SaveChanges();
-
-
-          
         }
-}
+
+        public static void SeedRoles(RoleManager<IdentityRole> roleManager, CentralAPIContext context) {
+
+            
+
+            var admin = roleManager.FindByNameAsync("admin").Result;
+            if (admin == null)
+            {
+                admin = new IdentityRole
+                {
+                 
+                    Name = "admin"
+                };
+                _ = roleManager.CreateAsync(admin).Result;
+                context.SaveChanges();
+            }
+
+            var manager = roleManager.FindByNameAsync("manager").Result;
+            if (manager == null)
+            {
+                manager = new IdentityRole
+                {
+                   
+                    Name = "manager"
+                };
+                _ = roleManager.CreateAsync(manager).Result;
+                context.SaveChanges();
+            }
+
+            var user = roleManager.FindByNameAsync("user").Result;
+            if (user == null)
+            {
+                user = new IdentityRole
+                {   
+                  
+                    Name = "user"
+                };
+                _ = roleManager.CreateAsync(user).Result;
+                context.SaveChanges();
+            }
+
+        }
+        public static void SeedRolesToUser(RoleManager<IdentityRole> roleManager, UserManager<User> userManager, CentralAPIContext context) {
+
+            var users = userManager.Users;
+            var roles = roleManager.Roles;
+            var manager = roles.FirstOrDefault(x => x.Name == "manager");
+            var admin = roles.FirstOrDefault(x => x.Name == "admin");
+            var user = roles.FirstOrDefault(x => x.Name == "user");
+
+
+
+            var mariana = users.FirstOrDefault(x => x.UserName == "MarianaG");
+            if (!userManager.IsInRoleAsync(mariana, manager.Name).Result)
+            {
+                _ = userManager.AddToRoleAsync(mariana, manager.Name).Result;
+                context.SaveChanges();
+            }
+            var tiago = users.FirstOrDefault(x => x.UserName == "TiagoA");
+            if (!userManager.IsInRoleAsync(tiago, manager.Name).Result)
+            {
+                _ = userManager.AddToRoleAsync(tiago, manager.Name).Result;
+                context.SaveChanges();
+            }
+            var joao = users.FirstOrDefault(x => x.UserName == "JoaoM");
+            if (!userManager.IsInRoleAsync(joao, user.Name).Result)
+            {
+                _ = userManager.AddToRoleAsync(joao, user.Name).Result;
+                context.SaveChanges();
+            }
+            var sergio = users.FirstOrDefault(x => x.UserName == "SergioP");
+            if (!userManager.IsInRoleAsync(sergio, admin.Name).Result)
+            {
+                _ = userManager.AddToRoleAsync(sergio, admin.Name).Result;
+                context.SaveChanges();
+            }
+            var caio = users.FirstOrDefault(x => x.UserName == "CaioR");
+            if (!userManager.IsInRoleAsync(caio, user.Name).Result)
+            {
+                _ = userManager.AddToRoleAsync(caio, admin.Name).Result;
+                context.SaveChanges();
+            }
+        }
+
+}   
 }

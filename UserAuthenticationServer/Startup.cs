@@ -5,6 +5,7 @@
 using CentralAPI.Data;
 using CentralAPI.Models;
 using IdentityServer4;
+using IdentityServer4.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using UserAuthenticationServer.Clients;
+using UserAuthenticationServer.Quickstart.Account;
 using UserAuthenticationServer.Resources;
 
 namespace IdentityServerAspNetIdentity
@@ -54,7 +56,7 @@ namespace IdentityServerAspNetIdentity
                 .AddInMemoryApiResources(Resources.GetApiResources())
                 .AddInMemoryApiScopes(Resources.GetApiScopes())
                 .AddAspNetIdentity<User>();
-
+            services.AddScoped<IProfileService, ProfileService>();
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
 

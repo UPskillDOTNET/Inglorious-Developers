@@ -74,6 +74,9 @@ namespace WebApp
                     options.Scope.Add("CAPI.write");
                     options.Scope.Add("offline_access");
                     options.ClaimActions.MapJsonKey("website", "website");
+                    options.ClaimActions.MapJsonKey("role", "role", "role");
+                    options.TokenValidationParameters.NameClaimType = "name";
+                    options.TokenValidationParameters.RoleClaimType = "role";
                     options.AuthenticationMethod = OpenIdConnectRedirectBehavior.FormPost;
                 });
 
