@@ -108,6 +108,8 @@ namespace CentralAPI.Data
                     new Wallet {walletID="1",totalAmount=250,currency="euro",userID="1"},
                     new Wallet {walletID="2",totalAmount=120,currency="USD",userID="2"},
                     new Wallet {walletID="3",totalAmount=25,currency="euro",userID="3"},
+                    new Wallet {walletID="4",totalAmount=25,currency="euro",userID="4"},
+                    new Wallet {walletID="5",totalAmount=25,currency="euro",userID="5"},
             };
 
             foreach (Wallet w in Wallets)
