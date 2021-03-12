@@ -11,20 +11,20 @@
 </div>
 
 <div class="row">
-    @foreach (var item in Model)
-    {
-        <div class="col-sm-2">
-                    <div class="parking-spot-about-btn parking-spot-about-btn:hover" onclick="location.href = '@Url.Action("ReserveNow", new { id = ViewData["parkingLotId"], pSpotId=item.parkingSpotID })'">
-                        <p>@Html.DisplayFor(modelItem => item.parkingSpotID)</p>
-                        <p>€@Html.DisplayFor(modelItem => item.priceHour) / hour</p>
-                    </div>
+    @foreach (var item in Model) {
+        <div class="col-sm-2 p-4">
+            <div id="park-spot" class="parking-spot-about-btn parking-spot-about-btn:hover" onclick="location.href = '@Url.Action("ReserveNow", new { id = ViewData["parkingLotId"], pSpotId=item.parkingSpotID })'">
+                <p id="park-price">€@Html.DisplayFor(modelItem => item.priceHour) / hour</p>
+                <p id="icon" style="        
+                    text-shadow: rgb(48, 117, 165) 0px 0px 0px, rgb(48, 118, 166) 1px 1px 0px, rgb(49, 119, 168) 2px 2px 0px, rgb(49, 120, 170) 3px 3px 0px, rgb(50, 122, 171) 4px 4px 0px, rgb(50, 123, 173) 5px 5px 0px, rgb(51, 124, 175) 6px 6px 0px, rgb(51, 125, 176) 7px 7px 0px, rgb(51, 126, 178) 8px 8px 0px, rgb(52, 128, 180) 9px 9px 0px, rgb(52, 129, 181) 10px 10px 0px, rgb(53, 130, 183) 11px 11px 0px, rgb(53, 131, 185) 12px 12px 0px, rgb(54, 132, 186) 13px 13px 0px, rgb(54, 134, 188) 14px 14px 0px, rgb(55, 135, 190) 15px 15px 0px, rgb(55, 136, 191) 16px 16px 0px, rgb(56, 137, 193) 17px 17px 0px, rgb(56, 138, 195) 18px 18px 0px, rgb(57, 140, 196) 19px 19px 0px, rgb(57, 141, 198) 20px 20px 0px, rgb(58, 142, 200) 21px 21px 0px, rgb(58, 143, 201) 22px 22px 0px, rgb(59, 144, 203) 23px 23px 0px, rgb(59, 146, 205) 24px 24px 0px, rgb(60, 147, 206) 25px 25px 0px, rgb(60, 148, 208) 26px 26px 0px, rgb(61, 149, 210) 27px 27px 0px, rgb(61, 150, 212) 28px 28px 0px, rgb(62, 151, 213) 29px 29px 0px, rgb(62, 153, 215) 30px 30px 0px, rgb(63, 154, 217) 31px 31px 0px, rgb(63, 155, 218) 32px 32px 0px, rgb(64, 156, 220) 33px 33px 0px, rgb(64, 157, 222) 34px 34px 0px, rgb(65, 159, 223) 35px 35px 0px, rgb(65, 160, 225) 36px 36px 0px, rgb(66, 161, 227) 37px 37px 0px, rgb(66, 162, 228) 38px 38px 0px, rgb(67, 163, 230) 39px 39px 0px, rgb(67, 165, 232) 40px 40px 0px, rgb(68, 166, 233) 41px 41px 0px;
+                    font-size: 65px;
+                    color: rgb(255, 255, 255);"> @Html.DisplayFor(modelItem => item.parkingSpotID) </p>
+            </div>
         </div>
     }
-    </div>
+</div>
 
 <div class="card-body-buttons">
     <div class="parking-lot-reservation-card-buttons"><a class="reservation-about-btn no-margin-left" asp-area="" asp-controller="MakeReservation" asp-action="Index" asp-route-id="">Back to Parking Lot List</a></div>
 </div>
 
-
-  
