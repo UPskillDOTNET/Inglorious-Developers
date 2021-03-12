@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace WebApp.DTO
         
         public int hours { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
+        [DisplayName("Reservation End Time")]
         public DateTime endTime { get; set; }
         
         public decimal finalPrice { get; set; }

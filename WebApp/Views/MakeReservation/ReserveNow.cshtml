@@ -8,28 +8,29 @@
 <h1>Your New Reservation</h1>
 
 <hr />
-<div class="row">
-  <div class="col-md-4">
-        <form asp-action="Confirm">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @Html.HiddenFor(model => model.parkingLotID)
-            @Html.HiddenFor(model => model.parkingSpotID)
-            @Html.DisplayFor(model =>model.startTime)
-            @Html.HiddenFor(model =>model.startTime)
-            <div class="form-group">
-                <label asp-for="endTime" class="control-label"></label>
-                <input asp-for="endTime" class="form-control" />
-                <span asp-validation-for="endTime" class="text-danger"></span>
-            </div>
-            @Html.HiddenFor(model => model.userID)
-            <div class="form-group">
-                <input type="submit" value="Confirm" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="new-reservation-card card">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Confirm">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.HiddenFor(model => model.parkingLotID)
+                @Html.HiddenFor(model => model.parkingSpotID)   
+                @Html.HiddenFor(model => model.startTime)
+                <div class="form-group">
+                    <label asp-for="endTime" class="control-label"></label>
+                    <input asp-for="endTime" class="form-control" />
+                    <span asp-validation-for="endTime" class="text-danger"></span>
+                </div>
+                @Html.HiddenFor(model => model.userID)
+                <div class="form-group">
+                    <input type="submit" value="Confirm" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    @Html.ActionLink("Back to Parking Lot", "Now", "MakeReservation", new { id = Model.parkingLotID})
+    <div class="card-body-buttons">
+        <div class="parking-lot-reservation-card-buttons"><a class="reservation-about-btn no-margin-left" asp-area="" asp-controller="MakeReservation" asp-action="Now" asp-route-id="">Back to Parking Spot List</a></div>
+    </div>
 </div>
 
