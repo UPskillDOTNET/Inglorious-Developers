@@ -28,7 +28,7 @@
         @foreach (var item in Model)
         {
         <tr style='background-color: @(item.isCancelled == false ? "white": "grey")' ;class="table-hover">
-            <td onclick="location.href ='@Url.Action("Details", new {id = item.centralReservationID})'">
+            <td id="pSpot_@(item.parkingLotID)_@(item.parkingSpotID)"; onclick="location.href ='@Url.Action("Details", new {id = item.centralReservationID})'">
                 @Html.DisplayFor(modelItem => item.parkingSpotID)
             </td>
             <td>
