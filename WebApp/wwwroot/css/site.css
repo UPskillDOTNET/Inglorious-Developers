@@ -385,6 +385,9 @@ input:-webkit-autofill:focus {
   font-style: italic;
 }
 
+
+/*User Dashboard Styling*/
+
 .userboard-body {
   display: flex;
   flex-direction: row;
@@ -393,7 +396,9 @@ input:-webkit-autofill:focus {
 }
 
 .no-margin-left {
-  margin-left: 0px;
+    margin-left: 0px;
+    background: #2a1b3d;
+    color: #beb0d1;
 }
 
 .userboard-body-header-text {
@@ -408,8 +413,29 @@ input:-webkit-autofill:focus {
     text-transform: uppercase
 }
 
-/*Choose a Parking Spot Stylings*/
+.user-dashboard-buttons {
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 10px 14px;
+    border-radius: 20px;
+    transition: 0.5s;
+    line-height: 1;
+    margin: 10px;
+    color: #beb0d1 !important;
+    -webkit-animation-delay: 0.8s;
+    animation-delay: 0.8s;
+    display: inline-block;
+    vertical-align: top;
+}
 
+    .user-dashboard-buttons:hover {
+        color: #2a1b3d !important;
+        text-decoration: none;
+    }
+
+
+/*Choose a Parking Spot Stylings*/
 .parking-spot-about-btn {
     height: 130px;
     width: 130px;
