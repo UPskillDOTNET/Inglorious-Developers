@@ -7,17 +7,18 @@
 
 <h1>Parking Lots Partners</h1>
 
-@using (Html.BeginForm())
-{
-    <p>
-        Find by name: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
-    </p>
+<form autocomplete="off" class="search1" id="search-form">
+    <input autocomplete="false" name="hidden" type="text" style="display:none;">
+    <div class="search__wrapper" autocomplete="off" onfocus="this.value=''">
+        @Html.TextBox("SearchString", "", new { @class = "search__field", onfocus = "this.value=''", value = "Search.." })
+        <button type="submit" class="fa fa-search search__icon" autocomplete="off"></button>
+    </div>
+</form>
+@using (Html.BeginForm()) {
 }
 
 <div class="page-content">
-    @foreach (var item in Model)
-    {
+    @foreach (var item in Model) {
         <div class="card-content">
             <img src="@Html.DisplayFor(modelItem => item.imageURL)" class="card-img-top" alt="...">
             <div class="card-body-content">
@@ -27,12 +28,11 @@
         </div>
 
         @*<tr class="table-hover">
-            <td class="pointer" onclick="location.href ='@Url.Action("Details", new {id = item.parkingLotID})'">
-                @Html.DisplayFor(modelItem => item.name)
-            </td>
-            <td style="text-align:right;">
-                @Html.DisplayFor(modelItem => item.location)
-            </td>
-        </tr>*@
+                <td class="pointer" onclick="location.href ='@Url.Action("Details", new {id = item.parkingLotID})'">
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td style="text-align:right;">
+                    @Html.DisplayFor(modelItem => item.location)
+                </td>
+            </tr>*@
     }
- 
