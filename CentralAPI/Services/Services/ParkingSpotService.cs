@@ -36,7 +36,7 @@ namespace CentralAPI.Services.Services
 
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllFreeParkingSpots(int pLotId)
         {
-            var response = await _helper.GetClientAsync(pLotId, "api/parkingspots/freeSpots");
+            var response = await _helper.GetClientAsync(pLotId, "api/parkingspots/all");
             var parkingspotList = await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
             var reservationList = await _centralReservationRepository.GetCentralReservationDateTimeNow();
             var res = from p in parkingspotList where !(from r in reservationList where r.parkingSpotID == p.parkingSpotID select r.parkingSpotID).Contains(p.parkingSpotID) select p;
@@ -45,7 +45,7 @@ namespace CentralAPI.Services.Services
 
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(DateTime startDate, DateTime endDate, int pLotId)
         {
-            var response = await _helper.GetClientAsync(pLotId, "api/parkingspots/freeSpots");
+            var response = await _helper.GetClientAsync(pLotId, "api/parkingspots/all");
             var parkingspotList = await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
             var reservationList = await _centralReservationRepository.GetSpecificCentralReservation(startDate, endDate);
             var res = from p in parkingspotList where !(from r in reservationList where r.parkingSpotID == p.parkingSpotID select r.parkingSpotID).Contains(p.parkingSpotID) select p;
