@@ -1,48 +1,54 @@
-﻿@model WebApp.DTO.UserDTO
+﻿
+@model WebApp.DTO.UserDTO
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div>
-    <div class="userboard-title"><h3 class="userboard-body-header-text">User Dashboard</h3></div>
-    <dl class="card box-shadow-card">
-        <div class="userboard-body">
-            <div class="userboard-section">
-                <h6 class="userboard-body-header-text">
-                    Your Username
-                </h6>
-                <p>
-                    @Html.DisplayFor(model => model.UserName)
-                </p>
-                <h6 class="userboard-body-header-text">
-                    Full Name
-                </h6>
-                <p>
-                    @Html.DisplayFor(model => model.name)
-                </p>
-                <h6 class="userboard-body-header-text">
-                    @Html.DisplayNameFor(model => model.Email)
-                </h6>
-                <p>
-                    @Html.DisplayFor(model => model.Email)
-                </p>
-                <h6 class="userboard-body-header-text">
-                    NIF
-                </h6>
-                <p>
-                    @Html.DisplayFor(model => model.nif)
-                </p>
-                    <div class="card-body-buttons">
-                        <div class="user-dashboard-buttons"><a class="reservation-about-btn no-margin-left" asp-area="" asp-controller="Users" asp-action="Edit" asp-route-id="">Edit</a></div>
-                        <div class="user-dashboard-buttons"><a class="reservation-about-btn no-margin-left" asp-area="" asp-controller="Reservations" asp-action="Index" asp-route-id="">Your Reservation</a></div>
+<body>
+
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row container d-flex justify-content-center">
+                <div class="col-xl-6 col-md-12">
+                    <div class="card user-card-full">
+                        <div class="row m-l-0 m-r-0">
+                            <div class="col-sm-4 bg-c-lite-green user-profile">
+                                <div class="card-block text-center text-white">
+                                    <div class="m-b-25"> <img src="../wwwroot/assets/img/car-flat.png" alt=""> </div>
+                                    <h6 class="f-w-600">@Html.DisplayFor(model => model.name)</h6>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="card-block">
+                                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600">User Profile Details</h6>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">Username</p>
+                                            <h6 class="text-muted f-w-400"> @Html.DisplayFor(model => model.UserName)</h6>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">Email</p>
+                                            <h6 class="text-muted f-w-400">@Html.DisplayFor(model => model.Email)</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">NIF</p>
+                                            <h6 class="text-muted f-w-400"> @Html.DisplayFor(model => model.nif)</h6>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">Wallet</p>
+                                            <h6 class="text-muted f-w-400">@await Html.PartialAsync("Wallet")</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
             </div>
-            <div class="userboard-section">
-                    @await Html.PartialAsync("Wallet")
             </div>
         </div>
-    </dl>
-
-</div>
+</body>
