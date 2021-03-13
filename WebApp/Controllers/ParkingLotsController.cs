@@ -16,6 +16,7 @@ namespace WebApp.Controllers
         {
             _webParkingLotService = parkingLotService;
         }
+        [AllowAnonymous]
         public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
 
