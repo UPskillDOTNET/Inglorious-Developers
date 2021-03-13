@@ -569,11 +569,13 @@ button:focus {
 /*User Dashboard*/
 
 .padding {
-    padding: 3rem !important
+    padding-right: 360px;
+    margin-top: 60px;
 }
 
 .user-card-full {
-    overflow: hidden
+    overflow: hidden;
+    width: 800px;
 }
 
 .card {
