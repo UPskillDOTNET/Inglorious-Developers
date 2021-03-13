@@ -4,6 +4,8 @@
     Layout = null;
 }
 
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
 <form asp-action="CreateLater">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <h6 class="userboard-body-header-text">
@@ -14,7 +16,7 @@
         @Html.HiddenFor(model => model.walletDTO.totalAmount)
     </p>
     <div class="card-body-buttons">
-        <a class="reservation-about-btn no-margin-left" asp-area="" asp-controller="Users" asp-action="Deposit" asp-route-id="">Deposit</a></div>
+        <a class="myWallet-button-user-dashboard" asp-area="" asp-controller="Users" asp-action="Deposit" asp-route-id=""><i style='font-size:24px' class='fas'>&#xf555;</i>  Add Money to My Wallet</a></div>
 </form>
   
 
