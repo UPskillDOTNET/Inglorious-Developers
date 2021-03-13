@@ -12,12 +12,14 @@
 
 <div class="row">
     @foreach (var item in Model) {
-        <div class="col-sm-2 p-4">
+    <div class="col-sm-2 p-4">
+        <div id="park-spot" class="parking-spot-about-btn parking-spot-about-btn:hover">
             <div id="park-spot_@Html.DisplayFor(modelItem => item.parkingSpotID)" class="parking-spot-about-btn parking-spot-about-btn:hover" onclick="location.href = '@Url.Action("ReserveNow", new { id = ViewData["parkingLotId"], pSpotId=item.parkingSpotID })'">
                 <p id="park-price">€@Html.DisplayFor(modelItem => item.priceHour) / hour</p>
-                <p id="icon" style="        
+                <p id="icon" style="
                     font-size: 55px;
                     color: rgb(255, 255, 255);"> @Html.DisplayFor(modelItem => item.parkingSpotID) </p>
+                </div>
             </div>
         </div>
     }
