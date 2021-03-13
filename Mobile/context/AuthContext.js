@@ -8,12 +8,12 @@ import createDataContext from "./createDataContext";
 const authReducer = (state, action) => {
   switch (action.type) {
     case "signout":
-      return { token: null, email: "" };
+      return { token: null, username: "" };
     case "signin":
     case "signup":
       return {
         token: action.payload.token,
-        email: action.payload.email,
+        username: action.payload.username,
       };
     default:
       return state;
@@ -21,20 +21,20 @@ const authReducer = (state, action) => {
 };
 
 const signup = (dispatch) => {
-  return ({ email, password }) => {
+  return ({ username, password }) => {
     console.log("Signup");
   };
 };
 
 const signin = (dispatch) => {
-  return ({ email, password }) => {
+  return ({ username, password }) => {
     // API REQUEST HERE
     console.log("Signin");
     dispatch({
       type: "signin",
       payload: {
         token: "token here",
-        email,
+        username,
       },
     });
   };
@@ -49,5 +49,5 @@ const signout = (dispatch) => {
 export const { Provider, Context } = createDataContext(
   authReducer,
   { signin, signout, signup },
-  { token: null, email: "" }
+  { token: null, username: "" }
 );
