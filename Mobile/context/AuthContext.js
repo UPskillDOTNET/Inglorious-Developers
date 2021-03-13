@@ -1,5 +1,5 @@
 import createDataContext from "./createDataContext";
-
+import getAccessToken from  "../Services/UserServices";
 // Dar set up dos reducers, functions e default values e exporta-los como provider e context.
 
 // Este reducer aceita o state e uma action. O principio base dum reducer
@@ -28,12 +28,15 @@ const signup = (dispatch) => {
 
 const signin = (dispatch) => {
   return ({ username, password }) => {
-    // API REQUEST HERE
+    var credentials = {username,password};
+    console.log(credentials);
+    var token = getAccessToken(credentials);
+    console.log(token);
     console.log("Signin");
     dispatch({
       type: "signin",
       payload: {
-        token: "token here",
+        token,
         username,
       },
     });
