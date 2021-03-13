@@ -19,13 +19,20 @@
 
 <div class="page-content">
     @foreach (var item in Model) {
-        <div class="card-content">
+    <div class="card-content">
+        @if (User.IsInRole("admin")) {
+            <img src="@Html.DisplayFor(modelItem => item.imageURL)" class="card-img-top pointer" alt="..." onclick="location.href ='@Url.Action("Details", new {id = item.parkingLotID})'">
+        } else {
             <img src="@Html.DisplayFor(modelItem => item.imageURL)" class="card-img-top" alt="...">
-            <div class="card-body-content">
-                <h2 class="centered">@Html.DisplayFor(modelItem => item.name)</h2>
-                <p class="centered2">@Html.DisplayFor(modelItem => item.location)</p>
+        }
+        <div class="card-body-content">
+            <h2 class="centered">@Html.DisplayFor(modelItem => item.name)</h2>
+            <p class="centered2">@Html.DisplayFor(modelItem => item.location)</p>
+            <div id="buttons" class="card-body-buttons">
+                <div class="parking-lot-reservation-card-buttons"><a id="btn-now" class="reservation-about-btn" asp-area="" asp-controller="Users" asp-action="Create">BOOK NOW</a></div>
             </div>
         </div>
+    </div>
 
         @*<tr class="table-hover">
                 <td class="pointer" onclick="location.href ='@Url.Action("Details", new {id = item.parkingLotID})'">

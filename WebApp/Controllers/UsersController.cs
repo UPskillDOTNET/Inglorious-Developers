@@ -59,6 +59,7 @@ namespace WebApp.Controllers
         //    }
         //}
 
+        [AllowAnonymous]
         public IActionResult Create()
         {
             return View();
