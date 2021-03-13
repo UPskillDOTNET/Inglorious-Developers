@@ -369,135 +369,137 @@ input:-webkit-autofill:focus {
   transform: translate(-50%, -50%);
 }
 
-.card-body-buttons {
-  display: flex;
-  justify-content: space-evenly;
-}
+    .card-body-buttons {
+        display: flex;
+        justify-content: space-evenly;
+    }
 
-.box-shadow-card {
-  box-shadow: 7px 9px 11px -1px rgba(89, 89, 89, 0.4);
-}
+    .box-shadow-card {
+        box-shadow: 7px 9px 11px -1px rgba(89, 89, 89, 0.4);
+    }
 
-#SearchStringReservation {
-  border-radius: 10px;
-  width: 100%;
-  line-height: 2rem;
-  font-style: italic;
-}
-
-
-/*User Dashboard Styling*/
-
-.userboard-body {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding: 3rem;
-}
-
-.no-margin-left {
-    margin-left: 0px;
-    background: #2a1b3d;
-    color: #beb0d1;
-}
-
-.userboard-body-header-text {
-  text-transform: uppercase;
-}
-
-.userboard-title {
-  padding: 1rem;
-}
-
-.text-transform-uppercase {
-    text-transform: uppercase
-}
-
-.user-dashboard-buttons {
-    font-weight: 500;
-    font-size: 12px;
-    letter-spacing: 1px;
-    padding: 10px 14px;
-    border-radius: 20px;
-    transition: 0.5s;
-    line-height: 1;
-    margin: 10px;
-    color: #beb0d1 !important;
-    -webkit-animation-delay: 0.8s;
-    animation-delay: 0.8s;
-    display: inline-block;
-    vertical-align: top;
-}
-
-    .user-dashboard-buttons:hover {
-        color: #2a1b3d !important;
-        text-decoration: none;
+    #SearchStringReservation {
+        border-radius: 10px;
+        width: 100%;
+        line-height: 2rem;
+        font-style: italic;
     }
 
 
-/*Choose a Parking Spot Stylings*/
-.parking-spot-about-btn {
-    height: 130px;
-    width: 130px;
-    line-height: 125px;
-    padding-bottom: 2px;
-    border-radius: 10%;
-    text-align: center;
-    background-color: #8265A7;
-    overflow: hidden;
-}
+    /*User Dashboard Styling*/
 
-.parking-spot-hover:hover {
-    background: #2a1b3d !important;
-    font-weight: 500 !important;
-    text-decoration: none;
-    cursor: pointer;
-}
+    .userboard-body {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 3rem;
+    }
 
-#park-spot:hover {
-    border: 5px solid white !important;
-    font-weight: 500 !important;
-    text-decoration: none;
-    cursor: pointer;
-}
+    .no-margin-left {
+        margin-left: 0px;
+        background: #2a1b3d;
+        color: #beb0d1;
+    }
 
-#park-price {
-    position: absolute;
-    top: 65px;
-    font-weight: 500;
-    left: 25%;
-    color: white;
-}
+    .userboard-body-header-text {
+        text-transform: uppercase;
+    }
 
-.page-content {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+    .userboard-title {
+        padding: 1rem;
+    }
 
-.card-content {
-    margin: 25px;
-    position: relative;
-    align-items: flex-end;
-    overflow: hidden;
-    width: 26%;
-    text-align: center;
-    box-shadow: 0 1px 1px rgb(0 0 0 / 10%), 0 2px 2px rgb(0 0 0 / 10%), 0 4px 4px rgb(0 0 0 / 10%), 0 8px 8px rgb(0 0 0 / 10%), 0 16px 16px rgb(0 0 0 / 10%);
-}
+    .text-transform-uppercase {
+        text-transform: uppercase
+    }
 
-.card-body-content {
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-}
+    .user-dashboard-buttons {
+        font-weight: 500;
+        font-size: 12px;
+        letter-spacing: 1px;
+        padding: 10px 14px;
+        border-radius: 20px;
+        transition: 0.5s;
+        line-height: 1;
+        margin: 10px;
+        color: #beb0d1 !important;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+        display: inline-block;
+        vertical-align: top;
+    }
 
-#buttons {
-    position: absolute;
-    top: 19rem;
-    margin-left: auto;
-}
+        .user-dashboard-buttons:hover {
+            color: #2a1b3d !important;
+            text-decoration: none;
+        }
 
-/*SEARCHBAR*/
+    /*Choose a Parking Spot Stylings*/
+    .parking-spot-about-btn {
+        height: 130px;
+        width: 130px;
+        line-height: 125px;
+        padding-bottom: 2px;
+        border-radius: 10%;
+        text-align: center;
+        background-color: #8265A7;
+        overflow: hidden;
+    }
+
+    .parking-spot-hover:hover {
+        background: #2a1b3d !important;
+        font-weight: 500 !important;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    #park-spot:hover {
+        border: 5px solid white !important;
+        font-weight: 500 !important;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    #park-price {
+        position: absolute;
+        top: 65px;
+        font-weight: 500;
+        left: 25%;
+        color: white;
+    }
+
+    .page-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card-content {
+        margin: 25px;
+        position: relative;
+        align-items: flex-end;
+        overflow: hidden;
+        width: 26%;
+        text-align: center;
+        box-shadow: 0 1px 1px rgb(0 0 0 / 10%), 0 2px 2px rgb(0 0 0 / 10%), 0 4px 4px rgb(0 0 0 / 10%), 0 8px 8px rgb(0 0 0 / 10%), 0 16px 16px rgb(0 0 0 / 10%);
+    }
+
+    .card-body-content {
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+    }
+
+    #buttons {
+        position: absolute;
+        top: 19rem;
+        margin-left: auto;
+    }
+
+    /*SEARCHBAR*/
+#searchbar-query {
+    display: none;
+}
 
 .search1 {
     position: absolute;
@@ -507,61 +509,59 @@ input:-webkit-autofill:focus {
     transform: translateX(-100%) translateY(-0%);
 }
 
-    .search1 * {
-        outline: none;
-        box-sizing: border-box;
+        .search1 * {
+            outline: none;
+            box-sizing: border-box;
+        }
+
+    .search__wrapper {
+        position: relative;
     }
 
-.search__wrapper {
-    position: relative;
-}
-
-.search__field {
-    width: 50px;
-    height: 50px;
-    color: grey;
-    font-size: 1.35em;
-    padding: 0.35em 50px 0.35em 0;
-    border: 1px solid transparent;
-    border-radius: 0px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-
-}
-
-    .search__field:focus {
-        width: 35vw;
-        color: white;
-        cursor: default;
+    .search__field {
+        width: 50px;
+        height: 50px;
         color: grey;
+        font-size: 1.35em;
+        padding: 0.35em 50px 0.35em 0;
+        border: 1px solid transparent;
+        border-radius: 0px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
     }
 
-        .search__field:focus ~ .search__icon {
-            background-color: transparent;
-            cursor: pointer;
-            pointer-events: auto;
+        .search__field:focus {
+            width: 35vw;
+            color: white;
+            cursor: default;
             color: grey;
         }
 
-.search__icon {
-    position: absolute;
-    color: white;
-    top: 0;
-    right: 0;
-    background-color: #8265A7;
-    width: 50px;
-    height: 50px;
-    font-size: 1.35em;
-    text-align: center;
-    border-color: transparent;
-    border-radius: 0px;
-    border: none;
-    pointer-events: none;
-    display: inline-block;
-    transition: background-color 0.2s ease-in-out;
+            .search__field:focus ~ .search__icon {
+                background-color: transparent;
+                cursor: pointer;
+                pointer-events: auto;
+                color: grey;
+            }
 
-}
+    .search__icon {
+        position: absolute;
+        color: white;
+        top: 0;
+        right: 0;
+        background-color: #8265A7;
+        width: 50px;
+        height: 50px;
+        font-size: 1.35em;
+        text-align: center;
+        border-color: transparent;
+        border-radius: 0px;
+        border: none;
+        pointer-events: none;
+        display: inline-block;
+        transition: background-color 0.2s ease-in-out;
+    }
 
-button:focus {
-    outline: 0;
-}
+    button:focus {
+        outline: 0;
+    }
