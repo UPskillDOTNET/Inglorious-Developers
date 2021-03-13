@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Icon } from "react-native-elements";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Input, Button } from "react-native-elements";
 import { Context as AuthContext } from "../context/AuthContext";
 
@@ -11,32 +11,37 @@ const Signin = ({ navigation }) => {
 
   return (
     <View style={styles.master}>
-      <Text style={styles.header}>Auth Demo</Text>
-      <Input
-        placeholder="Username"
-        onChangeText={setUsername}
-        value={username}
-        leftIcon={<Icon name="envelope" type="font-awesome" size={24} />}
+      <Image
+        style={styles.image}
+        source={require("../assets/Park_Around_White.png")}
       />
-      <Input
-        placeholder="Password"
-        onChangeText={setPassword}
-        value={password}
-        leftIcon={<Icon name="key" type="font-awesome" size={24} />}
-        secureTextEntry
-      />
-      <Button
-        title="Login"
-        type="clear"
-        onPress={() => {
-          signin({ username, password });
-        }}
-      />
-      <View style={styles.link}>
-        <Text style={styles.text}>Dont have an account? </Text>
-        <TouchableOpacity onPress={() => {}}>
-          <Text style={styles.text}>Sign up Here.</Text>
-        </TouchableOpacity>
+      <View style={styles.body}>
+        <Input
+          placeholder="Username"
+          onChangeText={setUsername}
+          value={username}
+          style={styles.bodyText}
+        />
+        <Input
+          placeholder="Password"
+          onChangeText={setPassword}
+          value={password}
+          secureTextEntry
+          style={styles.bodyText}
+        />
+        <Button
+          title="Login"
+          type="clear"
+          onPress={() => {
+            signin({ username, password });
+          }}
+        />
+        <View style={styles.link}>
+          <Text style={styles.text}>Dont have an account? </Text>
+          <TouchableOpacity onPress={() => {}}>
+            <Text style={styles.textSignUp}>Sign up Here</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -48,6 +53,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "stretch",
     justifyContent: "center",
+    backgroundColor: "#2A1B3D",
   },
   header: {
     fontSize: 32,
@@ -57,10 +63,41 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     marginTop: 16,
+    color: "white",
+  },
+  textSignUp: {
+    fontSize: 16,
+    marginTop: 16,
+    color: "rgb(216,81,193)",
+    fontWeight: "700",
   },
   link: {
     flexDirection: "row",
     justifyContent: "center",
+  },
+  image: {
+    flex: 1,
+    width: 250,
+    height: 250,
+    padding: 50,
+    margin: 30,
+    resizeMode: "contain",
+    alignSelf: "center",
+  },
+  body: {
+    flex: 1,
+  },
+  icon: {
+    backgroundColor: "white",
+  },
+  bodyText: {
+    backgroundColor: "white",
+    borderRadius: 25,
+    padding: 8,
+    margin: 10,
+    width: 300,
+    textAlign: "center",
+    textTransform: "uppercase",
   },
 });
 
