@@ -1,0 +1,567 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@100;200;300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: white;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  font-family: Roboto;
+  background: #e3e2de;
+}
+.footer {
+  position: absolute;
+  color: white !important;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+a .footer {
+  color: white !important;
+}
+
+/*Home*/
+.home {
+  /*background: url("https://res.cloudinary.com/du4r5hykw/image/upload/v1615218742/cover8_no_bg_w2ll3n.png") no-repeat center center fixed;*/
+  /*background: url("https://res.cloudinary.com/du4r5hykw/image/upload/v1614866659/cover8_pjsp3n.jpg") no-repeat center center fixed;*/
+  background: url("https://res.cloudinary.com/du4r5hykw/image/upload/v1615224104/beetle_vector_pinkbpdf_extended_sszsqv.png");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #2a1b3d;
+}
+
+.home .overlay {
+  background-color: rgba(0, 0, 0, 0.35) !important;
+}
+
+.landing {
+  z-index: -1000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.landing img {
+  background-size: cover;
+  top: 0;
+  width: 250px;
+  height: auto;
+  left: 0;
+}
+
+.landtext {
+  color: white;
+  padding: 2rem;
+}
+
+td .pointer :hover {
+  cursor: pointer !important;
+}
+
+.pointer {
+  cursor: pointer !important;
+}
+#navbar {
+  min-height: 50px;
+  transition: all 0.3s;
+  background-color: #d83f87 !important;
+}
+.homenav {
+  background-color: #fce373 !important;
+}
+
+.text-dark {
+  color: #4a4a4a !important;
+  font-weight: 600 !important;
+  justify-content: space-between;
+  font-size: 16px;
+  padding: 0px 10px;
+  cursor: pointer;
+}
+.text-white {
+  color: white !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+  justify-content: space-between;
+  font-size: 18px;
+  padding: 0px 10px;
+  cursor: pointer;
+}
+
+a .text-dark :hover {
+  color: white !important;
+  font-weight: 900;
+  background-color: #a385bd;
+}
+
+.nav-link :hover {
+  color: white !important;
+  font-weight: 900;
+  background-color: #a385bd;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #a385bd;
+}
+
+.navbar-light .navbar-nav .nav-link :hover {
+  color: #a385bd;
+  background-color: rgb(200, 188, 216, 0.3);
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
+.landing .about-btn {
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 50px;
+  transition: 0.5s;
+  line-height: 1;
+  margin: 10px;
+  color: white !important;
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+  border: 2px solid #beb0d1;
+  text-align: center;
+  min-width: 256px;
+}
+
+.landing .about-btn:hover {
+  background: rgb(200, 188, 216, 0.3);
+  font-weight: 500;
+  color: #f1eef5 !important;
+  text-decoration: none;
+}
+
+tr:hover,
+tr:hover td {
+  background: #9aa4ad;
+}
+
+th {
+  background: white;
+}
+
+/*.testing-display-column {
+    display: flex;
+    flex-direction: column;
+}*/
+
+.landing-card-background {
+  background-color: rgba(190, 176, 209, 0.5);
+  max-height: 100%;
+  margin-right: 5rem;
+  padding: 5rem;
+}
+.landing-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 7rem;
+}
+
+.landing-card-subtext {
+  font-weight: 300;
+}
+
+.container-testing-nomargin {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.register-card-background {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(190, 176, 209, 0.5);
+  max-height: 100%;
+  margin-right: 5rem;
+  padding: 4.2755rem;
+}
+.readonly {
+  color: grey !important;
+}
+
+.register-card-text {
+  font-size: 1rem;
+  color: antiquewhite;
+}
+
+.register-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+h2.register-h2 {
+  font-size: 2.025rem;
+  text-decoration-color: antiquewhite;
+}
+
+.register-form {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: rgba(190, 176, 209, 0.5);
+  background-clip: padding-box;
+  border: 1px solid #2a1b3d;
+  border-radius: 0.25rem;
+  /*transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;*/
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  border: 1px solid #2a1b3d;
+  -webkit-text-fill-color: #495057;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(190, 176, 209, 0.5) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/*MAKE a RESERVATION STYLING*/
+
+.parking-lot-reservation-card {
+  border: 1px black solid;
+  border-radius: 10px;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.parking-lot-reservation-card-buttons {
+  flex-direction: row;
+}
+
+.make-a-reservation-grid {
+  display: flex;
+}
+
+.reservation-about-btn {
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 10px 14px;
+    border-radius: 50px;
+    transition: 0.5s;
+    line-height: 1;
+    margin: 10px;
+    color: #fff !important;
+    -webkit-animation-delay: 0.8s;
+    animation-delay: 0.8s;
+    border: 2px solid #beb0d1;
+    background: rgb(200,188,216,0.3);
+    display: inline-block;
+    vertical-align: top;
+}
+
+    .reservation-about-btn:hover {
+        background: #fff;
+        font-weight: 500;
+        color: #2a1b3d !important;
+        text-decoration: none;
+    }
+
+.card-img-top {
+    width: 100%;
+    height: 30vw;
+    object-fit: cover;
+    overflow: hidden;
+    filter: grayscale(100%) brightness(40%);
+    transition: .5s;
+    overflow: hidden;
+}
+
+    .card-img-top:hover {
+        cursor: pointer;
+        filter: grayscale(20%) brightness(60%);
+        transition: .5s;
+    }
+
+.centered {
+    position: absolute;
+    color: white;
+    width: 90%;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.centered2 {
+  position: absolute;
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card-body-buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.box-shadow-card {
+  box-shadow: 7px 9px 11px -1px rgba(89, 89, 89, 0.4);
+}
+
+#SearchStringReservation {
+  border-radius: 10px;
+  width: 100%;
+  line-height: 2rem;
+  font-style: italic;
+}
+
+
+/*User Dashboard Styling*/
+
+.userboard-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 3rem;
+}
+
+.no-margin-left {
+    margin-left: 0px;
+    background: #2a1b3d;
+    color: #beb0d1;
+}
+
+.userboard-body-header-text {
+  text-transform: uppercase;
+}
+
+.userboard-title {
+  padding: 1rem;
+}
+
+.text-transform-uppercase {
+    text-transform: uppercase
+}
+
+.user-dashboard-buttons {
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 10px 14px;
+    border-radius: 20px;
+    transition: 0.5s;
+    line-height: 1;
+    margin: 10px;
+    color: #beb0d1 !important;
+    -webkit-animation-delay: 0.8s;
+    animation-delay: 0.8s;
+    display: inline-block;
+    vertical-align: top;
+}
+
+    .user-dashboard-buttons:hover {
+        color: #2a1b3d !important;
+        text-decoration: none;
+    }
+
+
+/*Choose a Parking Spot Stylings*/
+.parking-spot-about-btn {
+    height: 130px;
+    width: 130px;
+    line-height: 125px;
+    padding-bottom: 2px;
+    border-radius: 10%;
+    text-align: center;
+    background-color: #8265A7;
+    overflow: hidden;
+}
+
+.parking-spot-hover:hover {
+    background: #2a1b3d !important;
+    font-weight: 500 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#park-spot:hover {
+    border: 5px solid white !important;
+    font-weight: 500 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#park-price {
+    position: absolute;
+    top: 65px;
+    font-weight: 500;
+    left: 25%;
+    color: white;
+}
+
+.page-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card-content {
+    margin: 25px;
+    position: relative;
+    align-items: flex-end;
+    overflow: hidden;
+    width: 26%;
+    text-align: center;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 10%), 0 2px 2px rgb(0 0 0 / 10%), 0 4px 4px rgb(0 0 0 / 10%), 0 8px 8px rgb(0 0 0 / 10%), 0 16px 16px rgb(0 0 0 / 10%);
+}
+
+.card-body-content {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+
+#buttons {
+    position: absolute;
+    top: 19rem;
+    margin-left: auto;
+}
+
+/*SEARCHBAR*/
+
+.search1 {
+    position: absolute;
+    top: 6em;
+    left: 86%;
+    -webkit-transform: translateX(-100%) translateY(-0%);
+    transform: translateX(-100%) translateY(-0%);
+}
+
+    .search1 * {
+        outline: none;
+        box-sizing: border-box;
+    }
+
+.search__wrapper {
+    position: relative;
+}
+
+.search__field {
+    width: 50px;
+    height: 50px;
+    color: grey;
+    font-size: 1.35em;
+    padding: 0.35em 50px 0.35em 0;
+    border: 1px solid transparent;
+    border-radius: 0px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+}
+
+    .search__field:focus {
+        width: 35vw;
+        color: white;
+        cursor: default;
+        color: grey;
+    }
+
+        .search__field:focus ~ .search__icon {
+            background-color: transparent;
+            cursor: pointer;
+            pointer-events: auto;
+            color: grey;
+        }
+
+.search__icon {
+    position: absolute;
+    color: white;
+    top: 0;
+    right: 0;
+    background-color: #8265A7;
+    width: 50px;
+    height: 50px;
+    font-size: 1.35em;
+    text-align: center;
+    border-color: transparent;
+    border-radius: 0px;
+    border: none;
+    pointer-events: none;
+    display: inline-block;
+    transition: background-color 0.2s ease-in-out;
+
+}
+
+button:focus {
+    outline: 0;
+}

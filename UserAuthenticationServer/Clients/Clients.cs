@@ -1,4 +1,5 @@
-﻿using IdentityServer4.Models;
+﻿using IdentityServer4;
+using IdentityServer4.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,30 @@ namespace UserAuthenticationServer.Clients
         {
             return new List<Client>
         {
-            new Client
+
+             new Client
             {
-                ClientId = "IngloriousDevelopersTest",
-                ClientName = "Example client application using client credentials",
-                AllowedGrantTypes = GrantTypes.ClientCredentials,
-                ClientSecrets = new List<Secret> {new Secret("ThIsIsAnotHERsuPerSecretPassWord".Sha256())}, // change me!
-                AllowedScopes = new List<string> {"PrivAPI.read", "PrivAPI.write" , "PubAPI.read" , "PubAPI.write", "CAPI.read", "CAPI.write" }
-            }
+                ClientId = "mvc",
+                ClientName = "MVC Client",
+                AllowedGrantTypes = GrantTypes.HybridAndClientCredentials,
+                ClientSecrets = new List<Secret> {new Secret("Secret".Sha256())},
+              
+
+                // where to redirect to after login
+                RedirectUris = { "https://localhost:44312/signin-oidc" },
+
+                // where to redirect to after logout
+                PostLogoutRedirectUris = { "https://localhost:44312/signout-callback-oidc" },
+
+                AllowedScopes = new List<string>
+                {
+                IdentityServerConstants.StandardScopes.OpenId,
+                IdentityServerConstants.StandardScopes.Profile,
+                "PrivAPI.read", "PrivAPI.write" , "PubAPI.read" , "PubAPI.write", "CAPI.read", "CAPI.write"
+                },
+                AllowOfflineAccess = true,
+                RequirePkce=false
+        }
         };
         }
     }

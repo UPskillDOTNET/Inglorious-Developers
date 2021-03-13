@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace PrivateParkAPI.Models {
     public class Reservation {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string reservationID { get; set; }
         [Required]
         public bool isCancelled { get; set; }

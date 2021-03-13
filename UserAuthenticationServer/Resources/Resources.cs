@@ -16,8 +16,13 @@ namespace UserAuthenticationServer.Resources
             {
                 Name = "role",
                 UserClaims = new List<string> {"role"}
-            }
-        };
+            },
+            new IdentityResource{
+                Name = "UserID",
+                UserClaims = new []{"userID"}
+                }
+            };
+
         }
 
         public static IEnumerable<ApiResource> GetApiResources()

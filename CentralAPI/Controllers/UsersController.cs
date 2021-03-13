@@ -5,6 +5,11 @@ using CentralAPI.Services.IServices;
 using CentralAPI.DTO;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Identity;
+using CentralAPI.Models;
+using Microsoft.AspNetCore.Http;
+using System.Security.Cryptography;
 
 namespace CentralAPI.Controllers
 {
@@ -16,7 +21,7 @@ namespace CentralAPI.Controllers
     {
         private readonly IUserService _userService;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, UserManager<User> userManager, IConfiguration configuration)
         {
             _userService = userService;
         }
@@ -55,38 +60,16 @@ namespace CentralAPI.Controllers
             }
         }
 
-        // HTTP PUT: Updates an User By ID
-        // Gets a User registered in the central API, with a User ID provided in the route endpoint.
-
-        [HttpPut("{id}")]
-        public async Task<ActionResult<UserDTO>> UpdateUserById(string id, [FromBody] UserDTO userDTO)
+        [HttpPost]
+        public async Task<ActionResult<UserDTO>> Register([FromBody]UserDTO userDTO)
         {
-            try
-            {
-                await _userService.UpdateUserById(id, userDTO);
-                return NoContent();
-            }
-            catch (ArgumentNullException)
-            {
-
-                return NotFound();
-            }
+            var user = await _userService.CreateUser(userDTO);
+           
+            return Ok(user.Value);
         }
 
 
 
-        // POST: api/Users/{currency}
-        [HttpPost("{currency}")]
-        public async Task<ActionResult<UserDTO>> CreateUser (UserDTO userDTO, string currency)
-        {
-            var userDto = await _userService.CreateUser(userDTO, currency);
-            if(userDto.Value == null)
-            {
-                return BadRequest();
-            }
-            //return Ok(userDTO);
-            return CreatedAtAction("GetUserById", new { id = userDTO.userID }, userDTO);
-        }
 
         // DELETE: api/users/5
         [HttpDelete("{id}")]
@@ -117,5 +100,7 @@ namespace CentralAPI.Controllers
                 return false;
             }
         }
+
+  
     }
 }

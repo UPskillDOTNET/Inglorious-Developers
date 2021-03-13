@@ -1,5 +1,6 @@
 ﻿using CentralAPI.DTO;
 using CentralAPI.Services.IServices;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Controllers
 {
-    //[Authorize]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("central/reservations")]
     [ApiController]
     public class CentralReservationsController : ControllerBase
@@ -30,6 +31,12 @@ namespace CentralAPI.Controllers
             return _centralReservationService.GetAllCentralReservations();
         }
 
+        [HttpGet("users/{id}")]
+        public Task<ActionResult<IEnumerable<CentralReservationDTO>>> GetCentralReservationsById(string id)
+        {
+            return _centralReservationService.GetAllCentralReservationsById(id);
+        }
+
         //Get a Reservation By Id from Central API.
         [HttpGet("{id}")]
         public async Task<ActionResult<CentralReservationDTO>> GetCentralReservationById(string id)
@@ -40,6 +47,16 @@ namespace CentralAPI.Controllers
                 return NotFound("CentralReservation was not Found");
             }
             return await _centralReservationService.GetCentralReservationById(id);
+        }
+
+        //Get a Reservation By UserId from Central API.
+        [HttpGet("~/reservations/users/{userid}")]
+        public async Task<ActionResult<CentralReservationDTO>> GetCentralReservationByUserId(string userID) {
+
+            if (await UserHasReservations(userID) == false) {
+                return NotFound("User's CentralReservation were not Found");
+            }
+            return await _centralReservationService.GetCentralReservationByUserId(userID);
         }
 
         //Get all Reservations that are not cancelled from Central API.
@@ -61,7 +78,7 @@ namespace CentralAPI.Controllers
             {
                 if (await CentralReservationExists(centralReservationDTO.reservationID) == true)
                 {
-                    return Conflict("The CentralReservations already exist");
+                    return Conflict("This Reservations already exist");
                 }
                 return BadRequest(ex);
             }
@@ -74,7 +91,8 @@ namespace CentralAPI.Controllers
             try
             {
                 var centralReservation = await _centralReservationService.PostCentralReservationNotCompleted(centralReservationDTO);
-                await _reservationService.PostReservation(centralReservation.Value, centralReservationDTO.parkingLotID);
+
+                //await _reservationService.PostReservation(centralReservation.Value, centralReservationDTO.parkingLotID);
             }
             catch (Exception e)
             {
@@ -97,7 +115,7 @@ namespace CentralAPI.Controllers
                 if (centralReservationDTO.Value.isCancelled == false)
                 {
                     centralReservationDTO = await _centralReservationService.PatchCentralReservation(id);
-                    await _reservationService.PatchReservation(centralReservationDTO.Value.reservationID, centralReservationDTO.Value.parkingLotID);
+                    await _reservationService.PatchReservation(id, centralReservationDTO.Value.parkingLotID);
                     return centralReservationDTO;
                 }
                 return BadRequest("Couldn't change value");
@@ -146,6 +164,11 @@ namespace CentralAPI.Controllers
 
         }
 
+        //CentralReservation exists
+        public async Task<bool> UserHasReservations(string userID) {
+            return await _centralReservationService.FindCentralReservationAnyByUser(userID);
+
+        }
 
         /* ------------------------------- RESERVATIONS PARK API -------------------------------*/
 

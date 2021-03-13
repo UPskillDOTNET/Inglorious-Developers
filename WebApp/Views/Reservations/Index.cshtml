@@ -1,0 +1,54 @@
+@model IEnumerable<WebApp.DTO.ReservationDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Reservation List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["ParkingSpot"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Parking Spot</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["ParkingLot"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Parking Lot</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["StartingHour"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Starting Hour</a>
+            </th>
+            <th style="text-align:right;">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["EndingHour"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Ending Hour</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr style='background-color: @(item.isCancelled == false ? "white": "grey")' ;class="table-hover">
+            <td id="pSpot_@(item.parkingLotID)_@(item.parkingSpotID)"; onclick="location.href ='@Url.Action("Details", new {id = item.centralReservationID})'">
+                @Html.DisplayFor(modelItem => item.parkingSpotID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.parkingLotID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.startTime)
+            </td>
+            <td style="text-align:right;">
+                @Html.DisplayFor(modelItem => item.endTime)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<div>
+    @Html.ActionLink("Back to User", "Index", "Users")
+</div>
+@*<p style="text-align:left;">
+    <a style="color:red; font-size:18px" asp-action="Create">New Reservation</a>
+</p>*@
+
+

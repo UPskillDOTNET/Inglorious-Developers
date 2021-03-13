@@ -29,12 +29,10 @@ namespace PrivateParkAPI
         {
             services.AddDbContext<PrivateParkContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-            services.AddTransient<IParkingLotRepository, ParkingLotRepository>();
             services.AddTransient<IParkingSpotRepository, ParkingSpotRepository>();
             services.AddTransient<IReservationRepository, ReservationRepository>();
 
             services.AddTransient<IParkingSpotService, ParkingSpotService>();
-            services.AddTransient<IParkingLotService, ParkingLotService>();
             services.AddTransient<IReservationService, ReservationService>();
 
 
@@ -43,7 +41,8 @@ namespace PrivateParkAPI
                      .AddIdentityServerAuthentication("Bearer", options =>
                      {
                          options.ApiName = "PrivateAPI";
-                         options.Authority = "https://localhost:44309";
+                         options.Authority = "https://localhost:5001";
+                         options.RequireHttpsMetadata = false;
                      });
 
 

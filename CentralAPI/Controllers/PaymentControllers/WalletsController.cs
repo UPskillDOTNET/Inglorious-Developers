@@ -9,10 +9,13 @@ using CentralAPI.Data;
 using CentralAPI.Models;
 using CentralAPI.Services.IServices;
 using CentralAPI.DTO;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CentralAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Route("central/[controller]")]
     [ApiController]
     public class WalletsController : Controller
     {
@@ -32,11 +35,10 @@ namespace CentralAPI.Controllers
             return _walletService.GetAllWallets();
         }
 
-        [HttpGet]
-        [Route("~/api/users/balance/{userID}")]
+        [HttpGet("balance/{userID}")]
         public async Task<ActionResult<WalletDTO>> GetBalance(string userID)
         {
-            if ( await _userService.GetUserById(userID) == null)
+            if (await _userService.GetUserById(userID) == null)
             {
                 return BadRequest("User not found");
             }
@@ -48,8 +50,7 @@ namespace CentralAPI.Controllers
             return await _walletService.GetBalance(userID);
         }
 
-        [HttpGet]
-        [Route("/api/[controller]/{walletID}")]
+        [HttpGet("{WalletID}")]
         public async Task<ActionResult<WalletDTO>> GetWalletById(string walletID)
         {
             var wallet = await _walletService.GetWalletById(walletID);
@@ -60,9 +61,9 @@ namespace CentralAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<WalletDTO>> CreateWallet(string userID, string currency)
+        public async Task<ActionResult<WalletDTO>> CreateWallet(string userID)
         {
-            var resp = await _walletService.CreateWallet(userID, currency);
+            var resp = await _walletService.CreateWallet(userID);
             var walletDTO = resp.Value;
 
             if (walletDTO == null)
@@ -72,7 +73,7 @@ namespace CentralAPI.Controllers
             return Ok(walletDTO);
         }
         [HttpPut]
-        [Route("/api/[controller]/deposit/{walletID}/{value}/")]
+        [Route("deposit/{walletID}/{value}/")]
         public async Task<ActionResult<WalletDTOOperation>> DepositToWallet(string walletID, decimal value)
         {
 

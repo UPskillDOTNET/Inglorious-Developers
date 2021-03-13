@@ -1,4 +1,5 @@
 ﻿using CentralAPI.DTO;
+using CentralAPI.Models;
 using CentralAPI.Services.IServices;
 using CentralAPI.Utils;
 using FluentValidation.Results;
@@ -68,9 +69,9 @@ namespace CentralAPI.Services.Services
         }
 
         //Method to post a reservation in the Parking Lot API
-        public async Task<ActionResult<HttpResponseMessage>> PostReservation(CentralReservationDTO reservationDTO, int pLotID)
+        public async Task<ActionResult<HttpResponseMessage>> PostReservation(CentralReservation reservation, int pLotID)
         {
-            var content = new StringContent(JsonConvert.SerializeObject(reservationDTO), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonConvert.SerializeObject(reservation), Encoding.UTF8, "application/json");
             var response = await _helper.PostClientAsync(pLotID, "api/reservations/", content);
             return response;
         }

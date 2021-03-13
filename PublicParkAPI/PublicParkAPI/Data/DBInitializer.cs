@@ -11,27 +11,6 @@ namespace PublicParkAPI.Data {
         {
             context.Database.EnsureCreated();
 
-            if (context.ParkingLots.Any())
-            {
-                return; //DB is seeded
-            }
-
-            // Look for any destinations.
-            var parkingLots = new ParkingLot[]
-            {
-                    new ParkingLot{name="Parque da República", municipality="Vila Nova de Gaia",location="Avenida da República",capacity=125,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
-                    new ParkingLot{name="Parque Brito Capelo", municipality="Matosinhos",location="Rua Brito Capelo",capacity=250,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
-                    new ParkingLot{name="Parque da Liberdade", municipality="Lisboa",location="Avenida da Liberdade",capacity=423,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
-                    new ParkingLot{name="Parque dos Congregados", municipality="Braga",location="Rua dos Congregados",capacity=588,openingTime= DateTime.Parse("2020-02-22 07:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
-                    new ParkingLot{name="Parque Carlos Alberto", municipality="Porto",location="Praça Carlos Alberto",capacity=365,openingTime= DateTime.Parse("2020-02-22 12:00:00"),closingTime= DateTime.Parse("2999-02-22 19:00:00")},
-            };
-            foreach (ParkingLot p in parkingLots)
-            {
-                context.ParkingLots.Add(p);
-            }
-            context.SaveChanges();
-
-
             if (context.ParkingSpots.Any())
             {
                 return;   // DB has been seeded
@@ -40,11 +19,30 @@ namespace PublicParkAPI.Data {
             var parkingSpots = new ParkingSpot[]
             {
                     new ParkingSpot{parkingSpotID="A1",priceHour=0.250m},
-                    new ParkingSpot{parkingSpotID="E1",priceHour=0.5m},
+                    new ParkingSpot{parkingSpotID="A2",priceHour=0.250m},
+                    new ParkingSpot{parkingSpotID="A3",priceHour=0.250m},
+                    new ParkingSpot{parkingSpotID="A4",priceHour=0.250m},
+                    new ParkingSpot{parkingSpotID="A5",priceHour=0.250m},
+                    new ParkingSpot{parkingSpotID="B1",priceHour=0.250m},
+                    new ParkingSpot{parkingSpotID="B2",priceHour=0.500m},
+                    new ParkingSpot{parkingSpotID="B3",priceHour=0.500m},
+                    new ParkingSpot{parkingSpotID="B4",priceHour=0.500m},
+                    new ParkingSpot{parkingSpotID="B5",priceHour=0.500m},
+                    new ParkingSpot{parkingSpotID="E1",priceHour=0.7m},
+                    new ParkingSpot{parkingSpotID="E2",priceHour=0.7m},
+                    new ParkingSpot{parkingSpotID="E3",priceHour=0.7m},
+                    new ParkingSpot{parkingSpotID="E4",priceHour=0.7m},
+                    new ParkingSpot{parkingSpotID="E5",priceHour=0.7m},
                     new ParkingSpot{parkingSpotID="I1",priceHour=0.9m},
-                    new ParkingSpot{parkingSpotID="O1",priceHour=1.00m},
-                    new ParkingSpot{parkingSpotID="A3",priceHour=0.25m},
-                    new ParkingSpot{parkingSpotID="I5",priceHour=0.25m},
+                    new ParkingSpot{parkingSpotID="I2",priceHour=0.9m},
+                    new ParkingSpot{parkingSpotID="I3",priceHour=0.9m},
+                    new ParkingSpot{parkingSpotID="I4",priceHour=0.9m},
+                    new ParkingSpot{parkingSpotID="I5",priceHour=0.9m},
+                    new ParkingSpot{parkingSpotID="O1",priceHour=1.50m},
+                    new ParkingSpot{parkingSpotID="O2",priceHour=1.50m},
+                    new ParkingSpot{parkingSpotID="O3",priceHour=1.50m},
+                    new ParkingSpot{parkingSpotID="O4",priceHour=1.50m},
+                    new ParkingSpot{parkingSpotID="O5",priceHour=1.50m},
             };
             foreach (ParkingSpot s in parkingSpots)
             {

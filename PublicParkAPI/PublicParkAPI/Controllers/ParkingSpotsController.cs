@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PublicParkAPI.DTO;
 using PublicParkAPI.Services;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PublicParkAPI.Controllers
 {
-    [Authorize]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/parkingspots")]
     [ApiController]
     public class ParkingSpotsController : Controller

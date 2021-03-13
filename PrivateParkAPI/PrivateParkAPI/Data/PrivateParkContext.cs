@@ -12,7 +12,6 @@ namespace PrivateParkAPI.Data
 
         }
 
-        public DbSet<ParkingLot> ParkingLots { get; set; }
         public DbSet<ParkingSpot> ParkingSpots { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
     }

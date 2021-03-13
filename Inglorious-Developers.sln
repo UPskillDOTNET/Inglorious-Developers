@@ -19,10 +19,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "testPublicParkAPI", "Public
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "testPrivateParkAPI", "PrivateParkAPI\testPrivateParkAPI\testPrivateParkAPI.csproj", "{1B9FB826-844C-4ED1-805E-2F50D0E37C98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockPaymentAPI", "MockPaymentAPI\MockPaymentAPI.csproj", "{98D03539-D654-4762-92F2-C9F79EB553E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MockPaymentAPI", "MockPaymentAPI\MockPaymentAPI.csproj", "{98D03539-D654-4762-92F2-C9F79EB553E4}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer", "IdentityServer", "{85C70CFA-3E12-4208-9750-542CE7F2613D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAuthenticationServer", "UserAuthenticationServer\UserAuthenticationServer.csproj", "{6BCFBA99-E58C-4BC4-8258-47245E1FD063}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{AA771F39-5B1D-41E9-A83F-FE69B1828476}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -130,6 +133,18 @@ Global
 		{6BCFBA99-E58C-4BC4-8258-47245E1FD063}.Release|x64.Build.0 = Release|Any CPU
 		{6BCFBA99-E58C-4BC4-8258-47245E1FD063}.Release|x86.ActiveCfg = Release|Any CPU
 		{6BCFBA99-E58C-4BC4-8258-47245E1FD063}.Release|x86.Build.0 = Release|Any CPU
+		{AA771F39-5B1D-41E9-A83F-FE69B1828476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA771F39-5B1D-41E9-A83F-FE69B1828476}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA771F39-5B1D-41E9-A83F-FE69B1828476}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AA771F39-5B1D-41E9-A83F-FE69B1828476}.Debug|x64.Build.0 = Debug|Any CPU
+		{AA771F39-5B1D-41E9-A83F-FE69B1828476}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AA771F39-5B1D-41E9-A83F-FE69B1828476}.Debug|x86.Build.0 = Debug|Any CPU
+		{AA771F39-5B1D-41E9-A83F-FE69B1828476}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA771F39-5B1D-41E9-A83F-FE69B1828476}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA771F39-5B1D-41E9-A83F-FE69B1828476}.Release|x64.ActiveCfg = Release|Any CPU
+		{AA771F39-5B1D-41E9-A83F-FE69B1828476}.Release|x64.Build.0 = Release|Any CPU
+		{AA771F39-5B1D-41E9-A83F-FE69B1828476}.Release|x86.ActiveCfg = Release|Any CPU
+		{AA771F39-5B1D-41E9-A83F-FE69B1828476}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

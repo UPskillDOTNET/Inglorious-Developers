@@ -1,0 +1,38 @@
+﻿@model IEnumerable<WebApp.DTO.ParkingLotDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Parking Lots Partners</h1>
+
+<form autocomplete="off" class="search1" id="search-form">
+    <input autocomplete="false" name="hidden" type="text" style="display:none;">
+    <div class="search__wrapper" autocomplete="off" onfocus="this.value=''">
+        @Html.TextBox("SearchString", "", new { @class = "search__field", onfocus = "this.value=''", value = "Search.." })
+        <button type="submit" class="fa fa-search search__icon" autocomplete="off"></button>
+    </div>
+</form>
+@using (Html.BeginForm()) {
+}
+
+<div class="page-content">
+    @foreach (var item in Model) {
+        <div class="card-content">
+            <img src="@Html.DisplayFor(modelItem => item.imageURL)" class="card-img-top" alt="...">
+            <div class="card-body-content">
+                <h2 class="centered">@Html.DisplayFor(modelItem => item.name)</h2>
+                <p class="centered2">@Html.DisplayFor(modelItem => item.location)</p>
+            </div>
+        </div>
+
+        @*<tr class="table-hover">
+                <td class="pointer" onclick="location.href ='@Url.Action("Details", new {id = item.parkingLotID})'">
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td style="text-align:right;">
+                    @Html.DisplayFor(modelItem => item.location)
+                </td>
+            </tr>*@
+    }

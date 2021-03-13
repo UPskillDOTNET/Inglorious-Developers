@@ -1,0 +1,56 @@
+﻿@model WebApp.DTO.ParkingLotDTO
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>
+    @Html.DisplayFor(model => model.name)
+</h1>
+
+<div>
+    <h3>Details</h3>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.owner)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.owner)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.location)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.location)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.capacity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.capacity) Parking Spots
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.openingTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.openingTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.closingTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.closingTime)
+        </dd>
+        <dd class="col-sm-2">
+            @Html.ActionLink("Parking Spots", "Index", "ParkingSpots", new { id = Model.parkingLotID })
+        </dd>
+        <dd class="col-sm-10">
+            @Html.ActionLink("Free Parking Spots", "Free", "ParkingSpots", new { id = Model.parkingLotID })
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

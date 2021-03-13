@@ -1,0 +1,55 @@
+﻿@model WebApp.DTO.UserDTO
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<body class="home">
+    <div class="landing">
+        <div class="register-card-background">
+            <h2 class="register-h2">Register your account</h2>
+            <div class="register-card">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="UserName" class="control-label register-card-text">Username</label>
+                        <input asp-for="UserName" class="register-form" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label register-card-text"></label>
+                        <input asp-for="Password" class="register-form" autocomplete="off" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label register-card-text"></label>
+                        <input asp-for="Email" class="register-form" autocomplete="off" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="name" class="control-label register-card-text">Name</label>
+                        <input asp-for="name" class="register-form" autocomplete="off" />
+                        <span asp-validation-for="name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="nif" class="control-label register-card-text">NIF</label>
+                        <input asp-for="nif" class="register-form" autocomplete="off" />
+                        <span asp-validation-for="nif" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Register" class="about-btn" />
+                        <a class="about-btn" asp-action="Index">Back to Home</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

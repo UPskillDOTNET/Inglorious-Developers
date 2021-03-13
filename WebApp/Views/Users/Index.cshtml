@@ -1,0 +1,48 @@
+﻿@model WebApp.DTO.UserDTO
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div class="userboard-title"><h3 class="userboard-body-header-text">User Dashboard</h3></div>
+    <dl class="card box-shadow-card">
+        <div class="userboard-body">
+            <div class="userboard-section">
+                <h6 class="userboard-body-header-text">
+                    Your Username
+                </h6>
+                <p>
+                    @Html.DisplayFor(model => model.UserName)
+                </p>
+                <h6 class="userboard-body-header-text">
+                    Full Name
+                </h6>
+                <p>
+                    @Html.DisplayFor(model => model.name)
+                </p>
+                <h6 class="userboard-body-header-text">
+                    @Html.DisplayNameFor(model => model.Email)
+                </h6>
+                <p>
+                    @Html.DisplayFor(model => model.Email)
+                </p>
+                <h6 class="userboard-body-header-text">
+                    NIF
+                </h6>
+                <p>
+                    @Html.DisplayFor(model => model.nif)
+                </p>
+                    <div class="card-body-buttons">
+                        <div class="user-dashboard-buttons"><a class="reservation-about-btn no-margin-left" asp-area="" asp-controller="Users" asp-action="Edit" asp-route-id="">Edit</a></div>
+                        <div class="user-dashboard-buttons"><a class="reservation-about-btn no-margin-left" asp-area="" asp-controller="Reservations" asp-action="Index" asp-route-id="">Your Reservation</a></div>
+                    </div>
+            </div>
+            <div class="userboard-section">
+                    @await Html.PartialAsync("Wallet")
+            </div>
+        </div>
+    </dl>
+
+</div>
