@@ -16,7 +16,7 @@
                         <div class="row m-l-0 m-r-0">
                             <div class="col-sm-4 bg-c-lite-green user-profile">
                                 <div class="card-block text-center text-white">
-                                    <div class="m-b-25"> <img src="../wwwroot/assets/img/car-flat.png" alt=""> </div>
+                                    <div class="m-b-25" img src="../wwwroot/assets/img/car-flat.png" alt=""> </div>
                                     <h6 class="f-w-600">@Html.DisplayFor(model => model.name)</h6>
                                 </div>
                             </div>
@@ -44,8 +44,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="card-body-buttons">
+                                    @*<div class="user-dashboard-buttons"><a class="reservation-about-btn no-margin-left" asp-area="" asp-controller="Users" asp-action="Edit" asp-route-id="">Edit</a></div>*@
+                                    <div class="user-dashboard-buttons"><a class="reservation-about-btn no-margin-left" asp-area="" asp-controller="Reservations" asp-action="Index" asp-route-id="">Your Reservations</a></div>
+                                </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
