@@ -18,7 +18,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "react-native-elements";
 import Signin from "./screens/Singin";
 import Tab1 from "./screens/Tab1";
-import Tab2 from "./screens/Tab2";
+import Explore from "./screens/explore";
 import Tab3 from "./screens/Tab3";
 import { Provider as AuthProvider } from "./context/AuthContext.js";
 import { Context as AuthContext } from "./context/AuthContext";
@@ -77,7 +77,7 @@ function homeFlow() {
       }}
     >
       <Tab.Screen name="Tab1" component={Tab1} />
-      <Tab.Screen name="Tab2" component={Tab2} />
+      <Tab.Screen name="Explore" component={Explore} />
       <Tab.Screen name="Tab3" component={Tab3} />
     </Tab.Navigator>
   );

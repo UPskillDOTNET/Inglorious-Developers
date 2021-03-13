@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("central/parkinglots")]
     [ApiController]
     public class ParkingLotsController : Controller

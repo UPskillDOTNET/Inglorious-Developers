@@ -22,7 +22,10 @@ export default class ParkingLotCard extends Component {
   }
 
   async getParkinglots() {
+    console.log("Entrei no getParkingLots");
     let parkingLot = await GetParkinglot();
+    console.log("Sai do parking lot");
+    console.log(parkingLots);
     this.setState({ parkingLots: parkingLot });
   }
 
