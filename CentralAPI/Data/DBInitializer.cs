@@ -219,7 +219,7 @@ namespace CentralAPI.Data
                 context.SaveChanges();
             }
             var caio = users.FirstOrDefault(x => x.UserName == "CaioR");
-            if (!userManager.IsInRoleAsync(caio, user.Name).Result)
+            if (!userManager.IsInRoleAsync(caio, admin.Name).Result)
             {
                 _ = userManager.AddToRoleAsync(caio, admin.Name).Result;
                 context.SaveChanges();
