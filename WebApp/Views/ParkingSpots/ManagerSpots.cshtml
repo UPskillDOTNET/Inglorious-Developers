@@ -34,28 +34,29 @@
     </thead>
     <tbody>
         @foreach (var item in Model) {
-            <tr>
-                <td class="tablehover pointer" onclick="location.href ='@Url.Action("Details", new { id = ViewData["parkingLotId"], pSpotId=item.parkingSpotID })">
-                    @Html.DisplayFor(modelItem => item.parkingSpotID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.priceHour)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.floor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.isPrivate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.isCovered)
-                </td>
-                <td>
-                    @Html.ActionLink("Details", "Details", "ParkingSpots", new { id = ViewData["parkingLotId"], pSpotId = item.parkingSpotID }) |
+        <tr>
+                                            
+            <td class="tablehover pointer" onclick="location.href ='@Url.Action("Details",new { id = ViewData["parkingLotId"], pSpotId=item.parkingSpotID })'">
+                @Html.DisplayFor(modelItem => item.parkingSpotID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.priceHour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.floor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isPrivate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isCovered)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", "ParkingSpots", new { id = ViewData["parkingLotId"], pSpotId = item.parkingSpotID }) |
 
-                    @Html.ActionLink("Edit", "Edit", "ParkingSpots", new { id = ViewData["parkingLotId"], pSpotId = item.parkingSpotID })
-                </td>
-            </tr>
+                @Html.ActionLink("Edit", "Edit", "ParkingSpots", new { id = ViewData["parkingLotId"], pSpotId = item.parkingSpotID })
+            </td>
+        </tr>
         }
     </tbody>
     <tr>
