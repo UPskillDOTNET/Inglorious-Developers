@@ -1,23 +1,22 @@
 import React, { useContext, useEffect } from "react";
-import { FlatList } from "react-native-gesture-handler";
 import MyContext from "../context/AppContext";
 import {
   fetchReservations,
   fetchReservationsStarted,
   URL_API,
 } from "../context/Actions";
-
+import { FlatList, View, Text, StyleSheet } from "react-native";
 
 const ReservationsList = () => {
   const { state, dispatch } = useContext(MyContext);
-  const {reservations} = state;
+  const { reservations } = state;
   const { loading, error, data } = reservations;
 
   useEffect(() => {
     dispatch(fetchReservationsStarted());
     const url = `${URL_API}/central/reservations/users/3`;
     const request = {};
-    fetchReservations(url, request, dispastch);
+    fetchReservations(url, request, dispatch);
   }, []);
 
   if (loading === true) {

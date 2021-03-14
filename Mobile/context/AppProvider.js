@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
-import  MyContext  from "./AppContext";
+import MyContext from "./AppContext";
 import reducer from "./Reducer";
+import PropTypes from "prop-types";
 
 const initialState = {
   reservations: {
@@ -13,7 +14,6 @@ const initialState = {
 const reservation_labels = {
   id: "ID",
   userID: "userID",
-  
 };
 
 const AppProvider = (props) => {
@@ -29,8 +29,9 @@ const AppProvider = (props) => {
       {props.children}
     </MyContext.Provider>
   );
-  AppProvider.propTypes = {
-    children: PropTypes.node,
+};
+AppProvider.propTypes = {
+  children: PropTypes.node,
 };
 
 export default AppProvider;

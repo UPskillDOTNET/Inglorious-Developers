@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export function makeRequestToAPI(url, request, success, failure) {
   axios
     .get(url, request)

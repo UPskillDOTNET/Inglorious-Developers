@@ -5,41 +5,29 @@ import { Provider as AuthProvider } from "./context/AuthContext.js";
 import { Context as AuthContext } from "./context/AuthContext";
 import authFlow from "./components/authFlow";
 import homeFlow from "./components/homeFlow";
-import MyContext from "./context/AppContext";
+import AppProvider from "./context/AppProvider";
+import Wrapper from "./components/Wrapper.js";
 
-const Stack = createStackNavigator();
+// export default () => {
+//   return (
+//     <AuthProvider>
+//       <AppProvider>
+//         <App />
+//       </AppProvider>
+//     </AuthProvider>
+//   );
+// };
 
-function App() {
-  const { state } = React.useContext(AuthContext);
- 
+const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {state.token === null ? (
-          <>
-            <Stack.Screen
-              options={{ headerShown: false }}
-              name="Auth"
-              component={authFlow}
-            />
-          </>
-        ) : (
-          <Stack.Screen
-            options={{ headerShown: false }}
-            name="Home"
-            component={homeFlow}
-          />
-        )}
-      </Stack.Navigator>
+      <AuthProvider>
+        <AppProvider>
+          <Wrapper />
+        </AppProvider>
+      </AuthProvider>
     </NavigationContainer>
   );
-}
-
-export default () => {
-  return (
-     <AuthProvider>
-        <App />
-      </AuthProvider>
-
-  );
 };
+
+export default App;
