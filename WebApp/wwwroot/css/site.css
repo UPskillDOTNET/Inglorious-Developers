@@ -849,3 +849,9 @@ h6 {
     padding-bottom: 5px;
     margin-left: 50px;
 }
+
+/*head tables*/
+table a {
+    text-transform: uppercase;
+    text-decoration: none;
+}
