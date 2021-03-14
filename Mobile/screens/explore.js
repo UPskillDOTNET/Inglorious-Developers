@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import ParkingLotCard from "../ParkingLotCard";
+import ParkingLotCard from "../components/ParkingLotCardComponent";
 
 export default function Explore() {
   return (
