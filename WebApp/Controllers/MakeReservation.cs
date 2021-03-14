@@ -160,7 +160,11 @@ namespace WebApp.Controllers
 
             try
             {
-                await Pay(reservationDTO);
+               var paymentOperation =  await Pay(reservationDTO);
+                if (paymentOperation.Value.isSuccess == false)
+                {
+                    return BadRequest(paymentOperation.Value.message);
+                }
                 await _reservationService.PostCentralReservation(reservationDTO);
                 return RedirectToAction("Index", "Reservations", new { id = reservationDTO.userID });
             }
@@ -186,6 +190,7 @@ namespace WebApp.Controllers
             try
             {
                var paymentOperation =  await _paymentService.PayReservation(paymentDTO, preferedMethod);
+              
                 return paymentOperation;
             }
             catch (Exception ex)
