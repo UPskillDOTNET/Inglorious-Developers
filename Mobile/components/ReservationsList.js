@@ -6,6 +6,7 @@ import {
   URL_API,
 } from "../context/Actions";
 import { FlatList, View, Text, StyleSheet } from "react-native";
+import { Card, Button, Icon } from "react-native-elements";
 
 const ReservationsList = () => {
   const { state, dispatch } = useContext(MyContext);
@@ -17,10 +18,9 @@ const ReservationsList = () => {
     const url = `${URL_API}/central/reservations/users/3`;
     console.log(url);
     const request = {};
-    var x = fetchReservations(url, request, dispatch);
-    console.log(x.payload.data);
+    fetchReservations(url, request, dispatch);
   }, []);
-
+console.log(data)
   if (loading === true) {
     return (
       <View>
@@ -31,12 +31,18 @@ const ReservationsList = () => {
     if (error !== null) {
       return (
         <View>
-          <Text>There was an error...</Text>
+          <Text>There was an Error!</Text>
         </View>
       );
     } else {
       if (data.length > 0) {
-        return <Text>Entrei aqui</Text>;
+        return <View>  {data.map((reservation, index) => (
+          <Card  key={index}>
+            <Text >{reservation.centralReservationID}</Text>
+            <Text >{reservation.finalPrice}</Text>
+            <Text >{reservation.parkingSpotID}</Text>
+          </Card>
+        ))}</View>
       } else {
         return (
           <View>
