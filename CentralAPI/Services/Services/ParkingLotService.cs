@@ -44,6 +44,12 @@ namespace CentralAPI.Services.Services
             return parkingLotDTO;
         }
 
+        public async Task<ActionResult<ParkingLotDTO>> GetParkingLotsByManagerId(string managerID) {
+            var parkingLot = await _parkingLotRepository.GetParkingLotsByManagerId(managerID);
+            var parkingLotDTO = _mapper.Map<ParkingLot, ParkingLotDTO>(parkingLot);
+            return parkingLotDTO;
+        }
+
         public async Task<ActionResult<ParkingLotDTO>> PutParkingLot(int id, ParkingLotDTO parkingLotDTO)
         {
             var parkingLot = _mapper.Map<ParkingLotDTO, ParkingLot>(parkingLotDTO);

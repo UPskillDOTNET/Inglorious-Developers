@@ -24,6 +24,10 @@ namespace CentralAPI.Repositories.Repository
             return await GetAll().FirstOrDefaultAsync(l => l.parkingLotID == id);
         }
 
+        public async Task<ParkingLot> GetParkingLotsByManagerId(string managerID) {
+            return await GetAll().FirstOrDefaultAsync(x => x.managerID == managerID);
+        }
+
         public async Task<ParkingLot> PutParkingLot(int id, ParkingLot parkingLot)
         {
             await UpdateAsync(parkingLot);

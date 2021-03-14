@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PrivateParkAPI.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/parkingspots")]
     [ApiController]
     public class ParkingSpotsController : Controller

@@ -8,6 +8,7 @@ using WebApp.DTO;
 namespace WebApp.Services.IServices {
     public interface IParkingSpotService {
         Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpots(int pLotId);
+        Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpotsByManagerID(string managerID);
         Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllFreeParkingSpots(int id);
         Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetFreeParkingSpotsByDate(ReservationDTO reservationDTO);
         Task<ActionResult<ParkingSpotDTO>> GetParkingSpotById(int pLotId, string pSpotId);
