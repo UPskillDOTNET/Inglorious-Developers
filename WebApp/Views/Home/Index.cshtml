@@ -6,20 +6,24 @@
     <div class="landing">
         <div class="landing-card-background">
             <div class="landing-card">
-                    <img class="landing-card-logo" src="https://res.cloudinary.com/du4r5hykw/image/upload/v1615215439/Park_Around_wht_nobg_pp0v0s.png" />
-                    <div class="landtext text-center">
-                        <div class="landing-card-subtext">
-                            <h4 class="catch landing-card-subtext">worried about parking?</h4>
-                            <h4 class="catch landing-card-subtext">we figured it out for you!</h4>
+                <img class="landing-card-logo" src="https://res.cloudinary.com/du4r5hykw/image/upload/v1615215439/Park_Around_wht_nobg_pp0v0s.png" />
+                <div class="landtext text-center">
+                    <div class="landing-card-subtext">
+                        <h4 class="catch landing-card-subtext">worried about parking?</h4>
+                        <h4 class="catch landing-card-subtext">we figured it out for you!</h4>
                     </div>
-                    </div>
-                    <div class="buttons">
-                        @if (User.Identity.IsAuthenticated) {
-                            <div class="landing-card-button"><a class="about-btn" asp-area="" asp-controller="MakeReservation" asp-action="Index">MAKE A RESERVATION</a></div>
-                        } else {
-                            <div class="landing-card-button"><a class="about-btn" asp-area="" asp-controller="ParkingLots" asp-action="Index">PARKING LOTS PARTNERS</a></div>
-                        }
-                    </div>
+                </div>
+                <div class="buttons">
+                    @if (User.IsInRole("user")) {
+                        <div class="landing-card-button"><a class="about-btn" asp-area="" asp-controller="MakeReservation" asp-action="Index">MAKE A RESERVATION</a></div>
+                    } else if (User.IsInRole("admin")) {
+                        /*Button for ROLESVIEW*/
+                    } else if (User.IsInRole("manager")) {
+                        /*Button for allReservations in this PLot*/
+                    } else {
+                        <div class="landing-card-button"><a class="about-btn" asp-area="" asp-controller="ParkingLots" asp-action="Index">PARKING LOTS PARTNERS</a></div>
+                    }
+                </div>
             </div>
         </div>
     </div>
