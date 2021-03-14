@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 import { Text, View, StyleSheet, TouchableOpacity, Modal } from "react-native";
 import { Card, Button, Icon } from "react-native-elements";
-import GetParkinglot from "./Service/ParkingLotTesting";
+import GetParkingLots from "../Services/ParkingLotServices";
 
-export default class ParkingLotCard extends Component {
-  // state = {
-  //   parkingLots: [],
-  //   modalVisible: false,
-  // };
-
+export default class ParkingLotCardComponent extends Component {
   constructor() {
     super();
     this.state = {
@@ -22,10 +17,7 @@ export default class ParkingLotCard extends Component {
   }
 
   async getParkinglots() {
-    console.log("Entrei no getParkingLots");
-    let parkingLot = await GetParkinglot();
-    console.log("Sai do parking lot");
-    console.log(parkingLots);
+    let parkingLot = await GetParkingLots();
     this.setState({ parkingLots: parkingLot });
   }
 
