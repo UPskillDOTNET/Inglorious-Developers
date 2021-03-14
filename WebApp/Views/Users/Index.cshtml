@@ -22,37 +22,39 @@
                                     @*<div class="user-dashboard-buttons"><a class="reservation-about-btn no-margin-left" asp-area="" asp-controller="Users" asp-action="edit" asp-route-id="">Edit Profile</a></div>*@
                                 </div>
                                 </div>
-                                <div class="col-sm-8">
-                                    <div class="card-block">
-                                        <h4 class="m-b-20 p-b-5 b-b-default f-w-600">Personal Details</h4>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <p class="m-b-10 f-w-600">Username</p>
-                                                <h6 class="text-muted f-w-400"> @Html.DisplayFor(model => model.UserName)</h6>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <p class="m-b-10 f-w-600">Email</p>
-                                                <h6 class="text-muted f-w-400">@Html.DisplayFor(model => model.Email)</h6>
-                                            </div>
+                            <div class="col-sm-8">
+                                <div class="card-block">
+                                    <h4 class="m-b-20 p-b-5 b-b-default f-w-600">Personal Details</h4>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">Username</p>
+                                            <h6 class="text-muted f-w-400"> @Html.DisplayFor(model => model.UserName)</h6>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <p class="m-b-10 f-w-600">NIF</p>
-                                                <h6 class="text-muted f-w-400"> @Html.DisplayFor(model => model.nif)</h6>
-                                            </div>
-                                            @if (User.IsInRole("user")) {
-                                                <div class="col-sm-6">
-                                                    <p class="m-b-10 f-w-600">Wallet</p>
-                                                    <h6 class="text-muted f-w-400">@await Html.PartialAsync("Wallet")</h6>
-                                                </div>
-                                            }
-                                            </div>
-                                            
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">Email</p>
+                                            <h6 class="text-muted f-w-400">@Html.DisplayFor(model => model.Email)</h6>
+                                        </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">NIF</p>
+                                            <h6 class="text-muted f-w-400"> @Html.DisplayFor(model => model.nif)</h6>
+                                        </div>
+                                        @if (User.IsInRole("user")) {
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">Wallet</p>
+                                                <h6 class="text-muted f-w-400">@await Html.PartialAsync("Wallet")</h6>
+                                            </div>
+                                        }
+                                    </div>
+
+                                </div>
+                                @if (User.IsInRole("user")) {
                                     <div class="card-body-buttons">
-                                      
+
                                         <div class="user-dashboard-buttons"><a class="myReservations-button-user-dashboard" asp-area="" asp-controller="Reservations" asp-action="Index" asp-route-id="">Booking Management</a></div>
                                     </div>
+                                }
                                 </div>
                             </div>
                         </div>
