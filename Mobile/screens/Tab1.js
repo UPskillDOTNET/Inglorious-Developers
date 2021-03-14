@@ -1,18 +1,16 @@
 import React, { useContext } from "react";
 import { View, Text,Button ,StyleSheet } from "react-native";
 import { Context as AuthContext } from "../context/AuthContext";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import getAccessToken from "../Services/UserServices"
 
 
 const Tab1 = ({ navigation }) => {
   const { state } = useContext(AuthContext);
 
- var xeila = AsyncStorage.getItem("userID");
- console.log(xeila);
   return (
-    <View style={styles.master} >
+    <View style={styles.master}>
       <Text style={styles.header}>Tab1</Text>
-      <Text style={{ fontSize: 28 }}>Welcome, {state.username} </Text>  
+      <Text style={{ fontSize: 28 }}>Welcome, {state.username}</Text>
     </View>
   );
 };
