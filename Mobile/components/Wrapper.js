@@ -8,6 +8,7 @@ import { Context as AuthContext } from "../context/AuthContext";
 import authFlow from "../components/authFlow";
 import homeFlow from "../components/homeFlow";
 import AppProvider from "../context/AppProvider";
+import Explore from "../screens/explore";
 
 const Wrapper = () => {
   const Stack = createStackNavigator();
@@ -16,23 +17,25 @@ const Wrapper = () => {
     // <View style={styles.container}>
     //   <ReservationsList />
     // </View>
-    <Stack.Navigator>
-      {state.token === null ? (
-        <>
+    <NavigationContainer>
+      <Stack.Navigator>
+        {state.token === null ? (
+          <>
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name="Auth"
+              component={authFlow}
+            />
+          </>
+        ) : (
           <Stack.Screen
             options={{ headerShown: false }}
-            name="Auth"
-            component={authFlow}
+            name="Home"
+            component={homeFlow}
           />
-        </>
-      ) : (
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Home"
-          component={homeFlow}
-        />
-      )}
-    </Stack.Navigator>
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 const styles = StyleSheet.create({

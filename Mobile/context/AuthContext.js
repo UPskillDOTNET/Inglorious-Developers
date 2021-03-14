@@ -28,7 +28,7 @@ const signin = (dispatch) => {
     console.log(credentials);
     var token = getAccessToken(credentials);
     console.log(token);
-    console.log("Signin");
+    console.log("Signin feito");
     dispatch({
       type: "signin",
       payload: {

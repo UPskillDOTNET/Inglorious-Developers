@@ -15,8 +15,10 @@ const ReservationsList = () => {
   useEffect(() => {
     dispatch(fetchReservationsStarted());
     const url = `${URL_API}/central/reservations/users/3`;
+    console.log(url);
     const request = {};
-    fetchReservations(url, request, dispatch);
+    var x = fetchReservations(url, request, dispatch);
+    console.log(x.payload.data);
   }, []);
 
   if (loading === true) {
@@ -34,9 +36,7 @@ const ReservationsList = () => {
       );
     } else {
       if (data.length > 0) {
-        return (
-          <FlatList data={data} keyExtractor={(item) => item.id.toString()} />
-        );
+        return <Text>Entrei aqui</Text>;
       } else {
         return (
           <View>

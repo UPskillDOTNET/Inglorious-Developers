@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { Icon } from "react-native-elements";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Input, Button } from "react-native-elements";
 import { Context as AuthContext } from "../context/AuthContext";

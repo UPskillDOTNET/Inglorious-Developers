@@ -6,10 +6,12 @@ import Explore from "../screens/explore";
 import Tab3 from "../screens/Tab3";
 import ReservationsList from "./ReservationsList";
 import Wrapper from "./Wrapper";
+import { Text, View, StyleSheet } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
-export default function homeFlow() {
+const homeFlow = () => {
+  console.log("HomeFlow?");
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -20,9 +22,9 @@ export default function homeFlow() {
             case "Tab1":
               iconName = focused ? "ios-checkbox" : "ios-checkbox-outline";
               break;
-            case "Tab2":
-              iconName = focused ? "ios-add-circle" : "ios-add-circle-outline";
-              break;
+            // case "Tab2":
+            //   iconName = focused ? "ios-add-circle" : "ios-add-circle-outline";
+            //   break;
             case "Tab3":
               iconName = focused
                 ? "ios-information-circle"
@@ -45,5 +47,10 @@ export default function homeFlow() {
       <Tab.Screen name="Explore" component={Explore} />
       <Tab.Screen name="Tab3" component={Tab3} />
     </Tab.Navigator>
+    // <View>
+    //   <Text>Oi estou aqui</Text>
+    // </View>
   );
-}
+};
+
+export default homeFlow;

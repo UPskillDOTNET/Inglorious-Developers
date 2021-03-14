@@ -20,13 +20,11 @@ import Wrapper from "./components/Wrapper.js";
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <AuthProvider>
-        <AppProvider>
-          <Wrapper />
-        </AppProvider>
-      </AuthProvider>
-    </NavigationContainer>
+    <AuthProvider>
+      <AppProvider>
+        <Wrapper />
+      </AppProvider>
+    </AuthProvider>
   );
 };
 
