@@ -13,6 +13,7 @@ namespace ParkingAroundE2ETest.Test
     class Test
     {
         IWebDriver webDriver = new ChromeDriver();
+
         [SetUp]
         public void Setup()
         {
@@ -35,10 +36,28 @@ namespace ParkingAroundE2ETest.Test
         }
 
         [Test]
-        public void Reservation()
+        public void TestDeposit()
         {
+            decimal wallet = Database.SaveWalletValue();
+            Database.ResetWallet();
+            
+            HomePage homePage = new HomePage(webDriver);
+            homePage.lnkUser.Click();
+
             UserPage userPage = new UserPage(webDriver);
-            userPage.Click("Home");
+            userPage.lnkDeposit.Click();
+            userPage.txtInputMoney.SendKeys("10");
+            userPage.lnkDeposit.Click();
+
+            Assert.That(userPage.IsBalanceCorrect, Is.True);
+            Database.ReturnWalletValue(wallet);
+        }
+
+        [Test]
+        public void TestReservation()
+        {
+            decimal wallet = Database.SaveWalletValue();
+            Database.ResetWallet();
 
             HomePage homePage = new HomePage(webDriver);
             homePage.ClickReservation();
@@ -54,11 +73,14 @@ namespace ParkingAroundE2ETest.Test
             reservationPage.ConfirmClick();
 
             Assert.That(reservationPage.iSReservationExists, Is.True);
+            Database.ReturnWalletValue(wallet);
         }
 
         [Test]
-        public void ReservationCancel()
+        public void TestReservationCancel()
         {
+            decimal wallet = Database.SaveWalletValue();
+            Database.ResetWallet();
             HomePage homePage = new HomePage(webDriver);
             homePage.lnkUser.Click();
 
@@ -76,13 +98,14 @@ namespace ParkingAroundE2ETest.Test
             reservationPage.Click("Now");
 
             Assert.That(reservationPage.isParkingSpotFree, Is.True);
+            Database.ReturnWalletValue(wallet);
+
         }
 
         [OneTimeTearDown]
         public void Teardown() 
         {
             Database.DeleteReservation();
-            Database.ResetWallet();
             webDriver.Quit();
         }
     }

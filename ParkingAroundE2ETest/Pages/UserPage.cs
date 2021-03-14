@@ -20,8 +20,20 @@ namespace ParkingAroundE2ETest.Pages
 
         public IWebElement lnkHome => Driver.FindElement(By.LinkText("HOME"));
         public IWebElement lnkBook => Driver.FindElement(By.LinkText("Booking Management"));
+        public IWebElement txtInputMoney => Driver.FindElement(By.Id("walletDTO_totalAmount"));
+        public IWebElement txtFindBalance => Driver.FindElement(By.Id("walletDTO_totalAmount"));
+
 
         public bool ISDepositButtonExist() => lnkDeposit.Displayed;
+        public bool IsBalanceCorrect()
+        {
+           var test = txtFindBalance.GetAttribute("value");
+            if (test == "35.00")
+            {
+                return true;
+            }
+            return false;
+        }
 
         public void Click(string method)
         {
