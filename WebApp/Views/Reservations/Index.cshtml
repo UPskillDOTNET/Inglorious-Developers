@@ -28,7 +28,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr style='background-color: @(item.isCancelled == false ? "white": "#cc3300")' ;class="table-hover">
+            <tr style='background-color: @(item.isCancelled == false ? "white": "#A4B3B6")' ;class="table-hover">
                 <td id="pSpot_@(item.parkingLotID)_@(item.parkingSpotID)" ; onclick="location.href ='@Url.Action("Details", new {id = item.centralReservationID})'">
                     @Html.DisplayFor(modelItem => item.parkingSpotID)
                 </td>
@@ -45,8 +45,8 @@
         }
     </tbody>
 </table>
-<div>
-    @Html.ActionLink("Back to User", "Index", "Users")
+<div class="back-button">
+    @Html.ActionLink("Back to Personal Details", "Index", "Users")
 </div>
 
 @*<p style="text-align:left;">
