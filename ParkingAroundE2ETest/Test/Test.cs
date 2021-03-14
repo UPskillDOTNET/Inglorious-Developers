@@ -82,6 +82,7 @@ namespace ParkingAroundE2ETest.Test
         public void Teardown() 
         {
             Database.DeleteReservation();
+            Database.ResetWallet();
             webDriver.Quit();
         }
     }

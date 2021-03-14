@@ -39,5 +39,17 @@ namespace ParkingAroundE2ETest
             cmdPark.ExecuteNonQuery();
             sqlConnPark.Close();
         }
+
+        public static void ResetWallet()
+        {
+            SqlCommand cmdCentral = new SqlCommand(
+                @"UPDATE Wallets SET totalAmount = @totalAmount WHERE userID = @userID", sqlConnCentral);
+            cmdCentral.Parameters.Add(new SqlParameter("@totalAmount", 25.00));
+            cmdCentral.Parameters.Add(new SqlParameter("@userID", 3));
+            sqlConnCentral.Open();
+            cmdCentral.ExecuteNonQuery();
+            sqlConnCentral.Close();
+
+        }
     }
 }
