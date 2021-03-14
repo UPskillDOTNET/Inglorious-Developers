@@ -609,7 +609,7 @@ button:focus {
 }
 
 .bg-c-lite-green {
-    background: linear-gradient(45deg, #2A1B3D, #A4B3B6);
+    background: linear-gradient(-75deg, #2A1B3D, #d83f87);
 }
 
 .user-profile {
@@ -624,10 +624,6 @@ button:focus {
     width: 150px;
     height: 150px;
     overflow: hidden;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
     border-radius: 50%;
 }
 
@@ -670,7 +666,7 @@ h6 {
 }
 
 .text-muted {
-    color: #A4B3B6 !important;
+    color: #808080 !important;
 }
 
 .b-b-default {
@@ -685,7 +681,7 @@ h6 {
     margin-bottom: 20px;
 }
 
-/*My Reservations Button User Dashboar*/
+/*My Reservations Button User Dashboard*/
 .myReservations-button-user-dashboard {
     font-weight: 500;
     font-size: 12px;
