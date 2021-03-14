@@ -1,9 +1,6 @@
 ﻿using IdentityServer4;
 using IdentityServer4.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace UserAuthenticationServer.Clients
 {
@@ -36,7 +33,26 @@ namespace UserAuthenticationServer.Clients
                 },
                 AllowOfflineAccess = true,
                 RequirePkce=false
-        }
+            },
+              new Client
+             {
+                ClientId = "mobile.client",
+                AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                AllowedCorsOrigins = {"http://localhost:19006" },
+
+                ClientSecrets =
+                {
+                new Secret("Secret".Sha256())
+                },
+                 AllowedScopes = new List<string>
+                {
+                IdentityServerConstants.StandardScopes.OpenId,
+                IdentityServerConstants.StandardScopes.Profile,
+                "PrivAPI.read", "PrivAPI.write" , "PubAPI.read" , "PubAPI.write", "CAPI.read", "CAPI.write"
+                },
+                AllowOfflineAccess = true,
+                RequirePkce=false
+            }
         };
         }
     }

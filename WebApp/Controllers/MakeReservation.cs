@@ -9,7 +9,7 @@ using WebApp.Services.IServices;
 
 namespace WebApp.Controllers
 {
-    //[Authorize(Roles = "user")]
+    [Authorize]
     public class MakeReservation : Controller
     {
         private readonly IParkingLotService _webParkingLotService;
