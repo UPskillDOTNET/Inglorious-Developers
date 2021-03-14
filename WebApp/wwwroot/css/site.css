@@ -82,6 +82,10 @@ a .footer {
 }
 
 /*Home*/
+::-webkit-scrollbar {
+    display: none;
+}
+
 .home {
     /*background: url("https://res.cloudinary.com/du4r5hykw/image/upload/v1615218742/cover8_no_bg_w2ll3n.png") no-repeat center center fixed;*/
     /*background: url("https://res.cloudinary.com/du4r5hykw/image/upload/v1614866659/cover8_pjsp3n.jpg") no-repeat center center fixed;*/
@@ -811,3 +815,10 @@ h6 {
     padding: 15px;
 }
 
+/*reservation: Confirm*/
+
+.col-sm-10 .dropdown-pay {
+    padding-top: 15px;
+    padding-bottom: 5px;
+    margin-left: 50px;
+}

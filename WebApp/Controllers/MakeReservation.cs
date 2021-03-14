@@ -15,13 +15,15 @@ namespace WebApp.Controllers
         private readonly IParkingLotService _webParkingLotService;
         private readonly IParkingSpotService _parkingSpotService;
         private readonly IReservationService _reservationService;
+        private readonly IUserService _userService;
         private readonly IPaymentService _paymentService;
 
-        public MakeReservation(IParkingLotService parkingLotService, IParkingSpotService parkingSpotService, IReservationService reservationService, IPaymentService paymentService)
+        public MakeReservation(IParkingLotService parkingLotService, IParkingSpotService parkingSpotService, IReservationService reservationService, IUserService userService, IPaymentService paymentService)
         {
             _webParkingLotService = parkingLotService;
             _parkingSpotService = parkingSpotService;
             _reservationService = reservationService;
+            _userService = userService;
             _paymentService = paymentService;
         }
           public async Task<IActionResult> Index(string sortOrder, string searchString)
@@ -120,17 +122,21 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Confirm(ReservationDTO reservationDTO)
         {
-             reservationDTO = new ReservationDTO()
-            {
+            reservationDTO = new ReservationDTO() {
                 parkingLotID = reservationDTO.parkingLotID,
                 parkingSpotID = reservationDTO.parkingSpotID,
                 startTime = reservationDTO.startTime,
                 endTime = reservationDTO.endTime,
                 userID = HttpContext.User.FindFirst("sub")?.Value
-            };
+             };
 
+            var userName = _userService.GetUserById(reservationDTO.userID).Result.Value;
+            ViewData["UserName"] = userName.name;
+            var parkLot = _webParkingLotService.GetParkingLotById(reservationDTO.parkingLotID).Result.Value;
+            ViewData["ParkName"] = parkLot.name;
             var reservation = await _reservationService.GetDurationAndFinalPrice(reservationDTO);
             reservationDTO = reservation.Value;
+
             return View(reservationDTO);
         }
 

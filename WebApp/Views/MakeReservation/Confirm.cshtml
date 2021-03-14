@@ -8,101 +8,88 @@
 
 <h1>Reserve</h1>
 
-<h4>Confirm your reservation and your payments method</h4>
-<hr />
-
-
-  
-
-
-
-        <div class="page-content page-container" id="page-content">
-            <div class="padding">
-                <div class="row container d-flex justify-content-center">
-                    <div class="col-xl-6 col-md-12">
-                        <div class="card user-card-full">
-                            <div class="row m-l-0 m-r-0">
-                                <div class="col-sm-4 bg-c-lite-green user-profile">
-                                    <div class="card-block text-center text-white">
-                                        <div class="m-b-25"> <img src="https://img.freepik.com/free-vector/car-parking-illustration_7095-314.jpg?size=338&ext=jpg" class="img-radius" alt="User-Profile-Image"> </div>
-                                        <br>
-                                        <h6 class="f-w-600">@Html.DisplayFor(model => model.User.name)</h6>
-                                        <h6 class="f-w-600">@Html.DisplayFor(model => model.User.UserName)</h6>
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <div class="col-xl-6 col-md-12">
+                <div class="card user-card-full">
+                    <div class="row m-l-0 m-r-0">
+                        <div class="col-sm-4 bg-c-lite-green user-profile">
+                            <div class="card-block text-center text-white">
+                                <div class="m-b-25"> <img src="https://img.freepik.com/free-vector/car-parking-illustration_7095-314.jpg?size=338&ext=jpg" class="img-radius" alt="User-Profile-Image"> </div>
+                                <br>
+                                <h6 class="f-w-600">@ViewData["UserName"]</h6>
+                                @*<div class="user-dashboard-buttons"><a class="reservation-about-btn no-margin-left" asp-area="" asp-controller="Users" asp-action="edit" asp-route-id="">Edit Profile</a></div>*@
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <h4 class="m-t-2 m-b-20 p-b-5 b-b-default f-w-600">Confirm your reservation and<br />payment method</h4>
+                            <form asp-action="Create">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Parking Lot</p>
+                                        <h6 class="text-muted f-w-400">@ViewData["ParkName"]</h6>
+                                        @Html.HiddenFor(model => model.parkingLotID)
                                     </div>
-                                </div>
-                                <div class="col-sm-8">
-                                    <form asp-action="Create">
-                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                        <dl class="row">
-                                            <dt class="col-sm-2">
-                                                Parking Lot:
-                                            </dt>
-                                            <dd class="col-sm-10">
-                                                @Html.DisplayFor(model => model.parkingLotID)
-                                                @Html.HiddenFor(model => model.parkingLotID)
-                                            </dd>
-                                            <dt class="col-sm-2">
-                                                Parking Spot:
-                                            </dt>
-                                            <dd class="col-sm-10">
-                                                @Html.DisplayFor(model => model.parkingSpotID)
-                                                @Html.HiddenFor(model => model.parkingSpotID)
-                                            </dd>
-                                            <dt class="col-sm-2">
-                                                @Html.DisplayNameFor(model => model.startTime)
-                                            </dt>
-                                            <dd class="col-sm-10">
-                                                @Html.DisplayFor(model => model.startTime)
-                                                @Html.HiddenFor(model => model.startTime)
-                                            </dd>
-                                            <dt class="col-sm-2">
-                                                @Html.DisplayNameFor(model => model.endTime)
-                                            </dt>
-                                            <dd class="col-sm-10">
-                                                @Html.DisplayFor(model => model.endTime)
-                                                @Html.HiddenFor(model => model.endTime)
-                                            </dd>
-                                            <dt class="col-sm-2">
-                                                @Html.DisplayNameFor(model => model.hours)
-                                            </dt>
-                                            <dd class="col-sm-10">
-                                                @Html.DisplayFor(model => model.hours)
-                                                @Html.HiddenFor(model => model.hours)
-                                            </dd>
-                                            <dt class="col-sm-2">
-                                                @Html.DisplayNameFor(model => model.finalPrice)
-                                            </dt>
-                                            <dd class="col-sm-10">
-                                                @Html.DisplayFor(model => model.finalPrice)
-                                                @Html.HiddenFor(model => model.finalPrice)
-                                            </dd>
-                                                @Html.HiddenFor(model => model.userID)
-                                            <dd class="col-sm-2">
-                                                <span>Payment Method:</span>
-                                            </dd>
-                                            <dd class="col-sm-10">
-                                                <Select asp-for="preferedMethod" class="form-control" style="width: 50%">
-                                                    <option value="Wallet"> Wallet </option>
-                                                    <option value="MockPayment"> MockPayment </option>
-                                                </Select>
-                                            </dd>
-                                        </dl>
-
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Parking Spot</p>
+                                        <h6 class="text-muted f-w-400">@Html.DisplayFor(model => model.parkingSpotID)</h6>
+                                        @Html.HiddenFor(model => model.parkingSpotID)
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Start Time</p>
+                                        <h6 class="text-muted f-w-400">@Html.DisplayFor(model => model.startTime)</h6>
+                                        @Html.HiddenFor(model => model.startTime)
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">End Time</p>
+                                        <h6 class="text-muted f-w-400">@Html.DisplayFor(model => model.endTime)</h6>
+                                        @Html.HiddenFor(model => model.endTime)
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Hours</p>
+                                        <h6 class="text-muted f-w-400">@Html.DisplayFor(model => model.hours)</h6>
+                                        @Html.HiddenFor(model => model.hours)
+                                    </div>
+                                    <hr />
+                                    <div class="col-sm-6">
+                                        <hr />
+                                        <p class="m-b-10 f-w-600">Final Price</p>
+                                        <h4 class="text-muted f-w-400">€@Html.DisplayFor(model => model.finalPrice)</h4>
+                                        @Html.HiddenFor(model => model.finalPrice)
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">@Html.HiddenFor(model => model.userID)</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Payment Method:</p>
+                                    </div>
+                                    <div class="col-sm-10 dropdown-pay">
+                                        <Select asp-for="preferedMethod" class="form-control m-b-10" style="width: 40%; margin-left:16.5em;">
+                                            <option value="Wallet"> Wallet </option>
+                                            <option value="MockPayment"> MockPayment </option>
+                                        </Select>
                                         <div class="form-group">
-                                            <input type="submit" value="Confirm" class="btn btn-primary" />
+                                            <input style="width: 40%; margin-left:16.5em;" type="submit" value="Confirm" class="btn btn-primary" />
                                         </div>
-                                    </form>
-                                    <div class="card-body-buttons">
-
-                                        <div class="user-dashboard-buttons"><a class="myReservations-button-user-dashboard" asp-area="" asp-controller="Reservations" asp-action="Index" asp-route-id="">Booking Management</a></div>
                                     </div>
                                 </div>
+
+
+                            </form>
+                            <div class="card-body-buttons">
+
+                                <div class="user-dashboard-buttons"><a class="myReservations-button-user-dashboard" asp-area="" asp-controller="Reservations" asp-action="Index" asp-route-id="">Booking Management</a></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+    </div>
 
 
 
