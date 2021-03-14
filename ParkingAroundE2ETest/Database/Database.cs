@@ -49,7 +49,29 @@ namespace ParkingAroundE2ETest
             sqlConnCentral.Open();
             cmdCentral.ExecuteNonQuery();
             sqlConnCentral.Close();
+        }
 
+        public static decimal SaveWalletValue()
+        {
+            SqlCommand searchWallet = new SqlCommand(
+                @"SELECT totalAmount 
+                  FROM Wallets w 
+                  WHERE w.userID = @userID", sqlConnCentral);
+            searchWallet.Parameters.Add(new SqlParameter("@userID", 3));
+            sqlConnCentral.Open();
+            decimal walletMoney = (decimal)searchWallet.ExecuteScalar();
+            sqlConnCentral.Close();
+            return walletMoney;
+        }
+        public static void ReturnWalletValue(decimal walletMoney)
+        {
+            SqlCommand cmdCentral = new SqlCommand(
+                @"UPDATE Wallets SET totalAmount = @totalAmount WHERE userID = @userID", sqlConnCentral);
+            cmdCentral.Parameters.Add(new SqlParameter("@totalAmount", walletMoney));
+            cmdCentral.Parameters.Add(new SqlParameter("@userID", 3));
+            sqlConnCentral.Open();
+            cmdCentral.ExecuteNonQuery();
+            sqlConnCentral.Close();
         }
     }
 }

@@ -855,3 +855,37 @@ h6 {
     padding-bottom: 5px;
     margin-left: 50px;
 }
+
+/*head tables*/
+table a {
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+/*Reserve-Later Button*/
+.back-park-button {
+    border-radius: 10px;
+    transition: 0.5s;
+    line-height: 1;
+    color: #fff !important;
+    animation-delay: 0.8s;
+    border: 2px solid #2A1B3D;
+    background: #2A1B3D;
+    display: inline-block;
+    padding: 10px 60px;
+    margin-top: 25px;
+}
+
+    .back-park-button a {
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: 1px;
+        color: #fff;
+    }
+
+    .back-park-button:hover {
+        background: #a385bd;
+        font-weight: 500;
+        color: #fff !important;
+        text-decoration: none;
+    }
