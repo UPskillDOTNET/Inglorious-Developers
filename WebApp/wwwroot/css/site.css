@@ -397,6 +397,12 @@ input:-webkit-autofill:focus {
     transform: translate(-50%, -50%);
 }
 
+#btn-alone {
+    position: absolute;
+    left: 30%;
+    top: 65%;
+}
+
 .card-body-buttons {
     display: flex;
     justify-content: space-evenly;
