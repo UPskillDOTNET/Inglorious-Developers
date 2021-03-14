@@ -115,6 +115,8 @@ namespace WebApp.Controllers
                 
 
             };
+            var userName = _userService.GetUserById(reservationDTO.userID).Result.Value;
+            ViewData["UserName"] = userName.name;
             return View(reservationDTO);
         }
   

@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<hr />
 <body>
     <div class="page-content page-container" id="page-content">
         <div class="padding">
@@ -17,8 +16,7 @@
                                 <div class="card-block text-center text-white">
                                     <div class="m-b-25"> <img src="https://img.freepik.com/free-vector/car-parking-illustration_7095-314.jpg?size=338&ext=jpg" class="img-radius" alt="User-Profile-Image"> </div>
                                     <br>
-                                    <h6 class="f-w-600">@Html.DisplayFor(model => model.User.name)</h6>
-                                    <h6 class="f-w-600">@Html.DisplayFor(model => model.User.UserName)</h6>
+                                    <h6 class="f-w-600">@ViewData["UserName"]</h6>
                                 </div>
                             </div>
                             <div class="col-sm-8">
