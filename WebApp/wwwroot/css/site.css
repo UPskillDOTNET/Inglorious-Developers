@@ -18,8 +18,8 @@ a {
 
 .btn-primary {
     color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    background-color: #44318D;
+    border-color: #44318D;
 }
 
 .nav-pills .nav-link.active,
@@ -889,3 +889,15 @@ table a {
         color: #fff !important;
         text-decoration: none;
     }
+
+/*Manage Parking Spots*/
+.table-manage-spots table a {
+    color: #2a1b3d;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.table-manage-spots table th {
+    color: #fff !important;
+    text-transform: uppercase;
+}

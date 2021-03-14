@@ -12,58 +12,61 @@
 <p>
     <a class="btn btn-primary" asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Designation</a>
-            </th>
-            <th scope="col">
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["ParkingLotSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Price/hour</a>
-            </th>
-            <th scope="col">
-                @Html.DisplayNameFor(model => model.floor)
-            </th>
-            <th scope="col">
-                @Html.DisplayNameFor(model => model.isPrivate)
-            </th>
-            <th scope="col">
-                @Html.DisplayNameFor(model => model.isCovered)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model) {
-        <tr>
-                                            
-            <td class="tablehover pointer" onclick="location.href ='@Url.Action("Details",new { id = ViewData["parkingLotId"], pSpotId=item.parkingSpotID })'">
-                @Html.DisplayFor(modelItem => item.parkingSpotID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.priceHour)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.floor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.isPrivate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.isCovered)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", "ParkingSpots", new { id = ViewData["parkingLotId"], pSpotId = item.parkingSpotID }) |
 
-                @Html.ActionLink("Edit", "Edit", "ParkingSpots", new { id = ViewData["parkingLotId"], pSpotId = item.parkingSpotID })
-            </td>
-        </tr>
-        }
-    </tbody>
-    <tr>
-        <td>
-            @Html.ActionLink("Back to Parking Lot", "Details", "ParkingLots", new { id = ViewData["parkingLotId"] })
-        </td>
-    </tr>
-</table>
-<div><a asp-controller="Home" asp-action="Index">Back to Home</a></div>
+<div class="table-manage-spots">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.parkingSpotID)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.priceHour)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.floor)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.isPrivate)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.isCovered)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td class="tablehover pointer" onclick="location.href ='@Url.Action("Details",new { id = ViewData["parkingLotId"], pSpotId=item.parkingSpotID })'">
+                        @Html.DisplayFor(modelItem => item.parkingSpotID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.priceHour)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.floor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.isPrivate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.isCovered)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", "ParkingSpots", new { id = ViewData["parkingLotId"], pSpotId = item.parkingSpotID }) |
+
+                        @Html.ActionLink("Edit", "Edit", "ParkingSpots", new { id = ViewData["parkingLotId"], pSpotId = item.parkingSpotID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="back-park-button">
+        @Html.ActionLink("Back to Parking Lot", "Details", "ParkingLots", new { id = ViewData["parkingLotId"] })
+    </div>
+</div>
+<div class="back-park-button"><a asp-controller="Home" asp-action="Index">Back to Home</a></div>
