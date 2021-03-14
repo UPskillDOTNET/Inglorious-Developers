@@ -6,27 +6,28 @@
 }
 
 <h1>@ViewBag.parkLotName</h1>
-<h1>ManagerSpots</h1>
+<br>
+<h2>Spots Management</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
 </p>
 <table class="table">
-    <thead>
+    <thead class="thead-dark">
         <tr>
-            <th>
+            <th scope="col">
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Designation</a>
             </th>
-            <th>
+            <th scope="col">
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["ParkingLotSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Price/hour</a>
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.floor)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.isPrivate)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.isCovered)
             </th>
             <th></th>
