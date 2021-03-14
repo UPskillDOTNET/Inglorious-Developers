@@ -11,6 +11,6 @@ namespace CentralAPI.Services.IServices
     public interface IWalletPaymentService
     {
         Task<ActionResult<PaymentDTOOperation>> Pay(PaymentDTO paymentDTO);
-        Task<ActionResult<PaymentDTOOperation>> Refund(PaymentDTO paymentDTO);
+        Task<ActionResult<PaymentDTOOperation>> Refund(CentralReservationDTO centralReservationDto);
     }
 }

@@ -18,14 +18,13 @@ namespace CentralAPI.Services.Services
         //private readonly IReservationPaymentRepository _reservationPaymentRepository;
         private readonly IPaymentRepository _paymentRepository;
         private readonly IWalletService _walletService;
-        private readonly ICentralReservationService _centralReservationService;
+      
 
-        public WalletPaymentService(IMapper mapper, IPaymentRepository paymentRepository, IWalletService walletService, ICentralReservationService centralReservationService)
+        public WalletPaymentService(IMapper mapper, IPaymentRepository paymentRepository, IWalletService walletService)
         {
             _mapper = mapper;
             _paymentRepository = paymentRepository;
             _walletService = walletService;
-            _centralReservationService = centralReservationService;
         }
 
         public async Task<ActionResult<PaymentDTOOperation>> Pay(PaymentDTO paymentDTO)
@@ -81,8 +80,14 @@ namespace CentralAPI.Services.Services
             return paymentDTOOperation;
         }
 
-        public async Task<ActionResult<PaymentDTOOperation>> Refund(PaymentDTO paymentDTO)
+        public async Task<ActionResult<PaymentDTOOperation>> Refund(CentralReservationDTO centralReservationDTO)
         {
+            var paymentDTO = new PaymentDTO
+            {
+                reservationID = centralReservationDTO.centralReservationID,
+                userID = centralReservationDTO.userID,
+                finalPrice = centralReservationDTO.finalPrice,
+            };
             var wallet = await _walletService.GetWalletById(paymentDTO.userID);
             var walletDTO = wallet.Value;
 

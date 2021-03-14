@@ -33,7 +33,7 @@ namespace CentralAPI.Services.Services
             throw new NotImplementedException();
         }
 
-        public Task<ActionResult<PaymentDTOOperation>> Refund(PaymentDTO paymentDTO)
+        public Task<ActionResult<PaymentDTOOperation>> Refund(CentralReservationDTO centralReservationDTO)
         {
             throw new NotImplementedException();
         }

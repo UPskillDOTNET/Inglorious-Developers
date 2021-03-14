@@ -64,10 +64,6 @@ namespace CentralAPI.Services.Services
             var sublet = _mapper.Map<CentralReservationDTO, Sublet>(centralReservationDTO);
             sublet.subUserID = centralReservation.userID;
             sublet.reservationID = centralReservation.reservationID;
-            if (await _subletRepository.subletAny(sublet))
-            {
-                throw new ArgumentException("Can't make a reservation for that date");
-            }
             sublet = await _subletRepository.CreateSublet(sublet);
             var subletDTO = _mapper.Map<Sublet, SubletDTO>(sublet);
             return subletDTO;

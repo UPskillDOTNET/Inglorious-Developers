@@ -17,26 +17,21 @@ namespace CentralAPI.Services.Services {
     public class CentralReservationService : ICentralReservationService {
 
         private readonly ICentralReservationRepository _centralReservationRepository;
-        private readonly IParkingLotRepository _parkingLotRepository;
         private readonly IReservationService _reservationService;
-        //private readonly ParkingSpotController _parkingSpotsController;
-        //private readonly IUserRepository _userRepository;
+        private readonly IWalletPaymentService _walletPaymentService;
         private readonly IParkingSpotService _parkingSpotService;
         private readonly ISubletService _subletService;
         private readonly QRgenerator _qRgenerator;
         private readonly EmailService _emailService;
         private readonly IMapper _mapper;
 
-        public CentralReservationService(ICentralReservationRepository centralReservationRepository, IReservationService reservationService, IParkingLotRepository parkingLotRepository,QRgenerator qRgenerator, EmailService emailService, IParkingSpotService parkingSpotService,ISubletService subletService , IMapper mapper) {
+        public CentralReservationService(ICentralReservationRepository centralReservationRepository, IReservationService reservationService, QRgenerator qRgenerator, EmailService emailService, IParkingSpotService parkingSpotService,ISubletService subletService , IMapper mapper, IWalletPaymentService walletPaymentService) {
             _centralReservationRepository = centralReservationRepository;
-            _parkingLotRepository = parkingLotRepository;
             _qRgenerator = qRgenerator;
             _emailService = emailService;
             _subletService = subletService;
             _reservationService = reservationService;
-           
-            //_parkingSpotsController = parkingSpotController;
-            //_userRepository = userRepository;
+            _walletPaymentService = walletPaymentService;
             _parkingSpotService = parkingSpotService;
             _mapper = mapper;
         }
@@ -74,16 +69,20 @@ namespace CentralAPI.Services.Services {
         public async Task<ActionResult<CentralReservationDTO>> PostCentralReservation(CentralReservationDTO centralReservationDTO) {  
             var result= await GetEndTimeandFinalPrice(centralReservationDTO);
             centralReservationDTO = result.Value;
-            //var qr = _qRgenerator.MakeQR(centralReservationDTO);
-            //await _emailService.SendQRToEmailAsync(qr.Result.Value, centralReservationDTO.userID, centralReservationDTO.centralReservationID);
+           
             var centralReservation = _mapper.Map<CentralReservationDTO, CentralReservation>(centralReservationDTO);
             //If returns true when should return false?
             if (await subletReservationExists(centralReservationDTO))
             {
                 var subletReservation = await _centralReservationRepository.GetsubletReservation(centralReservation);
                 try
-                {
-                    await _subletService.CreateSublet(centralReservationDTO, subletReservation);
+                    {
+                    
+                    var payment = await _subletService.CreateSublet(centralReservationDTO, subletReservation);
+                    payment.Value.userID = subletReservation.userID;
+                    await refundforsublet(subletReservation, payment.Value);
+                    var qr = _qRgenerator.MakeQR(centralReservationDTO);
+                    await _emailService.SendQRToEmailAsync(qr.Result.Value, centralReservationDTO.userID, centralReservationDTO.centralReservationID);
                     return centralReservationDTO;
                 }
                 catch (Exception)
@@ -91,11 +90,12 @@ namespace CentralAPI.Services.Services {
                     throw new Exception("cant compute");
                 }
             }
-           
+            
             centralReservation = await _centralReservationRepository.PostCentralReservation(centralReservation);
             centralReservation.reservationID = centralReservation.centralReservationID;
             await _reservationService.PostReservation(centralReservation, centralReservation.parkingLotID);
-            
+            var qrs = _qRgenerator.MakeQR(centralReservationDTO);
+            await _emailService.SendQRToEmailAsync(qrs.Result.Value, centralReservationDTO.userID, centralReservationDTO.centralReservationID);
             return centralReservationDTO;
         }
         public async Task<ActionResult<CentralReservationDTO>> PostCentralReservationNotCompleted(CentralReservationDTO centralReservationDTO)
@@ -112,6 +112,7 @@ namespace CentralAPI.Services.Services {
             reservation.isCancelled = true;            
             var reservations = await _centralReservationRepository.PatchCentralReservation(reservation);
             var reservationDTO = _mapper.Map<CentralReservation, CentralReservationDTO>(reservations);
+            await _walletPaymentService.Refund(reservationDTO);
             return reservationDTO;
 
         }
@@ -168,11 +169,18 @@ namespace CentralAPI.Services.Services {
             return result;
         }
 
-        //public ValidationResult Validate(CentralReservationDTO centralReservationDTO) {
-        //    CentralReservationValidator validationRules = new CentralReservationValidator();
-        //    ValidationResult Results = validationRules.Validate(centralReservationDTO);
-        //    return Results;
-        //}
+       public async Task<PaymentDTOOperation> refundforsublet(CentralReservation centralReservation, CentralReservationDTO payment)
+        {
+            if (payment.endTime > centralReservation.endTime)
+            {
+                var hours = payment.endTime - centralReservation.endTime;
+                var finalprice = (await _parkingSpotService.GetParkingSpotById(centralReservation.parkingLotID, centralReservation.parkingSpotID)).Value.priceHour * Convert.ToInt32(hours.TotalHours);
+                payment.finalPrice = payment.finalPrice - finalprice;
+                return (await _walletPaymentService.Refund(payment)).Value;
+            }
+            return (await _walletPaymentService.Refund(payment)).Value;
+            
+        }
     }
 }
 

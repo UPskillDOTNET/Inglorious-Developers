@@ -33,11 +33,6 @@ namespace CentralAPI.Controllers
             return await _defaultPayment.DefaultPayments(paymentDTO, preferedMethod );
         }
 
-        [Route("/central/refund/")]
-        public async Task<ActionResult<PaymentDTOOperation>> RefundReservation(PaymentDTO paymentDTO)
-        {
-            return await _walletPaymentService.Refund(paymentDTO);
-        }
 
     }
 }
