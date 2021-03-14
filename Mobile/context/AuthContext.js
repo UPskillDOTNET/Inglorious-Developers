@@ -17,8 +17,20 @@ const authReducer = (state, action) => {
 };
 
 const signup = (dispatch) => {
-  return ({ username, password }) => {
+  return ({ username, password, email, name, nif }) => {
     console.log("Signup");
+    var credentials = { username, password, email, name, nif };
+    console.log(credentials);
+    var token = getAccessToken(credentials);
+    console.log(token);
+    console.log("Signin feito");
+    dispatch({
+      type: "signUp",
+      payload: {
+        token,
+        username,
+      },
+    });
   };
 };
 
