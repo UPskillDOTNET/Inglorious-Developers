@@ -93,9 +93,23 @@ a .footer {
     background-color: #2a1b3d;
 }
 
-    .home .overlay {
-        background-color: rgba(0, 0, 0, 0.35) !important;
-    }
+body {
+    /*background: url("https://res.cloudinary.com/du4r5hykw/image/upload/v1615732912/cover6_feyqgh.jpg") no-repeat;*/ 
+    /*background: url("https://res.cloudinary.com/du4r5hykw/image/upload/v1615218742/cover8_no_bg_w2ll3n.png") no-repeat;*/ /*pink*/
+    background: url("https://res.cloudinary.com/du4r5hykw/image/upload/v1615736453/cover8YELLOW_whiteOver_flipped_medium_pozpce.png") no-repeat; /*yellow*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #c495ff;
+}
+
+#back-img {
+    
+}
+.home .overlay {
+    background-color: rgba(0, 0, 0, 0.35) !important;
+}
 
 .landing {
     z-index: -1000;
