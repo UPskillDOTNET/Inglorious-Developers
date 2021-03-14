@@ -40,11 +40,14 @@
                                                 <p class="m-b-10 f-w-600">NIF</p>
                                                 <h6 class="text-muted f-w-400"> @Html.DisplayFor(model => model.nif)</h6>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <p class="m-b-10 f-w-600">Wallet</p>
-                                                <h6 class="text-muted f-w-400">@await Html.PartialAsync("Wallet")</h6>
+                                            @if (User.IsInRole("user")) {
+                                                <div class="col-sm-6">
+                                                    <p class="m-b-10 f-w-600">Wallet</p>
+                                                    <h6 class="text-muted f-w-400">@await Html.PartialAsync("Wallet")</h6>
+                                                </div>
+                                            }
                                             </div>
-                                        </div>
+                                            
                                     </div>
                                     <div class="card-body-buttons">
                                       
