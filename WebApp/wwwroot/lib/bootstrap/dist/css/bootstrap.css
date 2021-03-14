@@ -163,7 +163,7 @@ a {
 }
 
 a:hover {
-  color: #fff;
+  color: none !important;
   text-decoration: none !important;
 }
 

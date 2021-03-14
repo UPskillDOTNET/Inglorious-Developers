@@ -12,7 +12,7 @@ a.navbar-brand {
 
 /* Provide sufficient contrast against white background */
 a {
-    color: #fff !important;
+    color: #fff;
     text-decoration: none !important;
 }
 
@@ -624,7 +624,7 @@ button:focus {
 }
 
 .bg-c-lite-green {
-    background: linear-gradient(-75deg, #2A1B3D, #d83f87);
+    background: #2A1B3D;
 }
 
 .user-profile {
@@ -744,6 +744,40 @@ h6 {
         text-decoration: none;
     }
 
+.row-cancel-sublet {
+    display: block;
+    padding: 15px;
+}
+
+/*Back Button*/
+
+.back-button {
+    border-radius: 10px;
+    transition: 0.5s;
+    line-height: 1;
+    color: #fff !important;
+    animation-delay: 0.8s;
+    border: 2px solid #2A1B3D;
+    background: #2A1B3D;
+    display: inline-block;
+    padding: 10px 60px;
+    margin-top: 25px;
+}
+
+    .back-button a {
+        font-weight: 500;
+        font-size: 12px;
+        letter-spacing: 1px;
+        color: #fff;
+    }
+
+        .back-button:hover {
+            background: #a385bd;
+            font-weight: 500;
+            color: #fff !important;
+            text-decoration: none;
+        }
+
 /*MEDIA QUERIES*/
 @media screen and (max-width: 992px) {
     .centered {
@@ -802,10 +836,5 @@ h6 {
     #searchbar-query {
         display: block;
     }
-}
-
-.row-cancel-sublet {
-    display: block;
-    padding: 15px;
 }
 
