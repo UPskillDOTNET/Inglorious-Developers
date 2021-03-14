@@ -32,8 +32,13 @@
             <div id="buttons" class="card-body-buttons">
                 <div class="parking-lot-reservation-card-buttons"><a id="btn-now" class="reservation-about-btn" asp-area="" asp-controller="Users" asp-action="Create">BOOK NOW</a></div>
             </div>
+        } else {
+            <div id="buttons" class="card-body-buttons">
+                <a id="btn-now" class="reservation-about-btn" asp-area="" asp-controller="MakeReservation" asp-action="Now" asp-route-id="@item.parkingLotID">BOOK NOW</a>
+                <a id="btn-later" class="reservation-about-btn" asp-area="" asp-controller="MakeReservation" asp-action="Later" asp-route-id="@item.parkingLotID">BOOK FOR LATER</a>
+            </div>
         }
-        </div>
+    </div>
     </div>
 
         @*<tr class="table-hover">
