@@ -36,6 +36,8 @@ namespace WebApp.Controllers
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> ManagerSpots(string managerID) {
             try {
                 managerID = HttpContext.User.FindFirst("sub")?.Value;
+                ViewBag.parkLotName = _parkingLotService.GetParkingLotsByManagerId(managerID).Result.Value.name;
+                ViewData["parkingLotId"] = _parkingLotService.GetParkingLotsByManagerId(managerID).Result.Value.parkingLotID;
                 return View(_parkingSpotService.GetAllParkingSpotsByManagerID(managerID).Result.Value);
             } catch {
                 return NotFound();

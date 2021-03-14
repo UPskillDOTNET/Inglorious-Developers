@@ -2,8 +2,10 @@
 
 @{
     ViewData["Title"] = "ManagerSpots";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h1>@ViewBag.parkLotName</h1>
 <h1>ManagerSpots</h1>
 
 <p>
@@ -13,10 +15,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.parkingSpotID)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Designation</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.priceHour)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["ParkingLotSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Price/hour</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.floor)
@@ -27,39 +29,39 @@
             <th>
                 @Html.DisplayNameFor(model => model.isCovered)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.parkingLotID)
-            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.parkingSpotID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.priceHour)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.floor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.isPrivate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.isCovered)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.parkingLotID)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model) {
+            <tr>
+                <td class="tablehover pointer" onclick="location.href ='@Url.Action("Details", new { id = ViewData["parkingLotId"], pSpotId=item.parkingSpotID })">
+                    @Html.DisplayFor(modelItem => item.parkingSpotID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.priceHour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.floor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isPrivate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isCovered)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", "ParkingSpots", new { id = ViewData["parkingLotId"], pSpotId = item.parkingSpotID }) |
+
+                    @Html.ActionLink("Edit", "Edit", "ParkingSpots", new { id = ViewData["parkingLotId"], pSpotId = item.parkingSpotID })
+                </td>
+            </tr>
+        }
     </tbody>
+    <tr>
+        <td>
+            @Html.ActionLink("Back to Parking Lot", "Details", "ParkingLots", new { id = ViewData["parkingLotId"] })
+        </td>
+    </tr>
 </table>
+<div><a asp-controller="Home" asp-action="Index">Back to Home</a></div>
