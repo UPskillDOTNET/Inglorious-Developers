@@ -4,8 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CentralAPI.Models
 {
-    public class ParkingLot
-    {
+    public class ParkingLot {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Key]
         public int parkingLotID { get; set; }
@@ -29,5 +28,7 @@ namespace CentralAPI.Models
         public string myURL { get; set; }
 
         public string imageURL { get; set; }
+        [ForeignKey ("User")]
+        public string managerID { get; set; }
     }
 }

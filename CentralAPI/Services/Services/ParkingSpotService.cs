@@ -34,6 +34,11 @@ namespace CentralAPI.Services.Services
             return await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
         }
 
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpotsByManagerID(string managerID, int pLotId) {
+            var response = await _helper.GetClientAsync(pLotId, "api/parkingspots/all");
+            return await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
+        }
+
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllFreeParkingSpots(int pLotId)
         {
             var response = await _helper.GetClientAsync(pLotId, "api/parkingspots/all");

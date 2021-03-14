@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("central/parkinglots")]
     [ApiController]
     public class ParkingLotsController : Controller
@@ -48,6 +48,15 @@ namespace CentralAPI.Controllers
             }
         }
 
+        //Get Parking Lots by managerId
+        [HttpGet("managers/{managerID}")]
+        public async Task<ActionResult<ParkingLotDTO>> GetParkingLotsByManagerId(string managerID) {
+            try {
+                return await _parkingLotService.GetParkingLotsByManagerId(managerID);
+            } catch (ArgumentNullException) {
+                return NotFound("Manager " + managerID + " not found!");
+            }
+        }
 
     }
 }

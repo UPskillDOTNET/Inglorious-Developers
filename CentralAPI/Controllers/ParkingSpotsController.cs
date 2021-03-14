@@ -10,16 +10,19 @@ using System.Threading.Tasks;
 namespace CentralAPI.Controllers
 {
     // CONTROLLER: Parking Spots Controller
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("central/[controller]")]
     [ApiController]
     public class ParkingSpotsController : ControllerBase
     {
         private readonly IParkingSpotService _parkingSpotService;
+        private readonly IParkingLotService _parkingLotService;
 
-        public ParkingSpotsController(IParkingSpotService parkingSpotService)
+
+        public ParkingSpotsController(IParkingSpotService parkingSpotService, IParkingLotService parkingLotService)
         {
             _parkingSpotService = parkingSpotService;
+            _parkingLotService =  parkingLotService;
         }
 
         // HTTP GET: Get All Parking Spots
@@ -35,6 +38,22 @@ namespace CentralAPI.Controllers
             }
             catch (Exception)
             {
+                return NotFound();
+            }
+        }
+
+        // HTTP GET: Get All Parking Spots by ManagerID
+        // Gets all Parking Spots registered in a specific Parking Lot through a ManagerID
+        [HttpGet("{managerID}")]
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpotsByManagerID(string managerID) {
+
+            try {
+                var pLotByManager = _parkingLotService.GetParkingLotsByManagerId(managerID).Result.Value;
+                var pLotId = pLotByManager.parkingLotID;
+
+                return await _parkingSpotService.GetAllParkingSpots(pLotId);
+
+            } catch (Exception) {
                 return NotFound();
             }
         }

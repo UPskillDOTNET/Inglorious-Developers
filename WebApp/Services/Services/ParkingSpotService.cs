@@ -29,6 +29,12 @@ namespace WebApp.Services.Services {
             var response = await _helper.GetClientAsync("central/parkingSpots/parkinglot/" + pLotId);
             return await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
         }
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpotsByManagerID(string managerID) {
+            var parkingLot = _parkingLotService.GetParkingLotsByManagerId(managerID).Result.Value;
+            var pLotId = parkingLot.parkingLotID;
+            var response = await _helper.GetClientAsync("central/parkingSpots/parkinglot/" + pLotId);
+            return await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
+        }
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllFreeParkingSpots(int id) {
             var parkingLot = _parkingLotService.GetParkingLotById(id);
             var response = await _helper.GetClientAsync("central/parkingSpots/free/parkinglot/" + id);

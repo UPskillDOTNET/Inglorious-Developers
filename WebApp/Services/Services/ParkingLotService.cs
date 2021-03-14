@@ -28,6 +28,11 @@ namespace WebApp.Services.Services
             return await response.Content.ReadAsAsync<List<ParkingLotDTO>>();
         }
 
+        public async Task<ActionResult<ParkingLotDTO>> GetParkingLotsByManagerId(string managerID) {
+            var response = await _helper.GetClientAsync("central/parkinglots/managers/" + managerID);
+            return await response.Content.ReadAsAsync<ParkingLotDTO>();
+        }
+
         public async Task<ActionResult<ParkingLotDTO>> GetParkingLotById(int? pLotId)
         {
             var response = await _helper.GetClientAsync("central/parkinglots/" + pLotId);

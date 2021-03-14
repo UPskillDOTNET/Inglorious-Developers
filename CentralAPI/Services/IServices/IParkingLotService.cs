@@ -12,8 +12,10 @@ namespace CentralAPI.Services.IServices
     {
         Task<ActionResult<IEnumerable<ParkingLotDTO>>> GetParkingLots();
         Task<ActionResult<ParkingLotDTO>> GetParkingLot(int id);
+        Task<ActionResult<ParkingLotDTO>> GetParkingLotsByManagerId(string managerID);
         Task<ActionResult<ParkingLotDTO>> PutParkingLot(int id, ParkingLotDTO parkingLotDTO);
         Task<ActionResult<ParkingLotDTO>> PostParkingLot(ParkingLotDTO parkingLotDTO);
+
         //ValidationResult Validate(ParkingLotDTO parkingLotDTO);
     }
 }

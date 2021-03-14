@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Web;
 using System.Globalization;
+using System.Security.Claims;
 
 namespace WebApp.Controllers
 {
@@ -27,6 +28,15 @@ namespace WebApp.Controllers
                 ViewData["parkingLotId"] = id;
                 ViewBag.parkLotName = _parkingLotService.GetParkingLotById(id).Result.Value.name;
                 return View( _parkingSpotService.GetAllParkingSpots(id).Result.Value);
+            } catch {
+                return NotFound();
+            }
+        }
+
+        public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> ManagerSpots(string managerID) {
+            try {
+                managerID = HttpContext.User.FindFirst("sub")?.Value;
+                return View(_parkingSpotService.GetAllParkingSpotsByManagerID(managerID).Result.Value);
             } catch {
                 return NotFound();
             }

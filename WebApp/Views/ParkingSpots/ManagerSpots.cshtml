@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WebApp.DTO.ParkingSpotDTO>
+
+@{
+    ViewData["Title"] = "ManagerSpots";
+}
+
+<h1>ManagerSpots</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.parkingSpotID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.priceHour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.floor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isPrivate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isCovered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.parkingLotID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.parkingSpotID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.priceHour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.floor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isPrivate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isCovered)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.parkingLotID)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

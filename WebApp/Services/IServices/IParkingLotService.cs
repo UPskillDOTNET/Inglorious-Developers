@@ -10,6 +10,7 @@ namespace WebApp.Services.IServices
     public interface IParkingLotService
     {
         public Task<ActionResult<IEnumerable<ParkingLotDTO>>> GetAllParkingLots();
+        public Task<ActionResult<ParkingLotDTO>> GetParkingLotsByManagerId(string managerID);
         public Task<ActionResult<ParkingLotDTO>> GetParkingLotById(int? pLotId);
     }
 }
