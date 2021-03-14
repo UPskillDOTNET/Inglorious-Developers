@@ -4,6 +4,7 @@ import { Icon } from "react-native-elements";
 import Tab1 from "../screens/Tab1";
 import Explore from "../screens/explore";
 import Tab3 from "../screens/Tab3";
+import ReservationsList from "./ReservationsList";
 
 const Tab = createBottomTabNavigator();
 
@@ -39,7 +40,7 @@ export default function homeFlow() {
         inactiveTintColor: "gray",
       }}
     >
-      <Tab.Screen name="Tab1" component={Tab1} />
+      <Tab.Screen name="Reservations" component={ReservationsList} />
       <Tab.Screen name="Explore" component={Explore} />
       <Tab.Screen name="Tab3" component={Tab3} />
     </Tab.Navigator>

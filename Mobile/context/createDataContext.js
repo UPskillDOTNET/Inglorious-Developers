@@ -1,4 +1,5 @@
 import React, { useReducer, userReducer } from "react";
+import reducer from "./Reducer";
 
 export default (reducer, action, defaultValue) => {
   const Context = React.createContext();

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 const Tab2 = ({ navigation }) => {
+  useEffect;
   return (
     <View style={styles.master}>
       <Text style={styles.header}>Tab2</Text>

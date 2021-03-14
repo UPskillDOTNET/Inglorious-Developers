@@ -1,9 +1,5 @@
 import createDataContext from "./createDataContext";
-import getAccessToken from  "../Services/UserServices";
-// Dar set up dos reducers, functions e default values e exporta-los como provider e context.
-
-// Este reducer aceita o state e uma action. O principio base dum reducer
-// é retornar sempre um state, incluindo o state não alterado, para ser override, de acordo com a action que for escolhida e o payload, no switch case.
+import getAccessToken from "../Services/UserServices";
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -28,7 +24,7 @@ const signup = (dispatch) => {
 
 const signin = (dispatch) => {
   return ({ username, password }) => {
-    var credentials = {username,password};
+    var credentials = { username, password };
     console.log(credentials);
     var token = getAccessToken(credentials);
     console.log(token);
