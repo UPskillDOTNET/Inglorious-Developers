@@ -1,15 +1,16 @@
-import { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { FlatList } from "react-native-gesture-handler";
+import MyContext from "../context/AppContext";
 import {
   fetchReservations,
   fetchReservationsStarted,
   URL_API,
 } from "../context/Actions";
-import { Context as AppContext } from "../context/AppContext";
+
 
 const ReservationsList = () => {
-  const { state, dispatch } = useContext(AppContext);
-  const { reservations } = state;
+  const { state, dispatch } = useContext(MyContext);
+  const {reservations} = state;
   const { loading, error, data } = reservations;
 
   useEffect(() => {

@@ -5,13 +5,13 @@ import { Provider as AuthProvider } from "./context/AuthContext.js";
 import { Context as AuthContext } from "./context/AuthContext";
 import authFlow from "./components/authFlow";
 import homeFlow from "./components/homeFlow";
-import AppProvider from "./context/AppProvider";
+import MyContext from "./context/AppContext";
 
 const Stack = createStackNavigator();
 
 function App() {
   const { state } = React.useContext(AuthContext);
-  console.log(state);
+ 
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -37,10 +37,9 @@ function App() {
 
 export default () => {
   return (
-    <AuthProvider>
-      <AppProvider>
+     <AuthProvider>
         <App />
-      </AppProvider>
-    </AuthProvider>
+      </AuthProvider>
+
   );
 };

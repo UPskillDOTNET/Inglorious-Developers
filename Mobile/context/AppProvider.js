@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { Provider } from "./AppContext";
+import  MyContext  from "./AppContext";
 import reducer from "./Reducer";
 
 const initialState = {
@@ -8,25 +8,29 @@ const initialState = {
     error: null,
     data: [],
   },
-  parkinglots: {
-    loading: true,
-    error: null,
-    data: [],
-  },
+};
+
+const reservation_labels = {
+  id: "ID",
+  userID: "userID",
+  
 };
 
 const AppProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <Provider
+    <MyContext.Provider
       value={{
         state,
+        reservation_labels,
         dispatch,
       }}
     >
       {props.children}
-    </Provider>
+    </MyContext.Provider>
   );
+  AppProvider.propTypes = {
+    children: PropTypes.node,
 };
 
 export default AppProvider;

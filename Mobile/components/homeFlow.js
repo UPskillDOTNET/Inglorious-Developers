@@ -1,10 +1,11 @@
 import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "react-native-elements";
-import Tab1 from "../screens/Tab1";
+import Tab2 from "../screens/Tab2";
 import Explore from "../screens/explore";
 import Tab3 from "../screens/Tab3";
 import ReservationsList from "./ReservationsList";
+import Wrapper from "./Wrapper";
 
 const Tab = createBottomTabNavigator();
 
@@ -40,7 +41,7 @@ export default function homeFlow() {
         inactiveTintColor: "gray",
       }}
     >
-      <Tab.Screen name="Reservations" component={ReservationsList} />
+      <Tab.Screen name="Reservations" component={Tab2} />
       <Tab.Screen name="Explore" component={Explore} />
       <Tab.Screen name="Tab3" component={Tab3} />
     </Tab.Navigator>
