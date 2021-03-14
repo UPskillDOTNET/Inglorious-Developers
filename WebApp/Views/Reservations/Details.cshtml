@@ -42,7 +42,7 @@
         </dd>
         @if (Model.isCancelled == false)
         {
-            <div class="row">
+            <div class="row-cancel-sublet">
                 <form method="post" asp-action="Cancel" asp-route-id="@Model.centralReservationID">
                     <span id="confirmCancel_@Model.centralReservationID" style="display:none">
                         <span>Are you sure you want to cancel your reservation?</span>
