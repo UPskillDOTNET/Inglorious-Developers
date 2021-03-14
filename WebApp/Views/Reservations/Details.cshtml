@@ -47,11 +47,11 @@
                     <span id="confirmCancel_@Model.centralReservationID" style="display:none">
                         <span>Are you sure you want to cancel your reservation?</span>
                         <br />
-                        <button type="submit" class="btn btn-primary">Yes</button>
+                        <button id="confirmCancel" type="submit" class="btn btn-primary">Yes</button>
                         <a href="#" class="btn btn-danger" onclick="confirmCancel('@Model.centralReservationID', false)">No</a>
                     </span>
                     <span id="cancelReservation_@Model.centralReservationID">
-                        <a href="#" class="btn btn-danger" onclick="confirmCancel('@Model.centralReservationID', true)">
+                        <a id="cancelReservation" href="#" class="btn btn-danger" onclick="confirmCancel('@Model.centralReservationID', true)">
                             Cancel Reservation
                         </a>
                     </span>

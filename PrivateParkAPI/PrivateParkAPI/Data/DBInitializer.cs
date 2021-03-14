@@ -29,7 +29,7 @@ namespace PrivateParkAPI.Data {
                     new ParkingSpot{parkingSpotID="I4",priceHour=0.9m,isPrivate=true, floor=1},
                     new ParkingSpot{parkingSpotID="I5",priceHour=0.9m,isPrivate=true, floor=1},
                     new ParkingSpot{parkingSpotID="O1",priceHour=1.00m,isPrivate=false, floor=3},
-                    new ParkingSpot{parkingSpotID="O2",priceHour=1.00m,isPrivate=false, floor=3},
+                    new ParkingSpot{parkingSpotID="O2",priceHour=0.10m,isPrivate=false, floor=3},
                     new ParkingSpot{parkingSpotID="O3",priceHour=1.00m,isPrivate=false, floor=3},
                     new ParkingSpot{parkingSpotID="O4",priceHour=1.00m,isPrivate=false, floor=3},
                     new ParkingSpot{parkingSpotID="O5",priceHour=1.00m,isPrivate=false, floor=3},

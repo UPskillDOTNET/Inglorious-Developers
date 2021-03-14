@@ -16,18 +16,24 @@ namespace ParkingAroundE2ETest.Pages
 
         private IWebDriver Driver { get; }
 
+        public IWebElement lnkHome => Driver.FindElement(By.LinkText("HOME"));
         public IWebElement lnkNow => Driver.FindElement(By.XPath("//a[@href='/MakeReservation/Now/1']"));
-
         public IWebElement lnkPSpot => Driver.FindElement(By.Id("park-spot_O2"));
         public IWebElement txtEndTime => Driver.FindElement(By.Name("endTime"));
         public IWebElement btnConfirm => Driver.FindElement(By.XPath("//input[@value='Confirm']"));
         public IWebElement parkingSpot => Driver.FindElement(By.Id("pSpot_1_O2"));
+        public IWebElement btnCancel => Driver.FindElement(By.Id("confirmCancel"));
+        public IWebElement btnCancelReservation => Driver.FindElement(By.Id("cancelReservation"));
+
+        
         public void Click(string method)
         {
             switch(method)
             {
                 case "Now":
                     lnkNow.Click();
+                    break;
+                case "Later":
                     break;
                 default:
                     break;
@@ -48,5 +54,6 @@ namespace ParkingAroundE2ETest.Pages
         }
 
         public bool iSReservationExists() => parkingSpot.Displayed;
+        public bool isParkingSpotFree() => lnkPSpot.Displayed;
     }
 }

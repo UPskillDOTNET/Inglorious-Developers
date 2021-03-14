@@ -16,9 +16,10 @@ namespace ParkingAroundE2ETest.Pages
 
         private IWebDriver Driver { get; }
 
-        public IWebElement lnkDeposit => Driver.FindElement(By.LinkText("Deposit"));
+        public IWebElement lnkDeposit => Driver.FindElement(By.ClassName("myWallet-button-user-dashboard"));
 
         public IWebElement lnkHome => Driver.FindElement(By.LinkText("HOME"));
+        public IWebElement lnkBook => Driver.FindElement(By.LinkText("Booking Management"));
 
         public bool ISDepositButtonExist() => lnkDeposit.Displayed;
 

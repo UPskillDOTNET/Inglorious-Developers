@@ -19,6 +19,7 @@ namespace ParkingAroundE2ETest.Pages
         public IWebElement lnkLogin => Driver.FindElement(By.Id("login_btn1"));
 
         public IWebElement lnkReservation => Driver.FindElement(By.LinkText("MAKE A RESERVATION"));
+        public IWebElement lnkUser => Driver.FindElement(By.LinkText("WELCOME BACK, JOAOM"));
 
         public void ClickLogin()
         {

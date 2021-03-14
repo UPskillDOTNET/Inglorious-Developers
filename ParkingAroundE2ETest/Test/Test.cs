@@ -27,7 +27,7 @@ namespace ParkingAroundE2ETest.Test
             homePage.ClickLogin();
 
             LoginPage loginPage = new LoginPage(webDriver);
-            loginPage.Login("CaioR", "Wtv123!");
+            loginPage.Login("JoaoM", "Wtv123!");
 
             UserPage userPage = new UserPage(webDriver);
 
@@ -42,20 +42,47 @@ namespace ParkingAroundE2ETest.Test
 
             HomePage homePage = new HomePage(webDriver);
             homePage.ClickReservation();
+            
 
             ReservationPage reservationPage = new ReservationPage(webDriver);
             reservationPage.Click("Now");
             reservationPage.ParkingSpotClick();
-            reservationPage.SendEndTime("03/23/2021");
+            reservationPage.SendEndTime("03/18/2021");
             reservationPage.SendEndTime(Keys.Tab);
-            reservationPage.SendEndTime("0500PM");
+            reservationPage.SendEndTime("0533PM");
             reservationPage.ConfirmClick();
             reservationPage.ConfirmClick();
 
             Assert.That(reservationPage.iSReservationExists, Is.True);
         }
 
-        //[TearDown]
-        //public void Teardown() => webDriver.Quit();
+        [Test]
+        public void ReservationCancel()
+        {
+            HomePage homePage = new HomePage(webDriver);
+            homePage.lnkUser.Click();
+
+            UserPage userPage = new UserPage(webDriver);
+            userPage.lnkBook.Click();
+
+            ReservationPage reservationPage = new ReservationPage(webDriver);
+            reservationPage.parkingSpot.Click();            
+            reservationPage.btnCancelReservation.Click();
+            reservationPage.btnCancel.Click();
+            reservationPage.lnkHome.Click();
+            
+            homePage.ClickReservation();
+
+            reservationPage.Click("Now");
+
+            Assert.That(reservationPage.isParkingSpotFree, Is.True);
+        }
+
+        [OneTimeTearDown]
+        public void Teardown() 
+        {
+            Database.DeleteReservation();
+            webDriver.Quit();
+        }
     }
 }
