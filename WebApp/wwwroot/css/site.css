@@ -981,3 +981,11 @@ h2 .f-w-600 .spot-edit {
     margin-bottom: -14px;
     margin-top: -1em;
 }
+
+#register-user:hover {
+    background-color: #ffffff00 !important;
+}
+
+#register-user:focus {
+    outline: none !important;
+}
