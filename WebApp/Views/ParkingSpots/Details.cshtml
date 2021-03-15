@@ -51,7 +51,7 @@
                                             <h6 class="text-muted f-w-400"><p><strong>@ViewBag.parkLotName</strong></p></h6>
                                         </div>
                                         <div id="p-spots" class="btn btn-primary" style="width: 33%; margin-left:16.5em; margin-bottom:0.5em;">
-                                            @Html.ActionLink("Edit Parking Spots", "Edit", "ParkingSpots", new { id = Model.parkingLotID, pSpotId = Model.parkingSpotID })
+                                            @Html.ActionLink("Edit", "Edit", "ParkingSpots", new { id = Model.parkingLotID, pSpotId = Model.parkingSpotID })
                                         </div>
                                         <div id="free-ps" class="btn btn-secondary" style="width: 33%; margin-left:16.5em; margin-bottom:1em;">
                                             @Html.ActionLink("Back to List", "ManagerSpots", "ParkingSpots", new { id = Model.parkingLotID })
