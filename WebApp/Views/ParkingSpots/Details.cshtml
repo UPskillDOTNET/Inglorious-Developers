@@ -5,49 +5,64 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
-<h4>Parking Spot @ViewData["parkingSpotId"]</h4>
+
+
 
 <div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            <p>Designation</p>
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.parkingSpotID)
-        </dd>
-        <dt class="col-sm-2">
-            <p>Floor</p>
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.floor)
-        </dd>
-        <dt class="col-sm-2">
-            <p>Covered</p>
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.isCovered)
-        </dd>
-        <dt class="col-sm-2">
-            <p>Private</p>
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.isPrivate)
-        </dd>
-        <dt class="col-sm-2">
-            <p>Price/hour</p>
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.priceHour)
-        </dd>
-        <dd class="col-sm-10">
-            <p><strong>@ViewBag.parkLotName</strong></p>
-        </dd>
-    </dl>
-</div>
-
-<div>
-    @Html.ActionLink("Edit Parking Spot", "Edit", "ParkingSpots", new { id = Model.parkingLotID, pSpotId = Model.parkingSpotID })|
-    @Html.ActionLink("Back to List", "ManagerSpots", new { id = Model.parkingLotID })
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row container d-flex justify-content-center">
+                <div class="col-xl-6 col-md-12">
+                    <div class="card user-card-full">
+                        <div class="row m-l-0 m-r-0">
+                            <div class="col-sm-4 bg-c-lite-green user-profile">
+                                <div id="park-spot-details">
+                                    <h2 class="f-w-600 spot">@Html.DisplayFor(model => model.parkingSpotID)</h2>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="card-block">
+                                    <h4 class="m-b-20 p-b-5 b-b-default f-w-600">Parking Spot @ViewData["parkingSpotId"] Details</h4>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">Designation</p>
+                                            <h6 class="text-muted f-w-400"> @Html.DisplayFor(model => model.parkingSpotID)</h6>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">Floor</p>
+                                            <h6 class="text-muted f-w-400">@Html.DisplayFor(model => model.floor)</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">Covered</p>
+                                            <h6 class="text-muted f-w-400"> @Html.DisplayFor(model => model.isCovered)</h6>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">Private</p>
+                                            <h6 class="text-muted f-w-400"> @Html.DisplayFor(model => model.isPrivate)</h6>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">Price/hour</p>
+                                            <h6 class="text-muted f-w-400"> €@Html.DisplayFor(model => model.priceHour)</h6>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">Park Name</p>
+                                            <h6 class="text-muted f-w-400"><p><strong>@ViewBag.parkLotName</strong></p></h6>
+                                        </div>
+                                        <div id="p-spots" class="btn btn-primary" style="width: 33%; margin-left:16.5em; margin-bottom:0.5em;">
+                                            @Html.ActionLink("Edit Parking Spots", "Edit", "ParkingSpots", new { id = Model.parkingLotID, pSpotId = Model.parkingSpotID })
+                                        </div>
+                                        <div id="free-ps" class="btn btn-secondary" style="width: 33%; margin-left:16.5em; margin-bottom:1em;">
+                                            @Html.ActionLink("Back to List", "ManagerSpots", "ParkingSpots", new { id = Model.parkingLotID })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

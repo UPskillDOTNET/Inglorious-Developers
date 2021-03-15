@@ -662,6 +662,11 @@ button:focus {
     width: 130px;
 }
 
+.img-lot {
+    border-radius: 10px;
+    width: 156px;
+}
+
 h6 {
     font-size: 14px;
 }
@@ -900,4 +905,42 @@ table a {
 .table-manage-spots table th {
     color: #fff !important;
     text-transform: uppercase;
+}
+
+
+/*Park Spot Details*/
+
+#park-spot-details {
+    margin-left: 25%;
+    margin-top: 15%;
+    height: 130px;
+    width: 130px;
+    line-height: 125px;
+    padding-bottom: 2px;
+    border: 5px solid white !important;
+    border-radius: 10%;
+    text-align: center;
+    background-color: #2A1B3D;
+    overflow: hidden;
+    color: white;
+    font-size: 55px !important;
+    margin-left: 25%;
+}
+
+.f-w-600 .spot {
+    margin-top: 35%;
+    color: white;
+    font-size: 55px !important;
+}
+
+#p-spots:hover {
+    color: #44318D !important;
+    background-color: white;
+    border-color: #44318D;
+}
+
+#free-ps:hover {
+    color: #6c757d !important;
+    background-color: white;
+    border-color: #6c757d;
 }
