@@ -901,3 +901,8 @@ table a {
     color: #fff !important;
     text-transform: uppercase;
 }
+
+.table-manage-spots tbody {
+    background-color: #fff;
+    opacity: 0.7;
+}
