@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import Wrapper from "../components/Wrapper";
+import { View, StyleSheet } from "react-native";
 import ReservationsList from "../components/ReservationsList";
 
-const Tab2 = ({ navigation }) => {
+const ReservationsUser = ({ navigation }) => {
   useEffect;
   return (
     <View style={styles.master}>
@@ -17,10 +16,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#2A1B3D",
   },
   header: {
     fontSize: 32,
   },
 });
 
-export default Tab2;
+export default ReservationsUser;

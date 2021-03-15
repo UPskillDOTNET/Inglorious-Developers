@@ -5,8 +5,8 @@ import {
   fetchReservationsStarted,
   URL_API,
 } from "../context/Actions";
-import { FlatList, View, Text, StyleSheet } from "react-native";
-import { Card, Button, Icon } from "react-native-elements";
+import { View, Text, StyleSheet } from "react-native";
+import { Card } from "react-native-elements";
 
 const ReservationsList = () => {
   const { state, dispatch } = useContext(MyContext);
@@ -20,7 +20,7 @@ const ReservationsList = () => {
     const request = {};
     fetchReservations(url, request, dispatch);
   }, []);
-console.log(data)
+  console.log(data);
   if (loading === true) {
     return (
       <View>
@@ -36,13 +36,18 @@ console.log(data)
       );
     } else {
       if (data.length > 0) {
-        return <View>  {data.map((reservation, index) => (
-          <Card  key={index}>
-            <Text >{reservation.centralReservationID}</Text>
-            <Text >{reservation.finalPrice}</Text>
-            <Text >{reservation.parkingSpotID}</Text>
-          </Card>
-        ))}</View>
+        return (
+          <View>
+            <Text style={styles.title}>YOUR RESERVATIONS</Text>{" "}
+            {data.map((reservation, index) => (
+              <Card key={index}>
+                <Text>ReservationID: {reservation.centralReservationID}</Text>
+                <Text>Final Price: {reservation.finalPrice}</Text>
+                <Text>Parking Spot ID: {reservation.parkingSpotID}</Text>
+              </Card>
+            ))}
+          </View>
+        );
       } else {
         return (
           <View>
@@ -54,4 +59,15 @@ console.log(data)
   }
 };
 
+const styles = StyleSheet.create({
+  title: {
+    marginTop: 16,
+    paddingVertical: 8,
+    color: "white",
+    textAlign: "center",
+    fontSize: 30,
+    fontWeight: "bold",
+    flex: 1,
+  },
+});
 export default ReservationsList;
