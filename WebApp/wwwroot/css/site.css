@@ -944,3 +944,8 @@ table a {
     background-color: white;
     border-color: #6c757d;
 }
+
+.table-manage-spots tbody {
+    background-color: #fff;
+    opacity: 0.7;
+}
