@@ -989,3 +989,7 @@ h2 .f-w-600 .spot-edit {
 #register-user:focus {
     outline: none !important;
 }
+
+img#img-park-create {
+    width: 95%;
+}
