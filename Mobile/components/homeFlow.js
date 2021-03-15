@@ -9,6 +9,7 @@ import SignUp from "../screens/SignUp";
 const Tab = createBottomTabNavigator();
 
 const homeFlow = () => {
+  console.log("Estou no HomeFlow");
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({

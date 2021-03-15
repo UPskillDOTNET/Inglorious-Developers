@@ -41,9 +41,27 @@ const ReservationsList = () => {
             <Text style={styles.title}>YOUR RESERVATIONS</Text>{" "}
             {data.map((reservation, index) => (
               <Card key={index}>
-                <Text>ReservationID: {reservation.centralReservationID}</Text>
-                <Text>Final Price: {reservation.finalPrice}</Text>
-                <Text>Parking Spot ID: {reservation.parkingSpotID}</Text>
+                <Text>
+                  ReservationID <br />
+                  {reservation.centralReservationID} <hr />
+                </Text>
+                <Text>
+                  Final Price <br />
+                  {reservation.finalPrice} €<hr />
+                </Text>
+                <Text>
+                  Parking Spot
+                  <br />
+                  {reservation.parkingSpotID} <hr />
+                </Text>
+                <Text>
+                  Start Hour <br />
+                  {reservation.startTime} <hr />
+                </Text>
+                <Text>
+                  End Hour <br />
+                  {reservation.endTime} <hr />
+                </Text>
               </Card>
             ))}
           </View>
