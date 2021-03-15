@@ -90,7 +90,7 @@ namespace WebApp.Controllers
                 var id = pLotId;
 
                 /* Return to ParkingLot Index*/
-                return RedirectToAction("Index", "ParkingSpots", new { id });
+                return RedirectToAction("ManagerSpots", "ParkingSpots", new { id });
 
                 /* Return to ParkingSpot Details*/
                 //return RedirectToAction("Details", "ParkingSpots", new { id, pSpotId } );
