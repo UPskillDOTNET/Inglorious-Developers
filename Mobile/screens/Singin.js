@@ -20,6 +20,7 @@ const Signin = ({ navigation }) => {
           placeholder="Username"
           onChangeText={setUsername}
           value={username}
+          secureTextEntry
           style={styles.bodyText}
         />
         <Input
