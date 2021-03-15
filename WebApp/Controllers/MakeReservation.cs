@@ -37,23 +37,16 @@ namespace WebApp.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                parkingLots = parkingLots.Where(p => p.name.Contains(char.ToUpper(searchString[0]) + searchString.Substring(1))
-                                || p.location.Contains(char.ToUpper(searchString[0]) + searchString.Substring(1)));
+                parkingLots = parkingLots.Where(p => p.name.Contains(char.ToUpper(searchString[0]) + searchString[1..])
+                                || p.location.Contains(char.ToUpper(searchString[0]) + searchString[1..]));
             }
 
-            switch (sortOrder)
+            parkingLots = sortOrder switch
             {
-                case "name_desc":
-                    parkingLots = parkingLots.OrderByDescending(p => p.name);
-                    break;
-                case "location_desc":
-                    parkingLots = parkingLots.OrderByDescending(p => p.location);
-                    break;
-                default:
-                    parkingLots = parkingLots.OrderBy(p => p.name);
-                    break;
-            }
-
+                "name_desc" => parkingLots.OrderByDescending(p => p.name),
+                "location_desc" => parkingLots.OrderByDescending(p => p.location),
+                _ => parkingLots.OrderBy(p => p.name),
+            };
             return View(parkingLots.ToList());
         }
 
@@ -62,7 +55,7 @@ namespace WebApp.Controllers
         //method for view endDate pick
         public IActionResult Later(int id)
         {
-            ReservationDTO reservationDTO = new ReservationDTO()
+            ReservationDTO reservationDTO = new()
             {
                 parkingLotID = id
             };
@@ -95,7 +88,7 @@ namespace WebApp.Controllers
             {
                 ViewData["parkingLotId"] = id;
                 ViewBag.parkLotName = _webParkingLotService.GetParkingLotById(id).Result.Value.name;
-                return View(_parkingSpotService.GetAllFreeParkingSpots(id).Result.Value);
+                return View((await _parkingSpotService.GetAllFreeParkingSpots(id)).Value);
             }
             catch (Exception)
             {
@@ -106,7 +99,7 @@ namespace WebApp.Controllers
         public IActionResult ReserveNow(int id, string pSpotId)
         {
 
-            ReservationDTO reservationDTO = new ReservationDTO()
+            ReservationDTO reservationDTO = new()
             {
                 parkingLotID = id,
                 parkingSpotID = pSpotId,
@@ -124,6 +117,10 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Confirm(ReservationDTO reservationDTO)
         {
+            if (reservationDTO.endTime< reservationDTO.startTime)
+            {
+                return BadRequest("Date can't be earlier than " + reservationDTO.startTime);
+            }
             reservationDTO = new ReservationDTO() {
                 parkingLotID = reservationDTO.parkingLotID,
                 parkingSpotID = reservationDTO.parkingSpotID,
@@ -145,8 +142,11 @@ namespace WebApp.Controllers
         //View for ReserveLater - view is the same, model for rendering is diferent
         public async Task<IActionResult> Confirm(int id,  DateTime startDate, DateTime endDate, string pSpotId)
         {
-            ReservationDTO reservationDTO = new ReservationDTO()
+            if (endDate < startDate)
             {
+                return BadRequest("Date can't be earlier than " + startDate);
+            }
+            ReservationDTO reservationDTO = new() {  
                 parkingLotID = id,
                 parkingSpotID = pSpotId,
                 startTime = startDate,
@@ -186,7 +186,7 @@ namespace WebApp.Controllers
 
         public async Task<ActionResult<PaymentDTOOperation>> Pay(ReservationDTO reservationDTO)
         {
-            PaymentDTO paymentDTO = new PaymentDTO
+            PaymentDTO paymentDTO = new()
             {
                 paymentID = reservationDTO.reservationID,
                 reservationID = reservationDTO.reservationID,

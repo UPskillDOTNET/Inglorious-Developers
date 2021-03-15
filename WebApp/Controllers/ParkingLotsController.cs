@@ -23,25 +23,20 @@ namespace WebApp.Controllers
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["LocationSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 
-            var parkingLots = from p in _webParkingLotService.GetAllParkingLots().Result.Value
+            var parkingLots = from p in (await _webParkingLotService.GetAllParkingLots()).Value
                               select p;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                parkingLots = parkingLots.Where(p => p.name.Contains(char.ToUpper(searchString[0]) + searchString.Substring(1))
-                                || p.location.Contains(char.ToUpper(searchString[0]) + searchString.Substring(1)));
+                parkingLots = parkingLots.Where(p => p.name.Contains(char.ToUpper(searchString[0]) + searchString[1..])
+                                || p.location.Contains(char.ToUpper(searchString[0]) + searchString[1..]));
             }
 
-            switch (sortOrder)
+            parkingLots = sortOrder switch
             {
-                case "name_desc":
-                    parkingLots = parkingLots.OrderByDescending(p => p.name);
-                    break;
-                default:
-                    parkingLots = parkingLots.OrderBy(p => p.name);
-                    break;
-            }
-            
+                "name_desc" => parkingLots.OrderByDescending(p => p.name),
+                _ => parkingLots.OrderBy(p => p.name),
+            };
             return View(parkingLots.ToList());
         }
 
@@ -51,7 +46,7 @@ namespace WebApp.Controllers
         {
             try
             {
-                return View(_webParkingLotService.GetParkingLotById(id).Result.Value);
+                return View((await _webParkingLotService.GetParkingLotById(id)).Value);
             }
             catch
             {

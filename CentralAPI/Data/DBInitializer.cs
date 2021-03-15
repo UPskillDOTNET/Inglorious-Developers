@@ -123,24 +123,6 @@ namespace CentralAPI.Data
             context.SaveChanges();
 
 
-            if (context.Sublets.Any())
-            {
-                return;   // DB has been seeded
-            }
-
-            var Sublets = new Sublet[]
-           {
-                    //new Sublet {subletID = "abc4", reservationID = "wtv", mainUserID="1", subUserID = "2", isCancelled=false},
-                    //new Sublet {subletID = "abc5", reservationID = "wtv2", mainUserID="2", subUserID = "3", isCancelled=false},
-                    //new Sublet {subletID = "abc6", reservationID = "wtv3", mainUserID="3", subUserID = "1", isCancelled=false}
-
-           };
-
-            foreach (Sublet s in Sublets)
-            {
-                context.Sublets.Add(s);
-            }
-            context.SaveChanges();
         }
 
         public static void SeedRoles(RoleManager<IdentityRole> roleManager, CentralAPIContext context) {
@@ -219,9 +201,9 @@ namespace CentralAPI.Data
                 context.SaveChanges();
             }
             var caio = users.FirstOrDefault(x => x.UserName == "CaioR");
-            if (!userManager.IsInRoleAsync(caio, admin.Name).Result)
+            if (!userManager.IsInRoleAsync(caio, user.Name).Result)
             {
-                _ = userManager.AddToRoleAsync(caio, admin.Name).Result;
+                _ = userManager.AddToRoleAsync(caio, user.Name).Result;
                 context.SaveChanges();
             }
         }

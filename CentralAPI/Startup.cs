@@ -51,10 +51,8 @@ namespace CentralAPI
             services.AddTransient<QRgenerator>();
             services.AddTransient<EmailService>();
             services.AddTransient<ClientHelper>();
-          
-            services.AddControllers().AddNewtonsoftJson(options =>
-            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-            );
+
+            services.AddControllers();
             services.AddAutoMapper(typeof(Maps));
             services.AddAuthentication("Bearer")
                  .AddIdentityServerAuthentication("Bearer", options =>
