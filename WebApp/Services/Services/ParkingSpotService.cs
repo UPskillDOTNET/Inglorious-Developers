@@ -32,7 +32,7 @@ namespace WebApp.Services.Services {
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllParkingSpotsByManagerID(string managerID) {
             var parkingLot = _parkingLotService.GetParkingLotsByManagerId(managerID).Result.Value;
             var pLotId = parkingLot.parkingLotID;
-            var response = await _helper.GetClientAsync("central/parkingSpots/parkinglot/" + pLotId);
+            var response = await _helper.GetClientAsync("central/parkingSpots/" + managerID);
             return await response.Content.ReadAsAsync<List<ParkingSpotDTO>>();
         }
         public async Task<ActionResult<IEnumerable<ParkingSpotDTO>>> GetAllFreeParkingSpots(int id) {
