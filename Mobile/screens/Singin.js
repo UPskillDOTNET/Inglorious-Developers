@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Input, Button } from "react-native-elements";
 import { Context as AuthContext } from "../context/AuthContext";
+import SignUp from "./SignUp";
 
 const Signin = ({ navigation }) => {
   const [username, setUsername] = useState("");
@@ -37,7 +38,7 @@ const Signin = ({ navigation }) => {
         />
         <View style={styles.link}>
           <Text style={styles.text}>Dont have an account? </Text>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity onPress={SignUp}>
             <Text style={styles.textSignUp}>Sign up Here</Text>
           </TouchableOpacity>
         </View>

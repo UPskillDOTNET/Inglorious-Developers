@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import { Button } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
-import Icon from "react-native-vector-icons/FontAwesome";
 import Register from "./screens/register";
 
 export default function LoginComponent() {
@@ -42,8 +41,6 @@ export default function LoginComponent() {
           </TouchableOpacity>
         </View>
       </View>
-      {/* <Icon name="facebook" />
-      <Icon name="google" /> */}
     </View>
   );
 }

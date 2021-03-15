@@ -1,7 +1,7 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import Signin from "../screens/Singin";
-import Register from "../screens/register"
+import SignUp from "../screens/SignUp";
 
 const AuthStack = createStackNavigator();
 
@@ -16,7 +16,7 @@ export default function authFlow() {
       <AuthStack.Screen
         options={{ headerShown: false }}
         name="Signup"
-        component={Register}
+        component={SignUp}
       />
     </AuthStack.Navigator>
   );
