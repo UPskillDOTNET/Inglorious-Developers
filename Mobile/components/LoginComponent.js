@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     margin: 10,
     width: 300,
     textAlign: "center",
-    textTransform: "uppercase",
+   
   },
   login: {
     color: "white",

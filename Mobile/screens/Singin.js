@@ -20,7 +20,6 @@ const Signin = ({ navigation }) => {
           placeholder="Username"
           onChangeText={setUsername}
           value={username}
-          secureTextEntry
           style={styles.bodyText}
         />
         <Input
@@ -98,7 +97,6 @@ const styles = StyleSheet.create({
     margin: 10,
     width: 300,
     textAlign: "center",
-    textTransform: "uppercase",
   },
 });
 

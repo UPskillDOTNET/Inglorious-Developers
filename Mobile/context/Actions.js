@@ -1,6 +1,6 @@
 import { makeRequestToAPI } from "../Services/Service";
 
-export const URL_API = "http://192.168.1.64:90";
+export const URL_API = "http://192.168.31.64:90";
 
 export const FETCH_RESERVATIONS_STARTED = "FETCH_RESERVATIONS_STARTED";
 export const FETCH_RESERVATIONS_SUCCESS = "FETCH_RESERVATIONS_SUCCESS";

@@ -8,11 +8,14 @@ import {
 import { View, Text, StyleSheet } from "react-native";
 import { Card } from "react-native-elements";
 
+
+
 const ReservationsList = () => {
   const { state, dispatch } = useContext(MyContext);
   const { reservations } = state;
   const { loading, error, data } = reservations;
 
+ 
   useEffect(() => {
     dispatch(fetchReservationsStarted());
     const url = `${URL_API}/central/reservations/users/3`;
@@ -38,30 +41,32 @@ const ReservationsList = () => {
       if (data.length > 0) {
         return (
           <View>
-            <Text style={styles.title}>YOUR RESERVATIONS</Text>{" "}
             {data.map((reservation, index) => (
               <Card key={index}>
+                <View>
+                <Text style={styles.title}>YOUR RESERVATIONS</Text>{" "}
                 <Text>
-                  ReservationID <br />
-                  {reservation.centralReservationID} <hr />
+                  ReservationID: 
+                  {reservation.centralReservationID} 
                 </Text>
                 <Text>
-                  Final Price <br />
-                  {reservation.finalPrice} €<hr />
+                  Final Price:
+                  {reservation.finalPrice} 
                 </Text>
                 <Text>
-                  Parking Spot
-                  <br />
-                  {reservation.parkingSpotID} <hr />
+                  Parking Spot:
+                
+                  {reservation.parkingSpotID} 
                 </Text>
                 <Text>
-                  Start Hour <br />
-                  {reservation.startTime} <hr />
+                  Start Hour:
+                  {reservation.startTime} 
                 </Text>
                 <Text>
-                  End Hour <br />
-                  {reservation.endTime} <hr />
+                  End Hour:
+                  {reservation.endTime}
                 </Text>
+                </View>
               </Card>
             ))}
           </View>

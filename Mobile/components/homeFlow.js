@@ -2,7 +2,6 @@ import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "react-native-elements";
 import ReservationsUser from "../screens/ReservationsUser";
-import Explore from "../screens/Explore";
 import Logout from "../screens/Logout";
 import SignUp from "../screens/SignUp";
 
@@ -39,7 +38,6 @@ const homeFlow = () => {
         inactiveTintColor: "gray",
       }}
     >
-      <Tab.Screen name="Explore" component={Explore} />
       <Tab.Screen name="User Reservations" component={ReservationsUser} />
       <Tab.Screen name="Log Out" component={Logout} />
       <Tab.Screen name="SignUp" component={SignUp} />

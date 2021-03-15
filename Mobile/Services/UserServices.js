@@ -4,7 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const API_CLIENT_ID = "mobile.client";
 const API_CLIENT_SECRET = "Secret";
-const API_BASE_URL = "https://localhost:5001";
+const API_BASE_URL = "http://192.168.31.64:70";
 
 async function getAccessToken(credentials) {
   const axiosConfig = {
@@ -33,9 +33,10 @@ async function getAccessToken(credentials) {
       axiosConfig
     );
     console.log("Token:", result.data);
-    console.log(result.data.access_token);
     var token = result.data.access_token;
     await AsyncStorage.setItem("token", token);
+    var x = await AsyncStorage.getItem("token");
+    console.log(x);
     var userinfo = await getUserInfo(result.data.access_token);
     console.log(userinfo);
     var reservations = getUserReservations(result.data.access_token, userinfo);
@@ -48,7 +49,7 @@ async function getAccessToken(credentials) {
 export default getAccessToken;
 
 async function getUserInfo() {
-  token = await AsyncStorage.getItem;
+  var token = await AsyncStorage.getItem("token");
   const axiosConfig = {
     baseURL: API_BASE_URL,
     timeout: 30000,
@@ -64,32 +65,11 @@ async function getUserInfo() {
     var userId = result.data.sub;
     console.log(userId);
     await AsyncStorage.setItem("userID", userId);
+    var userID = await AsyncStorage.getItem("userID");
+    console.log(userID);
     return userId;
   } catch (err) {
     return err;
   }
 }
 
-async function getUserReservations() {
-  const axiosConfig = {
-    baseURL: "http://192.168.1.64:90",
-    timeout: 30000,
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + token,
-    },
-  };
-
-  var sub = userinfo;
-  console.log("sub", sub);
-  console.log("Config:", axiosConfig);
-  try {
-    const result = await axios.get("/reservations/users/" + sub, axiosConfig);
-    console.log(result.data);
-    var reservations = data;
-    console.log(reservations);
-    return result.data;
-  } catch (err) {
-    return err;
-  }
-}

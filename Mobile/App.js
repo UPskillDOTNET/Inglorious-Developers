@@ -8,16 +8,6 @@ import homeFlow from "./components/homeFlow";
 import AppProvider from "./context/AppProvider";
 import Wrapper from "./components/Wrapper.js";
 
-// export default () => {
-//   return (
-//     <AuthProvider>
-//       <AppProvider>
-//         <App />
-//       </AppProvider>
-//     </AuthProvider>
-//   );
-// };
-
 const App = () => {
   return (
     <AuthProvider>

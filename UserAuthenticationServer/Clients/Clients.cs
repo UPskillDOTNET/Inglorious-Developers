@@ -38,7 +38,7 @@ namespace UserAuthenticationServer.Clients
              {
                 ClientId = "mobile.client",
                 AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-                AllowedCorsOrigins = {"http://localhost:19006" },
+                AllowedCorsOrigins = {"http://localhost:19006"},
 
                 ClientSecrets =
                 {

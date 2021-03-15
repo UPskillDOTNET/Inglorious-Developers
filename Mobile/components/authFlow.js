@@ -16,7 +16,7 @@ export default function authFlow() {
       <AuthStack.Screen
         options={{ headerShown: false }}
         name="Signup"
-        component={SignUp}
+        component={Signin}
       />
     </AuthStack.Navigator>
   );

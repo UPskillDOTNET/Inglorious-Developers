@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native";
 import ReservationsList from "../components/ReservationsList";
 
 const ReservationsUser = ({ navigation }) => {
-  useEffect;
+  
   return (
     <View style={styles.master}>
       <ReservationsList />
