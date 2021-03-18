@@ -8,9 +8,7 @@ namespace CentralAPI.DTO
         public Maps()
         {
             CreateMap<ParkingLot, ParkingLotDTO>().ReverseMap();
-            CreateMap<PrivateParkAPI.Models.Reservation, PrivateParkAPI.DTO.ReservationDTO>().ReverseMap();
             CreateMap<CentralReservation, CentralReservationDTO>().ReverseMap();
-            CreateMap<PrivateParkAPI.Models.Reservation, PrivateParkAPI.DTO.ReservationDTO>().ReverseMap();
             CreateMap<Wallet, WalletDTO>().ReverseMap();
             CreateMap<User, UserDTO>().ReverseMap();
             CreateMap<Sublet, SubletDTO>().ReverseMap();

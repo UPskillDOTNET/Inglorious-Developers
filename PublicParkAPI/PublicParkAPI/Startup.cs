@@ -44,7 +44,7 @@ namespace PublicParkAPI
                          options.RequireHttpsMetadata = false;
                      });
 
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers();
             services.AddAutoMapper(typeof(Maps));
             services.AddMvc(options =>
             {
