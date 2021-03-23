@@ -40,7 +40,7 @@ namespace WebApp.Services.Services.Utils
         {
            
             var client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44381/");
+            client.BaseAddress = new Uri("https://centralapi--parkaround.azurewebsites.net/");
             var accessToken = await HttpContext.GetTokenAsync("access_token");
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             var response = await client.GetAsync(url);
@@ -57,7 +57,7 @@ namespace WebApp.Services.Services.Utils
             var client = new HttpClient();
             var accessToken = await HttpContext.GetTokenAsync("access_token");
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-            client.BaseAddress = new Uri("https://localhost:44381/");
+            client.BaseAddress = new Uri("https://centralapi--parkaround.azurewebsites.net/");
             var response = await client.PostAsync(url, content);
             if (response.IsSuccessStatusCode)
             {
@@ -71,7 +71,7 @@ namespace WebApp.Services.Services.Utils
             var client = new HttpClient();
             var accessToken = await HttpContext.GetTokenAsync("access_token");
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-            client.BaseAddress = new Uri("https://localhost:44381/");
+            client.BaseAddress = new Uri("https://centralapi--parkaround.azurewebsites.net/");
             var response = await client.PutAsync(url, content);
             if (response.IsSuccessStatusCode)
             {
